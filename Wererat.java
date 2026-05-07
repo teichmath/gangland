@@ -4,8 +4,6 @@ public class Wererat extends Beast {
 	
 	//constructor
 	public Wererat(Dice birth) {
-		this.clown = "Bozo";
-		this.number_of_pickles = 5;
 		this.name = "wererat";
 		this.name_plural = "rats";
 		this.sound_of_pain = "SQUEEAK!";
