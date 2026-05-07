@@ -1,0 +1,8 @@
+# Compiled Java class files
+*.class
+
+# Node.js
+node_modules/
+
+# macOS
+.DS_Store
