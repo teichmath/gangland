@@ -41,7 +41,9 @@ public class Snake extends Beast {
 		this.skill_bonus_from_hit = 2;
 		this.value = 20;
 		this.run_chance = 1;
-	}		
+	}
+
+	public String getspecies() { return "snake"; }
 
 	//snake attacks
 	public Attack attack_one(Being victim, String bname, int textlevel, Dice bite, String snake_name, boolean target_present) {

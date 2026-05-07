@@ -556,8 +556,8 @@ public class Gangland {
 	//				}
 			//instantiate the biographies with place holders
 			for(int i = 0; i < game.armysize; i++) {
-				for(int j = 0; j < 100; j++) {
-					game.bio_tome[i][j] = new Biography("open", game.user);				
+				for(int j = 0; j < 500; j++) {
+					game.bio_tome[i][j] = new Biography("open", game.user);
 				}
 			}
 			
@@ -4244,7 +4244,7 @@ turnloop:	while (game.play_on) {
 		chanting_gangs = new ArrayList<Integer>();
 		forest_aiees = new ArrayList<String>();
 		writings = new String[boardside + 1][boardside + 1][11];
-		bio_tome = new Biography[armysize][100];
+		bio_tome = new Biography[armysize][500];
 		for(int i = 0; i < boardside + 1; i++) {
 			for(int j = 0; j < boardside + 1; j++) {
 				for(int k = 0; k < 11; k++) {
@@ -5508,12 +5508,7 @@ turnloop:	while (game.play_on) {
 							masterStringOut("You spend a few seconds looking into the dark cave... there's a smell that sparks part of a memory, but you can't place it...");
 							Wait.manySec(3);
 							masterStringOut("...and then the rock begins slowly to grind shut!");
-							masterStringOut("\nDo you enter the cave?");
-							boolean user_enters_cave = ynChoiceBoolean();
-							if(user_enters_cave) {
-								army[user].setxyquick(boardside + 9, boardside + 9);
-								caveOfLives();
-							}
+							masterStringOut("...but the rock grinds shut before you can decide what to do.");
 							input_valid = true;
 						}
 					}
@@ -5773,35 +5768,7 @@ turnloop:	while (game.play_on) {
 //				}
 				input_continues_loop = true;
 			}
-			if(your_choice.compareToIgnoreCase("rumor report") == 0) {
-				for(int p = 0; p < rumors.length; p++) {
-					if(rumors[p].gettag().compareTo("blank") != 0) {
-						System.out.println("Rumor:		"+rumors[p].gettag());
-						System.out.println("Heard by:");
-						for(int v = 0; v < humansize; v++) {
-							if(rumors[p].has_heard(v)) System.out.println(army[v].getname()+" at "+army[v].getx()+", "+army[v].gety());
-						}
-					}
-				}
-			} 
-			if(your_choice.compareToIgnoreCase("report") == 0) {
-				masterStringOut("Whom?");
-				String report_choice = stringInput();
-				playerReport(report_choice);
-				input_continues_loop = true;
-			}
-			if(your_choice.compareToIgnoreCase("zombie report") == 0) {
-				
-			}
 			if(your_choice.compareToIgnoreCase("curs") == 0) topFive();
-			if(your_choice.compareToIgnoreCase("pets") == 0) {
-				for(int i = humansize; i < armysize; i++) {
-					masterStringOut(army[i].getname() + "("+army[i].getspecies()+")   health: " + army[i].gethealth() + "  at: ("+army[i].getx()+", "+army[i].gety()+")");
-					if(army[i].hidden())masterStringOut("(hidden)");
-				}
-				masterStringOut("You are at:  ("+army[user].getx()+", "+army[user].gety()+")"); 
-				input_continues_loop = true;
-			}
 			if(your_choice.compareToIgnoreCase("handy map") == 0) {
 				masterStringOut("\n  1 2 3 4 5 6 7 8 9 10");
 				for(int i = 0; i < boardside; i++){
@@ -5823,59 +5790,12 @@ turnloop:	while (game.play_on) {
 				}
 				input_continues_loop = true;
 			}
-			if(your_choice.compareToIgnoreCase("who knows zombies") == 0) {
-				for(int i = 0; i < armysize; i++) {
-					for(int j = 0; j < armysize; j++) {
-						if(army[i].knows_a_zombie(j)) masterStringOut(army[i].getname()+" knows "+army[j].getname()+" is a zombie.");
-					}
-				}
-				input_continues_loop = true;
-			}
 			if(your_choice.compareToIgnoreCase("skeletons") == 0) {
 				if(skeletons_continue) masterStringOut("Yes, the skeletons are out.");
 				else masterStringOut("No, the skeletons are not out.");
 				input_continues_loop = true;
 			}
 			
-			if(your_choice.compareToIgnoreCase("zombie report") == 0) {
-				int[][] zombie_numbers = new int[boardside][boardside];
-				for(int i = 0; i < boardside; i++) {
-					for(int j = 0; j < boardside; j++) {
-						zombie_numbers[i][j] = 0;
-					}
-				}
-				//UNRESOLVED: array outofbounds exception at this location
-				int z_counter = 0;
-				for(int i = 0; i < armysize; i++) {
-					if(army[i].is_zombie()) {
-						z_counter++;
-						System.out.println(z_counter+". "+army[i].getname()+" is undead.  Health: "+army[i].getname()+"  Hunger: "+army[i].getbrains_hunger());
-						if(army[i].getx() > 0 && army[i].getx() < boardside + 1 && army[i].gety() > 0 && army[i].gety() < boardside + 1) {
-							zombie_numbers[army[i].getx() - 1][army[i].gety() - 1] ++;
-						}
-					}
-				}
-				masterStringOut("\n  * * * * * * * * * *");
-				for(int j = 0; j < boardside; j++) {
-					String line_report = "  ";
-					for(int i = 0; i < boardside; i++) {
-						if(army[user].getx() == i+1 && army[user].gety() == j+1) line_report = line_report + "* ";
-						else if(zombie_numbers[i][j] > 0) {
-							line_report = line_report + zombie_numbers[i][j];
-							if(zombie_numbers[i][j] < 10) line_report = line_report + " ";
-						}
-						else line_report = line_report + "  ";
-					}
-					masterStringOut(line_report);
-				}
-				input_continues_loop = true;
-			}
-			
-			
-			if(your_choice.compareToIgnoreCase("longhouse") == 0) {
-				masterStringOut("("+markers[0][0]+", "+markers[1][0]+") ");
-				input_continues_loop = true;
-			}
 			if(your_choice.compareToIgnoreCase("stats") == 0) {
 				masterStringOut("");
 				int number_of_mates = 0;
@@ -9306,7 +9226,7 @@ turnloop:	while (game.play_on) {
 					masterStringOut(joinmealmessage);
 					masterStringOut("Do you join the meal?");
 					joinmealchoice = ynChoiceBoolean();
-					if(joinmealchoice = false) diners.remove(new Integer(user));
+					if(!joinmealchoice) diners.remove(new Integer(user));
 				}
 				else {
 					if(after_battle) masterStringOut("You are victorious... and now, the reward... a meal of BRAINS!");
@@ -13048,7 +12968,7 @@ shitloop:do {
 				if(beast_type.compareToIgnoreCase("snake") == 0 && army[war[beast_fight][i]].getname().contains("red")) {
 					war_names[beast_fight][i] = "snake (RED)";
 					if(battletext == 3) war_names_for_dialogue[beast_fight][i] = "the RED snake";
-					if(battletext == 1) war_names_for_dialogue[beast_fight][i] = "a snake";				
+					if(battletext == 1) war_names_for_dialogue[beast_fight][i] = "a red snake";
 				}	 
 				if(beast_number > 1 && battletext > 1) {
 					war_names[beast_fight][i] += " ("+getAlphabet(i)+".)"; 
