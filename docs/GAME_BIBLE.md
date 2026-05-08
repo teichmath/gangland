@@ -31,18 +31,18 @@ This document describes every major game system: how it works, what the player s
 The overworld is a 10×10 grid (coordinates 1 to `boardside`). Player and NPCs move across this grid one step at a time in the four cardinal directions (N, S, E, W). Each step advances the round clock.
 
 ### Named Locations (Markers)
-Nine named locations are anchored to specific grid coordinates. The player and NPCs discover and reference them by name.
+Nine named locations are anchored to specific grid coordinates.
 
 | # | Name | Notable feature |
 |---|------|-----------------|
 | 0 | Longhouse | Stone building; Gregor's base; gang gathering point |
 | 1 | Stand of evergreens | Dense trees |
-| 2 | Cairn of reddish rocks | Red dust → sparks for bombs |
-| 3 | Tall grass area | Cover |
+| 2 | Cairn of reddish rocks | Red dust → sparks for apple bombs |
+| 3 | Tall grass area | Cosmetic only — no mechanical cover effect (`status: stub`) |
 | 4 | Ruins | Spyglass spawn |
-| 5 | Bog | Bodies sink; ground meat; stake cannot be planted |
+| 5 | Bog | Bodies sink; ant trail to fissure; stake cannot be planted |
 | 6 | Fallen tree / pond | Insect encounters; water; poison antidote |
-| 7 | Rocky slope / spring (fount) | Water; leadership bonus drink |
+| 7 | Rocky slope / fount | Water; drinking teleports player back here (see §12) |
 | 8 | Steep rocks / fissure | Cave entrance |
 
 ### Off-Board Coordinates
@@ -97,12 +97,12 @@ These are not accessible to the player but are used internally:
 | `is_zombie()` | Can only eat dead bodies; blocked from most social actions |
 | `has_symbol()` | Forehead carved; resurrection as zombie on death |
 | `is_cursed()` | Curse status (exact effect TBD — see §14) |
-| `is_poisoned()` | Health drains each turn; cured at pond or with full bladder |
+| `is_poisoned()` | Health drains each turn; cured at pond or by drinking antidote water |
 | `poison_clock` | Countdown to death from poison |
-| `is_blessed()` | Immune to zombie sense |
+| `is_blessed()` | Permanent buff granted when all undead are eliminated; grants poison immunity and a gang power-up (see §12) |
 | `soul_claimed()` | Devil contract active; special rebirth path |
 | `brains_hunger` | Zombie hunger meter |
-| `hidden()` | Player not visible to others |
+| `hidden()` | Character not visible to others; NPCs and pets will not encounter or detect them, and they are excluded from gang battles at that location |
 
 ### Relationships
 - `friend[i]` — opinion of army member `i`: −1 = unknown, 0–99 = known (see §4)
@@ -111,6 +111,7 @@ These are not accessible to the player but are used internally:
 
 ### Food / Healing
 - `amount_of_meat` — carried food; eating restores health
+- Sources: longhouse kitchen (cut from Gregor's cooking meat), ground meat found on the board. Killing beasts does **not** drop meat.
 
 ---
 
@@ -164,6 +165,7 @@ During encounters NPCs may: propose JOIN, offer to TEACH weaponskill, tell a JOK
 - On first meeting: names are learned
 - Response dialog is determined by friendship value
 - Player can greet: named NPC, "stranger", "dog", "cat", "undead"
+- The dragon can be greeted; it wakes (if sleeping) and combat begins (see §12)
 
 ### Friendship
 - `changefriend(i, delta)` adjusts opinion; `setfriend(i, value)` sets directly
@@ -177,20 +179,32 @@ During encounters NPCs may: propose JOIN, offer to TEACH weaponskill, tell a JOK
 - Raises player's `weaponskill`
 
 ### Jokes
-- 12 jokes stored in `jokes[][]` (lines 4167–4214)
-- A player "hears" a joke from an NPC; can retell it in later encounters
-- Telling a joke: boosts morale, improves friendship
-- Each joke tracked as heard/unheard per NPC
+- 12 jokes stored in `jokes[][]` (~lines 4167–4214)
+- **There is no timer-based release.** Jokes spread exclusively through NPC encounters: when an NPC tells a joke to another (`hears_joke()`, ~lines 7766–7878), both learn it. If the listener is in a gang, all gang members present also learn it.
+- Telling a joke: boosts morale, improves friendship with the listener
+- If the listener already knows the joke, the interaction still updates mutual-knowledge tracking but has no additional effect
+- Each NPC tracks which jokes they know via `knows_joke()`
 
 ### Biography / Memory
-- `bio_tome[armysize][500]` stores interaction records per NPC (lines 330, 4247)
-- Records: JOIN proposals, attacks, rejections, unfriendly encounters, etc.
-- Indexed by generation
-- Player reads bio entries via the REMEMBER command (line 5985)
+- `bio_tome[armysize][500]` stores interaction records per NPC (~lines 330, 4247), indexed by generation
+- Records are activated by events: encounters, battles, JOIN proposals, rejections, etc.
+- On rebirth, biographies are degraded (~line 3775) — memory fades with each generation
+- Player reads bio entries via REMEMBER command (~line 5982), which calls `readBio()` (~lines 20946–20990)
+- **What the player sees:** a narrative of how they met the person, colored by recency ("just met", "met recently", "met"). Zombie players receive only very vague memory.
+- Only entries where `bio_tome[subject][generation].is_activated()` is true are shown
 
 ### Forgiveness
-- Planned: forgiven NPCs should like player more (`// TODO` at line 23290)
-- Currently forgiveness is acknowledged but friend boost not implemented
+- Forgiveness is a coded but narrow mechanic (~lines 8677–8683), not a general system
+- It triggers when: the player encounters a deserter AND has friendship ≥100 with them AND the deserter is not their devil target
+- Effect: the deserter's friendship value is **reduced by 50** (removing the excessive-loyalty penalty from the desertion event), and relief is noted in the encounter text
+- This is not a reward — it normalizes the relationship. The TODO at line 23290 ("forgiven NPCs should like you more") refers to a separate, unimplemented mechanic where the player proactively forgives someone hostile
+
+### Ground Writings
+- Player can write a message on the ground (free-text prompt: "What do you want to write?")
+- Writings are stored in `writings[][][]` (~line 330, 4246) at the current location
+- They degrade randomly over time (~line 3559–3560)
+- **Writings do not create rumors**, with one exception: if the text contains the word "gregor", a gregor-location rumor is triggered (~line 4648)
+- **NPCs cannot write messages** — this is a player-only action
 
 ---
 
@@ -212,9 +226,10 @@ During encounters NPCs may: propose JOIN, offer to TEACH weaponskill, tell a JOK
 
 ### Propagation
 - Rumors start via `startRumor()` at fixed `turnclock` milestones: 20, 40, 50, 75, 90
-- NPCs exchange rumors when they encounter each other (lines 7024–7071)
+- NPCs exchange rumors when they encounter each other (~lines 7024–7071)
 - `rumorIsHeardBy()`, `rumorIsKnownBy()`, `rumorKnowsKnows()` track knowledge
 - A rumor about the player spreads if their reputation is noteworthy
+- Writing the word "gregor" on the ground also starts a gregor rumor
 
 ### Player Interaction
 - Player hears rumors during NPC encounters
@@ -237,9 +252,9 @@ During encounters NPCs may: propose JOIN, offer to TEACH weaponskill, tell a JOK
 | Player vs beast | `Beast()` |
 
 ### Turn Order
-- `battle_order[][][]` determines who acts when (line 264)
+- `battle_order[][][]` determines who acts when (~line 264)
 - Ordered by `speed` stat
-- Can flee via `runWithoutLeader()` (line 241)
+- Can flee via `runWithoutLeader()` (~line 241)
 
 ### Damage
 - Hit roll (d20) vs `defense + moraleadj − att_speed + 3` threshold
@@ -256,7 +271,7 @@ During encounters NPCs may: propose JOIN, offer to TEACH weaponskill, tell a JOK
 ### Poison
 - Applied by snake bites (non-red variant — **known anomaly**)
 - `poison_clock` counts down; at 0 the player dies
-- Cures: drink from pond (marker 6), or fill bladder and drink
+- Cures: drink from pond (marker 6), or drink antidote water from a bladder/bottle
 
 ### Beasts — Overworld
 Spawn on movement across the main board:
@@ -264,7 +279,7 @@ Spawn on movement across the main board:
 | Beast | Spawn chance | Notes |
 |-------|-------------|-------|
 | Rat (Wererat) | 12% | Two attacks (bite + scratch) |
-| Pig | 6% | |
+| Pig | 6% | Killing a pig yields a bladder (see §11) |
 | Snake | 6% | Bite attack; red variant cosmetic only |
 | Skeleton | 3% | Only after `turnclock` 90 (`skeletons_continue` flag) |
 | Devil | 3% | Contract / soul-claimed mechanic |
@@ -282,8 +297,11 @@ Spawn on movement across the main board:
 | Wizard | 6% — teaches spells / incantations |
 
 ### Dragon
-- Always a transformative or fatal encounter
-- Tracked via dragon transit location `(−2, −2)`
+- Roams the board; has a sleep/wake state
+- **Greeting the dragon** wakes it (if asleep) and immediately starts combat — different flavor text from a direct attack but the same outcome
+- **Outcomes:** player wins → dragon dies, player may extract teeth; player loses → sent to Limbo; player flees → standard flee mechanics
+- **There is no transformation mechanic** — the dragon does not change the player's species or apply a curse. The word "transformative" in earlier descriptions was incorrect.
+- Transit via `(−2, −2)`
 
 ---
 
@@ -313,18 +331,24 @@ Spawn on movement across the main board:
 ### Pet Behaviors in Play
 - Dogs assist in burial (strength × 3 / speed boost; dig memory improves depth)
 - Pets participate in gang battles when at same location as master
-- Pets mourn dead companions via `petsMourn()`
+- `hidden()` pets will not encounter others and are excluded from battles
+
+### When a Master Dies — Pet Mourning
+`petsMourn()` and `petMourns()` are both implemented (~lines 17914–17986):
+- If the pet and master are at the same location and the player is present, mourning text is shown
+- The pet transfers its loyalty to the master's slayer (`setfriend(slayer, ...)`, ~line 17934)
+- The pet leaves the master and comes out of hiding (~lines 17935–17936)
+- The player's morale is reduced by 20–40 depending on how long they knew the pet (~lines 17954–17986)
+- **Not implemented:** graveyard visits, lasting morale debuffs, mourning ceremonies
 
 ### Pet Death
-- Pet health tracked independently
-- Pets can be killed in battle
-- On death: master grieves, `lose_perception_of_pet()` called
-- Bond reset; pet no longer follows
+- Pet health tracked independently; pets can be killed in battle
+- On death: `lose_perception_of_pet()` called, bond resets
+- The player loses morale (see mourning above)
 
 ### Known Gaps
-- Pets do not follow master into the forest (`status: planned`, lines 3271–3272)
-- Pets without a master do not exit the forest (`status: planned`, line 65)
-- Mourning behavior ("mourning pets!!!") partially implemented (`status: partial`)
+- Pets do not follow master into the forest (`status: planned`, ~lines 3271–3272)
+- Pets without a master do not exit the forest (`status: planned`, ~line 65)
 
 ---
 
@@ -336,7 +360,7 @@ Spawn on movement across the main board:
 3. Character is reborn as a zombie rather than a normal rebirth
 
 ### Zombie State
-- Narration at resurrection varies by burial depth (lines 3823–3832)
+- Narration at resurrection varies by burial depth (~lines 3823–3832)
 - `brains_hunger` starts negative (very hungry)
 - Zombie cannot: GREET, TEACH, DRINK, GO INSIDE, BURY, LOOT
 
@@ -355,6 +379,12 @@ Spawn on movement across the main board:
 - Stake (item, planted at non-bog locations) attracts and senses zombies
 - `is_blessed()` player is immune to zombie-sense detection
 
+### Escaping Zombie Status
+- `has_symbol()` **cannot be removed** — there is no cure or ritual in the current code
+- The zombie rebirth chain is permanent unless the character sinks into the bog
+- **Bog sinking:** if the zombie sinks into the bog (buried to depth ≥50 via `get_buried(50)`), they disappear entirely and do not return — the chain ends
+- No other escape exists in current implementation
+
 ---
 
 ## 9. The Forest
@@ -364,12 +394,12 @@ Spawn on movement across the main board:
 - Direction command must match `forest_direction`
 - `morale > 35` required
 - `health > maxhealth − 3` required
-- If gang is chanting (`chantIsOn()`), forest entry may be forced (lines 3159–3188)
+- If gang is chanting (`chantIsOn()`), forest entry may be forced (~lines 3159–3188)
 
 ### Forest Layout
 - 6×6 internal grid at coordinates `boardside+3` to `boardside+8`
 - Player tracks perceived position separately from actual position
-- Map builds up as exploration proceeds (lines 4596–4619)
+- Map builds up as exploration proceeds (~lines 4596–4619)
 - Exit location known once discovered: `getforest_exit_perceived_x/y`
 
 ### Forest Encounters
@@ -377,8 +407,8 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 
 ### Navigating Out
 - Player must reach the exit perceived coordinates
-- Successful exit triggers celebration sequence (lines 1070–1142)
-- Gang celebration / chanting fires on exit (lines 1115–1140)
+- Successful exit triggers celebration sequence (~lines 1070–1142)
+- Gang celebration / chanting fires on exit (~lines 1115–1140)
 
 ### Forest Limitations
 - Spyglass (LOOK) disabled: "Your spyglass is no good in the forest." (`status: planned`)
@@ -401,7 +431,7 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 #### Normal Rebirth
 - Triggered when: `number_dead >= 10` OR `resurrection_clock() <= 0`
 - Requirements: not soul-claimed, not recently carved, or burial too deep for zombie rise
-- New player generated via constructor VI (line 3748)
+- New player generated via constructor VI (~line 3748)
 - Stats reset; `generation` incremented
 - Rebirth narrative by generation:
   - Gen 1: First-death narrative (specific)
@@ -413,6 +443,7 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 - Triggered when: `has_symbol()` is true AND burial depth < 30
 - Character rises as a zombie (see §8)
 - Narrative varies by how shallow the burial was
+- The only escape from this chain is sinking into the bog (see §8)
 
 #### Soul-Claimed Rebirth
 - Triggered when: devil contract (`soul_claimed()`) is active
@@ -421,7 +452,7 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 - Exact additional mechanics TBD
 
 ### High Scores
-- Top 10 scores tracked (lines 392–399)
+- Top 10 scores tracked (~lines 392–399)
 - Name, initials, and generation stored
 - Displayed on game over
 
@@ -429,7 +460,7 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 
 ## 11. Items and Inventory
 
-### Item Categories
+### Item Categories (items[][] array)
 | Slot | Item | Find location | Find chance |
 |------|------|--------------|-------------|
 | `items[0]` | Spyglass | Marker 4 (ruins) | 2% |
@@ -438,30 +469,37 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 | `items[3]` | Apple bomb (×30) | Various | 50% |
 | `items[4]` | Bottle (×14) | Various | — |
 
+### Pig Bladders (separate from items[][] array)
+- Bladders are tracked per-character via methods on Human/Pet: `getnumber_of_bladders()`, `fill_bladder(liquid)`, `lose_bladder(content)`, `pick_up_bladder(turnclock)`
+- **Obtained by killing a pig** — after a pig battle, `getPigBladder()` retrieves one from the body (~lines 17373–17380)
+- Used as liquid containers: can hold beer, pond water, or fount water
+- Bladders burst after roughly 60 turns of holding liquid (~lines 3594–3625) — they are consumable unlike bottles
+- Drinking from a filled bladder can cure poison (pond water) or raise morale (beer)
+
 ### Item Use
 
-**Spyglass** — LOOK command  
-- Reveals distant NPCs, dragon, longhouse from current position  
-- Disabled inside forest  
+**Spyglass** — LOOK command
+- Reveals distant NPCs, dragon, longhouse from current position
+- Disabled inside forest
 
-**Wooden Stake** — PLANT command  
-- Cannot be planted in bog (marker 5)  
-- Once planted: attracts and reveals zombies  
-- Sense radius for detecting undead  
+**Wooden Stake** — PLANT command
+- Cannot be planted in bog (marker 5)
+- Once planted: attracts and reveals zombies
+- Sense radius for detecting undead
 
-**Sword**  
-- Adds damage bonus in combat  
-- Blocks leader challenge (cannot be challenged while armed)  
+**Sword**
+- Adds damage bonus in combat
+- Blocks leader challenge (cannot be challenged while armed)
 
-**Apple Bomb**  
-- Requires stained fingers (red dust from marker 2) to light fuse  
-- Thrown at target; fuse burns before detonating  
-- `status: partial` — "broken apples" TODO at line 5124  
+**Apple Bomb**
+- Requires stained fingers (red dust from marker 2) to light fuse
+- Thrown at target; fuse burns before detonating
+- `status: partial` — "broken apples" TODO at ~line 5124
 
-**Bottle**  
-- Contents: "beer" (morale boost), "pond water" (poison cure), "fount water" (leadership bonus), "empty"  
-- Filled at pond (marker 6) or fount (marker 7)  
-- Shared with allies during encounters  
+**Bottle**
+- Contents: "beer" (sets morale to 40), "pond water" (poison cure), "fount water" (see fount entry in §12), "empty"
+- Filled at pond (marker 6) or fount (marker 7)
+- Shared with allies during encounters; unlike bladders, bottles do not burst
 
 ### Ownership
 - `getowner()` returns holder index or −1 (unowned / on ground)
@@ -475,44 +513,64 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 ### Longhouse (Marker 0)
 - Interior accessible when NPC or player enters from overworld
 - Interior at `house_coord` (boardside+10)
-- Gregor is the keeper; cooks meat when `meat_is_cooking` is set
+- Gregor is the keeper; `meat_is_cooking` flag set randomly (1-in-3 chance each turn unless 20+ undead are active)
+- Players can cut meat from the cooking supply and carry it
 - NPCs visit when morale < 30 or >40 turns since last visit
 - Zombies are repelled by noise (cannot enter)
 - **Planned:** "basement of the house!" (`status: stub`)
 
+### Tall Grass (Marker 3)
+- Display text: "The grass is a little taller here"
+- **No mechanical effect** — there is no cover, visibility, attack-roll, or movement modifier tied to this location
+- `status: stub` — intended as cover but not implemented
+
 ### Bog (Marker 5)
-- Bodies sink gradually: "BLURP!" messages indicate descent
-- Bodies auto-bury to depth 50 over time
-- Ground meat location: ant trail → fissure detection chain
+- Bodies sink gradually: "BLURP!" messages indicate descent; auto-buried to depth 50 over time
 - Stake cannot be planted (too soft)
+- **Ant trail → fissure chain:** at the bog, players can notice ants carrying meat. Following the ant trail leads to a fissure in the rocks (`you_see_fissure = true`, ~line 5472). With fissure knowledge, the player can reliably open the cave entrance at marker 8. Without it, opening the fissure is a 1-in-10 dice roll. This is the in-game discovery path for the cave — meat at the bog is the hint that a cave exists nearby. A related rumor exists: "meat helps you find the cave" (~line 22567).
 
 ### Reddish Rocks / Sparks (Marker 2)
 - Player can stain fingers with red dust (`stain_fingers()`)
 - Stained fingers + rubbing → spark discovery (`notice_sparks()`)
-- Sparks are the only way to light apple bomb fuses
+- **Sparks have unlimited uses** — `has_stained_fingers()` is a permanent flag with no counter. The real constraint is apple availability, not spark uses.
 
-### Pond (Marker 6) and Fount (Marker 7)
-- Pond: cure for poison; fill bottle with antidote water
-- Fount: leadership stat bonus on drinking; shareable via bottle
+### Pond (Marker 6)
+- Cure for poison: drink here or fill a bottle/bladder with pond water
+- Fills containers for later use
+
+### Fount (Marker 7)
+- **Fount water does not grant a leadership or stat bonus**
+- Drinking fount water **teleports the drinker back to the fount** (`waterWarp()`, ~lines 23018–23068) — even if they are elsewhere on the board
+- Drinking at the fount itself just says "Very refreshing... but that's about it"
+- This makes it useful as a repositioning tool, not a buff
 
 ### Ruins (Marker 4)
 - Spyglass spawn point
 - Multi-item pickup location
 
 ### Cave Entrance (Marker 8)
-- Fissure in rocks accessible after manipulation sequence
+- Fissure in rocks; opening it requires either fissure knowledge (from ant trail) or a lucky 1-in-10 roll
 - Currently: cave grinds shut before player can enter
 - **Planned full system (see §14)**
 
 ### Dragon
-- Roams the board
-- Encounter is always transformative or fatal
-- Transit via `(−2, −2)`
+- Roams the board; has sleep/wake state
+- Can be greeted (wakes it, then combat) or attacked directly — same combat outcome
+- Player wins: dragon dies; teeth can be extracted if player has the right job (~lines 17360–17368)
+- Player loses: sent to Limbo
+- **No transformation, curse, or species-change mechanic exists in current code**
+
+### Blessing
+- Triggered when the total active undead count reaches 0 — i.e., the player (and allies) have eliminated all skeletons (~lines 23126–23191)
+- Message count milestones: at 30 undead remaining, at 13, and at 0 (triggers Blessing)
+- `Blessing(user)` is called on the player: skin glows, gang receives `zombie_slayer_power_up()`, morale and dialogue effects fire
+- `is_blessed()` is **permanent for that generation** — it does not wear off
+- Effects: immune to poison (~line 15109); gang power-up applied
 
 ### Gregor and Ardina
 - Named NPCs with fixed narrative roles
 - Their location is the subject of the "gregor" rumor type
-- Gregor operates the longhouse; role in full game unclear beyond cooking
+- Gregor operates the longhouse
 
 ### Chanting
 - `chantIsOn()` detects if a gang has become forest-obsessed
@@ -521,9 +579,11 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 - Can be disrupted via `chantFail()`
 
 ### Weather
-- `weather` is either "sun" or "gloom"
-- Affects NPC mood and dialog
-- `weather_report[j]` tracks NPC exposure history
+- `weather` is binary: "sun" or "gloom"
+- **What sets it:** weather is "gloom" when `skeletons_continue` is true (undead ≥1 active after turnclock 90); otherwise "sun". It is not random or time-based.
+- **When it appears in text:** during NPC encounters, if an NPC's `weather_report` counter exceeds 3 (incremented each turn), they make a weather comment and the counter resets (~lines 7489–7503). Dialog varies: "sun" → hopes it stays nice; "gloom" → hopes it clears; a cold/strange remark otherwise.
+- **Mechanical effect:** none — weather changes only NPC dialog, not combat, movement, or any stat
+- Clearing of all undead (Blessing) also clears the weather flag (~line 23152)
 
 ### Time Events
 | Turnclock | Event |
@@ -532,16 +592,16 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 | 40 | Second rumor wave |
 | 50 | Third rumor wave |
 | 75 | Fourth rumor wave |
-| 90 | Skeleton spawning begins (`skeletons_continue`) |
+| 90 | Skeleton spawning begins (`skeletons_continue`); weather → "gloom" |
 | 80–120 | Apples begin to rot |
-| 60+ | Bladders fill / burst |
+| 60+ | Bladders burst if carrying liquid |
 
 ---
 
 ## 13. Win / Loss Conditions
 
 ### Loss
-- No formal loss state. The player always rebirts (see §10).
+- No formal loss state. The player always rebirths (see §10).
 - QUIT command ends the session and displays high scores.
 
 ### Win
@@ -549,46 +609,52 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 - The game is currently open-ended: play continues until the player quits or chooses to stop.
 - `play_on = false` terminates the main loop; reached only via QUIT or a hard crash.
 
+### Partial Victory: Eliminating All Undead
+- If all undead are destroyed, `Blessing` fires — this is the closest thing to an in-game victory milestone
+- The player receives a permanent buff for the rest of that generation
+
 ### Planned Victory
-- Stub references (lines 148–149): "demon gives you great powers if you complete your mission"
+- Stub references (~lines 148–149): "demon gives you great powers if you complete your mission"
 - Related to the Cave of Lives and the final boss encounter (see §14)
-- Blessing system mentioned but not implemented
+- This remains the most likely intended win condition
 
 ---
 
 ## 14. Incomplete and Planned Systems
 
 ### Cave of Lives (`status: partial`)
-- Entrance at marker 8 (fissure in rocks)
+- Entrance at marker 8 (fissure in rocks; discovered via ant trail at bog)
 - Current behavior: "the rock grinds shut before you can decide what to do" (deliberately sealed)
 - `caveOfLives()` method exists (~line 20047) with substantial implementation:
-  - Past-lives doors
-  - Darkness and laughter effects
-- **Planned but not implemented:** battle against all previous Rufuses, final battle against a boss (line 66)
-- This is likely intended to be the victory condition
+  - Past-lives doors, darkness, laughter effects
+- **Planned but not implemented:** battle against all previous Rufuses, final battle against a boss (~line 66)
+- This is the most likely intended win condition for the game
 
 ### Broken Apples (`status: partial`)
 - Apple items decay and drop correctly
-- TODO at line 5124: `// todo: restore broken apples.`
+- TODO at ~line 5124: `// todo: restore broken apples.`
 - The "broken" apple state transition is unfinished
 
 ### Spyglass in Forest (`status: planned`)
 - Currently disabled with message: "Your spyglass is no good in the forest."
-- Line 94 notes this as a planned feature
-- Expected behavior: spyglass should work with reduced or different range
+- ~Line 94 notes this as a planned feature
 
 ### Pets in Forest (`status: planned`)
-- Pets do not follow master into the forest (lines 3271–3272)
+- Pets do not follow master into the forest (~lines 3271–3272)
 - Pets without a master do not exit
-- Lines 65 and 115 note this as pending work
+- ~Lines 65 and 115 note this as pending work
+
+### Tall Grass Cover (`status: stub`)
+- Display text exists but no mechanical cover effect is implemented
+- Expected behavior: grass should reduce visibility or attack accuracy
+
+### Forgiven-NPC Friendship Boost (`status: planned`)
+- The current forgiveness mechanic (see §4) normalizes a deserter's friendship by reducing it 50 points from an inflated value
+- TODO at ~line 23290: a separate system where the player proactively forgives a hostile NPC and gains a friendship reward — not yet implemented
 
 ### `delmeDrinkText()` (`status: stub`)
 - Method body entirely commented out; never called (~line 23490)
 - Either restore drinking-related narration or delete the method
-
-### Forgiven NPCs (`status: partial`)
-- TODO at line 23290: "forgiven NPCs should like you more"
-- Forgiveness is acknowledged in game logic but friendship boost not applied
 
 ### Lars Account System (`status: stub`)
 - Referenced in TODO: "if you have an account with lars then all the cave doors are locked"
@@ -605,18 +671,23 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 ### Curse System (`status: partial`)
 - `is_cursed()` flag exists and is checked
 - Exact curse effects and acquisition not fully wired
-- TODO notes: "organize curse" 
+- TODO notes: "organize curse"
+
+### Zombie Cure (`status: planned`)
+- `has_symbol()` cannot currently be removed
+- The only escape from the zombie rebirth chain is sinking into the bog
+- A proper cure or ritual should be designed and implemented
 
 ### Purpose Conversations (`status: planned`)
-- TODO at line 97: NPC-to-NPC conversations about purpose / motivation
+- TODO at ~line 97: NPC-to-NPC conversations about purpose / motivation
 - Currently NPCs only exchange rumors and greetings with each other
 
 ### Rumors About Forest Exits (`status: planned`)
-- TODO at line 96: spread rumors about who successfully exited the forest
+- TODO at ~line 96: spread rumors about who successfully exited the forest
 - No rumor type for forest exit currently exists
 
 ### Rumor of a Cur (`status: partial`)
-- TODO at line 16710: "rumor of a cur should be cleared before and after main action loop"
+- TODO at ~line 16710: "rumor of a cur should be cleared before and after main action loop"
 - Stale cur-rumor state can persist incorrectly
 
 ### Deserter / NPC Gang Exit (`status: partial`)
