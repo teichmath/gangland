@@ -1,8 +1,11 @@
 # Compiled Java class files
-*.class
+out/
 
 # Node.js
 node_modules/
 
 # macOS
 .DS_Store
+
+# Session logs
+logs/

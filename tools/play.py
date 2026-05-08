@@ -10,8 +10,11 @@ import subprocess, threading, sys, time
 from datetime import datetime
 from pathlib import Path
 
-GAME_DIR = str(Path(__file__).parent)
-log_path = f"{GAME_DIR}/play_{datetime.now():%Y%m%d_%H%M%S}.log"
+ROOT_DIR  = Path(__file__).parent.parent
+CLASS_DIR = str(ROOT_DIR / "out")
+LOG_DIR   = ROOT_DIR / "logs"
+LOG_DIR.mkdir(exist_ok=True)
+log_path  = str(LOG_DIR / f"play_{datetime.now():%Y%m%d_%H%M%S}.log")
 
 
 class Tee:
@@ -49,11 +52,11 @@ def main():
     tee = Tee(log_path)
 
     proc = subprocess.Popen(
-        ["java", "-cp", GAME_DIR, "Gangland"],
+        ["java", "-cp", CLASS_DIR, "Gangland"],
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
-        cwd=GAME_DIR,
+        cwd=CLASS_DIR,
         text=True,
         bufsize=1,
     )

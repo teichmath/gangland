@@ -9,12 +9,16 @@ import subprocess, threading, time, re, random, sys
 from datetime import datetime
 from pathlib import Path
 
-GAME_DIR    = str(Path(__file__).parent)
+ROOT_DIR    = Path(__file__).parent.parent
+CLASS_DIR   = str(ROOT_DIR / "out")
+LOG_DIR     = ROOT_DIR / "logs"
+LOG_DIR.mkdir(exist_ok=True)
+
 QUIET_SECS  = 0.7   # silence after output = game waiting for input
 STUCK_SECS  = 10.0  # hard fallback if truly stuck
 MAX_INPUTS  = 400
 
-log_path = f"{GAME_DIR}/autoplay_{datetime.now():%Y%m%d_%H%M%S}.log"
+log_path = str(LOG_DIR / f"autoplay_{datetime.now():%Y%m%d_%H%M%S}.log")
 
 # ---------------------------------------------------------------------------
 # Game subprocess wrapper
@@ -23,9 +27,9 @@ log_path = f"{GAME_DIR}/autoplay_{datetime.now():%Y%m%d_%H%M%S}.log"
 class Game:
     def __init__(self):
         self.proc = subprocess.Popen(
-            ["java", "-cp", GAME_DIR, "Gangland"],
+            ["java", "-cp", CLASS_DIR, "Gangland"],
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-            cwd=GAME_DIR, text=True, bufsize=1,
+            cwd=CLASS_DIR, text=True, bufsize=1,
         )
         self._lines = []        # rolling buffer, last 200 lines
         self._last_t = time.time()

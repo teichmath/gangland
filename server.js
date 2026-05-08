@@ -2,8 +2,10 @@ const http = require('http');
 const WebSocket = require('ws');
 const { spawn } = require('child_process');
 
+const path = require('path');
+
 const PORT = process.env.PORT || 8080;
-const GAME_DIR = __dirname;
+const GAME_DIR = path.join(__dirname, 'out');
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
