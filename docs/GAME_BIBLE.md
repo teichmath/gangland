@@ -40,10 +40,10 @@ Nine named locations are anchored to specific grid coordinates.
 | 2 | Cairn of reddish rocks | Red dust → sparks for apple bombs |
 | 3 | Tall grass area | Cosmetic only — no mechanical cover effect (`status: stub`) |
 | 4 | Ruins | Spyglass spawn |
-| 5 | Bog | Bodies sink; ant trail to fissure; stake cannot be planted |
+| 5 | Bog | Bodies sink; stake cannot be planted |
 | 6 | Fallen tree / pond | Insect encounters; water; poison antidote |
 | 7 | Rocky slope / fount | Water; drinking teleports player back here (see §12) |
-| 8 | Steep rocks / fissure | Cave entrance |
+| 8 | Steep rocks / fissure | Cave entrance; ant trail discovery when meat is present |
 
 ### Off-Board Coordinates
 These are not accessible to the player but are used internally:
@@ -136,9 +136,58 @@ Each NPC is generated with randomized stats (strength, speed, health, weaponskil
 - `affiliation` field: 0 = unaffiliated, 1+ = gang ID
 - `highestgang` tracks how many gangs exist
 - Gang members move as a group; only the leader controls direction
-- Leaders chosen by `aLeaderForThese()` / `aLeaderInEveryGang()`
-- Leader challenges: any member whose `weaponskill` exceeds the leader's by ≥10 may contest
 - Player can join a gang (JOIN command) or lead an unaffiliated group
+
+### Leadership Selection
+The key leadership stat is `getevaluation()` — a composite score (weaponskill×40% + speed×30% + strength×20% + maxhealth×10%), not weaponskill alone.
+
+**Initial / post-death selection — `leaderCaucus()` (~lines 17999–18186):**
+- 2-member gang: the two duel (`leaderTwoMan()`)
+- 3+ members: the member with the highest evaluation is proposed
+  - If their evaluation is clearly dominant and health >5: they declare unopposed
+  - If two members are close: the rest vote; any member with `getfriend(proposed) > 10` can object; one objection → duel between them
+  - If all candidates have health ≤5: healthiest leads by default
+- `aLeaderInEveryGang()` scans for leaderless gangs and calls `leaderCaucus()` for each — this runs after any leader death, so succession is automatic
+
+**Leader challenges (~lines 7317–7332, 10358–10668):**
+- Triggered when a member's `getevaluation()` exceeds the current leader's AND they share the same gang; can also be initiated manually via the CHALLENGE command
+- Each challenger gets 3 attempts per opponent (`challenges_left_from_player`, ~line 10829)
+- The challenge is **combat** (a duel via `leaderChallenge()`), not a dialogue roll
+
+**Taking Umbrage (~lines 10414–10668):**
+- Before a challenger reaches the leader, gang members who are friends with the leader (and not friends with the challenger) may step forward to defend
+- Condition (~line 10429): `getfriend(challenger) > 10 && getfriend(leader) < 10`, OR `getfriend(leader) == 0`
+- The leader asks the gang: *"What say you? Do you take umbrage to this challenge?"*
+- Challenger must defeat each umbrage taker in sequential duels before fighting the leader; if exhausted by then, the challenge fails
+
+### Gang Merging (~lines 8771–8970)
+- Condition: average personality difference between the two gangs is ≤10 (~line 8853)
+- Neither gang can have already proposed a merge to the other recently
+- One gang proposes; the other accepts or rejects (player can participate)
+- **New leader determination:** the two leaders duel; winner leads the merged gang. If one leader has health ≤5 the stronger assumes leadership by default; if both are weak, coin flip
+- All members are reassigned to a new gang number (`highestgang++`)
+
+### Civil War (~lines 12185–12589)
+- Triggered when gang members with incompatible friendship/personality values meet
+- Members choose sides based on friend scores: anyone whose friendship score places them closer to one side joins it
+- The player is explicitly asked which side to join if present
+- **Gang structure outcome:** the gang does **not** formally split. Losers have `affiliation` set to 0 (expelled, unaffiliated); survivors remain in the same gang. There is no mechanism for a losing faction to form a new gang.
+- Third parties joining a civil war do not change their affiliation during the battle — they fight for a person, not a new gang
+
+### Gang Desertion
+The in-game Help text states: *"Once you join a gang, you can never desert it. If you do, and your old gangfellows find you, they are sworn to fight you (en masse) to the death."*
+
+**What is implemented (~lines 6447–6485, 23070–23080, 18668–18913):**
+- `desertAGang(user)` can be called and sets the player's `affiliation` to 0 (~line 23079)
+- All former gang members have their `friend` value set to ~100 (sworn enemy threshold) on desertion (~line 23074)
+- Former gang members actively hunt the deserter: when they encounter them, extensive "deserter quest" dialogue fires and combat begins (~lines 18723–18913)
+- A `desertion_into_forest` flag handles the edge case where desertion happens while the gang is in the forest (~line 6447)
+
+**Gaps vs. the help text:**
+- The "en masse" framing overstates it slightly — gang members hunt individually rather than all gathering to attack simultaneously, though multiple members can participate
+- The permanence is real in spirit: desertion cannot be undone and the enmity flag cannot be cleared through normal forgiveness mechanics
+
+**Desertion tracking note:** the `deserter` state feeds into the forgiveness mechanic (see §4) — if the player later has friendship ≥100 with a former gangfellow, a one-time normalization fires that reduces the inflated friendship value.
 
 ### NPC Behavior Tiers
 Controlled by `encountertext` (friendship value drives dialog tier):
@@ -152,9 +201,6 @@ Controlled by `encountertext` (friendship value drives dialog tier):
 | 82–99 | Hostile |
 
 During encounters NPCs may: propose JOIN, offer to TEACH weaponskill, tell a JOKE, share a RUMOR, TAUNT, or start FRICTION that escalates to a fight.
-
-### Stat Knowledge
-`statKnowledge[][]` and `statUncertainty[][]` track what the player knows about NPC stats. The display shows uncertain estimates until confirmed by interaction.
 
 ---
 
@@ -205,6 +251,23 @@ During encounters NPCs may: propose JOIN, offer to TEACH weaponskill, tell a JOK
 - They degrade randomly over time (~line 3559–3560)
 - **Writings do not create rumors**, with one exception: if the text contains the word "gregor", a gregor-location rumor is triggered (~line 4648)
 - **NPCs cannot write messages** — this is a player-only action
+
+### Asking NPCs About Others
+There is **no open-ended "ask [NPC] about [name]" system.** Only specific fixed topics can be queried (~lines 7239–7298, 8348–8401):
+
+**Asking about Gregor (or Ardina):**
+- Available as a dialogue option if the player knows the gregor rumor
+- The NPC's response depends on their friendship level with the player:
+  - Very friendly: gives a direction to Gregor's location
+  - Moderately friendly: may share the location or admit ignorance
+  - Unfriendly/hostile: dismissive or hostile response
+- A successful exchange propagates the gregor rumor to the NPC if they didn't already know it (`rumorIsHeardBy()`, `rumorKnowsKnowsMutual()`)
+
+**Asking about a cat or dog (by species, not by name):**
+- If the NPC has had prolonged contact with a pet and knows its master, they can identify it (~lines 8499–8500)
+- Otherwise responses range from "I don't know" to warnings if the pet is a zombie
+
+**Other fixed rumor topics** (house, pig) can surface through NPC conversations but are not directly queryable by the player in the same way.
 
 ---
 
@@ -269,9 +332,13 @@ During encounters NPCs may: propose JOIN, offer to TEACH weaponskill, tell a JOK
 - `scar[][]` — battle scars from repeated damage to same target
 
 ### Poison
-- Applied by snake bites (non-red variant — **known anomaly**)
-- `poison_clock` counts down; at 0 the player dies
-- Cures: drink from pond (marker 6), or drink antidote water from a bladder/bottle
+Two sources exist (~lines 15058–15061, 22731–22747):
+- **Snake bite** — poison type "A" (~line 15060); applied by the non-red snake variant (**known anomaly** — red snakes should not poison but may)
+- **Spider bite** — poison type "B" (~line 15058); spiders in the forest can also poison the player
+
+Both apply 5d10 initial damage on poison application, or add 5d5 if the player is already poisoned. `poison_clock` counts down; at 0 the player dies.
+
+Cures: drink from pond (marker 6), or drink antidote (pond water) from a bladder/bottle.
 
 ### Beasts — Overworld
 Spawn on movement across the main board:
@@ -332,6 +399,7 @@ Spawn on movement across the main board:
 - Dogs assist in burial (strength × 3 / speed boost; dig memory improves depth)
 - Pets participate in gang battles when at same location as master
 - `hidden()` pets will not encounter others and are excluded from battles
+- **Cats vs. beasts:** cats have a species-check code path when fighting beasts (~line 12846), but no explicit damage bonus against rats or any other specific creature was found. Neither cats nor dogs have confirmed special combat bonuses against particular enemy types.
 
 ### When a Master Dies — Pet Mourning
 `petsMourn()` and `petMourns()` are both implemented (~lines 17914–17986):
@@ -366,9 +434,24 @@ Spawn on movement across the main board:
 
 ### Zombie Behavior
 - Must find and EAT dead bodies (brains)
-- `zombieBrainShare()` handles multiple zombies splitting a meal
-- `ground_meat` global tracks whether a meal is currently available on the board
-- Eating satisfies hunger temporarily
+- `ground_meat` global tracks whether a meal is currently on the board
+- Eating increments `brains_hunger` toward zero
+
+### Recovering Humanity by Eating
+A zombie can **fully recover** their humanity by eating enough brains (~lines 9589–9612, 23206–23218):
+- Each meal raises `brains_hunger`; when it reaches ≥0 the zombie is satisfied
+- `zombieRests()` is called, which immediately calls `army[zombie].end_zombie()`
+- The character is no longer `is_zombie()`, no longer needs brains, and the text reads: "At last, your hunger for brains is satisfied. Your soul can rest."
+- This is the **primary in-game escape from zombie status** — far more reliable than waiting for bog sinking, which only happens accidentally
+
+### Brain Squabble Rules
+When multiple zombies compete for the same meal (`zombieBrainShare()`, ~lines 9305–9443):
+1. **Even distribution phase:** Meals are divided round-robin starting from `first_diner`. Each zombie eats until satisfied or the meal runs out.
+2. **Competition phase:** Any zombie still hungry after even sharing enters a brawl. Turn order is randomised by dice. Each turn, a zombie either:
+   - Eats the meal they already have in hand, or
+   - Grabs a victim (meal) that no other zombie is currently holding
+3. Zombies can punch, kick, and shove each other during competition, dealing damage
+4. A zombie exits the brawl once `brains_hunger >= 0`
 
 ### Skeleton Waves
 - At `turnclock` 90: `skeletons_continue` flag enables skeleton spawns
@@ -380,10 +463,11 @@ Spawn on movement across the main board:
 - `is_blessed()` player is immune to zombie-sense detection
 
 ### Escaping Zombie Status
-- `has_symbol()` **cannot be removed** — there is no cure or ritual in the current code
-- The zombie rebirth chain is permanent unless the character sinks into the bog
-- **Bog sinking:** if the zombie sinks into the bog (buried to depth ≥50 via `get_buried(50)`), they disappear entirely and do not return — the chain ends
-- No other escape exists in current implementation
+Two paths exist:
+1. **Eat enough brains** (primary path — see "Recovering Humanity" above): `brains_hunger` reaches ≥0 → `end_zombie()` is called → character is human again. The `has_symbol()` carving remains, so if they die again with a shallow burial they can rise as a zombie once more, but at least the current zombie run ends.
+2. **Bog sinking** (accidental, permanent): if a zombie is buried to depth ≥50 in the bog, they disappear entirely and do not return. The chain ends for that character.
+
+There is no ritual, item, or NPC interaction that removes the `has_symbol()` carving itself — that is permanent until death and deep burial.
 
 ---
 
@@ -394,7 +478,29 @@ Spawn on movement across the main board:
 - Direction command must match `forest_direction`
 - `morale > 35` required
 - `health > maxhealth − 3` required
-- If gang is chanting (`chantIsOn()`), forest entry may be forced (~lines 3159–3188)
+
+### Forced Entry via Gang Chanting
+A gang can build into a forest-obsessed chant that pressures the player toward the forest (~lines 3159–3189, 21575–21664):
+
+**Conditions for chant to start:**
+- Gang not already chanting, not currently in forest
+- Last longhouse visit ≥40 turns ago
+- `party_evaluation` ≥100
+- Gang average morale >34
+- Gang average `forest_entry_clock` >40
+
+**What happens when chanting:**
+- Gang members cry "FOREST! FOREST!" and refuse movement commands away from the forest entry point
+- The player is pushed toward `forest_entry_x/y` coordinates each turn
+
+**Can the player resist?**
+Yes, but it takes two attempts (~lines 3165–3187):
+1. First attempt to move away: gang members object; movement is blocked, dialogue fires
+2. Second attempt (player sets `attempt_to_defy_forest_chant = true`): movement succeeds and `chantFail()` is called
+
+**`chantFail()` (~lines 21667–21682):**
+- Triggered by: player defying chant on second attempt; insufficient time since longhouse visit during chant attempt; a greeted gang member refusing to join the chant
+- Effect: morale of all healthy gang members drops to 20; gang is removed from `chanting_gangs`; if user is present with >2 gang members, text reads "A hush falls over the gang..."
 
 ### Forest Layout
 - 6×6 internal grid at coordinates `boardside+3` to `boardside+8`
@@ -517,6 +623,7 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 - Players can cut meat from the cooking supply and carry it
 - NPCs visit when morale < 30 or >40 turns since last visit
 - Zombies are repelled by noise (cannot enter)
+- **Graffiti wall:** The longhouse interior contains a wall (`gregors_wall`) where player names are scratched in (~lines 367, 4073, 18973, 19195–19198). When visiting, the player can add their name. This is purely flavor — the wall has no mechanical effect on gameplay.
 - **Planned:** "basement of the house!" (`status: stub`)
 
 ### Tall Grass (Marker 3)
@@ -527,7 +634,7 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 ### Bog (Marker 5)
 - Bodies sink gradually: "BLURP!" messages indicate descent; auto-buried to depth 50 over time
 - Stake cannot be planted (too soft)
-- **Ant trail → fissure chain:** at the bog, players can notice ants carrying meat. Following the ant trail leads to a fissure in the rocks (`you_see_fissure = true`, ~line 5472). With fissure knowledge, the player can reliably open the cave entrance at marker 8. Without it, opening the fissure is a 1-in-10 dice roll. This is the in-game discovery path for the cave — meat at the bog is the hint that a cave exists nearby. A related rumor exists: "meat helps you find the cave" (~line 22567).
+- The bog has no ant trail — that mechanic is at marker 8 (see below)
 
 ### Reddish Rocks / Sparks (Marker 2)
 - Player can stain fingers with red dust (`stain_fingers()`)
@@ -548,10 +655,21 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 - Spyglass spawn point
 - Multi-item pickup location
 
-### Cave Entrance (Marker 8)
-- Fissure in rocks; opening it requires either fissure knowledge (from ant trail) or a lucky 1-in-10 roll
-- Currently: cave grinds shut before player can enter
-- **Planned full system (see §14)**
+### Cave Entrance (Marker 8) — and the Ant Trail
+The fissure and the ant trail are both here, not at the bog (~lines 5456–5495):
+
+**Ant trail discovery:**
+- Requires: player is at marker 8 AND ≥2 pieces of meat are on the ground at that location
+- Examining the meat reveals: "The meat on the ground is covered with ants" → `you_see_ants = true`
+- From there, the player can follow the ants and discover the fissure → `you_see_fissure = true`
+
+**Opening the fissure:**
+- With fissure knowledge: reliable
+- Without: 1-in-10 dice roll
+
+**Relationship between marker 5 and marker 8:** their grid positions are placed independently — the bog does not need to be near the fissure. There is a related rumor that "meat helps you find the cave" (~line 22567), which refers to meat appearing at marker 8 triggering the ant trail, not meat at the bog.
+
+**Cave interior:** currently grinds shut before the player can enter. See §14.
 
 ### Dragon
 - Roams the board; has sleep/wake state
@@ -571,12 +689,6 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 - Named NPCs with fixed narrative roles
 - Their location is the subject of the "gregor" rumor type
 - Gregor operates the longhouse
-
-### Chanting
-- `chantIsOn()` detects if a gang has become forest-obsessed
-- Chanting gang members repeat "FOREST! FOREST!" each turn
-- Leader must actively defy chant to redirect movement
-- Can be disrupted via `chantFail()`
 
 ### Weather
 - `weather` is binary: "sun" or "gloom"
@@ -673,10 +785,10 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 - Exact curse effects and acquisition not fully wired
 - TODO notes: "organize curse"
 
-### Zombie Cure (`status: planned`)
-- `has_symbol()` cannot currently be removed
-- The only escape from the zombie rebirth chain is sinking into the bog
-- A proper cure or ritual should be designed and implemented
+### Zombie Cure for `has_symbol()` (`status: planned`)
+- A zombie run can be ended by eating enough brains (humanity restored) or by bog sinking (see §8)
+- However, `has_symbol()` — the forehead carving — **cannot be removed**; the character is at risk of rising again as a zombie on their next death with a shallow burial
+- A ritual or mechanic to permanently remove the carving should be designed and implemented
 
 ### Purpose Conversations (`status: planned`)
 - TODO at ~line 97: NPC-to-NPC conversations about purpose / motivation
