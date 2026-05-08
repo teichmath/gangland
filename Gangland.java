@@ -6187,10 +6187,10 @@ turnloop:	while (game.play_on) {
 					input_continues_loop = true;
 				}
 				else {
-					if(number_present > 0) {
+					if(number_present_alive > 0) {
 						String greet_att_choice = "";
 						if(your_choice_chopped.length == 1) {
-							if(number_present == 1) {
+							if(number_present_alive == 1) {
 								input_valid = false;
 								if(your_choice_chopped[0].compareToIgnoreCase("greet") == 0) {
 									greet_att_choice = army[only_other_soul].getname(); 
@@ -21328,14 +21328,14 @@ j_loop:			for(int j = -1; j < j_limit; j++) {
 
     	//  read the user input from the command-line; need to use try/catch with the 
     	//  readLine() method 
-    	try { 
-    		user_arg = br.readLine(); 
-    	} 
-    	catch (IOException ioe) { 
-    		masterStringOut("IO error trying to read your input!"); 
-    		System.exit(1); 
+    	try {
+    		user_arg = br.readLine();
+    		if(user_arg == null) user_arg = "";
     	}
-		
+    	catch (IOException ioe) {
+    		user_arg = "";
+    	}
+
 		user_arg = user_arg.trim();
 		
 		return user_arg;
@@ -22352,8 +22352,11 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 		
 		if(!already_started) {
 			if(tag.contains("kills")) {
-				rumors[nextslot] = new Rumor(humansize, user, tag, true, getNumberFromName(tag.substring(0, tag.length() - 6)), army[getNumberFromName(tag.substring(0, tag.length() - 6))].getgeneration());			
-				rumors[nextslot].setbest_kills_of_player_subject(army[getNumberFromName(tag.substring(0, tag.length() - 6))].getkills());
+				int subject = getNumberFromName(tag.substring(0, tag.length() - 6));
+				if(subject >= 0) {
+					rumors[nextslot] = new Rumor(humansize, user, tag, true, subject, army[subject].getgeneration());
+					rumors[nextslot].setbest_kills_of_player_subject(army[subject].getkills());
+				}
 			}
 			else rumors[nextslot] = new Rumor(humansize, user, tag, true);
 		}

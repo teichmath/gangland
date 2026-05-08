@@ -1,0 +1,17806 @@
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT                                    |        ___
+OUT                                    \   | __/  ’’’’
+OUT                                     \  <<--,_____
+OUT        ,   ,              \           U          ____---
+OUT         v                  \          U      |~~<____   
+OUT         `  ‘ `   ’      `---\         U      /        /
+OUT          \|   \ |            ````~     U    //    /‘’’’’’’’^
+OUT           \    \                   \ \ |U| //    / , 
+OUT            \\  \\...````           |  V  / ‘’’’ ‘’               G       N D
+OUT             \  / |``               /   /                    A   N       A
+OUT      ~_  ,   |   /                /`  /                    G          L
+OUT        `-` `- \ |                 |  /                                  
+OUT              \  |                |  |
+OUT               }  \               /  |              ..       .. ..       . .   .
+OUT       ~``__   |   \-/           |   |  .. ...      ....    .   .. . ...  . .   
+OUT  *#----*--**__|    |*****^**---|     ]__--_*_.... _  __   . . ..... . . .. . . .
+OUT * |                                                      
+OUT *                                                        
+OUT * |                                                      
+OUT *       Who are you ?                                    
+OUT * |                                                      
+IN  'Rufus'
+OUT * |                                                                | *
+OUT * |                                                                | *
+OUT * |     Male or Female?                                            | *
+OUT 
+OUT [ M / F ]
+IN  'male'
+OUT * |  Right, Rufus,                                                 | *
+OUT * |   enjoy yer stay!                                              | *
+OUT * |                                     ( poor wretch . . .)       | *
+OUT * |                                                                | *
+OUT * |                                                                | *
+OUT ...
+OUT ...
+OUT 
+OUT 
+OUT 
+OUT 
+OUT ***
+OUT  You get to your feet. A bit of a headache. Nothing looks familiar. 
+OUT 
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT ' * ' 
+OUT   '   
+OUT 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  ''
+OUT You wait...
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT ' . ' 
+OUT ' * ' 
+OUT   '   
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT ' . ' 
+OUT ' . ' 
+OUT ' * ' 
+OUT   '   
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '     
+OUT ' . '   
+OUT ' . '   
+OUT ' . * ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is a cairn of reddish rocks here.
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [               Rocks                                    ]
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '     
+OUT ' . '   
+OUT ' . '   
+OUT ' * % ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '     
+OUT ' . '   
+OUT ' . '   
+OUT ' . * ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is a cairn of reddish rocks here.
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [               Rocks                                    ]
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '     
+OUT ' . '   
+OUT ' . '   
+OUT ' . % ' 
+OUT   ' * ' 
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is a rocky slope here. Water gurgles out of a dark recess.
+OUT ***
+OUT The dragon is here, sleeping soundly.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [               Water                                    ]
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'Water'
+OUT 
+OUT The water looks clean enough.
+OUT Do you drink from the rivulet?
+OUT 
+OUT 
+OUT [ Y / N ]
+IN  'Water'
+OUT 
+OUT [ Y / N ]
+IN  'Y'
+OUT 
+OUT You slurp a mouthful of water. Wow, that's cold!
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [               Water                                    ]
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+OUT "RRRRRR... SNORT... YAWN..."
+OUT The dragon is waking up...
+OUT DRAGON: "Oh no you don't! Deal with me first!"
+OUT The dragon attacks!
+OUT 
+OUT [ (hit Enter) ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT   Rufus                          D R A G O N
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'A'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT    Rufus X X             X         D R A G O N
+OUT 9  Rufus hits the dragon for 1 points!
+OUT The dragon meets Rufus's eyes...
+OUT ...Rufus is unfazed.
+OUT 8  Simultaneously...    
+OUT The dragon's huge tail pummels Rufus for 8 points!
+OUT The dragon swipes at Rufus, but misses!
+OUT The dragon's claw rips into Rufus for 6 points!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT     Rufus                        D R A G O N
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'A'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT    Rufus X #                     D R A G O N
+OUT The dragon's huge tail pummels Rufus for 8 points!
+OUT 10  Rufus is slain!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT The battle is over!
+OUT The dragon feasts on the remains...
+IN  ''
+OUT ***
+OUT You lie dead... worms begin to consider you... your spirit haunts this field, 
+OUT listening and watching... 
+IN  ''
+OUT The dragon lifts off into the sky...
+OUT You hear snarling and screaming to the North...
+OUT A nearby stranger is under attack!
+OUT            "Ouch!"         SQUEEAK!       "Yarrg!"          "Ouch!"
+OUT             SQUEEAK!          "Yarrg!"          "Ouch!"           ** scratch **
+OUT         "Ouch!"        SQUEEAK!         "Yarrg!"
+OUT The battle is over!
+OUT The stranger shouts: "HUZZAH! I have slain the rat! And I did it all by myself."
+OUT A stranger wanders off...  
+OUT ***
+OUT You are reborn...
+OUT 
+OUT 
+OUT Rufus 2
+OUT Strength: ??? Health: ???(Max ???) Speed: ???
+OUT  Skill: 0 Personality: 30 Morale: 20
+OUT 
+OUT [ (hit Enter) ]
+OUT 
+OUT 
+OUT ***
+OUT You're woozy. You may have been here before, but you don't remember much.
+OUT 
+OUT 
+OUT [ (hit Enter) ]
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT ' * ' 
+OUT 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT You hear a crashing sound...
+OUT PIGS!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT   Rufus 2                    pig (a.)  
+OUT                             pig (b.)   
+OUT 
+OUT 
+OUT [ (A)ttack (letter)     (S)hield (name)    Run ]
+IN  'A'
+OUT Attack whom?
+OUT 2 are still fighting in the opponent row
+OUT 
+OUT 
+OUT [ (A)ttack (letter)     (S)hield (name)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack (letter)     (S)hield (name)    Run ]
+IN  'A'
+OUT Attack whom?
+OUT 2 are still fighting in the opponent row
+OUT 
+OUT 
+OUT [ (A)ttack (letter)     (S)hield (name)    Run ]
+IN  'A'
+OUT Attack whom?
+OUT 2 are still fighting in the opponent row
+OUT 
+OUT 
+OUT [ (A)ttack (letter)     (S)hield (name)    Run ]
+IN  'Run'
+OUT Your eyes dart in search of an escape route...
+IN  'Run'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT                              pig (a.)  
+OUT                             pig (b.)   
+OUT The pig (b.) kicks Rufus 2 for 5 points!
+OUT Rufus 2 looks for a way out!
+OUT 6  Now's your chance to make a break for it!
+OUT CRUNCH
+OUT Whheeeee! Snort!
+OUT Whheeeee! Snort!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT ' * ' 
+OUT ' . ' 
+OUT 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT ' * ' 
+OUT ' . ' 
+OUT ' . ' 
+OUT 
+OUT ***
+OUT You travel North...
+OUT Someone you don't recognize lies dead here.
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  Bury  Loot                                            ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT ' * ' 
+OUT ' . ' 
+OUT ' . ' 
+OUT ' . ' 
+OUT 
+OUT ***
+OUT You travel North...
+OUT Someone you don't recognize lies dead here.
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  Bury  Loot                                            ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT ' . * ' 
+OUT ' . '   
+OUT ' . '   
+OUT ' . '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     '   
+OUT   ' * ' 
+OUT ' . . ' 
+OUT ' . '   
+OUT ' . '   
+OUT ' . '   
+OUT 
+OUT ***
+OUT You travel North...
+OUT The grass is a little taller here.
+OUT There is a stranger here.
+OUT There is a cat here.
+OUT 
+OUT 
+OUT This man's name is Homer.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'Remember'
+OUT Whom do you want to think about?
+IN  'greet'
+OUT Hmmmm....   no, you don't recall ever meeting someone named greet.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' '   
+OUT   ' : * ' 
+OUT ' . . '   
+OUT ' . '     
+OUT ' . '     
+OUT ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT Homer is here.
+OUT There is a cat here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' '   
+OUT   ' * . ' 
+OUT ' . . '   
+OUT ' . '     
+OUT ' . '     
+OUT ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT The grass is a little taller here.
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' '   
+OUT   ' : . ' 
+OUT ' . * '   
+OUT ' . '     
+OUT ' . '     
+OUT ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT Whom are you attacking?
+IN  'W'
+OUT There's no one here by that name.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT Whom are you attacking?
+IN  'greet'
+OUT There's no one here by that name.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT Whom are you greeting?
+IN  'S'
+OUT There's no one here by that name.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' '   
+OUT   ' : . ' 
+OUT ' * . '   
+OUT ' . '     
+OUT ' . '     
+OUT ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT Someone you don't recognize lies dead here.
+OUT No others here live.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  Bury  Loot                                            ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT       ' '   
+OUT   ' ' : . ' 
+OUT ' * . . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT       ' '   
+OUT   ' ' : . ' 
+OUT ' . * . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT Someone you don't recognize lies dead here.
+OUT There are 4 strangers here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  Bury  Loot                                            ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' * : . ' 
+OUT ' . . . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' . : . ' 
+OUT ' . * . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There are 4 strangers here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' . : . ' 
+OUT ' . . * '   
+OUT   ' . '     
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT Homer is here.
+OUT There is a cat here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' . * . ' 
+OUT ' . . . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT The grass is a little taller here.
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' * : . ' 
+OUT ' . . . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'Remember'
+OUT Whom do you want to think about?
+IN  'More'
+OUT Hmmmm....   no, you don't recall ever meeting someone named More.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'Who'
+OUT 
+OUT There's nobody here at all.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' . : . ' 
+OUT ' . * . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' . : . ' 
+OUT ' . . * '   
+OUT   ' . '     
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT Homer is here.
+OUT There is a cat here.
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT This man's name is Cutter.
+OUT Cutter is in a gang with Tom.
+OUT Cutter menaces you!
+OUT Cutter: "Grunt."
+OUT 
+OUT 
+OUT [ (F)ight       (D)rop it ]
+IN  'D'
+OUT Cutter: "Grmph."
+OUT Cutter communes with a cat.
+OUT ...Cutter pets the cat, who purrs LOUDLY!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' . : . ' 
+OUT ' . . . '   
+OUT   ' . * '   
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT Tom is here.
+OUT Homer is here.
+OUT Cutter is here.
+OUT There is a cat here.
+OUT 
+OUT 
+OUT Tom menaces you!
+OUT Tom: "Grunt."
+OUT 
+OUT 
+OUT [ (F)ight       (D)rop it ]
+IN  'F'
+OUT Tom: "Oh yeah? Well, I wouldn't mind that! Time to die!"
+OUT RRAAR!  GRAGHGAAAAR!  YAAAAAR!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'D'
+OUT A cat jumps in to defend Homer!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'F'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT    Homer                   Rufus 2     
+OUT      Cutter                            
+OUT      Tom                               
+OUT    cat                                 
+OUT 
+OUT 
+OUT [ (A)ttack (name or letter)    (S)hield (name or letter)    Run ]
+IN  'A'
+OUT Attack whom?
+OUT 4 are still fighting in the opponent row
+OUT 
+OUT 
+OUT [ (A)ttack (name or letter)    (S)hield (name or letter)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack (name or letter)    (S)hield (name or letter)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack (name or letter)    (S)hield (name or letter)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack (name or letter)    (S)hield (name or letter)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack (name or letter)    (S)hield (name or letter)    Run ]
+IN  'Run'
+OUT Your eyes dart in search of an escape route...
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT       Homer                            
+OUT    Cutter                              
+OUT       Tom                              
+OUT    cat                                 
+OUT 8  Tom swings at Rufus 2, but misses!
+OUT Rufus 2 looks for a way out!
+OUT 5  Now's your chance to make a break for it!
+OUT 4  Cutter swings at Rufus 2, who is just out of reach!
+OUT 3  Homer swings at Rufus 2, who is just out of reach!
+OUT 0  The cat is too slow!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' . : . ' 
+OUT ' . . * '   
+OUT   ' . . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' . : . ' 
+OUT ' . * . '   
+OUT   ' . . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' * : . ' 
+OUT ' . . . '   
+OUT   ' . . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT This man's name is Maxwell 3.
+OUT 
+OUT Maxwell 3: "Let's team up, eh?"
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [ Y / N ]
+IN  'N'
+OUT 
+OUT Maxwell 3: "Meh. Later."
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' . : . ' 
+OUT ' . * . '   
+OUT   ' . . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' ' '   
+OUT   ' * : . ' 
+OUT ' . . . '   
+OUT   ' . . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' '   
+OUT ' * . : . ' 
+OUT ' . . . '   
+OUT   ' . . '   
+OUT   ' . '     
+OUT   ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' ' '   
+OUT | * . . : . ' 
+OUT   ' . . . '   
+OUT     ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' ' '   
+OUT | . . . : . ' 
+OUT | * . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is a dog here.
+OUT There is a cat here.
+OUT There are 4 strangers here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' ' '   
+OUT | * . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is a dog here.
+OUT There is a cat here.
+OUT There are 4 strangers here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' ' '   
+OUT | . * . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT This man's name is Ham 2.
+OUT Ham 2 is in a gang with Candide 2.
+OUT Ham 2 menaces you!
+OUT Ham 2: "Grunt."
+OUT 
+OUT 
+OUT [ (F)ight       (D)rop it ]
+IN  'D'
+OUT Ham 2: "Grmph."
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     '         
+OUT   ' * ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     '         
+OUT   ' * '       
+OUT   ' . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '         
+OUT | * . '       
+OUT   ' . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | * '         
+OUT | . . '       
+OUT   ' . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | * . '       
+OUT   ' . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . * '       
+OUT   ' . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | * . '       
+OUT   ' . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | * . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . * ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . * . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | * . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | * . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . * ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . * '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . * ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | * . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . * ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . * '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT This man's name is Tom 2.
+OUT Tom 2 menaces you!
+OUT Tom 2: "Grunt."
+OUT 
+OUT 
+OUT [ (F)ight       (D)rop it ]
+IN  'F'
+OUT Tom 2: "Oh yeah? Well, I wouldn't mind that! Time to die!"
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'F'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Tom 2
+OUT Strength: 15 (??) Health: 44 (??)(Max 44 (??)) Speed: 8 (??)
+OUT  Skill: 1 (??) Personality: 42 (??) Morale: 35 (??)
+OUT Rufus 2
+OUT Strength: ??? Health: 16(Max 15 (?)) Speed: ???
+OUT  Skill: 0 Personality: 30 Morale: 20
+OUT 
+OUT 
+OUT Order:
+OUT Tom 2 got a 6.
+OUT Rufus 2 got a 6.
+OUT Tom 2 swings at Rufus 2, but misses!
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'F'
+OUT Rufus 2 hits Tom 2 for 6 points!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'Commit'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Tom 2
+OUT Strength: 13 (??) Health: 38 (??)(Max 44 (??)) Speed: 3 (??)
+OUT  Skill: 19 (?) Personality: 42 (??) Morale: 12 (?)
+OUT Rufus 2
+OUT Strength: 15 (??) Health: 16(Max 18 (?)) Speed: 1 (???)
+OUT  Skill: 1 Personality: 30 Morale: 26
+OUT 
+OUT 
+OUT Order:
+OUT Tom 2 got a 6.
+OUT Rufus 2 got a 11.
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'F'
+OUT Rufus 2 swings at Tom 2, but misses!
+OUT Tom 2 hits Rufus 2 for 4 points!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'Run'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Tom 2
+OUT Strength: 7 (?) Health: 27 (?)(Max 44 (??)) Speed: 6 (?)
+OUT  Skill: 1 Personality: 42 (??) Morale: 25 (?)
+OUT Rufus 2
+OUT Strength: 5 (??) Health: 12(Max 16) Speed: 1 (??)
+OUT  Skill: 1 Personality: 30 Morale: 26
+OUT 
+OUT 
+OUT Order:
+OUT Tom 2 got a 9.
+OUT Rufus 2 got a 11.
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'Run'
+OUT You frantically run away in the first available direction...
+IN  'F'
+OUT Tom 2 swings at Rufus 2's backside, but misses!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . * ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . * . : . ' 
+OUT | . . . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT This man's name is Marco 2.
+OUT Marco 2 menaces you!
+OUT Marco 2: "Grunt."
+OUT 
+OUT 
+OUT [ (F)ight       (D)rop it ]
+IN  'D'
+OUT Marco 2: "Grmph."
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'F'
+OUT Not sure what to do? Type "Help."
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . * . . '   
+OUT   ' ' . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT   ' * . . '   
+OUT     ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT Ham 2 is here.
+OUT Candide 2 is here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | * . . . '   
+OUT   ' ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | . * . . '   
+OUT   ' ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . * . . '   
+OUT | . . . . '   
+OUT   ' ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'greet'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | * . . . '   
+OUT | . . . . '   
+OUT   ' ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT Ham 2 is here.
+OUT Candide 2 is here.
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | * . . . '   
+OUT   ' ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT Ham 2 is here.
+OUT Candide 2 is here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | . * . . '   
+OUT   ' ' . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | . . . . '   
+OUT   ' * . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | . . . . '   
+OUT   ' . * '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | . . . . '   
+OUT   ' * . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | . * . . '   
+OUT   ' . . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | . . . . '   
+OUT   ' * . '     
+OUT     ' . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 2!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | . . . . '   
+OUT   ' . . '     
+OUT   ' * . '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | . . . . '   
+OUT   ' * . '     
+OUT   ' . . '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '           
+OUT | . '         
+OUT | . . '       
+OUT | . . ' ' '   
+OUT | . . . : . ' 
+OUT | . . . . '   
+OUT | . . . . '   
+OUT   ' . * '     
+OUT   ' . . '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT 
+OUT 
+OUT This man's name is Knute 3.
+OUT 
+OUT Knute 3: "Yes, Rufus 2?" 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [ Join         Teach         Fight               Leave   ]
+OUT [           Joke                                         ]
+IN  'Fight'
+OUT 
+OUT Knute 3: "Really? Well, delighted to oblige! You're dead now, creep!"
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'Join'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Rufus 2
+OUT Strength: 5 (??) Health: 16(Max 16) Speed: 1 (?)
+OUT  Skill: 0 Personality: 30 Morale: 22
+OUT Knute 3
+OUT Strength: 1 (??) Health: 5 (??)(Max 42 (??)) Speed: 1 (??)
+OUT  Skill: 37 (??) Personality: 1 (??) Morale: 35 (??)
+OUT 
+OUT 
+OUT Order:
+OUT Rufus 2 got a 11.
+OUT Knute 3 got a 12.
+OUT Knute 3 swings at Rufus 2, but misses!
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'Commit'
+OUT Rufus 2 swings at Knute 3, but misses!
+OUT Knute 3 hits Rufus 2 for 1 points!
+OUT Rufus 2 hits Knute 3 for 3 points!
+OUT Knute 3 swings at Rufus 2, but misses!
+OUT Rufus 2 swings at Knute 3, but misses!
+OUT Rufus 2 swings at Knute 3, but misses!
+OUT Knute 3 swings at Rufus 2, but misses!
+OUT Rufus 2 swings at Knute 3, but misses!
+OUT Knute 3 hits Rufus 2 for 1 points!
+OUT Rufus 2 hits Knute 3 for 5 points!
+OUT Knute 3 hits Rufus 2 for 4 points!
+OUT Knute 3 hits Rufus 2 for 3 points!
+OUT Rufus 2 swings at Knute 3, but misses!
+OUT Knute 3 hits Rufus 2 for 4 points!
+OUT Rufus 2 swings at Knute 3, but misses!
+OUT Rufus 2 swings at Knute 3, but misses!
+OUT Knute 3 swings at Rufus 2, but misses!
+OUT Knute 3 hits Rufus 2 for 6 points!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT The battle is over!
+OUT Knute 3 has slain Rufus 2!
+OUT Knute 3:  "HAH HAAAH!!" 
+IN  ''
+OUT ***
+OUT You lie dead... your spirit is released again, and for a moment you can recall 
+OUT both lives you have lived in this place... 
+IN  ''
+OUT Knute 3 wanders off...  
+IN  ''
+OUT ***
+OUT You are reborn...
+OUT 
+OUT 
+OUT Rufus 3
+OUT Strength: ??? Health: ???(Max ???) Speed: ???
+OUT  Skill: 0 Personality: 46 Morale: 20
+OUT 
+OUT [ (hit Enter) ]
+OUT 
+OUT 
+OUT ***
+OUT On your feet again. Things look a little familiar... a foggy idea occurs to you,
+OUT briefly... people you may have met, some events that may or may not have 
+OUT happened. Oh well. 
+OUT 
+OUT 
+OUT [ (hit Enter) ]
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT ' * ' 
+OUT   '   
+OUT 
+OUT There is a stranger here.
+OUT There is a dog here.
+OUT A stranger communes nearby with a dog.
+OUT ...the dog whines and licks the stranger's hand!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT ' * . ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is a stranger here.
+OUT There is a dog here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT Whom are you greeting?
+IN  'greet'
+OUT There's no one here by that name.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT Whom are you attacking?
+IN  'More'
+OUT There's no one here by that name.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT ' . * ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT ' . . ' 
+OUT   ' * ' 
+OUT     '   
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 3!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT ' . . ' 
+OUT ' * . ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT ' * . ' 
+OUT ' . . ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 3!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '     
+OUT ' * '   
+OUT ' . . ' 
+OUT ' . . ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel North...
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '     
+OUT ' * '   
+OUT ' . '   
+OUT ' . . ' 
+OUT ' . . ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 3!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '     
+OUT ' * . '   
+OUT   ' . '   
+OUT   ' . . ' 
+OUT   ' . . ' 
+OUT     ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '       
+OUT ' * '     
+OUT ' . . '   
+OUT   ' . '   
+OUT   ' . . ' 
+OUT   ' . . ' 
+OUT     ' '   
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '     
+OUT ' . * '   
+OUT ' . . '   
+OUT   ' . '   
+OUT   ' . . ' 
+OUT   ' . . ' 
+OUT     ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '     
+OUT ' * . '   
+OUT ' . . '   
+OUT   ' . '   
+OUT   ' . . ' 
+OUT   ' . . ' 
+OUT     ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '     
+OUT ' . * '   
+OUT ' . . '   
+OUT   ' . '   
+OUT   ' . . ' 
+OUT   ' . . ' 
+OUT     ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '   
+OUT ' . . * ' 
+OUT ' . . '   
+OUT   ' . '   
+OUT   ' . . ' 
+OUT   ' . . ' 
+OUT     ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' '   
+OUT ' . . . * ' 
+OUT ' . . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' '   
+OUT ' . . * . ' 
+OUT ' . . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' '   
+OUT ' . . . * ' 
+OUT ' . . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 3!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'attack'
+OUT You are alone, Rufus 3!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' '   
+OUT ' . . * . ' 
+OUT ' . . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT       '     
+OUT   ' ' * '   
+OUT ' . . . . ' 
+OUT ' . . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT     ' '     
+OUT   ' * . '   
+OUT ' . . . . ' 
+OUT ' . . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' * . . '   
+OUT ' . . . . ' 
+OUT ' . . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' . . . '   
+OUT ' * . . . ' 
+OUT ' . . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' . . . '   
+OUT ' . . . . ' 
+OUT ' * . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' . . . '   
+OUT ' * . . . ' 
+OUT ' . . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' . . . '   
+OUT ' . * . . ' 
+OUT ' . . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' . . . '   
+OUT ' . . . . ' 
+OUT ' . * ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'Write'
+OUT What do you want to write?
+IN  'Stats'
+OUT You scrawl your message in the dirt.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' . . . '   
+OUT ' . . . . ' 
+OUT ' * . ' '   
+OUT   ' . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' . . . '   
+OUT ' . . . . ' 
+OUT ' . . ' '   
+OUT ' * . '     
+OUT   ' . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'greet'
+OUT 
+OUT 
+OUT This man's name is Luke 4.
+OUT 
+OUT Luke 4: "Yeah? What is it?" 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [ Join         Teach         Fight               Leave   ]
+OUT [           Joke                                         ]
+IN  'Joke'
+OUT 
+OUT Luke 4: "GRAAARG!"
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' . . . '   
+OUT ' . . . . ' 
+OUT ' . . ' '   
+OUT ' . . '     
+OUT ' * . . '   
+OUT   ' . . '   
+OUT     ' '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' . . . '   
+OUT ' . . . . ' 
+OUT ' . . ' '   
+OUT ' . . '     
+OUT ' . . . '   
+OUT ' * . . '   
+OUT   ' ' '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' . . . '   
+OUT ' . . . . ' 
+OUT ' . . ' '   
+OUT ' . . '     
+OUT ' * . . '   
+OUT ' . . . '   
+OUT   ' ' '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '     
+OUT ' . . . '   
+OUT ' . . . . ' 
+OUT ' . . ' '   
+OUT ' . . '     
+OUT ' . * . '   
+OUT ' . . . '   
+OUT   ' ' '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT ***
+OUT SWOOOOOOSH!
+OUT The dragon careens out of the sky and alights on a rock.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'Write'
+OUT What do you want to write?
+IN  'attack'
+OUT You scrawl your message in the dirt.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'Write'
+OUT What do you want to write?
+IN  'N'
+OUT You scrawl your message in the dirt.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'Write'
+OUT What do you want to write?
+IN  'W'
+OUT You scrawl your message in the dirt.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT DRAGON: "Oh no you don't! Deal with me first!"
+OUT The dragon attacks!
+OUT 
+OUT [ (hit Enter) ]
+IN  'greet'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT   Rufus 3                        D R A G O N
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'A'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT      Rufus 3                     D R A G O N
+OUT The dragon meets Rufus 3's eyes...
+OUT ...Rufus 3 is unfazed.
+OUT 10  Rufus 3 swings at the dragon, but misses!
+OUT Rufus 3 ducks to miss the dragon's tail!
+OUT The dragon swipes at Rufus 3, but misses!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT    Rufus 3                       D R A G O N
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'A'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Rufus 3 X X #            X         D R A G O N
+OUT The dragon meets Rufus 3's eyes...
+OUT Rufus 3's soul is stung by the dark gaze!   (11 points of damage)
+OUT Rufus 3 loses all hope!
+OUT ROAAAAR!
+OUT 7  Rufus 3 hits the dragon for 7 points!
+OUT 7  Simultaneously...    
+OUT The dragon swipes at Rufus 3, but misses!
+OUT The dragon's huge tail pummels Rufus 3 for 11 points!
+OUT 1  Rufus 3 is slain!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT The battle is over!
+OUT The dragon feasts on the remains...
+IN  ''
+OUT ***
+OUT You lie dead... yet again you rise above your remains to a point of observation,
+OUT waiting to return... 
+IN  ''
+OUT ***
+OUT You are reborn...
+OUT 
+OUT 
+OUT Rufus 4
+OUT Strength: ??? Health: ???(Max ???) Speed: ???
+OUT  Skill: 0 Personality: 22 Morale: 20
+OUT 
+OUT [ (hit Enter) ]
+OUT 
+OUT 
+OUT ***
+OUT You get to your feet. You are very much aware that you have now died and been 
+OUT brought back several times, and that other than this fact, you are carrying 
+OUT nothing substantial with you in each rebirth. It's a bit upsetting, really. 
+OUT 
+OUT 
+OUT [ (hit Enter) ]
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT | * ' 
+OUT   '   
+OUT 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT | * ' 
+OUT | . ' 
+OUT   '   
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | * ' 
+OUT | . ' 
+OUT | . ' 
+OUT   '   
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT ***
+OUT SWOOOOOOSH!
+IN  'W'
+OUT The dragon careens out of the sky and alights on a rock.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT The dragon attacks!
+OUT 
+OUT [ (hit Enter) ]
+IN  'greet'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT     Rufus 4                      D R A G O N
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'A'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT     Rufus 4                      D R A G O N
+OUT 12  Simultaneously...    
+OUT The dragon meets Rufus 4's eyes...
+OUT ...Rufus 4 is unfazed.
+OUT Rufus 4 ducks to miss the dragon's tail!
+OUT 3  Rufus 4 swings at the dragon, but misses!
+OUT "Grunt!"
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT      Rufus 4                     D R A G O N
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'A'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT      Rufus 4                           
+OUT 5  Rufus 4 hits the dragon for 1 points!
+OUT 5  The dragon is fleeing the battle!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT The battle is over!
+OUT ***
+OUT SWOOOOOOSH!
+IN  ''
+OUT The dragon careens out of the sky and alights on a rock.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+OUT You wait...
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT The dragon attacks!
+OUT 
+OUT [ (hit Enter) ]
+IN  'greet'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT     Rufus 4                      D R A G O N
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'Run'
+OUT Your eyes dart in search of an escape route...
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT                                  D R A G O N
+OUT The dragon meets Rufus 4's eyes...
+OUT Rufus 4's soul is stung by the dark gaze!   (5 points of damage)
+OUT Rufus 4 loses all hope!
+OUT The dragon's huge tail pummels Rufus 4 for 10 points!
+OUT The dragon swipes at Rufus 4, but misses!
+OUT Rufus 4 looks for a way out!
+OUT 2  Now's your chance to make a break for it!
+OUT SWIPE
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . * ' 
+OUT | . '   
+OUT | . '   
+OUT   '     
+OUT 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT As you walk, you notice an awful shape in the sky. The dragon is in flight up 
+OUT ahead. Mercifully, it's ignoring you and heading south. 
+OUT 
+OUT [ (hit Enter) ]
+IN  'greet'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | * . ' 
+OUT | . '   
+OUT | . '   
+OUT   '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT The ground here is charred black in several places.
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . * ' 
+OUT | . '   
+OUT | . '   
+OUT   '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT You hear a dry clattering sound...
+OUT SKELETONS!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT     Rufus 4              skeleton (a.) 
+OUT                           skeleton (b.)
+OUT                           skeleton (c.)
+OUT                          skeleton (d.) 
+OUT                          skeleton (e.) 
+OUT                           skeleton (f.)
+OUT 
+OUT 
+OUT [ (A)ttack (letter)     (S)hield (name)    Run ]
+IN  'Run'
+OUT Your eyes dart in search of an escape route...
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT                           skeleton (a.)
+OUT                          skeleton (b.) 
+OUT                           skeleton (c.)
+OUT                           skeleton (d.)
+OUT                           skeleton (e.)
+OUT                           skeleton (f.)
+OUT Rufus 4 looks for a way out!
+OUT 10  Simultaneously...    
+OUT The skeleton (e.) swings his scabard at Rufus 4, but misses!
+OUT 10  Now's your chance to make a break for it!
+OUT SWING
+OUT SWING
+OUT SWING
+OUT Clatter!
+OUT Clatter!
+OUT Clatter!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | * . ' 
+OUT | . '   
+OUT | . '   
+OUT   '     
+OUT 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . * ' 
+OUT | . '   
+OUT | . '   
+OUT   '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' 
+OUT | . * ' 
+OUT | . '   
+OUT   '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' 
+OUT | * . ' 
+OUT | . '   
+OUT   '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'greet'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'Stats'
+OUT 
+OUT Rufus 4
+OUT Strength: 13 (???) Health: 15(Max 23) Speed: 9 (???)
+OUT  Skill: 4 Personality: 22 Morale: 20
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | * . ' 
+OUT | . . ' 
+OUT | . '   
+OUT   '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . * ' 
+OUT | . . ' 
+OUT | . '   
+OUT   '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT This man's name is Nollan 7.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT 
+OUT Nollan 7: "YARG! Lay on!"
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'attack'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Rufus 4
+OUT Strength: 13 (???) Health: 17(Max 23) Speed: 9 (???)
+OUT  Skill: 3 Personality: 22 Morale: 20
+OUT Nollan 7
+OUT Strength: ??? Health: ???(Max ???) Speed: ???
+OUT  Skill: ??? Personality: 28 (?) Morale: 31 (??)
+OUT 
+OUT 
+OUT Order:
+OUT Rufus 4 got a 15.
+OUT Nollan 7 got a 9.
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'F'
+OUT Rufus 4 hits Nollan 7 for 2 points!
+OUT Nollan 7 hits Rufus 4 for 4 points!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'Commit'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Rufus 4
+OUT Strength: 11 (??) Health: 13(Max 23) Speed: 9 (??)
+OUT  Skill: 4 Personality: 22 Morale: 22
+OUT Nollan 7
+OUT Strength: 2 (??) Health: 33 (??)(Max ???) Speed: 8 (???)
+OUT  Skill: 1 (??) Personality: 28 (?) Morale: 17 (?)
+OUT 
+OUT 
+OUT Order:
+OUT Rufus 4 got a 8.
+OUT Nollan 7 got a 10.
+OUT Nollan 7 swings at Rufus 4, but misses!
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'F'
+OUT Rufus 4 swings at Nollan 7, but misses!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'Run'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Rufus 4
+OUT Strength: 3 (?) Health: 13(Max 23) Speed: 8 (??)
+OUT  Skill: 4 Personality: 22 Morale: 22
+OUT Nollan 7
+OUT Strength: 4 (??) Health: 1 (??)(Max ???) Speed: 3 (??)
+OUT  Skill: 24 (?) Personality: 28 (?) Morale: 27 (?)
+OUT 
+OUT 
+OUT Order:
+OUT Rufus 4 got a 16.
+OUT Nollan 7 got a 12.
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'F'
+OUT Rufus 4 swings at Nollan 7, but misses!
+OUT Nollan 7 hits Rufus 4 for 3 points!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'F'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Rufus 4
+OUT Strength: 4 (?) Health: 10(Max 23) Speed: 8 (??)
+OUT  Skill: 4 Personality: 22 Morale: 22
+OUT Nollan 7
+OUT Strength: 10 (?) Health: 5 (?)(Max ???) Speed: 7 (??)
+OUT  Skill: 1 (?) Personality: 28 (?) Morale: 27
+OUT 
+OUT 
+OUT Order:
+OUT Rufus 4 got a 15.
+OUT Nollan 7 got a 11.
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'F'
+OUT Rufus 4 swings at Nollan 7, but misses!
+OUT Nollan 7 swings at Rufus 4, but misses!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'Run'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Rufus 4
+OUT Strength: 6 Health: 10(Max 23) Speed: 5 (?)
+OUT  Skill: 4 Personality: 22 Morale: 22
+OUT Nollan 7
+OUT Strength: 8 (?) Health: 18 (?)(Max ???) Speed: 4 (?)
+OUT  Skill: 2 Personality: 28 (?) Morale: 27
+OUT 
+OUT 
+OUT Order:
+OUT Rufus 4 got a 8.
+OUT Nollan 7 got a 8.
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'F'
+OUT Rufus 4 swings at Nollan 7, but misses!
+OUT Nollan 7 hits Rufus 4 for 2 points!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'Run'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Rufus 4
+OUT Strength: 6 Health: 8(Max 23) Speed: 5 (?)
+OUT  Skill: 4 Personality: 22 Morale: 22
+OUT Nollan 7
+OUT Strength: 8 Health: 14(Max ???) Speed: 4 (?)
+OUT  Skill: 3 Personality: 28 (?) Morale: 29
+OUT 
+OUT 
+OUT Order:
+OUT Rufus 4 got a 16.
+OUT Nollan 7 got a 8.
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'Run'
+OUT You frantically run away in the first available direction...
+IN  'Run'
+OUT Nollan 7 swings at Rufus 4's backside, but misses!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'Run'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | * . ' 
+OUT | . . ' 
+OUT | . '   
+OUT   '     
+OUT 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+OUT Not sure what to do? Type "Help."
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' 
+OUT | * . ' 
+OUT | . '   
+OUT   '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' 
+OUT | . * ' 
+OUT | . '   
+OUT   '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' 
+OUT | * . ' 
+OUT | . '   
+OUT   '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' 
+OUT | . . ' 
+OUT | * '   
+OUT   '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'greet'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' 
+OUT | . . ' 
+OUT | . * ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'Write'
+OUT What do you want to write?
+IN  'greet'
+OUT You scrawl your message in the dirt.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . '   
+OUT | . . '   
+OUT | . . * ' 
+OUT   ' ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . '     
+OUT | . . ' '   
+OUT | . . . * ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' '   
+OUT | . . ' * ' 
+OUT | . . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'Stats'
+OUT 
+OUT Rufus 4
+OUT Strength: 6 Health: 17(Max 23) Speed: 6 (?)
+OUT  Skill: 4 Personality: 22 Morale: 20
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' '   
+OUT | . . * . ' 
+OUT | . . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT This man's name is Klaus 5.
+OUT Klaus 5 is in a gang with Tom 7.
+OUT Klaus 5 growls at you!
+OUT RRAAR!  GRAGHGAAAAR!  YAAAAAR!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT     Tom 7                      Rufus 4 
+OUT     Klaus 5                            
+OUT 
+OUT 
+OUT [ (A)ttack (name or letter)    (S)hield (name or letter)    Run ]
+IN  'S'
+OUT 
+OUT 
+OUT [ (A)ttack (name or letter)    (S)hield (name or letter)    Run ]
+IN  'Run'
+OUT Your eyes dart in search of an escape route...
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT       Tom 7                            
+OUT   Klaus 5                              
+OUT 5  Tom 7 hits Rufus 4 for 3 points!
+OUT 5  Simultaneously...    
+OUT 5  Klaus 5 hits Rufus 4 for 2 points!
+OUT Rufus 4 looks for a way out!
+OUT 3  Now's your chance to make a break for it!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' '   
+OUT | . . . . ' 
+OUT | . . * . ' 
+OUT   ' ' ' '   
+OUT 
+OUT There is a stranger here.
+OUT There is a dog here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT Whom are you greeting?
+IN  'W'
+OUT There's no one here by that name.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' '   
+OUT | . . * . ' 
+OUT | . . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel North...
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT This man's name is Alex 6.
+OUT Alex 6 is in a gang with Helmut 5.
+OUT 
+OUT Alex 6: "Let's team up, eh?"
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [ Y / N ]
+IN  'Y'
+OUT 
+OUT Alex 6: "Now we just have to ask the gang..."
+OUT "Any opposed?"
+OUT Helmut 5: "Welcome!" 
+IN  'Y'
+OUT None opposed! Rufus 4 joins the gang!
+IN  'Y'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+OUT Not sure what to do? Type "Help."
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT Are you sure you want to abandon the gang?
+OUT 
+OUT [ Y / N ]
+IN  'E'
+OUT 
+OUT [ Y / N ]
+IN  'greet'
+OUT 
+OUT [ Y / N ]
+IN  'Y'
+OUT You try to slip away unnoticed...
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'Y'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' '   
+OUT | . * . . ' 
+OUT | . . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT Helmut 5 is here.
+OUT Alex 6 is here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . * ' '   
+OUT | . . . . ' 
+OUT | . . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | * . ' '   
+OUT | . . . . ' 
+OUT | . . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT As the stranger gets closer, you see wild desperation in his eyes.
+OUT His skin is grotesque, and the smell is like a rotting animal. He reaches out, 
+OUT and... 
+IN  'greet'
+OUT "BRAINS!!!"
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Rufus 4
+OUT Strength: 6 Health: 18(Max 23) Speed: 6 (?)
+OUT  Skill: 3 Personality: 22 Morale: 21
+OUT 
+OUT 
+OUT (UNDEAD opponent)
+OUT 
+OUT 
+OUT 
+OUT 
+OUT Order:
+OUT Rufus 4 got a 16.
+OUT The UNDEAD opponent got a 7.
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'Commit'
+OUT Rufus 4 swings at the UNDEAD opponent, but misses!
+OUT The UNDEAD opponent swings at Rufus 4, but misses!
+OUT Rufus 4 hits the UNDEAD opponent for 2 points!
+OUT The UNDEAD opponent swings at Rufus 4, but misses!
+OUT Rufus 4 hits the UNDEAD opponent for 1 points!
+OUT The UNDEAD opponent swings at Rufus 4, but misses!
+OUT The UNDEAD opponent hits Rufus 4 for 1 points!
+OUT Rufus 4 hits the UNDEAD opponent for 2 points!
+OUT The UNDEAD opponent swings at Rufus 4, but misses!
+OUT Rufus 4 swings at the UNDEAD opponent, but misses!
+OUT Rufus 4 swings at the UNDEAD opponent, but misses!
+OUT Simultaneously...
+OUT The UNDEAD opponent swings at Rufus 4, but misses!
+OUT The UNDEAD opponent swings at Rufus 4, but misses!
+OUT Rufus 4 hits the UNDEAD opponent for 4 points!
+OUT The UNDEAD opponent hits Rufus 4 for 2 points!
+OUT Rufus 4 swings at the UNDEAD opponent, but misses!
+OUT The UNDEAD opponent hits Rufus 4 for 2 points!
+OUT Rufus 4 hits the UNDEAD opponent for 5 points!
+OUT The UNDEAD opponent swings at Rufus 4, but misses!
+OUT Rufus 4 swings at the UNDEAD opponent, but misses!
+OUT Rufus 4 hits the UNDEAD opponent for 5 points!
+OUT The UNDEAD opponent swings at Rufus 4, but misses!
+OUT Rufus 4 swings at the UNDEAD opponent, but misses!
+OUT Simultaneously...
+OUT The UNDEAD opponent swings at Rufus 4, but misses!
+OUT Rufus 4 swings at the UNDEAD opponent, but misses!
+OUT The UNDEAD opponent swings at Rufus 4, but misses!
+OUT Rufus 4 hits the UNDEAD opponent for 4 points!
+OUT The wounded stranger runs away!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT The battle is over!
+OUT Rufus 4:  "HAH HAAAH!!" 
+OUT Helmut 5 approaches.
+OUT Alex 6 approaches.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . * ' '   
+OUT | . . . . ' 
+OUT | . . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'greet'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'Write'
+OUT What do you want to write?
+IN  'More'
+OUT You scrawl your message in the dirt.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | * . ' '   
+OUT | . . . . ' 
+OUT | . . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT Helmut 5 is here.
+OUT Alex 6 is here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' '   
+OUT | * . . . ' 
+OUT | . . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' '   
+OUT | . * . . ' 
+OUT | . . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is a walking corpse here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' '   
+OUT | * . . . ' 
+OUT | . . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is a dog here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'attack'
+OUT The dog growls and dodges your advances, then whines in confusion and runs away.
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' '   
+OUT | . . . . ' 
+OUT | * . . . ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is a walking corpse here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT | . . ' '   
+OUT | . . . . ' 
+OUT | . . . . ' 
+OUT | * ' ' '   
+OUT   '         
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT This man's name is Luke 7.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'greet'
+OUT 
+OUT 
+OUT 
+OUT Luke 7: "Yes, Rufus 4?" 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [ Join         Teach         Fight               Leave   ]
+OUT [           Joke                                         ]
+IN  'Join'
+OUT 
+OUT Luke 7: "We will hence fight as one, and be merry companions!"
+OUT Rufus 4: "Hey, we formed a new gang!"
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'Leave'
+OUT Now the question of leadership...
+OUT Luke 7:  "Who should be leader?"
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [ You   Me ]
+IN  'You'
+OUT Luke 7:  "Rufus 4, I am honored!
+OUT Luke 7: "I'll bet you could teach me some fightin tricks! What say you?"
+OUT 
+OUT [ Y / N ]
+IN  'Y'
+OUT 
+OUT Luke 7: "All right, fire away!"
+IN  'N'
+OUT After sparring for a while with Rufus 4, Luke 7 feels like he knows more.
+IN  'N'
+OUT 
+OUT You hear scurrying noises...
+OUT Luke 7:  "RAT!"
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT   Rufus 4                    rat       
+OUT       Luke 7                           
+OUT 
+OUT 
+OUT [ (A)ttack     (S)hield (name)    Run ]
+IN  'A'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT   Rufus 4                   # X rat    
+OUT     Luke 7                             
+OUT SQUEEAK!
+OUT 7  Rufus 4 hits the rat for 8 points!
+OUT 7  The rat is slain!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT The battle is over!
+OUT Rufus 4: "That was easy."
+OUT Luke 7: "WEST!"
+OUT Do you follow?
+OUT 
+OUT [ Y / N ]
+IN  'Y'
+OUT Luke 7 is here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT 
+OUT Luke 7: "Yes, Rufus 4?" 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [ Join         Teach         Fight               Leave   ]
+OUT [           Joke     Taunt     Challenge                 ]
+OUT [                                   Forest               ]
+IN  'Taunt'
+OUT Rufus 4:  "Donkey liver... "
+IN  'Fight'
+OUT Luke 7 looks offended!
+OUT Luke 7: "Say, what's your big contest with me, anyway?"
+IN  'Joke'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+OUT Not sure what to do? Type "Help."
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'attack'
+OUT I assume you're not trying to attack Luke 7, with whom you are allied. If you 
+OUT want to try that, you'll have to command it directly. 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT ***
+OUT The way is impassable in that direction.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'Who'
+OUT 
+OUT Who's here:
+OUT Luke 7      
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'E'
+OUT Are you sure you want to abandon Luke 7?
+OUT 
+OUT [ Y / N ]
+IN  'attack'
+OUT 
+OUT [ Y / N ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT 
+OUT Luke 7: "Yes, Rufus 4?" 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [ Join         Teach         Fight               Leave   ]
+OUT [           Joke     Taunt     Challenge                 ]
+OUT [                                   Forest               ]
+IN  'Forest'
+OUT Luke 7:  "That's not a good idea."
+OUT Luke 7: "NORTH!"
+OUT Do you follow?
+OUT 
+OUT [ Y / N ]
+IN  'N'
+OUT You spot Luke 7 heading North.
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus 4!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'Who'
+OUT 
+OUT There's nobody here at all.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'Who'

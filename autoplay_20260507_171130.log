@@ -1,0 +1,1072 @@
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT                                    |        ___
+OUT                                    \   | __/  ’’’’
+OUT                                     \  <<--,_____
+OUT        ,   ,              \           U          ____---
+OUT         v                  \          U      |~~<____   
+OUT         `  ‘ `   ’      `---\         U      /        /
+OUT          \|   \ |            ````~     U    //    /‘’’’’’’’^
+OUT           \    \                   \ \ |U| //    / , 
+OUT            \\  \\...````           |  V  / ‘’’’ ‘’               G       N D
+OUT             \  / |``               /   /                    A   N       A
+OUT      ~_  ,   |   /                /`  /                    G          L
+OUT        `-` `- \ |                 |  /                                  
+OUT              \  |                |  |
+OUT               }  \               /  |              ..       .. ..       . .   .
+OUT       ~``__   |   \-/           |   |  .. ...      ....    .   .. . ...  . .   
+OUT  *#----*--**__|    |*****^**---|     ]__--_*_.... _  __   . . ..... . . .. . . .
+OUT * |                                                      
+OUT *                                                        
+OUT * |                                                      
+OUT *       Who are you ?                                    
+OUT * |                                                      
+IN  'Rufus'
+OUT * |                                                                | *
+OUT * |                                                                | *
+OUT * |     Male or Female?                                            | *
+OUT 
+OUT [ M / F ]
+IN  'male'
+OUT * |  Right, Rufus,                                                 | *
+OUT * |   enjoy yer stay!                                              | *
+OUT * |                                     ( poor wretch . . .)       | *
+OUT * |                                                                | *
+OUT * |                                                                | *
+IN  'F'
+OUT ...
+OUT 
+OUT 
+OUT 
+OUT 
+OUT ***
+OUT  You get to your feet. A bit of a headache. Nothing looks familiar. 
+OUT 
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT ' * ' 
+OUT   '   
+OUT 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT ' * . ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'attack'
+OUT You are alone, Rufus!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'Write'
+OUT What do you want to write?
+IN  'attack'
+OUT You scrawl your message in the dirt.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+IN  'E'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '     
+OUT ' * '   
+OUT ' . . ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT ' . * ' 
+OUT ' . . ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '   
+OUT ' . . * ' 
+OUT ' . . '   
+OUT   ' '     
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT       '   
+OUT   ' ' * ' 
+OUT ' . . . ' 
+OUT ' . . '   
+OUT   ' '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'N'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT       '   
+OUT     ' * ' 
+OUT   ' ' . ' 
+OUT ' . . . ' 
+OUT ' . . '   
+OUT   ' '     
+OUT 
+OUT ***
+OUT You travel North...
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'S'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT       '   
+OUT     ' . ' 
+OUT   ' ' * ' 
+OUT ' . . . ' 
+OUT ' . . '   
+OUT   ' '     
+OUT 
+OUT ***
+OUT You travel South...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT       '   
+OUT     ' . ' 
+OUT   ' * . ' 
+OUT ' . . . ' 
+OUT ' . . '   
+OUT   ' '     
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT You hear snarling and screaming to the West...
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'Help'
+OUT 
+OUT ***
+OUT Gangland   ver 1.1   
+OUT c2007 by A.Teich
+OUT 
+OUT Tell me about (enter a number)...
+OUT 1  Commands
+OUT 2  Statistics
+OUT 3  Rebirth
+OUT 4  The 
+OUT Way of Gangs
+OUT 
+OUT ...or type "Exit" to return to the game.
+OUT  
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''
+IN  ''

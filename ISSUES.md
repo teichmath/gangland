@@ -8,9 +8,13 @@ Status key: `fixed` | `open` | `wontfix` | `unreachable`
 
 ### C1 — `startRumor` NPE on "kills" tag
 **File:** `Gangland.java` ~line 22355  
-**Status:** open  
-If `getNumberFromName()` returns `-1` (name not found), it is used directly as an array index into `army[]`, which throws `ArrayIndexOutOfBoundsException`. Triggered whenever a rumor with tag `"<name> kills"` is started for a name that doesn't match any NPC.  
-**Fix:** guard with `int idx = getNumberFromName(...); if (idx >= 0) { ... }` before array access.
+**Status:** fixed  
+If `getNumberFromName()` returns `-1` (name not found), it was used directly as an array index into `army[]`, throwing `ArrayIndexOutOfBoundsException`. Fixed by caching the index and guarding with `if(subject >= 0)` before array access.
+
+### C6 — `attack`/`greet` with only a buried corpse present crashes with AIOOB
+**File:** `Gangland.java` ~line 6190  
+**Status:** fixed  
+`only_other_soul` is initialized to -1. `number_present` is incremented for dead buried bodies as well as live people. If the only entity at a location is a buried corpse, `number_present == 1` but `only_other_soul == -1`, causing `army[-1]` → `ArrayIndexOutOfBoundsException`. Discovered by autoplay. Fixed by using `number_present_alive` (count of live people only) in the greet/attack targeting check.
 
 ### C2 — Pet friend-set with -1 index after master death
 **File:** `Gangland.java` ~line 17934  
@@ -19,8 +23,8 @@ If `getNumberFromName()` returns `-1` (name not found), it is used directly as a
 
 ### C3 — `IOException` calls `System.exit(1)`
 **File:** `Gangland.java` ~line 21336  
-**Status:** open  
-`stringInput()` catches `IOException` and calls `System.exit(1)`. On Railway this kills the Java subprocess silently; the WebSocket server will restart it, but the player loses their session without explanation. Should throw a RuntimeException or write an error message before exiting so the player sees something.
+**Status:** fixed  
+`stringInput()` caught `IOException` and called `System.exit(1)`, killing the session. Also, `readLine()` returning `null` (EOF) would have caused a NullPointerException on `.trim()`. Fixed to return `""` in both cases — the game's existing input validation loops re-prompt on empty input, so the session continues without interruption.
 
 ### C4 — `bio_tome` second dimension was 100, now fixed
 **File:** `Gangland.java` lines ~559 and ~4247  

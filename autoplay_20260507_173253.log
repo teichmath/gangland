@@ -1,0 +1,2000 @@
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT                                    |        ___
+OUT                                    \   | __/  ’’’’
+OUT                                     \  <<--,_____
+OUT        ,   ,              \           U          ____---
+OUT         v                  \          U      |~~<____   
+OUT         `  ‘ `   ’      `---\         U      /        /
+OUT          \|   \ |            ````~     U    //    /‘’’’’’’’^
+OUT           \    \                   \ \ |U| //    / , 
+OUT            \\  \\...````           |  V  / ‘’’’ ‘’               G       N D
+OUT             \  / |``               /   /                    A   N       A
+OUT      ~_  ,   |   /                /`  /                    G          L
+OUT        `-` `- \ |                 |  /                                  
+OUT              \  |                |  |
+OUT               }  \               /  |              ..       .. ..       . .   .
+OUT       ~``__   |   \-/           |   |  .. ...      ....    .   .. . ...  . .   
+OUT  *#----*--**__|    |*****^**---|     ]__--_*_.... _  __   . . ..... . . .. . . .
+OUT * |                                                      
+OUT *                                                        
+OUT * |                                                      
+OUT *       Who are you ?                                    
+OUT * |                                                      
+IN  'Rufus'
+OUT * |                                                                | *
+OUT * |                                                                | *
+OUT * |     Male or Female?                                            | *
+OUT 
+OUT [ M / F ]
+IN  'male'
+OUT * |  Right, Rufus,                                                 | *
+OUT * |   enjoy yer stay!                                              | *
+OUT * |                                     ( poor wretch . . .)       | *
+OUT * |                                                                | *
+OUT * |                                                                | *
+OUT ...
+OUT ...
+OUT 
+OUT 
+OUT 
+OUT 
+OUT ***
+OUT  You get to your feet. A bit of a headache. Nothing looks familiar. 
+OUT 
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT | * ' 
+OUT   '   
+OUT 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  ''
+OUT You wait...
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+IN  'W'
+IN  'E'
+IN  'N'
+IN  'greet'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT | . * ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT | * . ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT This man's name is Red.
+OUT Red is in a gang with Henry.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'Greet Henry'
+OUT 
+OUT 
+OUT 
+OUT Henry: "Hail, Rufus." 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [ Join         Teach         Fight               Leave   ]
+OUT [           Joke                                         ]
+IN  'Fight'
+OUT 
+OUT Henry: "Sputter! WHAT?! Well, then! So be it, treacherous one!"
+OUT RRAAR!  GRAGHGAAAAR!  YAAAAAR!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  'Leave'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT    Rufus                         Red   
+OUT                                Henry   
+OUT 
+OUT 
+OUT [ (A)ttack (name or letter)    (S)hield (name or letter)    Run ]
+IN  'Run'
+OUT Your eyes dart in search of an escape route...
+IN  '(S)hield (name or letter)'
+IN  'Run'
+IN  '(S)hield (name or letter)'
+IN  'Run'
+IN  'Run'
+IN  '(S)hield (name or letter)'
+IN  'Run'
+IN  'Run'
+IN  '(A)ttack (name or letter)'
+IN  '(A)ttack (name or letter)'
+IN  '(S)hield (name or letter)'
+IN  '(A)ttack (name or letter)'
+IN  'Run'
+IN  '(A)ttack (name or letter)'
+IN  'Run'
+IN  '(S)hield (name or letter)'
+IN  '(A)ttack (name or letter)'
+IN  '(S)hield (name or letter)'
+IN  '(A)ttack (name or letter)'
+IN  '(A)ttack (name or letter)'
+IN  '(S)hield (name or letter)'
+IN  '(A)ttack (name or letter)'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT                               Red      
+OUT                                Henry   
+OUT 4  Henry swings at Rufus, but misses!
+OUT Rufus looks for a way out!
+OUT 3  Simultaneously...    
+OUT 3  Red hits Rufus for 1 points!
+OUT 3  Now's your chance to make a break for it!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT | . * ' 
+OUT   ' '   
+OUT 
+OUT There is a cat here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'E'
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '   
+OUT | . . * ' 
+OUT   ' ' '   
+OUT 
+OUT ***
+OUT You travel East...
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT This man's name is Quince.
+OUT "Grrrarr! We're a fightin'!"
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT For the first time, you enter a duel... you have almost no idea of your own 
+OUT abilities, or your opponent's... 
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT BATTLE
+OUT **************************************************
+OUT 
+OUT 
+OUT Quince
+OUT Strength: ??? Health: ???(Max ???) Speed: ???
+OUT  Skill: ??? Personality: ??? Morale: ???
+OUT Rufus
+OUT Strength: ??? Health: 31 (??)(Max 33 (???)) Speed: ???
+OUT  Skill: 0 Personality: 77 Morale: 20
+OUT 
+OUT 
+OUT Order:
+OUT Quince got a 4.
+OUT Rufus got a 12.
+OUT 
+OUT 
+OUT [ (F)ight      Run      Commit ]
+IN  'Run'
+OUT You frantically run away in the first available direction...
+IN  'Run'
+IN  'Commit'
+IN  '(F)ight'
+IN  '(F)ight'
+IN  'Run'
+IN  '(F)ight'
+IN  '(F)ight'
+IN  'Run'
+IN  'Commit'
+IN  'Commit'
+IN  'Run'
+IN  'Commit'
+IN  '(F)ight'
+OUT Quince swings at Rufus's backside, but misses!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' '   
+OUT | . . . * ' 
+OUT   ' ' ' '   
+OUT 
+OUT Quince is here.
+OUT There is a stranger here.
+OUT 
+OUT 
+OUT Quince: "Grrrrrrrr...  "
+OUT 
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(F)ight'
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  '(D)rop it'
+OUT 
+OUT [ (D)rop it     (F)ight ]

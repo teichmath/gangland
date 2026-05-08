@@ -1,0 +1,1043 @@
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT  
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT                                    |        ___
+OUT                                    \   | __/  ’’’’
+OUT                                     \  <<--,_____
+OUT        ,   ,              \           U          ____---
+OUT         v                  \          U      |~~<____   
+OUT         `  ‘ `   ’      `---\         U      /        /
+OUT          \|   \ |            ````~     U    //    /‘’’’’’’’^
+OUT           \    \                   \ \ |U| //    / , 
+OUT            \\  \\...````           |  V  / ‘’’’ ‘’               G       N D
+OUT             \  / |``               /   /                    A   N       A
+OUT      ~_  ,   |   /                /`  /                    G          L
+OUT        `-` `- \ |                 |  /                                  
+OUT              \  |                |  |
+OUT               }  \               /  |              ..       .. ..       . .   .
+OUT       ~``__   |   \-/           |   |  .. ...      ....    .   .. . ...  . .   
+OUT  *#----*--**__|    |*****^**---|     ]__--_*_.... _  __   . . ..... . . .. . . .
+OUT * |                                                      
+OUT *                                                        
+OUT * |                                                      
+OUT *       Who are you ?                                    
+OUT * |                                                      
+IN  'Rufus'
+OUT * |                                                                | *
+OUT * |                                                                | *
+OUT * |     Male or Female?                                            | *
+OUT 
+OUT [ M / F ]
+IN  'male'
+OUT * |  Right, Rufus,                                                 | *
+OUT * |   enjoy yer stay!                                              | *
+OUT * |                                     ( poor wretch . . .)       | *
+OUT * |                                                                | *
+OUT * |                                                                | *
+OUT ...
+OUT 
+OUT 
+OUT 
+OUT 
+OUT ***
+OUT  You get to your feet. A bit of a headache. Nothing looks familiar. 
+OUT 
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT ' * ' 
+OUT   '   
+OUT 
+OUT ************
+OUT There is a longhouse here made of stones, huge branches and animal skins. Heads 
+OUT of fearsome animals are planted on stakes nearby, and bones of all sizes litter 
+OUT the ground. Smoke billows invitingly from a space in the roof. 
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  Go Inside                                             ]
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  ''
+OUT You wait...
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  Go Inside                                             ]
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT You are alone, Rufus!
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  Go Inside                                             ]
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'More'
+OUT [  Stats   Who   Remember   Write                        ]
+IN  'Go Inside'
+OUT You lift up a deerhide and stoop into the warm, smoky darkness. It smells good 
+OUT in here... 
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT *******************
+OUT There are writings smeared and scratched on one of the walls. Farther into the 
+OUT house, there is a table with benches and a large barrel. Farther still, you see 
+OUT the fire smoking, and a colossal person, built like a stone wall, is busy at 
+OUT crafts in a kind of workshop. 
+OUT 
+OUT [ Read         Table         Gregor       Toast (name)      Leave]
+IN  'Table'
+OUT 
+OUT You sit down to have a drink with Gregor. Each man has 4 drinks lined up...
+OUT Rufus: "HERE'S TO US!"
+OUT GREGOR: "HERE'S TO US!"
+OUT GULP!
+OUT GULP!
+OUT SLAM!
+OUT SLAM!
+OUT Rufus: "WHO'S LIKE US?"
+OUT GREGOR: "WHO'S LIKE US?"
+OUT GULP!
+OUT GULP!
+OUT SLAM!
+OUT SLAM!
+OUT Rufus: "DAMN FEW..."
+OUT GREGOR: "DAMN FEW..."
+OUT GULP!
+OUT GULP!
+OUT SLAM!
+OUT SLAM!
+OUT Rufus: "...AND THEY'RE ALL DEAD!"
+OUT GREGOR: "...AND THEY'RE ALL DEAD!"
+OUT GULP!
+OUT GULP!
+OUT SLAM!
+OUT SLAM!
+OUT 
+OUT [ Read         Table         Gregor       Toast (name)      Leave]
+IN  'Read'
+OUT   *   ******     **  **
+OUT    DEADLIEST  CURS:  .. 
+OUT 
+OUT 
+OUT   Red   killed   1
+OUT 
+OUT 
+OUT    Ralph     killed  1
+OUT 
+OUT 
+OUT    Xavier    killed  1
+OUT 
+OUT 
+OUT  Mailer   killed  1
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT *   ****   *** *   *  *   *
+OUT        TOUGHEST GANGS   :   
+OUT 
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT .  ~~~.  Visitors  *  **.  ..`
+OUT 
+OUT 
+OUT 
+OUT Write your name?
+OUT 
+OUT [ Y / N ]
+IN  'N'
+OUT 
+OUT [ Read         Table         Gregor       Toast (name)      Leave]
+IN  'N'
+OUT 
+OUT [ Read         Table         Gregor       Toast (name)      Leave]
+IN  'Gregor'
+OUT 
+OUT GREGOR:  "Sorry, lad, but you can't stay long."
+OUT 
+OUT [ Join         Teach         Job        Where (name)       Originals]
+IN  'Originals'
+OUT GREGOR:  "Yes, the number is falling, but most of you lot are still originals."
+OUT GREGOR:  "Shoo, Rufus! There's work to be done!
+OUT Gregor kicks Rufus out of the house!
+OUT 
+OUT 
+OUT [ (hit Enter) ]    
+IN  ''
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   '   
+OUT ' * ' 
+OUT   '   
+OUT 
+OUT ************
+OUT There is a longhouse here made of stones, huge branches and animal skins. Heads 
+OUT of fearsome animals are planted on stakes nearby, and bones of all sizes litter 
+OUT the ground. Smoke billows invitingly from a space in the roof. 
+OUT There are 2 strangers here.
+OUT 
+OUT 
+OUT This man's name is Luke.
+OUT Luke is in a gang with Ash.
+OUT Luke: "Grrrrrrrr...  "
+OUT 
+OUT 
+OUT [ (D)rop it     (F)ight ]
+IN  'D'
+OUT "Watch your step, louse!"
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  Go Inside                                             ]
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' '   
+OUT ' * g ' 
+OUT   ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' '   
+OUT ' * . g ' 
+OUT   ' ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' '   
+OUT ' * . . g ' 
+OUT   ' ' ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is no one here.
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'W'
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT   ' ' ' ' '   
+OUT ' * . . . g ' 
+OUT   ' ' ' ' '   
+OUT 
+OUT ***
+OUT You travel West...
+OUT There is a dog here.
+OUT 
+OUT 
+OUT 
+OUT 
+OUT 
+OUT [  N  W  S  E          Greet (name)        Attack (name) ]
+OUT [  More   Help   Quit                  Hit Enter to wait ]
+IN  'greet'
+OUT What will you name this dog?
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
+IN  ''
+OUT Eh? Speak up!
