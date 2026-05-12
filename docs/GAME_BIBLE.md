@@ -612,6 +612,21 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 - `gets_picked_up(i)` assigns to army member `i`
 - `gets_dropped()` and `gets_lost()` return item to ground
 
+### Personal Effects (display-only, not pickupable)
+When looting a generation-1 human body, `personalEffects()` (~line 22721) is called and displays one of 7 flavor items selected by `player_number`. These are **never added to inventory** — the method only calls `masterStringOut()` and has no pickup handler. They are relics from the modern world, implying the game's setting is post-collapse:
+
+| Effect | Description |
+|--------|-------------|
+| Paper money | A crumpled "dollar bill" |
+| Photo ID | A hard rectangle with a picture of the deceased on it |
+| Receipt | A scrap of paper — a purchase receipt for an "energy drink" |
+| Tiny black box | A sealed box with rune-like markings: one looks like an open lock, one a closed lock. "Meh, probably useless." |
+| Shopping list | Hand-written: *vitamins  cereal  tpaste  bulb 60W  dep. check  send info to prof* |
+| Love letter | *"I wish I hadn't said that before you had to leave..."* |
+| Headphones | A bright red cord with a hard knob on each end |
+
+None of these are connected to any other mechanic. The black box in particular has no relation to the devil, cave, or any quest system — it is pure atmosphere. Whether any of them should become interactable (the black box especially) is an open design question.
+
 ---
 
 ## 12. Special Locations and Events

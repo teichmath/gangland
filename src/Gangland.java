@@ -359,6 +359,8 @@ public class Gangland {
 	int ground_meat;
 	ArrayList<Integer> forest_exit_gangs_celebrating;
 	ArrayList<Integer> chanting_gangs;
+	ArrayList<Integer> chanting_members;
+	ArrayList<Integer> bird_witnessed;
 	ArrayList<String> forest_aiees;
 	String forest_direction;
 	String player_name;
@@ -568,6 +570,7 @@ public class Gangland {
 			//Gregor is the first rumor.
 			game.startRumor("gregor");
 			game.startRumor("house");
+			game.startRumor("pig");
 			
 			//choose entry point for the forest
 			int[] new_borderspot = new int[2];
@@ -772,7 +775,6 @@ turnloop:	while (game.play_on) {
 	//  			}
 				
 				
-				if(game.turnclock == 20) game.startRumor("pig");
 				
 				if(game.turnclock == 40) game.need_unknown_stats_message = false;
 
@@ -3699,6 +3701,7 @@ turnloop:	while (game.play_on) {
 										//finally, if you are neither claimed nor carved, you will not vanish if the user is alive and standing there.
 										if(game.army[j].soul_claimed() || game.army[j].has_symbol() || !game.samePlace(game.user, j) || game.army[game.user].gethealth() <= 0) {
 										
+											boolean knew_pig_rumor = (j < game.humansize) && game.rumorIsKnownBy("pig", j);
 											//first we need to reset all friend array references to this player.
 											if(j < game.humansize) game.resetRumorsFor(j);
 											for(int l = 0; l < game.armysize; l++) {
@@ -3746,6 +3749,7 @@ turnloop:	while (game.play_on) {
 												boolean is_the_user = (j == game.user) ? true : false;
 												//constructor VI
 												game.army[j] = new Human(game.names[j], game.dice, lars_acc, j, game.number_of_jokes, game.humansize, game.armysize, game.boardside, pass_curse, generation, is_the_user, false);
+												if(knew_pig_rumor) game.rumorIsHeardBy("pig", j, 3750);
 												if(is_the_user) game.plainMap("reset");
 												game.resetStatKnowledge(j);
 												//if it's the user, better reset the loyalty messages on all pets.
@@ -4242,6 +4246,8 @@ turnloop:	while (game.play_on) {
 		tauntd[5] = "\"GRRARR! You asked for it!\"";
 		forest_exit_gangs_celebrating = new ArrayList<Integer>();
 		chanting_gangs = new ArrayList<Integer>();
+		chanting_members = new ArrayList<Integer>();
+		bird_witnessed = new ArrayList<Integer>();
 		forest_aiees = new ArrayList<String>();
 		writings = new String[boardside + 1][boardside + 1][11];
 		bio_tome = new Biography[armysize][500];
@@ -5448,7 +5454,9 @@ turnloop:	while (game.play_on) {
 			}
 			
 			if(your_choice.compareToIgnoreCase("drink") == 0) {
-				if(drinkCount("drink options") > 0) input_valid = drinkMenuAndEffects(user);
+				boolean at_water_source = (army[user].getx() == markers[0][6] && army[user].gety() == markers[1][6]) || (army[user].getx() == markers[0][7] && army[user].gety() == markers[1][7]);
+				if(army[user].is_zombie() && at_water_source) masterStringOut("You get the notion that the water might hurt you… that you must back away from it…");
+				else if(drinkCount("drink options") > 0) input_valid = drinkMenuAndEffects(user);
 				else masterStringOut("You have nothing to drink.");
 				input_continues_loop = true;
 			}
@@ -5654,7 +5662,7 @@ turnloop:	while (game.play_on) {
 			if(your_choice.compareToIgnoreCase("pond") == 0) {
 				if(army[user].getx() == markers[0][6] && army[user].gety() == markers[1][6]) {
 					if(!army[user].is_zombie()) input_valid = fillVessel("pond");
-					else masterStringOut("There is nothing for you at the pond.");
+					else masterStringOut("You get the notion that the water might hurt you… that you must back away from it…");
 				}
 				else masterStringOut("What pond?");
 				input_continues_loop = true;
@@ -5663,7 +5671,7 @@ turnloop:	while (game.play_on) {
 			if(your_choice.compareToIgnoreCase("water") == 0) {
 				if(army[user].getx() == markers[0][7] && army[user].gety() == markers[1][7]) {
 					if(!army[user].is_zombie()) input_valid = fillVessel("fount");
-					else masterStringOut("Water is of no use to you right now.");
+					else masterStringOut("You get the notion that the water might hurt you… that you must back away from it…");
 				}
 				else masterStringOut("What water?");
 				input_continues_loop = true;
@@ -5908,7 +5916,12 @@ turnloop:	while (game.play_on) {
 						}
 					}
 				}
-				
+
+				if(dragon[0].getx() == army[user].getx() && dragon[0].gety() == army[user].gety()) {
+					living_here_count++;
+					living_here = living_here + "Dragon      ";
+				}
+
 				if(living_here_count == 0 && dead_here_count == 0) masterStringOut("\nThere's nobody here at all.");
 				if(living_here_count == 0 && dead_here_count > 0) {
 					masterStringOut("\nYou're the only living soul here.");
@@ -5918,7 +5931,7 @@ turnloop:	while (game.play_on) {
 				if(dead_here_count > 0) masterStringOut("\n" + dead_here);
 				input_continues_loop = true;
 			}
-			
+
 			if(your_choice.compareToIgnoreCase("write") == 0) {
 				masterStringOut("What do you want to write?");
 				String new_writing = stringInput();
@@ -6029,145 +6042,168 @@ turnloop:	while (game.play_on) {
 							if(dir_choice.compareToIgnoreCase("W") == 0 && forest_direction.compareToIgnoreCase("West") == 0) dir_input_valid = false; 
 							if(dir_choice.compareToIgnoreCase("E") == 0 && forest_direction.compareToIgnoreCase("East") == 0) dir_input_valid = false; 
 							if(dir_choice.compareToIgnoreCase("S") == 0 && forest_direction.compareToIgnoreCase("South") == 0) dir_input_valid = false; 
-							if(!dir_input_valid) masterStringOut("In that direction lies the forest. You see nothing but a dark green blur... and perhaps a luminescent pair of eyes gazing back at you.");
+							if(!dir_input_valid) masterStringOut("In that direction lies the forest. You see nothing but a dark green blur... and perhaps an iridescent pair of eyes gazing back at you.");
 						}
 						
 						//things to see: players, strangers, known players, gangs, battles, dragon, longhouse
 						if(dir_input_valid) {
 						
-							int[][] dir_xy_array = new int[2][4];
+							int px = army[user].getx();
+							int py = army[user].gety();
+							int[][] dir_xy_array = new int[2][7];
+							boolean[] always_seen = new boolean[7];
+							boolean is_diagonal = false;
+
+							for(int d = 0; d < 7; d++) {
+								dir_xy_array[0][d] = -999;
+								dir_xy_array[1][d] = -999;
+								always_seen[d] = false;
+							}
+
+							// Cardinal: slots 0-6; always_seen at 0,1,4 (on-axis); 2,3,5,6 are flanks (die roll)
+							// Diagonal: slots 0-4; always_seen at 0,1,2 (on-axis); 3,4 are flanks (die roll)
 							if(dir_choice.compareToIgnoreCase("N") == 0) {
-								dir_xy_array[0][0] = army[user].getx();
-								dir_xy_array[1][0] = army[user].gety() - 1;
-								dir_xy_array[0][1] = army[user].getx();
-								dir_xy_array[1][1] = army[user].gety() - 2;
-								dir_xy_array[0][2] = army[user].getx() - 1;
-								dir_xy_array[1][2] = army[user].gety() - 2;
-								dir_xy_array[0][3] = army[user].getx() + 1;
-								dir_xy_array[1][3] = army[user].gety() - 2;
+								dir_xy_array[0][0] = px;     dir_xy_array[1][0] = py - 1; always_seen[0] = true;
+								dir_xy_array[0][1] = px;     dir_xy_array[1][1] = py - 2; always_seen[1] = true;
+								dir_xy_array[0][2] = px - 1; dir_xy_array[1][2] = py - 2;
+								dir_xy_array[0][3] = px + 1; dir_xy_array[1][3] = py - 2;
+								dir_xy_array[0][4] = px;     dir_xy_array[1][4] = py - 3; always_seen[4] = true;
+								dir_xy_array[0][5] = px - 1; dir_xy_array[1][5] = py - 3;
+								dir_xy_array[0][6] = px + 1; dir_xy_array[1][6] = py - 3;
 							}
 							if(dir_choice.compareToIgnoreCase("NW") == 0) {
-								dir_xy_array[0][0] = army[user].getx() - 1;
-								dir_xy_array[1][0] = army[user].gety() - 1;
-								dir_xy_array[0][1] = army[user].getx() - 2;
-								dir_xy_array[1][1] = army[user].gety() - 2;
-								dir_xy_array[0][2] = army[user].getx() - 2;
-								dir_xy_array[1][2] = army[user].gety() - 1;
-								dir_xy_array[0][3] = army[user].getx() - 1;
-								dir_xy_array[1][3] = army[user].gety() - 2;
+								is_diagonal = true;
+								dir_xy_array[0][0] = px - 1; dir_xy_array[1][0] = py - 1; always_seen[0] = true;
+								dir_xy_array[0][1] = px - 2; dir_xy_array[1][1] = py - 2; always_seen[1] = true;
+								dir_xy_array[0][2] = px - 3; dir_xy_array[1][2] = py - 3; always_seen[2] = true;
+								dir_xy_array[0][3] = px - 2; dir_xy_array[1][3] = py - 1;
+								dir_xy_array[0][4] = px - 1; dir_xy_array[1][4] = py - 2;
 							}
 							if(dir_choice.compareToIgnoreCase("W") == 0) {
-								dir_xy_array[0][0] = army[user].getx() - 1;
-								dir_xy_array[1][0] = army[user].gety();
-								dir_xy_array[0][1] = army[user].getx() - 2;
-								dir_xy_array[1][1] = army[user].gety();
-								dir_xy_array[0][2] = army[user].getx() - 2;
-								dir_xy_array[1][2] = army[user].gety() - 1;
-								dir_xy_array[0][3] = army[user].getx() - 2;
-								dir_xy_array[1][3] = army[user].gety() + 1;
+								dir_xy_array[0][0] = px - 1; dir_xy_array[1][0] = py;     always_seen[0] = true;
+								dir_xy_array[0][1] = px - 2; dir_xy_array[1][1] = py;     always_seen[1] = true;
+								dir_xy_array[0][2] = px - 2; dir_xy_array[1][2] = py - 1;
+								dir_xy_array[0][3] = px - 2; dir_xy_array[1][3] = py + 1;
+								dir_xy_array[0][4] = px - 3; dir_xy_array[1][4] = py;     always_seen[4] = true;
+								dir_xy_array[0][5] = px - 3; dir_xy_array[1][5] = py - 1;
+								dir_xy_array[0][6] = px - 3; dir_xy_array[1][6] = py + 1;
 							}
 							if(dir_choice.compareToIgnoreCase("SW") == 0) {
-								dir_xy_array[0][0] = army[user].getx() - 1;
-								dir_xy_array[1][0] = army[user].gety() + 1;
-								dir_xy_array[0][1] = army[user].getx() - 2;
-								dir_xy_array[1][1] = army[user].gety() + 2;
-								dir_xy_array[0][2] = army[user].getx() - 2;
-								dir_xy_array[1][2] = army[user].gety() + 1;
-								dir_xy_array[0][3] = army[user].getx() - 1;
-								dir_xy_array[1][3] = army[user].gety() + 2;
+								is_diagonal = true;
+								dir_xy_array[0][0] = px - 1; dir_xy_array[1][0] = py + 1; always_seen[0] = true;
+								dir_xy_array[0][1] = px - 2; dir_xy_array[1][1] = py + 2; always_seen[1] = true;
+								dir_xy_array[0][2] = px - 3; dir_xy_array[1][2] = py + 3; always_seen[2] = true;
+								dir_xy_array[0][3] = px - 2; dir_xy_array[1][3] = py + 1;
+								dir_xy_array[0][4] = px - 1; dir_xy_array[1][4] = py + 2;
 							}
 							if(dir_choice.compareToIgnoreCase("S") == 0) {
-								dir_xy_array[0][0] = army[user].getx();
-								dir_xy_array[1][0] = army[user].gety() + 1;
-								dir_xy_array[0][1] = army[user].getx();
-								dir_xy_array[1][1] = army[user].gety() + 2;
-								dir_xy_array[0][2] = army[user].getx() - 1;
-								dir_xy_array[1][2] = army[user].gety() + 2;
-								dir_xy_array[0][3] = army[user].getx() + 1;
-								dir_xy_array[1][3] = army[user].gety() + 2;
+								dir_xy_array[0][0] = px;     dir_xy_array[1][0] = py + 1; always_seen[0] = true;
+								dir_xy_array[0][1] = px;     dir_xy_array[1][1] = py + 2; always_seen[1] = true;
+								dir_xy_array[0][2] = px - 1; dir_xy_array[1][2] = py + 2;
+								dir_xy_array[0][3] = px + 1; dir_xy_array[1][3] = py + 2;
+								dir_xy_array[0][4] = px;     dir_xy_array[1][4] = py + 3; always_seen[4] = true;
+								dir_xy_array[0][5] = px - 1; dir_xy_array[1][5] = py + 3;
+								dir_xy_array[0][6] = px + 1; dir_xy_array[1][6] = py + 3;
 							}
 							if(dir_choice.compareToIgnoreCase("SE") == 0) {
-								dir_xy_array[0][0] = army[user].getx() + 1;
-								dir_xy_array[1][0] = army[user].gety() + 1;
-								dir_xy_array[0][1] = army[user].getx() + 2;
-								dir_xy_array[1][1] = army[user].gety() + 2;
-								dir_xy_array[0][2] = army[user].getx() + 1;
-								dir_xy_array[1][2] = army[user].gety() + 2;
-								dir_xy_array[0][3] = army[user].getx() + 2;
-								dir_xy_array[1][3] = army[user].gety() + 1;
+								is_diagonal = true;
+								dir_xy_array[0][0] = px + 1; dir_xy_array[1][0] = py + 1; always_seen[0] = true;
+								dir_xy_array[0][1] = px + 2; dir_xy_array[1][1] = py + 2; always_seen[1] = true;
+								dir_xy_array[0][2] = px + 3; dir_xy_array[1][2] = py + 3; always_seen[2] = true;
+								dir_xy_array[0][3] = px + 2; dir_xy_array[1][3] = py + 1;
+								dir_xy_array[0][4] = px + 1; dir_xy_array[1][4] = py + 2;
 							}
 							if(dir_choice.compareToIgnoreCase("E") == 0) {
-								dir_xy_array[0][0] = army[user].getx() + 1;
-								dir_xy_array[1][0] = army[user].gety();
-								dir_xy_array[0][1] = army[user].getx() + 2;
-								dir_xy_array[1][1] = army[user].gety();
-								dir_xy_array[0][2] = army[user].getx() + 2;
-								dir_xy_array[1][2] = army[user].gety() - 1;
-								dir_xy_array[0][3] = army[user].getx() + 2;
-								dir_xy_array[1][3] = army[user].gety() + 1;
+								dir_xy_array[0][0] = px + 1; dir_xy_array[1][0] = py;     always_seen[0] = true;
+								dir_xy_array[0][1] = px + 2; dir_xy_array[1][1] = py;     always_seen[1] = true;
+								dir_xy_array[0][2] = px + 2; dir_xy_array[1][2] = py - 1;
+								dir_xy_array[0][3] = px + 2; dir_xy_array[1][3] = py + 1;
+								dir_xy_array[0][4] = px + 3; dir_xy_array[1][4] = py;     always_seen[4] = true;
+								dir_xy_array[0][5] = px + 3; dir_xy_array[1][5] = py - 1;
+								dir_xy_array[0][6] = px + 3; dir_xy_array[1][6] = py + 1;
 							}
 							if(dir_choice.compareToIgnoreCase("NE") == 0) {
-								dir_xy_array[0][0] = army[user].getx() + 1;
-								dir_xy_array[1][0] = army[user].gety() - 1;
-								dir_xy_array[0][1] = army[user].getx() + 2;
-								dir_xy_array[1][1] = army[user].gety() - 2;
-								dir_xy_array[0][2] = army[user].getx() + 1;
-								dir_xy_array[1][2] = army[user].gety() - 2;
-								dir_xy_array[0][3] = army[user].getx() + 2;
-								dir_xy_array[1][3] = army[user].gety() - 1;
+								is_diagonal = true;
+								dir_xy_array[0][0] = px + 1; dir_xy_array[1][0] = py - 1; always_seen[0] = true;
+								dir_xy_array[0][1] = px + 2; dir_xy_array[1][1] = py - 2; always_seen[1] = true;
+								dir_xy_array[0][2] = px + 3; dir_xy_array[1][2] = py - 3; always_seen[2] = true;
+								dir_xy_array[0][3] = px + 2; dir_xy_array[1][3] = py - 1;
+								dir_xy_array[0][4] = px + 1; dir_xy_array[1][4] = py - 2;
 							}
-							
-							String look_report = "";
-							int number_in_view = 0;
-							int dragon_place = -1;
-							int longhouse_place = -1;
-							for(int d = 0; d < 4; d++) {
-								if(dragon[0].getx() == dir_xy_array[0][d] && dragon[0].gety() == dir_xy_array[1][d]) {
-									dragon_place = d;
+
+							int count_close = 0, count_mid = 0, count_far = 0;
+							boolean dragon_close = false, dragon_mid = false, dragon_far = false;
+							boolean longhouse_close = false, longhouse_mid = false, longhouse_far = false;
+							boolean spy_impassable = false;
+							int num_slots = is_diagonal ? 5 : 7;
+
+							for(int d = 0; d < num_slots; d++) {
+								int dx = dir_xy_array[0][d];
+								int dy = dir_xy_array[1][d];
+								if(dx == -999) continue;
+								if(d == 0 && (dx < 1 || dx > boardside || dy < 1 || dy > boardside)) {
+									spy_impassable = true;
+									break;
 								}
-								if(markers[0][0] == dir_xy_array[0][d] && markers[1][0] == dir_xy_array[1][d]) {
-									longhouse_place = d;
+								if(dx < 1 || dx > boardside || dy < 1 || dy > boardside) continue;
+
+								boolean is_close = (d == 0);
+								boolean is_far = (!is_diagonal && d >= 4);
+
+								if(dragon[0].getx() == dx && dragon[0].gety() == dy) {
+									if(is_close) dragon_close = true;
+									else if(is_far) dragon_far = true;
+									else dragon_mid = true;
 								}
-								for(int m = 0; m < user; m++) {
-									if(army[m].getx() == dir_xy_array[0][d] && army[m].gety() == dir_xy_array[1][d]) {
-										if(army[m].gethealth() > 0) {
-											if(d < 2) number_in_view++;
-											else {
-												if(dice.throwdice(1, 3) == 1) number_in_view++;
-											}
+								if(markers[0][0] == dx && markers[1][0] == dy) {
+									if(is_close) longhouse_close = true;
+									else if(is_far) longhouse_far = true;
+									else longhouse_mid = true;
+								}
+
+								boolean can_see_slot = always_seen[d] || (dice.throwdice(1, 3) == 1);
+								if(can_see_slot) {
+									for(int m = 0; m < user; m++) {
+										if(army[m].gethealth() > 0 && army[m].getx() == dx && army[m].gety() == dy) {
+											if(is_close) count_close++;
+											else if(is_far) count_far++;
+											else count_mid++;
 										}
 									}
 								}
-								if(d == 0) {
-									look_report = look_report + "You can see ";
-									if(number_in_view == 1) look_report = look_report + "a lone figure nearby. ";
-									if(number_in_view > 1) look_report = look_report + "the figures of "+number_in_view+" people nearby. ";
-									if(number_in_view == 0) look_report = look_report + "no one nearby. ";
-									if(dir_xy_array[0][d] < 1 || dir_xy_array[0][d] > boardside || dir_xy_array[1][d] < 1 || dir_xy_array[1][d] > boardside) {
-										look_report = "Your view is very limited; the way is impassable, blocked by steep cliffs.";
-										break;
-									}
-								}
-								if(d == 1) {
-									if(dir_xy_array[0][d] < 1 || dir_xy_array[0][d] > boardside || dir_xy_array[1][d] < 1 || dir_xy_array[1][d] > boardside) {
-										break;
-									}
-								}	
-								if(d == 3) {
-									if(number_in_view > 0) look_report = look_report + "Farther in the distance, you see ";
-									if(number_in_view == 1) look_report = look_report + "a lone figure. ";
-									if(number_in_view > 1 && number_in_view < 8) look_report = look_report + "a few people. ";
-									if(number_in_view >= 8) look_report = look_report + "many people. ";
-								}						
-								if((d == 0 && dragon_place == 0) || (d == 3 && dragon_place > 0)) {
-									look_report = look_report + "The dragon is there. ";
-								}
-								if((d == 0 && longhouse_place == 0) || (d == 3 && longhouse_place > 0)) {
-									look_report = look_report + "A trail of smoke is rising. ";
-								}
-								if(d == 0) number_in_view = 0;
 							}
-							
+
+							String look_report = "";
+							if(spy_impassable) {
+								look_report = "Your view is very limited; the way is impassable, blocked by steep cliffs.";
+							} else {
+								String close_str = "";
+								if(count_close == 1) close_str = "a lone figure nearby";
+								else if(count_close > 1) close_str = "the figures of " + count_close + " people nearby";
+								if(dragon_close) { if(close_str.length() > 0) close_str += ", and "; close_str += "the dragon nearby"; }
+								if(longhouse_close) { if(close_str.length() > 0) close_str += ", and "; close_str += "a trail of smoke rising nearby"; }
+								if(close_str.length() == 0) close_str = "no one nearby";
+								look_report = "You can see " + close_str + ".";
+
+								String mid_str = "";
+								if(count_mid == 1) mid_str = "a lone figure";
+								else if(count_mid > 1 && count_mid < 8) mid_str = "a few people";
+								else if(count_mid >= 8) mid_str = "many people";
+								if(dragon_mid) { if(mid_str.length() > 0) mid_str += ", and "; mid_str += "the dragon"; }
+								if(longhouse_mid) { if(mid_str.length() > 0) mid_str += ", and "; mid_str += "a trail of smoke rising"; }
+								if(mid_str.length() > 0) look_report += " Farther in the distance, you see " + mid_str + ".";
+
+								if(!is_diagonal) {
+									String far_str = "";
+									if(count_far == 1) far_str = "a lone figure";
+									else if(count_far > 1 && count_far < 8) far_str = "a few people";
+									else if(count_far >= 8) far_str = "many people";
+									if(dragon_far) { if(far_str.length() > 0) far_str += ", and "; far_str += "the dragon"; }
+									if(longhouse_far) { if(far_str.length() > 0) far_str += ", and "; far_str += "a trail of smoke rising"; }
+									if(far_str.length() > 0) look_report += " At the very edge of your sight, you see " + far_str + ".";
+								}
+							}
+
 							System.out.println();
 							masterStringOut(look_report);
 						}
@@ -6543,8 +6579,21 @@ turnloop:	while (game.play_on) {
 									if(army[the_one_to_encounter].getspecies().compareTo("human")!=0) army[the_one_to_encounter].get_buried(5);
 								}
 								else if(army[i].getspecies().compareToIgnoreCase("dog") == 0) {
-									army[the_one_to_encounter].get_buried((int)(2*army[i].getstrength()/3 + 2*army[i].getspeed() + dice.throwdice(1,10)));
+									int dog_dig_amount = (int)(2*army[i].getstrength()/3 + 2*army[i].getspeed() + dice.throwdice(1,10));
+									army[the_one_to_encounter].get_buried(dog_dig_amount);
 									if(army[the_one_to_encounter].getspecies().compareTo("human")!=0) army[the_one_to_encounter].get_buried(10);
+									// scatter: half the dirt goes to a random other dead body at the same location
+									ArrayList<Integer> other_bodies = new ArrayList<Integer>();
+									for(int sb = 0; sb < armysize; sb++) {
+										if(sb != the_one_to_encounter && army[sb].gethealth() <= 0 && army[sb].how_buried() > 0 && samePlace(sb, i)) other_bodies.add(sb);
+									}
+									if(other_bodies.size() > 0) {
+										int scatter_target = other_bodies.get(dice.throwdice(1, other_bodies.size()) - 1);
+										army[scatter_target].get_buried(dog_dig_amount / 2);
+										String dog_scatter_name = army[i].has_name() ? army[i].getname() : "A dog";
+										String scatter_corpse_name = army[user].getfriend(scatter_target) > -1 ? army[scatter_target].getname() : "a nearby body";
+										masterStringOut("Dirt flies from "+dog_scatter_name+"'s paws all the way to "+scatter_corpse_name+"!");
+									}
 									army[i].make_memory("dig");
 								}
 								if(!move_to_the_next_body) { 
@@ -6803,7 +6852,13 @@ turnloop:	while (game.play_on) {
 				hitEnter(4483);
 				Beast(user, "dragon", 1);
 			}
-			else masterStringOut("It's brains you're after, "+army[user].getname()+". You'll never crack that lizard's rock of a head.");  
+			else {
+				masterStringOut("You run at the dragon!");
+				Wait.manySec(1);
+				masterStringOut("DRAGON: \"What the … ?!\"");
+				Wait.manySec(1);
+				masterStringOut("You are knocked to the ground by a flick of the dragon's tail. You get back up, groaning ridiculously.");
+			}
 		}
 	
 		if(your_choice.compareToIgnoreCase("Go Inside") == 0) { 
@@ -7253,16 +7308,18 @@ turnloop:	while (game.play_on) {
 				hail_menu_three += "Stake      ";
 			}
 			else hail_menu_three += "           ";
-			if(same_gang) hail_menu_three += "Forest    ";
+			if(same_gang && !army[user].in_the_forest()) hail_menu_three += "Forest    ";
 			else hail_menu_three += "          ";
 			if(army[hailer].getfriend(accosted) >= 100 && army[hailer].getdevil_target() != accosted) hail_menu_three = hail_menu_three + "Deserter!  ]";
 			else hail_menu_three = hail_menu_three + "           ]";
+			boolean show_bluebird = bird_witnessed.contains(accosted) && army[accosted].getbird_report().length() > 0;
 			masterStringOut("\n\n\n\n");
-			masterStringOut(hail_menu); 
+			masterStringOut(hail_menu);
 			masterStringOut(hail_menu_two);
 			if(hail_menu_three.contains("Cat") || hail_menu_three.contains("Dog") || hail_menu_three.contains("Stake") || hail_menu_three.contains("Forest") || hail_menu_three.contains("Deserter")) {
 				masterStringOut(hail_menu_three);
 			}
+			if(show_bluebird) masterStringOut("[ Bluebird ]");
 			
 			//Fully Loaded Menu:
 			//     [ Join         Teach         Fight               Leave   ]
@@ -7307,6 +7364,7 @@ turnloop:	while (game.play_on) {
 				if(greet_choice.compareToIgnoreCase("get friend") == 0) masterStringOut("what you think: "+army[hailer].getfriend(accosted)+"  what he thinks: "+army[accosted].getfriend(hailer));
 				if(greet_choice.compareToIgnoreCase("cat") == 0) input_valid = true;
 				if(greet_choice.compareToIgnoreCase("dog") == 0) input_valid = true;
+				if(greet_choice.compareToIgnoreCase("bluebird") == 0 && show_bluebird) input_valid = true;
 				if(!input_valid) masterStringOut("What?");
 			} while (!input_valid);
 		}
@@ -7634,62 +7692,179 @@ turnloop:	while (game.play_on) {
 			}//end teach follow through
 			if(greet_choice.compareToIgnoreCase("forest")==0) {
 				if(en_code.compareToIgnoreCase("AAA") == 0 ) {
+					int gang_num = army[hailer].getaffiliation();
+
+					// Phase 1: initial proposal between hailer and accosted
+					boolean phase1_success = false;
 					if(hailer != user && accosted != user) {
 						if(samePlace(hailer, user)) {
 							masterStringOutWithNameIfKnown(hailer, "\"Say, "+army[accosted].getname()+", I'm feelin' a bit dangerous- we oughta go check out that forest!\"");
 							Wait.manySec(1);
-							masterStringOutWithNameIfKnown(accosted, "\"Why, I was just about to suggest that! I could smash up a dozen creepers right now on my own!\"");
-							Wait.manySec(1);
-							if(numberInGang(hailer) > 2) masterStringOutWithNameIfKnown(hailer, "\"Yeah! Come on, lads! That forest is no match for us!\"");
-							Wait.manySec(1);
-							for(int fi = 0; fi < humansize; fi++) {
-								if(sameGang(hailer, fi) && samePlace(hailer, fi) && army[fi].gethealth() > 0) {
-									masterStringOutWithNameIfKnown(fi, "\"FOREST! FOREST! FOREST! FOREST!\"");
-								}
-							}
-							Wait.manySec(2);
 						}
-					}
-					else if(accosted == user) {
-						masterStringOut(army[hailer].getname()+": \"Say, "+army[accosted].getname()+", I'm feelin' a bit dangerous- we oughta go check out that forest! What do you think?\"");
+						if(dice.throwdice(1, 30) <= 10) {
+							if(samePlace(accosted, user)) masterStringOutWithNameIfKnown(accosted, "\"Why, I was just about to suggest that! I could smash up a dozen creepers right now on my own!\"");
+							phase1_success = true;
+						} else {
+							if(samePlace(accosted, user)) {
+								if(army[accosted].getfriend(hailer) >= 10) masterStringOutWithNameIfKnown(accosted, "\"Don't think I'm up to that right now.\"");
+								else masterStringOutWithNameIfKnown(accosted, "\"Hah! You, in the forest?! You'd be cook'd 'n' serv'd six ways!\"");
+							}
+						}
+					} else if(accosted == user) {
+						masterStringOut(army[hailer].getname()+": \"Say, "+army[user].getname()+", I'm feelin' a bit dangerous- we oughta go check out that forest! What do you think?\"");
 						if(ynChoiceBoolean()) {
-							if(numberInGang(hailer) > 2) masterStringOut(army[hailer].getname()+": \"Yeah, I knew you'd be game! Come on lads, the forest is no match for us!\"");
-							else masterStringOut(army[hailer].getname()+": \"Yeah, I knew you'd be game! Come on, the forest is no match for us!\"");
-							Wait.manySec(1);
-							for(int fi = 0; fi < humansize; fi++) {
-								if(sameGang(hailer, fi) && samePlace(hailer, fi) && army[fi].gethealth() > 0) {
-									masterStringOutWithNameIfKnown(fi, "\"FOREST! FOREST! FOREST! FOREST!\"");
-								}
-							}
-							Wait.manySec(2);
+							phase1_success = true;
+						} else {
+							masterStringOut(army[hailer].getname()+": \"Right, then... we will sooner or later.\"");
 						}
-						else {
-							masterStringOut(army[hailer].getname()+": \"Right, then... we will sooner or later.\""); 
-							chantFail(army[hailer].getaffiliation());
+					} else if(hailer == user) {
+						masterStringOut("While you and "+army[accosted].getname()+" are getting along so famously, you suggest a harebrained expedition to the forest...");
+						if(dice.throwdice(1, 30) <= 10) {
+							masterStringOut(army[accosted].getname()+": \"You know what I say to that? I'll follow you anywhere, "+army[user].getname()+"! Let's away!\"");
+							phase1_success = true;
+						} else {
+							masterStringOut(army[accosted].getname()+": \"Hmmm... well, tell you what- ask me again later.\"");
 						}
 					}
-					else if(hailer == user) {
-						masterStringOut("While you and "+army[accosted].getname()+" are getting along so famously, you suggest a harebrained expedition to the forest...");
-						if(chantIsOn(army[accosted].getaffiliation(), "on")) {
-							masterStringOut(army[accosted].getname()+": \"You know what I say to that? I'll follow you anywhere, "+army[hailer].getname()+"! Let's away!\"");
-							Wait.manySec(1);
-							for(int fi = 0; fi < humansize; fi++) {
-								if(sameGang(hailer, fi) && samePlace(hailer, fi) && army[fi].gethealth() > 0) {
-									masterStringOutWithNameIfKnown(fi, "\"FOREST! FOREST! FOREST! FOREST!\"");
+
+					if(phase1_success) {
+						chanting_members.add(hailer);
+						chanting_members.add(accosted);
+						Wait.manySec(1);
+
+						// find leader
+						int gang_leader = -1;
+						for(int i = 0; i < humansize; i++) {
+							if(army[i].getaffiliation() == gang_num && army[i].is_he_leader() && army[i].gethealth() > 0) {
+								gang_leader = i;
+								break;
+							}
+						}
+
+						if(gang_leader == hailer || gang_leader == accosted) {
+							// leader is an initial chanter: chant ON immediately
+							chanting_gangs.add(gang_num);
+							if(samePlace(hailer, user)) {
+								if(numberInGang(hailer) > 2) masterStringOutWithNameIfKnown(gang_leader, "\"Yeah! Come on, lads! That forest is no match for us!\"");
+								Wait.manySec(1);
+								for(int fi = 0; fi < humansize; fi++) {
+									if(sameGang(hailer, fi) && samePlace(hailer, fi) && army[fi].gethealth() > 0) {
+										masterStringOutWithNameIfKnown(fi, "\"FOREST! FOREST! FOREST! FOREST!\"");
+									}
+								}
+								Wait.manySec(2);
+							}
+						} else if(gang_leader == -1) {
+							chantFail(gang_num);
+						} else {
+							// Phase 2: canvass remaining non-leader members
+							int consecutive_refusals = 0;
+							boolean canvass_failed = false;
+							for(int i = 0; i < humansize; i++) {
+								if(army[i].getaffiliation() == gang_num && army[i].gethealth() > 0
+										&& i != gang_leader && i != hailer && i != accosted) {
+									if(i == user) {
+										masterStringOut("What say you, "+army[user].getname()+"?");
+										if(ynChoiceBoolean()) {
+											masterStringOutWithNameIfKnown(i, "\"FOREST!\"");
+											chanting_members.add(i);
+											consecutive_refusals = 0;
+										} else {
+											consecutive_refusals++;
+										}
+									} else {
+										if(samePlace(i, user)) {
+											masterStringOut(army[i].getname()+" is considering this...");
+											Wait.manySec(1);
+										}
+										int threshold = 10 + 2 * chanting_members.size();
+										if(dice.throwdice(1, 30) <= threshold) {
+											if(samePlace(i, user)) masterStringOutWithNameIfKnown(i, "\"FOREST!\"");
+											chanting_members.add(i);
+											consecutive_refusals = 0;
+										} else {
+											if(samePlace(i, user)) masterStringOutWithNameIfKnown(i, "\"Let's do that some time later. (shudder)\"");
+											consecutive_refusals++;
+										}
+									}
+									if(consecutive_refusals >= 3) {
+										canvass_failed = true;
+										break;
+									}
 								}
 							}
-							Wait.manySec(2);
-						}
-						else {
-							if(chantIsOn(army[accosted].getaffiliation())) masterStringOut(army[accosted].getname()+": \"FOREST! Yeah!\"");
-							else {
-								masterStringOut(army[accosted].getname()+": \"Hmmm... well, tell you what- ask me again later.\""); 
-								chantFail(army[hailer].getaffiliation());
+
+							if(canvass_failed) {
+								chantFail(gang_num);
+							} else if(gang_leader == user) {
+								// player is leader
+								masterStringOut("What say you, "+army[user].getname()+"?");
+								if(ynChoiceBoolean()) {
+									chanting_members.add(user);
+									chanting_gangs.add(gang_num);
+									masterStringOut(army[user].getname()+": \"To the forest!\"");
+									Wait.manySec(1);
+									for(int fi = 0; fi < humansize; fi++) {
+										if(chanting_members.contains(fi) && fi != user && samePlace(fi, user) && army[fi].gethealth() > 0) {
+											masterStringOutWithNameIfKnown(fi, "\"HOORAH! FOREST! FOREST!\"");
+										}
+									}
+									Wait.manySec(2);
+								} else {
+									masterStringOut(army[user].getname()+": \"Sorry friends, we're not going to the forest right now.\"");
+									Wait.manySec(1);
+									int react_counter = 0;
+									for(int fi = 0; fi < humansize; fi++) {
+										if(chanting_members.contains(fi) && samePlace(fi, user) && army[fi].gethealth() > 0) {
+											react_counter++;
+											if(react_counter == 1) masterStringOutWithNameIfKnown(fi, "\"Pshht! Fine!\"");
+											if(react_counter == 2) masterStringOutWithNameIfKnown(fi, "\"What a pooper.\"");
+											if(react_counter == 3) masterStringOutWithNameIfKnown(fi, "\"I don't even care.\"");
+											if(react_counter >= 3) break;
+										}
+									}
+									chantFail(gang_num);
+								}
+							} else {
+								// NPC leader
+								if(samePlace(gang_leader, user)) {
+									masterStringOut("The gang waits on "+army[gang_leader].getname()+" to decide...");
+									Wait.manySec(1);
+								}
+								int threshold = 10 + 2 * chanting_members.size();
+								if(dice.throwdice(1, 30) <= threshold) {
+									chanting_members.add(gang_leader);
+									chanting_gangs.add(gang_num);
+									if(samePlace(gang_leader, user)) {
+										masterStringOutWithNameIfKnown(gang_leader, "\"To the forest!\"");
+										Wait.manySec(1);
+										for(int fi = 0; fi < humansize; fi++) {
+											if(chanting_members.contains(fi) && fi != gang_leader && samePlace(fi, user) && army[fi].gethealth() > 0) {
+												masterStringOutWithNameIfKnown(fi, "\"HOORAH! FOREST! FOREST!\"");
+											}
+										}
+										Wait.manySec(2);
+									}
+								} else {
+									if(samePlace(gang_leader, user)) masterStringOutWithNameIfKnown(gang_leader, "\"Sorry friends, we're not going the forest right now.\"");
+									Wait.manySec(1);
+									int react_counter = 0;
+									for(int fi = 0; fi < humansize; fi++) {
+										if(chanting_members.contains(fi) && fi != gang_leader && samePlace(fi, user) && army[fi].gethealth() > 0) {
+											react_counter++;
+											if(react_counter == 1) masterStringOutWithNameIfKnown(fi, "\"Pshht! Fine!\"");
+											if(react_counter == 2) masterStringOutWithNameIfKnown(fi, "\"What a pooper.\"");
+											if(react_counter == 3) masterStringOutWithNameIfKnown(fi, "\"I don't even care.\"");
+											if(react_counter >= 3) break;
+										}
+									}
+									chantFail(gang_num);
+								}
 							}
 						}
 					}
 				}//end AAA
-			
+
 				else if (hailer == user) {
 					if(en_code.endsWith("A")) {
 						if(chantIsOn(army[accosted].getaffiliation())) masterStringOut(army[accosted].getname()+": \"FOREST! Yeah!\"");
@@ -7701,7 +7876,16 @@ turnloop:	while (game.play_on) {
 					}
 					if(en_code.endsWith("C")) masterStringOut("\n"+army[accosted].getname()+": \"GRAAARG!\"");
 					if(!chantIsOn(army[accosted].getaffiliation())) chantFail(army[hailer].getaffiliation());
-				}				
+				}
+			}
+			if(greet_choice.compareToIgnoreCase("bluebird")==0) {
+				masterStringOut(army[user].getname()+": \"What did that bird tell you?\"");
+				Wait.manySec(1);
+				if(army[accosted].getfriend(user) >= 0) {
+					masterStringOut(army[accosted].getname()+": \""+army[accosted].getbird_report()+"!\"");
+				} else {
+					masterStringOut(army[accosted].getname()+": \"None of your business!\"");
+				}
 			}
 			if(greet_choice.compareToIgnoreCase("drink")==0) {
 				String thing_to_drink = drinkMenu(accosted);
@@ -8365,6 +8549,7 @@ turnloop:	while (game.play_on) {
 								which_way_gregor = which_way_gregor + " of here.\"";
 							}
 							masterStringOut(which_way_gregor);
+							rumorIsHeardBy("house", hailer, 7655);
 							rumorIsHeardBy("house", hailer, 7655);
 							rumorKnowsKnowsMutual("house", accosted, hailer);
 						}
@@ -11374,7 +11559,6 @@ shitloop:do {
 							if(incantationWasSpoken(fight_choice) >= 0 && !army[user].is_zombie()) {
 								input_valid = true;
 								pinto_speaks = incantationWasSpoken(fight_choice);
-								army[user].setincantation(-1, -1, -1);						
 							}
 						} while (!input_valid);
 					}
@@ -11426,7 +11610,7 @@ shitloop:do {
 				if(!pinto_ran && fight_choice.compareToIgnoreCase("enough") != 0 && fight_choice.compareToIgnoreCase("let him go") != 0 && fight_choice.compareToIgnoreCase("let her go") != 0 && fight_choice.compareToIgnoreCase("drink") != 0) {
 				
 					damagepinto = -1;
-					if(pinto_speaks == 0) damagepinto = dice.throwdice(10, 15);
+					if(pinto_speaks == 0) { damagepinto = dice.throwdice(10, 15); army[user].setincantation(-1, -1, -1); }
 					if(pinto_speaks == 1) damagepinto = 0;
 					else if(pinto != user || (pinto == user && (fight_choice.compareToIgnoreCase("fight") == 0 || fight_choice.compareToIgnoreCase("f") == 0))) {
 						damagepinto = army[pinto].attack_player(army[tango], army[tango].getname(), dice);
@@ -11855,7 +12039,7 @@ shitloop:do {
 		
 		//opening remarks
 		if(taunttext > 1) {
-			masterStringOut(army[numa].getname()+"("+army[numa].getfriend(numb)+"): "+taunta[dice.throwdice(1,6) - 1]);
+			masterStringOut(army[numa].getname()+": "+taunta[dice.throwdice(1,6) - 1]);
 			Wait.manySec(2);
 		}
 		if(numb == user) {
@@ -11865,11 +12049,11 @@ shitloop:do {
 			yn_choice = ynChoice();
 						
 			if (yn_choice.compareToIgnoreCase("y") == 0) {
-				masterStringOut("               "+army[numb].getname()+"("+army[numb].getfriend(numa)+"): "+taunta[dice.throwdice(1,6) - 1]);
+				masterStringOut("               "+army[numb].getname()+": "+taunta[dice.throwdice(1,6) - 1]);
 				Wait.manySec(2);
 				taunting_round++;
 			}
-									
+
 			else {
 				the_taunting_is_on = false;
 				masterStringOut(army[numa].getname()+": \"Hmmph.\"");
@@ -11878,7 +12062,7 @@ shitloop:do {
 		}
 		else {
 			if(taunttext > 1) {
-				masterStringOut("               "+army[numb].getname()+"("+army[numb].getfriend(numa)+"): "+taunta[dice.throwdice(1,6) - 1]);
+				masterStringOut("               "+army[numb].getname()+": "+taunta[dice.throwdice(1,6) - 1]);
 				Wait.manySec(2);
 			}
 			taunting_round++;
@@ -12831,7 +13015,7 @@ shitloop:do {
 										else jump_in_message = "A "+army[war[q][i]].getspecies();
 										if(army[war[q][i]].hidden()) jump_in_message += ", who has been hiding nearby,";
 										jump_in_message += " jumps in";
-										if(army[user].getfriend(army[war[q][i]].getmasters_number()) > -1) jump_in_message += " to defend "+army[army[war[q][i]].getmasters_number()].getname();
+										if(army[war[q][i]].getmasters_number() > -1 && army[user].getfriend(army[war[q][i]].getmasters_number()) > -1) jump_in_message += " to defend "+army[army[war[q][i]].getmasters_number()].getname();
 										else jump_in_message += "to the fight";
 										jump_in_message += "!";
 										masterStringOut(jump_in_message);
@@ -13940,10 +14124,16 @@ k_loop:							for(int k = 0; k < side_count[k_loop_row]; k++) {
 					else {
 						if(battle_choice_numbers.get(battle_choice_numbers.size() - 1) != 3 && battle_choice_numbers.get(battle_choice_numbers.size() - 1) != 5) {
 							if(battle_choice_numbers.size() < army[user].getnumber_of_attacks()) {
-								String att_message = "You have "+(army[user].getnumber_of_attacks() - battle_choice_numbers.size())+" more attack"; 
+								String att_message = "You have "+(army[user].getnumber_of_attacks() - battle_choice_numbers.size())+" more attack";
 								if(army[user].getnumber_of_attacks() - battle_choice_numbers.size() == 1) att_message += ".";
 								else att_message += "s.";
-								masterStringOut(att_message + " Make another move. (Or type \"all\" to apply the rest of your moves to what you just chose.)");
+								int living_enemies = 0;
+								for(int we = 0; we < war[1 - yourrow].length; we++) {
+									if(war[1 - yourrow][we] > -1 && army[war[1 - yourrow][we]].gethealth() > 0) living_enemies++;
+								}
+								if(living_enemies > 1) att_message += " Make another move. (Or type \"all\" to apply the rest of your moves to what you just chose.)";
+								else att_message += " Make another move.";
+								masterStringOut(att_message);
 								all_actions_chosen = false;
 							}
 							else all_actions_chosen = true;
@@ -15610,7 +15800,7 @@ record_write_loop:	for(int line_no = next_line_out; line_no < next_line_out + ac
 //						System.out.println("****14531 tracking action strings");
 						if(action_strings[line_no].compareToIgnoreCase("blank") == 0) break_after_this_iteration = true;
 						else {
-							masterStringOut(action_strings[line_no]);
+							masterStringOut(action_strings[line_no].replaceFirst("^\\d+  ", ""));
 							line_count_for_next_line_out++;
 							if(action_suspenders[line_no]) suspension = true;
 						}
@@ -21320,14 +21510,9 @@ j_loop:			for(int j = -1; j < j_limit; j++) {
 	
 	public String stringInput() {
 
- 		//  open up standard input
-    	// BufferedReader is the class, br is the object, instantiated here. 
-   		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+ 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+   		String user_arg = "";
 
-  	   	String user_arg = "null";
-
-    	//  read the user input from the command-line; need to use try/catch with the 
-    	//  readLine() method 
     	try {
     		user_arg = br.readLine();
     		if(user_arg == null) user_arg = "";
@@ -21337,7 +21522,31 @@ j_loop:			for(int j = -1; j < j_limit; j++) {
     	}
 
 		user_arg = user_arg.trim();
-		
+
+		// Hidden annotation command: lets the player insert a note into the log
+		// at any menu prompt without affecting game state.
+		while(user_arg.equalsIgnoreCase("annotate")) {
+			System.out.println("[ANNOTATE] Type your note, then press Enter:");
+			String note = "";
+			try {
+				note = br.readLine();
+				if(note == null) note = "";
+			}
+			catch (IOException ioe) {
+				note = "";
+			}
+			System.out.println("[USER NOTE: " + note.trim() + "]");
+			// Re-read the actual command.
+			try {
+				user_arg = br.readLine();
+				if(user_arg == null) user_arg = "";
+			}
+			catch (IOException ioe) {
+				user_arg = "";
+			}
+			user_arg = user_arg.trim();
+		}
+
 		return user_arg;
     }
 	
@@ -21602,9 +21811,12 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 				it_is_on = false;
 				if(army[user].getaffiliation() == gang_number) masterStringOut("The mood in the gang has changed... no one seems so keen on the forest now.");
 			}
-			if(!it_is_on) chanting_gangs.remove(new Integer(gang_number));
+			if(!it_is_on) {
+				chanting_gangs.remove(new Integer(gang_number));
+				chanting_members.removeIf(i -> army[i].getaffiliation() == gang_number);
+			}
 		}
-		
+
 		return it_is_on;
 	}
 
@@ -21655,29 +21867,21 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 			}
 		}
 
-		if(it_is_on) {
-			chanting_gangs.add(gang_number);
-//			System.out.println("****20319 chanting gang: #"+gang_number);
-//			hitEnter(20320);
-		}
-		
 		return it_is_on;
 	}
 
 	public void chantFail(int gang_number) {
 		boolean user_is_here_for_fail = false;
 		int count_for_message = 0;
-		//lowers morale, turns off chant.
-chant_loop:	for(int i = 0; i < humansize; i++) {
-			if(army[i].getaffiliation() == gang_number) {
-				if(army[i].gethealth() > 0) {
-					army[i].setmorale(20);
-					if(i == user) user_is_here_for_fail = true;
-					count_for_message++;
-				}
+		for(int idx : chanting_members) {
+			if(army[idx].getaffiliation() == gang_number && army[idx].gethealth() > 0) {
+				army[idx].setmorale(20);
+				if(idx == user) user_is_here_for_fail = true;
+				count_for_message++;
 			}
 		}
-		if(user_is_here_for_fail && count_for_message > 2) masterStringOut("A hush falls over the gang..."); 
+		chanting_members.removeIf(i -> army[i].getaffiliation() == gang_number);
+		if(user_is_here_for_fail && count_for_message > 0) masterStringOut("The chant falters...");
 		if(chanting_gangs.contains(new Integer(gang_number))) chanting_gangs.remove(new Integer(gang_number));
 	}
 
@@ -22035,9 +22239,9 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 				masterStringOut("It is gone.");
 			}
 			if(bbtext == 1 || bbtext == 2) {
-				String insert_name = "";
 				if(army[user].getfriend(target) > -1) masterStringOut("A bluebird flutters near "+army[target].getname()+"'s ear... it seems to be speaking to him!");
 				else masterStringOut("A bluebird flutters near a nearby stranger's ear... it seems to be speaking to him!");
+				if(!bird_witnessed.contains(target)) bird_witnessed.add(target);
 			}
 		}
 	}
@@ -22388,6 +22592,7 @@ ri_loop:for(int ri = 99; ri >= 0; ri--) {
 					}
 					told = true;
 					rumors[ri].hears_rumor(listens);
+					if(rumors[ri].gettag().compareToIgnoreCase("house") == 0 && listens == user) rumors[ri].hears_rumor(listens);
 					rumorKnowsKnowsMutual(rumors[ri].gettag(), tells, listens);
 					if(rumors[ri].knows_is_false(listens)) rumors[ri].now_knows_is_false(tells);
 					break ri_loop;
@@ -22513,7 +22718,7 @@ ri_loop:for(int ri = 99; ri >= 0; ri--) {
 			else rumors[rumor].setbest_kills_of_player_subject(deadly_cur_kills);
 			//to get the name, we just add the name without number to the generation.
 			String deadly_cur = army[dc].getname_without_number();
-			deadly_cur += (" "+rumors[rumor].getgeneration_of_player_subject());
+			if(rumors[rumor].getgeneration_of_player_subject() > 1) deadly_cur += (" "+rumors[rumor].getgeneration_of_player_subject());
 			//here we ensure that we are comparing the actual rumor subject with the speaker and listener.
 			//(actually it doesn't matter- we want to avoid all of this if the speaker or listener are ANY generation of the player subject.)
 			if(dc != sp && dc != lis && sp > -1 && dc > -1) {

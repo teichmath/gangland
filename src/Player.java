@@ -121,7 +121,7 @@ public class Player extends Being {
 	}
 	
 	public int getfriend(int friend_to_look_up) {
-		if(friend_to_look_up < this.friend.length) return this.friend[friend_to_look_up];
+		if(friend_to_look_up >= 0 && friend_to_look_up < this.friend.length) return this.friend[friend_to_look_up];
 		else return -1;
 	}
 	
