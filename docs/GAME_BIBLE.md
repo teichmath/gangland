@@ -81,7 +81,7 @@ These are not accessible to the player but are used internally:
 | `morale` | Affects decisions, gang cohesion, forest entry eligibility |
 | `evaluation` | Derived reputation used for gang standing |
 | `affiliation` | 0 = unaffiliated; 1+ = gang number |
-| `personality` | 0–99; shapes NPC dialog tone |
+| `personality` | 1–100 (rolled 1d100); shapes NPC dialog tone |
 | `generation` | Rebirth counter |
 
 ### Position and Timing
@@ -105,7 +105,7 @@ These are not accessible to the player but are used internally:
 | `hidden()` | Character not visible to others; NPCs and pets will not encounter or detect them, and they are excluded from gang battles at that location |
 
 ### Relationships
-- `friend[i]` — opinion of army member `i`: −1 = unknown, 0–99 = known (see §4)
+- `friend[i]` — opinion of army member `i`: −1 = unknown, 0–99 = known (see §4); 100 or more = grudge: set to 100 toward someone who attacks, deserts the gang, or runs out on a duel, and 200 toward battle runaways (`hateTheRunners`). A grudge unlocks the "Deserter!" greeting and forgiveness
 - `perceived_pets[]` — pets the player is aware of
 - `know_knows[]` — rumor knowledge tracking
 

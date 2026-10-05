@@ -550,7 +550,12 @@ public class Player extends Being {
 			this.last_y_position = this.y_position;
 			this.potential_x_position = this.x_position + xdelta;
 			this.potential_y_position = this.y_position + ydelta;
-			if(this.potential_x_position < 1 || this.potential_x_position == 11 || this.potential_y_position < 1 || this.potential_y_position == 11) {
+			//a step stays inside the grid it starts on: the board (1..boardside) or the forest (boardside+3..boardside+8).
+			//entering and leaving the forest go through changexyoffboard and the forest exit square, not through here.
+			boolean in_forest_grid = this.x_position >= this.boardside + 3 && this.x_position <= this.boardside + 8 && this.y_position >= this.boardside + 3 && this.y_position <= this.boardside + 8;
+			int low = in_forest_grid ? this.boardside + 3 : 1;
+			int high = in_forest_grid ? this.boardside + 8 : this.boardside;
+			if(this.potential_x_position < low || this.potential_x_position > high || this.potential_y_position < low || this.potential_y_position > high) {
 				this.potential_x_position = 0;
 				this.potential_y_position = 0;
 				moved = false;

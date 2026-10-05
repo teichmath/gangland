@@ -5,20 +5,27 @@ Plays automatically to explore code paths and find bugs.
 Logs all output + inputs to autoplay_<timestamp>.log.
 """
 
-import subprocess, threading, time, re, random, sys
+import subprocess, threading, time, re, random, sys, os, json
 from datetime import datetime
 from pathlib import Path
 
 ROOT_DIR    = Path(__file__).parent.parent
-CLASS_DIR   = str(ROOT_DIR / "out")
-LOG_DIR     = ROOT_DIR / "logs"
-LOG_DIR.mkdir(exist_ok=True)
+CLASS_DIR   = os.environ.get("GANGLAND_CLASS_DIR", str(ROOT_DIR / "out"))   # compiled game to run
+LOG_DIR     = Path(os.environ.get("GANGLAND_LOG_DIR", ROOT_DIR / "logs"))
+LOG_DIR.mkdir(parents=True, exist_ok=True)
 
-QUIET_SECS  = 0.7   # silence after output = game waiting for input
-STUCK_SECS  = 10.0  # hard fallback if truly stuck
+# Lines the game prints for harnesses under GANGLAND_AUTOMATION=1 (not ASCII art like "<<--").
+MARKER      = re.compile(r"^<<[A-Z_]+[ >]")
+
+STUCK_SECS  = 10.0  # no prompt for this long = the game is hung
 MAX_INPUTS  = 400
 
-log_path = str(LOG_DIR / f"autoplay_{datetime.now():%Y%m%d_%H%M%S}.log")
+# Usage: autoplay.py [seed]   -- same seed + same choices replays the same game.
+SEED        = sys.argv[1] if len(sys.argv) > 1 else str(random.randrange(2**63))
+random.seed(SEED)           # makes the harness's own choices reproducible too
+
+log_path = str(LOG_DIR / f"autoplay_{datetime.now():%Y%m%d_%H%M%S}_seed{SEED}_{os.getpid()}.log")
+
 
 # ---------------------------------------------------------------------------
 # Game subprocess wrapper
@@ -30,16 +37,33 @@ class Game:
             ["java", "-cp", CLASS_DIR, "Gangland"],
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
             cwd=CLASS_DIR, text=True, bufsize=1,
+            env=dict(os.environ, GANGLAND_SEED=SEED, GANGLAND_AUTOMATION="1"),
         )
         self._lines = []        # rolling buffer, last 200 lines
         self._last_t = time.time()
         self._lock = threading.Lock()
+        self._prompt = threading.Event()   # set when the game prints <<PROMPT>>
+        self.state = None                  # latest <<STATE {json}>> from the game
+        self.violations = []               # <<INVARIANT ...>> lines seen so far
         self._log = open(log_path, "w", encoding="utf-8")
         threading.Thread(target=self._reader, daemon=True).start()
 
     def _reader(self):
         try:
             for line in self.proc.stdout:
+                if MARKER.match(line):
+                    self._log.write(f"OUT {line}")
+                    self._log.flush()
+                    if line.startswith("<<PROMPT"):
+                        self._prompt.set()
+                    elif line.startswith("<<STATE "):
+                        self.state = json.loads(line[len("<<STATE "):-3])
+                    elif line.startswith(("<<INVARIANT", "<<AUTOMATION_ERROR")):
+                        self.violations.append(line.strip())
+                        sys.stdout.write(f"\033[31m{line}\033[0m")
+                    continue
+                if "Exception in thread" in line:
+                    self.violations.append("CRASH " + line.strip())
                 with self._lock:
                     self._lines.append(line.rstrip("\n"))
                     if len(self._lines) > 200:
@@ -56,12 +80,13 @@ class Game:
         self._log.write(f"IN  {text!r}\n")
         self._log.flush()
         print(f"\033[33m>>> {text!r}\033[0m", flush=True)
+        self._prompt.clear()
         self.proc.stdin.write(text + "\n")
         self.proc.stdin.flush()
 
-    def quiet_for(self):
-        with self._lock:
-            return time.time() - self._last_t
+    def wait_prompt(self, timeout=STUCK_SECS):
+        """Block until the game is waiting for input. False if it never asked."""
+        return self._prompt.wait(timeout)
 
     def recent(self, n=30):
         with self._lock:
@@ -77,17 +102,13 @@ class Game:
             time.sleep(0.2)
         return False
 
-    def last_output_time(self):
-        with self._lock:
-            return self._last_t
-
     def clear_buffer(self):
         with self._lock:
             self._lines.clear()
             self._last_t = time.time()
 
     def close(self):
-        self.proc.terminate()
+        self.proc.kill()
         self._log.close()
 
 
@@ -144,7 +165,7 @@ def find_names(lines):
     # Filter out common words that happen to be capitalised
     noise = {"You", "The", "But", "And", "Hit", "Enter", "More", "Yes", "No",
              "Greet", "Attack", "Quit", "Help", "Stats", "Who"}
-    return list({n for n in names if n not in noise})
+    return sorted({n for n in names if n not in noise})
 
 
 # ---------------------------------------------------------------------------
@@ -158,7 +179,7 @@ MORE_PICKS = frozenset({"Stats", "Who", "Remember"})
 PET_NAMES = ["Buddy", "Rex", "Spot", "Lucky", "Max", "Mittens", "Whiskers", "Shadow"]
 
 # Free-text prompts that don't use bracket menus.
-# Checked before both menu detection and the STUCK fallback.
+# Checked before menu detection.
 def choose_freetext(lines):
     """Return a response string if recent output contains a free-text prompt,
     or None if no free-text prompt is detected.
@@ -170,7 +191,7 @@ def choose_freetext(lines):
     tail   = "\n".join(lines[-5:])   # short window — only the current prompt
     joined = "\n".join(lines[-15:])  # longer window for context-heavy prompts
 
-    if "What will you name" in tail:
+    if "What will you name" in tail or "That name's taken" in tail:
         return random.choice(PET_NAMES)
     if "enter a number" in tail.lower() or 'type "Exit"' in tail:
         return "Exit"
@@ -209,11 +230,11 @@ def choose(opts, lines):
     # --- direction-only compass (spyglass) --------------------------------
     compass = frozenset({"N", "NW", "W", "SW", "S", "SE", "E", "NE"})
     if opts <= compass and opts:
-        return random.choice(list(opts))
+        return random.choice(sorted(opts))
 
     # --- More sub-menu ---------------------------------------------------
     if opts & MORE_PICKS and "N" not in opts:
-        safe = list(opts & MORE_PICKS)
+        safe = sorted(opts & MORE_PICKS)
         return random.choice(safe) if safe else ""
 
     # Remove things we never want to type
@@ -223,11 +244,11 @@ def choose(opts, lines):
         return ""
 
     # Weights: movement 45%, greet 15%, attack 10%, More 10%, other 20%
-    dirs   = list(usable & DIRS)
+    dirs   = sorted(usable & DIRS)
     greet  = "Greet (name)" in usable
     attack = "Attack (name)" in usable
     more   = "More" in usable
-    rest   = list(usable - DIRS - {"Greet (name)", "Attack (name)", "More"})
+    rest   = sorted(usable - DIRS - {"Greet (name)", "Attack (name)", "More"})
 
     roll = random.random()
 
@@ -261,7 +282,7 @@ def choose(opts, lines):
 # ---------------------------------------------------------------------------
 
 def main():
-    print(f"Logging to {log_path}\n")
+    print(f"Logging to {log_path}  (seed {SEED})\n")
     game = Game()
 
     # ---- startup sequence -----------------------------------------------
@@ -269,76 +290,44 @@ def main():
     game.send("Rufus")
     game.wait_for("Male or Female")
     game.send("male")
-    # Drive through any hit-Enter prompts during loading until main menu appears
-    print("Waiting for game world to load...", flush=True)
-    deadline = time.time() + 120
-    while time.time() < deadline:
-        lines = game.recent(20)
-        if any("Hit Enter to wait" in l for l in lines):
-            break
-        if any("(hit Enter)" in l for l in lines) and game.quiet_for() >= 0.8:
-            game.send("")
-        time.sleep(0.3)
-    game.clear_buffer()
-    print("Game ready — starting play loop.\n", flush=True)
+    # Loading screens (hit Enter, Y/N questions) are just prompts; the main loop handles them.
 
     # ---- main loop ------------------------------------------------------
-    inputs_sent   = 0
-    last_sent_t   = time.time()
-    output_t_at_send = game.last_output_time()  # output timestamp when we last sent
-    waiting_for_new_output = False
+    inputs_sent = 0
 
     while inputs_sent < MAX_INPUTS:
-        quiet  = game.quiet_for()
-        lines  = game.recent()
-        menu   = parse_menu(lines)
-        now_t  = game.last_output_time()
-
-        # After each send, wait until the game produces at least one new line
-        if waiting_for_new_output:
-            if now_t > output_t_at_send:
-                waiting_for_new_output = False
-            elif (time.time() - last_sent_t) > STUCK_SECS:
-                waiting_for_new_output = False  # give up waiting
+        if not game.wait_prompt():
+            # Every read goes through stringInput(), which prints <<PROMPT>>, so a live
+            # game that hasn't asked for anything in STUCK_SECS is looping.
+            if game.proc.poll() is None:
+                hang = f"HANG no prompt for {STUCK_SECS:.0f}s after input {inputs_sent}"
+                game.violations.append(hang)
+                game._log.write(hang + "\n")
+                print(f"\033[31m>>> [HANG — no prompt for {STUCK_SECS:.0f}s]\033[0m", flush=True)
             else:
-                time.sleep(0.05)
-                continue
+                print("\033[31m>>> [game exited]\033[0m", flush=True)
+            break
 
-        if quiet >= QUIET_SECS:
-            # Priority 1: free-text prompts (no bracket menu)
-            freetext = choose_freetext(lines)
-            if freetext is not None:
-                output_t_at_send = now_t
-                game.send(freetext)
-                inputs_sent += 1
-                last_sent_t = time.time()
-                waiting_for_new_output = True
-                continue
-
-            # Priority 2: bracket menu detected
-            if menu:
-                action = choose(menu, lines)
-                output_t_at_send = now_t
-                game.send(action)
-                inputs_sent += 1
-                last_sent_t = time.time()
-                waiting_for_new_output = True
-                continue
-
-        # Stuck fallback
-        if quiet >= STUCK_SECS and (time.time() - last_sent_t) >= STUCK_SECS:
-            print("\033[31m>>> [STUCK — sending Enter]\033[0m", flush=True)
-            output_t_at_send = now_t
-            game.send("")
-            inputs_sent += 1
-            last_sent_t = time.time()
-            waiting_for_new_output = True
-            continue
-
-        time.sleep(0.1)
+        lines = game.recent()
+        # Priority 1: free-text prompts (no bracket menu)
+        action = choose_freetext(lines)
+        # Priority 2: bracket menu detected; otherwise just hit Enter
+        if action is None:
+            menu = parse_menu(lines)
+            action = choose(menu, lines) if menu else ""
+        game.send(action)
+        inputs_sent += 1
 
     print(f"\n--- done: {inputs_sent} inputs sent ---")
+    if game.state:
+        p = game.state["player"]
+        print(f"Final: turn {game.state['turn']}, {p['where']} ({p['x']},{p['y']}), "
+              f"health {p['health']}/{p['maxhealth']}, gang {p['gang']}, items {game.state['items']}")
+    print(f"Crashes and invariant violations: {len(game.violations)}")
+    for v in game.violations:
+        print(f"  {v}")
     print(f"Log: {log_path}")
+    print(f"Replay: python3 tools/autoplay.py {SEED}")
     game.close()
 
 

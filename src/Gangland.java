@@ -390,7 +390,9 @@ public class Gangland {
 	
 	
 	public static void main(String args[])  {
-		
+
+		if(automation) System.out.println("<<SEED " + Dice.SEED + ">>");
+
 		boolean main_continues = true;
 		int[] main_high_scores = new int[10];	
 		String[][] main_high_score_names_initials = new String[2][10];	
@@ -1149,8 +1151,8 @@ turnloop:	while (game.play_on) {
 				for (int j = 1; j < game.boardside + 9; j++) {
 					for (int k = 1; k < game.boardside + 9; k++) {
 	
-						//this line skips empty squares.
-						if(j > game.boardside && k == 1) k = game.boardside + 3;
+						//this line skips empty squares (but still processes limbo_coord at boardside+2, boardside+2).
+						if(j > game.boardside + 2 && k == 1) k = game.boardside + 3;
 	
 						//count players.
 						int only_player = -2;
@@ -3274,6 +3276,9 @@ turnloop:	while (game.play_on) {
 					//todo: pets in the forest without a master will exit.
 					for(int j = game.humansize; j < game.armysize; j++) {
 		 				if(game.army[j].gethealth() > 0) {
+							//pets leave the forest by several routes that don't all clear the flag; a stale flag would send
+							//their next step through changexyoffboard, which has no board-edge check.
+							game.checkAndCorrectInTheForest(j);
 							int x_flip = 0;
 			 				int y_flip = 0;
 			 				boolean will_follow = false;
@@ -3421,7 +3426,8 @@ turnloop:	while (game.play_on) {
 							}
 		 				
 				 			if(x_flip != 0 || y_flip != 0) {
-			 					if((game.army[j].ishere(game.forest_entry_x, game.forest_entry_y) && master_attempts_forest_entry) || game.army[j].in_the_forest()) {
+			 					//only a pet that follows its master into the forest steps off the board; one that stays behind takes an ordinary step.
+			 					if((will_follow && game.army[j].ishere(game.forest_entry_x, game.forest_entry_y) && master_attempts_forest_entry) || game.army[j].in_the_forest()) {
 									game.army[j].changexyoffboard(x_flip, y_flip);
 									//System.out.println("**** 3375  "+j+" made it here. x/yflip is "+x_flip+" "+y_flip);
 								}
@@ -3737,7 +3743,7 @@ turnloop:	while (game.play_on) {
 											boolean pass_curse = game.army[j].is_cursed();
 											if(game.army[j].life_was_reused()) {
 												int highest_gen = 1;
-												for(int gy = 0; gy < game.graveyard.length; gy++) {
+												for(int gy = 0; gy < game.next_grave; gy++) {
 													if(game.graveyard[gy].get_array_position() == j) {
 														if(game.graveyard[gy].getgeneration() > highest_gen) highest_gen = game.graveyard[gy].getgeneration();
 													}
@@ -5932,7 +5938,12 @@ turnloop:	while (game.play_on) {
 				input_continues_loop = true;
 			}
 
-			if(your_choice.compareToIgnoreCase("write") == 0) {
+			//writings only exist on the board (see the reading check in playerScreen); off it, e.g. in the forest, the array has no room.
+			if(your_choice.compareToIgnoreCase("write") == 0 && !(army[user].getx() > 0 && army[user].getx() < boardside + 1 && army[user].gety() > 0 && army[user].gety() < boardside + 1)) {
+				masterStringOut("There's no bare ground here to write on.");
+				input_continues_loop = true;
+			}
+			else if(your_choice.compareToIgnoreCase("write") == 0) {
 				masterStringOut("What do you want to write?");
 				String new_writing = stringInput();
 				writeNewMessage(new_writing, army[user].getx(), army[user].gety());
@@ -9865,17 +9876,12 @@ turnloop:	while (game.play_on) {
 					already_got_message = false;
 					gregor_message = false;
 					blank_message = false;
-					for (int i = 0; i < armysize; i++) {
-						if (nameMatchup(9395, pet_name_answer, army[i].getname())) {
-							if (army[user].getfriend(i) > -1) {
-								name_okay = false;
-								already_got_message = true;
-								break;
-					
-							}
-						}
+					//names are looked up by exact text (getNumberFromName), so a pet can't share one with anyone.
+					if (nameIsTaken(pet_name_answer)) {
+						name_okay = false;
+						already_got_message = true;
 					}
-					if ((pet_name_answer.compareToIgnoreCase("gregor") == 0 && malegame) || (greet_choice.compareToIgnoreCase("ardina") == 0 && !malegame)){
+					if ((pet_name_answer.compareToIgnoreCase("gregor") == 0 && malegame) || (pet_name_answer.compareToIgnoreCase("ardina") == 0 && !malegame)){
 						name_okay = false;
 						gregor_message = true;
 					}
@@ -9884,11 +9890,7 @@ turnloop:	while (game.play_on) {
 						blank_message = true;
 					}					
 					if (!name_okay && !gregor_message && already_got_message) {
-						masterStringOut("You already know someone with that name, "+army[user].getname()+". Are you sure?");
-						if(ynChoiceBoolean()) {
-							masterStringOut("Okay, "+pet_name_answer+" it is.");
-							name_okay = true;	
-						}
+						masterStringOut("That name's taken around here. Pick another.");
 					}
 					if (!name_okay && gregor_message) {
 						masterStringOut("There's someone named Gregor living near by, and you don't want to upset him.");
@@ -11946,8 +11948,9 @@ shitloop:do {
 		int[] runawaytemp = new int[2];
 		//"randomRunaway" returns an array of two numbers that are the x change and the y change for the runner.
 		runawaytemp = randomRunaway(player);
-		if(x_maybe != -2) runawaytemp[0] = x_maybe;
-		if(y_maybe != -2) runawaytemp[1] = y_maybe;
+		int[] given = { (x_maybe != -2) ? x_maybe : runawaytemp[0], (y_maybe != -2) ? y_maybe : runawaytemp[1] };
+		//a direction handed in by the battle was worked out for someone else; keep it only if it's a valid step for this runner.
+		if(validRunStep(player, given[0], given[1])) runawaytemp = given;
 		
 //		masterStringOut("**** runWithoutLeader     runawaytemp = "+runawaytemp[0]+", "+runawaytemp[1]);
 		
@@ -14515,7 +14518,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 											}					
 											else {
 											//this is the user
-												if(battle_choice_numbers.get(battle_choice_numbers.size() - 1) == 3) {
+												if(battle_choice_numbers.size() > 0 && battle_choice_numbers.get(battle_choice_numbers.size() - 1) == 3) {
 													will_run[m][q] = true;
 												//	ran_round[m][q] = shitcounter;
 												}
@@ -14992,9 +14995,11 @@ main_j_loop:for(int j = 25; j > 0; j--){
 	
 			
 															//attack by incantation:
+															//the incantation takes the first attack slot only (see battle_order); a caster with more attacks
+															//must not speak it again, since a successful one erases his words and the lookup would hit -1.
 															if(uses_incantation[m][q] > -1 && war[m][q] > -1) {
-																if(war[m][q] == user) actionStringSaver(j+"  "+army[user].getname()+":  \""+user_incantation_attempt+"!\"", false, -1, -1, false, 7, 12836);
-																if(uses_incantation[m][q] == 1) {
+																if(war[m][q] == user && z == 0) actionStringSaver(j+"  "+army[user].getname()+":  \""+user_incantation_attempt+"!\"", false, -1, -1, false, 7, 12836);
+																if(uses_incantation[m][q] == 1 && z == 0) {
 																	if(war[m][q] == user) actionStringSaver(j+"  "+"You speak an incantation, but it's only partly correct... the air stinks of fizzle.", false, -1, -1, false, 7, 12836); 
 																	else {
 																		String magic_string = "";
@@ -15004,7 +15009,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																		if(battletext == 1) battleTextOneDisplay(true, magic_string);
 																	}
 																}
-																if(uses_incantation[m][q] == 0) {
+																if(uses_incantation[m][q] == 0 && z == 0) {
 																	if(war[m][q] == user) actionStringSaver(j+"  "+army[user].getname()+" speaks a powerful incantation!", false, -1, -1, false, 7, 12845);
 																	else {
 																		String magic_string = "";
@@ -15060,7 +15065,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																			else battleTextOneDisplay("\"Aaaaaaaugh!\"");
 																		}
 																		if(battletext == 3) actionStringSaver(j+"  "+"All opponents are covered in burning applesauce for "+damage+" points!", true, targetrow, targetcolumn, false, 7, 12889);
-																		multipleWounded(targetrow, damage);
+																		multipleWounded(targetrow, damage, war[m][q]);
 																	}
 																	else if(battletext == 3) actionStringSaver(j+"  "+"The fuse goes out!", false, -1, -1, false, 7, 12892);
 																
@@ -15287,7 +15292,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																		att = army[war[m][q]].attack_five(army[realtargetnumber], war_names_for_dialogue[getWarRowFromArmyIndex(realtargetnumber)][getWarColFromArmyIndex(realtargetnumber)], battletext, dice, war_names_for_dialogue[m][q], target_available);
 																	}
 																	if(!all_party_hit) army[realtargetnumber].freshwound(att.getDamage());
-																	else if(att.getDamage() > 0) multipleWounded(-1*m + 1, att.getDamage());
+																	else if(att.getDamage() > 0) multipleWounded(-1*m + 1, att.getDamage(), war[m][q]);
 															
 																	if(battletext > 0) {
 										//								masterStringOut("**** calling monsterDialogue, target column = "+targetcolumn+" or -1 depending on "+all_party_hit);
@@ -15504,8 +15509,11 @@ main_j_loop:for(int j = 25; j > 0; j--){
 													if(rc_choice == 3 && stillFighting(c) == 0) rc_choice = 0;
 													
 													if(rc_choice < 3) {
-														army[war[c][k]].changexyoffboard(run_changes[c][rc_choice][0], run_changes[c][rc_choice][1]);
-														if(battleRanIntoForest(run_changes[c][rc_choice][0], run_changes[c][rc_choice][1])) into_forest_message = true;
+														int[] run_step = run_changes[c][rc_choice];
+														//the party's direction was worked out for one representative; check it for this runner.
+														if(!validRunStep(war[c][k], run_step[0], run_step[1])) run_step = randomRunaway(war[c][k]);
+														army[war[c][k]].changexyoffboard(run_step[0], run_step[1]);
+														if(battleRanIntoForest(run_step[0], run_step[1])) into_forest_message = true;
 													}
 												}
 												else {
@@ -15884,7 +15892,8 @@ record_write_loop:	for(int line_no = next_line_out; line_no < next_line_out + ac
 				for(int zjoin = 0; zjoin < zombies_who_fight.size(); zjoin++) {
 					int zwf_number = zombies_who_fight.get(zjoin);
 
-					if(!inWarArray(zombie_fight, zwf_number)) {
+					//a zombie user already said yes or no to joining when the battle began; don't pull him in at random.
+					if(zwf_number != user && !inWarArray(zombie_fight, zwf_number)) {
 						if(dice.throwdice(1,2) == 1) {
 		get_war_spot_loop:	for(int gws = 0; gws < number_of_columns; gws++) {
 								if(war[zombie_fight][gws] == -1) {
@@ -16250,12 +16259,14 @@ i_loop:	for(int i = 0; i < 2; i++) {
 		return nextup;
 	}
 
-	public void multipleWounded(int row_wounded, int damage_for_all) {
+	public void multipleWounded(int row_wounded, int damage_for_all, int attacker) {
 		double s_n_f_w_p_dub = Math.floor(findNextActionStringLine()/action_string_limit);
 		int screen_no_for_whole_party = (int)s_n_f_w_p_dub;
 		for(int p = 0; p < number_of_columns; p++) {
 			if(war[row_wounded][p] > -1) {
 				army[war[row_wounded][p]].freshwound(damage_for_all);
+				//record who did it, as single-target hits do; kill credit (pig debts, rumors) reads last_foe.
+				army[war[row_wounded][p]].setlast_foe(army[attacker].getname());
 				total_damage[row_wounded] += damage_for_all;
 				if(army[war[row_wounded][p]].gethealth() - damage_for_all <= 0) extra_kills[screen_no_for_whole_party][row_wounded][p] = true;
 				else if(army[war[row_wounded][p]].gethealth() - damage_for_all < 6) extra_lowhealths[screen_no_for_whole_party][row_wounded][p] = true;
@@ -18129,10 +18140,11 @@ pb_loop:	for(int i = 0; i < humansize; i++) {
 	}
 	
 	public void mournPets() {
-		int text = 0;
 		for(int l = humansize; l < armysize; l++) {
-			if(army[l].gethealth() < 0 && army[l].getmasters_number() > -1) {
-				if(army[l].gethealth() > 0 && samePlace(l, army[l].getmasters_number())) {
+			if(army[l].gethealth() <= 0 && army[l].getmasters_number() > -1) {
+				int text = 0;
+				//the master grieves aloud only if he's alive and with the pet.
+				if(army[army[l].getmasters_number()].gethealth() > 0 && samePlace(l, army[l].getmasters_number())) {
 					if(samePlace(l, user)) text = 1;
 					if(text == 1 && army[user].getfriend(army[l].getmasters_number()) > -1) text = 2;
 					if(text > 0 && user == army[l].getmasters_number()) text = 3;
@@ -18175,6 +18187,8 @@ pb_loop:	for(int i = 0; i < humansize; i++) {
 					if(text == 1) masterStringOut("A stranger mourns the death of "+army[l].getname_lower()+"... ");
 					army[army[l].getmasters_number()].changemorale(-35);
 				}
+				//mourned once; the bond ends with the pet. Without this the master was mourned again every time this ran.
+				army[l].leave_master();
 			}
 		}
 	}
@@ -20469,7 +20483,7 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 	
 	public int findGrave(String deceased_name) {
 		int gravesite = -1;
-		for (int i = 0; i < user*100; i++) {
+		for (int i = 0; i < next_grave; i++) {
 			if(graveyard[i].getname().compareTo(deceased_name) == 0) {
 				gravesite = i;
 				break;
@@ -20592,8 +20606,22 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 
 	}
 	
+	//true if anyone has this name now, or could later: base names of all humans, with or without a generation number.
+	public boolean nameIsTaken(String candidate) {
+		String c = candidate.trim();
+		for(int i = 0; i < allbeingsize; i++) {
+			if(army[i] != null && army[i].getname() != null && army[i].getname().equalsIgnoreCase(c)) return true;
+		}
+		String base = c.replaceAll("\\s+\\d+$", "");
+		for(int i = 0; i < names.length; i++) {
+			if(names[i] != null && names[i].equalsIgnoreCase(base)) return true;
+		}
+		return false;
+	}
+
 	public int getNumberFromName(String xname) {
 		int xnumber = -1;
+		if(xname == null) return xnumber;
 		for(int i = 0; i < allbeingsize; i++) {
 			if(army[i].has_name()) {
 				if(army[i].getname().compareToIgnoreCase(xname) == 0) {
@@ -21508,13 +21536,38 @@ j_loop:			for(int j = -1; j < j_limit; j++) {
 		return soundout;
 	}	
 	
+	// One reader for the whole process: a fresh BufferedReader per call can swallow
+	// lines that were piped in ahead of time and then discard them.
+	static final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+	// GANGLAND_AUTOMATION=1 prints a <<PROMPT>> line before every input read, so a
+	// harness knows exactly when the game is waiting instead of guessing from silence.
+	static final boolean automation = "1".equals(System.getenv("GANGLAND_AUTOMATION"));
+
+	// Set by the menu helpers so the prompt marker can list the accepted answers.
+	String[] prompt_options = null;
+
+	void printPromptMarker() {
+		if(!automation) return;
+		Automation.beforePrompt(this);
+		if(prompt_options == null) System.out.println("<<PROMPT>>");
+		else System.out.println("<<PROMPT options=" + String.join("|", prompt_options) + ">>");
+		System.out.flush();
+	}
+
 	public String stringInput() {
 
- 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		printPromptMarker();
+		prompt_options = null;
    		String user_arg = "";
 
     	try {
     		user_arg = br.readLine();
+    		// A harness that runs out of input is finished; don't spin on empty answers forever.
+    		if(user_arg == null && automation) {
+    			System.out.println("<<EOF>>");
+    			System.exit(0);
+    		}
     		if(user_arg == null) user_arg = "";
     	}
     	catch (IOException ioe) {
@@ -21537,6 +21590,7 @@ j_loop:			for(int j = -1; j < j_limit; j++) {
 			}
 			System.out.println("[USER NOTE: " + note.trim() + "]");
 			// Re-read the actual command.
+			printPromptMarker();
 			try {
 				user_arg = br.readLine();
 				if(user_arg == null) user_arg = "";
@@ -21554,6 +21608,7 @@ j_loop:			for(int j = -1; j < j_limit; j++) {
 		String menu_choice = "";
 		boolean exit_loop = false;
 		do {
+			prompt_options = string_array;
 			menu_choice = stringInput();
 			for(int i = 0; i < string_array.length; i++) {
 				if(menu_choice.compareToIgnoreCase(string_array[i]) == 0) {
@@ -21570,6 +21625,7 @@ j_loop:			for(int j = -1; j < j_limit; j++) {
 		String menu_choice = "";
 		boolean exit_loop = false;
 		do {
+			prompt_options = string_array;
 			menu_choice = stringInput();
 			for(int i = 0; i < string_array.length; i++) {
 				if(menu_choice.compareToIgnoreCase(string_array[i]) == 0) {
@@ -22414,6 +22470,8 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 		int runxchange = 0;
 		int runychange = 0;
 		if(pinto != -1) {
+			//the forest flag can drift from where the runner actually is; board rules in the forest walk him off its edge.
+			checkAndCorrectInTheForest(pinto);
 			if(!army[pinto].in_the_forest()) {
 				if(!(army[pinto].getx() == forest_entry_x && army[pinto].gety() == forest_entry_y)) {
 					boolean move_okay = false;
@@ -22441,19 +22499,19 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 					boolean move_okay = false;
 					do {
 						random_runaway = dice.throwdice(1, 4);
-						if(random_runaway == 1 && army[pinto].getx() - 1 > 0 || forest_direction.compareToIgnoreCase("west") == 0) {
+						if(random_runaway == 1 && (army[pinto].getx() - 1 > 0 || forest_direction.compareToIgnoreCase("west") == 0)) {
 							runxchange = -1;
 							move_okay = true;
 						}
-						if(random_runaway == 2 && army[pinto].getx() + 1 <= boardside || forest_direction.compareToIgnoreCase("east") == 0) {
+						if(random_runaway == 2 && (army[pinto].getx() + 1 <= boardside || forest_direction.compareToIgnoreCase("east") == 0)) {
 							runxchange = 1;
 							move_okay = true;
 						}
-						if(random_runaway == 3 && army[pinto].gety() - 1 > 0 || forest_direction.compareToIgnoreCase("north") == 0) {
+						if(random_runaway == 3 && (army[pinto].gety() - 1 > 0 || forest_direction.compareToIgnoreCase("north") == 0)) {
 							runychange = -1;
 							move_okay = true;
 						}
-						if(random_runaway == 4 && army[pinto].gety() + 1 <= boardside || forest_direction.compareToIgnoreCase("south") == 0) {
+						if(random_runaway == 4 && (army[pinto].gety() + 1 <= boardside || forest_direction.compareToIgnoreCase("south") == 0)) {
 							runychange = 1;
 							move_okay = true;
 						}
@@ -22500,6 +22558,23 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 		return runchange;
 	}
 	
+	//a run-away step must stay on the grid the runner is on (the board or the forest), except for stepping
+	//from the forest entrance into the forest. It must also be a single step.
+	public boolean validRunStep(int runner, int dx, int dy) {
+		if(Math.abs(dx) + Math.abs(dy) != 1) return false;
+		int x = army[runner].getx(), y = army[runner].gety();
+		int nx = x + dx, ny = y + dy;
+		boolean in_forest_grid = x >= boardside + 3 && x <= boardside + 8 && y >= boardside + 3 && y <= boardside + 8;
+		if(in_forest_grid) return nx >= boardside + 3 && nx <= boardside + 8 && ny >= boardside + 3 && ny <= boardside + 8;
+		if(nx >= 1 && nx <= boardside && ny >= 1 && ny <= boardside) return true;
+		if(x != forest_entry_x || y != forest_entry_y) return false;
+		if(forest_direction.compareToIgnoreCase("north") == 0) return dx == 0 && dy == -1;
+		if(forest_direction.compareToIgnoreCase("south") == 0) return dx == 0 && dy == 1;
+		if(forest_direction.compareToIgnoreCase("west") == 0) return dx == -1 && dy == 0;
+		if(forest_direction.compareToIgnoreCase("east") == 0) return dx == 1 && dy == 0;
+		return false;
+	}
+
 	public void moveAlongForestCommuters() {
 		for(int i = 0; i < armysize; i++) {
 			boolean enter_forest = false;
@@ -22514,8 +22589,10 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 				if(!army[i].in_the_forest()) {
 					if(i < humansize) enterForest(i);
 					else {
-						if(army[i].getmasters_number() > -1) {
-							if(army[army[i].getmasters_number()].in_the_forest()) army[i].perceive_forest_anew(army[army[i].getmasters_number()].getwhole_forest_perceived(), army[army[i].getmasters_number()].getforest_entry_perceived_x(), army[army[i].getmasters_number()].getforest_entry_perceived_y(), army[army[i].getmasters_number()].getforest_exit_perceived_x(), army[army[i].getmasters_number()].getforest_exit_perceived_y());
+						//a pet shares its master's view of the forest only if the master is in there; otherwise (say it ran in
+						//from a fight) it needs its own, or it lands at an unset entry point and isn't marked as in the forest.
+						if(army[i].getmasters_number() > -1 && army[army[i].getmasters_number()].in_the_forest()) {
+							army[i].perceive_forest_anew(army[army[i].getmasters_number()].getwhole_forest_perceived(), army[army[i].getmasters_number()].getforest_entry_perceived_x(), army[army[i].getmasters_number()].getforest_entry_perceived_y(), army[army[i].getmasters_number()].getforest_exit_perceived_x(), army[army[i].getmasters_number()].getforest_exit_perceived_y());
 						}
 						else enterForest(i);
 					}
