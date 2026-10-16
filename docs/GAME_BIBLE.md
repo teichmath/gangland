@@ -255,7 +255,7 @@ During encounters NPCs may: propose JOIN, offer to TEACH weaponskill, tell a JOK
 ### Asking NPCs About Others
 There is **no open-ended "ask [NPC] about [name]" system.** Only specific fixed topics can be queried (~lines 7239–7298, 8348–8401):
 
-**Asking about Gregor (or Ardina):**
+**Asking about Gregor:**
 - Available as a dialogue option if the player knows the gregor rumor
 - The NPC's response depends on their friendship level with the player:
   - Very friendly: gives a direction to Gregor's location
@@ -280,7 +280,7 @@ There is **no open-ended "ask [NPC] about [name]" system.** Only specific fixed 
 ### Rumor Types
 | Type | Content |
 |------|---------|
-| `"gregor"` | Location of Gregor or Ardina |
+| `"gregor"` | Location of Gregor |
 | `"house"` | Location of the longhouse |
 | `"pig"` | Pig sighting |
 | `"forest"` | Something about the forest |
@@ -345,7 +345,7 @@ Spawn on movement across the main board:
 
 | Beast | Spawn chance | Notes |
 |-------|-------------|-------|
-| Rat (Wererat) | 12% | Two attacks (bite + scratch) |
+| Rat | 12% | Two attacks (bite + scratch) |
 | Pig | 6% | Killing a pig yields a bladder (see §11) |
 | Snake | 6% | Bite attack; red variant cosmetic only |
 | Skeleton | 3% | Only after `turnclock` 90 (`skeletons_continue` flag) |
@@ -414,9 +414,13 @@ Spawn on movement across the main board:
 - On death: `lose_perception_of_pet()` called, bond resets
 - The player loses morale (see mourning above)
 
-### Known Gaps
-- Pets do not follow master into the forest (`status: planned`, ~lines 3271–3272)
-- Pets without a master do not exit the forest (`status: planned`, ~line 65)
+### Pets and the Forest
+`status: implemented` (pet movement loop in `main()`, ~lines 3277–3460; `moveAlongForestCommuters()`)
+- **Going in:** a pet on the forest entrance when its master steps in decides by loyalty alone: 8+ always follows, 4–7 follows with a loyalty×10% chance, 3 or less never does. The general follow rules above don't apply to this step. A pet that stays behind takes an ordinary step instead; if the master is you or in your gang, you see "*X stands back, solemnly watching you enter the forest.*"
+- **Following later:** once the master is inside, the pet heads for the entrance under the normal follow rules, and each turn it stands on the entrance it gets the same loyalty test.
+- **Inside:** a pet whose master is also inside follows the master anywhere in the forest, toward the square the master is on or moving to. It shares its master's forest map (`perceive_forest_anew`); a pet that got in without its master inside (e.g. running from a fight) gets its own (`enterForest`).
+- **Coming out:** a pet in the forest whose master isn't (the master left, or died), or that has no master, is put back on the entrance square on its next move. In practice a pet leaves one turn after its master.
+- The pet loop corrects each pet's forest flag from its position every turn (`checkAndCorrectInTheForest`), and checks the master by position (`inForestGrid`), since the flag lags after leaving.
 
 ---
 
@@ -700,8 +704,8 @@ The fissure and the ant trail are both here, not at the bog (~lines 5456–5495)
 - `is_blessed()` is **permanent for that generation** — it does not wear off
 - Effects: immune to poison (~line 15109); gang power-up applied
 
-### Gregor and Ardina
-- Named NPCs with fixed narrative roles
+### Gregor
+- Named NPC with a fixed narrative role (Ardina was his counterpart in the female version of the game, now archived: see `docs/archive/female-version.md`)
 - Their location is the subject of the "gregor" rumor type
 - Gregor operates the longhouse
 
@@ -766,10 +770,8 @@ The fissure and the ant trail are both here, not at the bog (~lines 5456–5495)
 - Currently disabled with message: "Your spyglass is no good in the forest."
 - ~Line 94 notes this as a planned feature
 
-### Pets in Forest (`status: planned`)
-- Pets do not follow master into the forest (~lines 3271–3272)
-- Pets without a master do not exit
-- ~Lines 65 and 115 note this as pending work
+### Pets in Forest (`status: implemented`)
+- See §7, Pets and the Forest.
 
 ### Tall Grass Cover (`status: stub`)
 - Display text exists but no mechanical cover effect is implemented

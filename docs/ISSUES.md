@@ -84,6 +84,26 @@ The duplicate-name warning only fired for people the player already knew, and ev
 **Status:** fixed  
 `NullPointerException` in `getNumberFromName()` when a slain pig's `last_foe` was null. Damage that hits a whole side at once (an apple bomb, or a beast hitting a whole party) goes through `multipleWounded()`, which wounded every target but never recorded the attacker, unlike single-target hits. A pig whose only wound came from an apple bomb died with no `last_foe`, and the pig marker looked up that null name. Fixed by passing the attacker to `multipleWounded()` and calling `setlast_foe()` for each target, so apple-bomb kills now also credit the thrower (pig debts, kill rumors). `getNumberFromName()` also returns -1 for a null name, as it does for any unknown name. Found by autoplay (seed 1170).
 
+
+### C15 — Initials shorter than 3 letters crash game over
+**File:** `Gangland.java` `gameOver()` (~line 24145)  
+**Status:** fixed  
+`init_entry.substring(0, 3)` threw `StringIndexOutOfBoundsException` when a player who made the high-score table typed 1 or 2 letters, or just pressed Enter. Found as soon as autoplay started quitting games (4 of 5 quitting test games crashed). Now takes up to 3 characters.
+
+### C16 — High-score table lost and duplicated entries
+**File:** `Gangland.java` `gameOver()` (~line 24150)  
+**Status:** fixed  
+Inserting a new score shifted the entries below it top-down, so the displaced score was copied into every slot beneath it and the rest were lost. Example from autoplay: games scoring 68, 41 and 71 produced the table [71, 68, 68, 68]. The shift now runs bottom-up. This is the "High score tracking issue" from the dev notes. Autoplay now checks every high-score table it sees against the games' best scores (`HIGHSCORE` problems in `tools/swarm.py`).
+
+### C17 — Pets from an old fight dragged into a later battle elsewhere
+**File:** `Gangland.java` `civilWar()`, `countSidesForBattle()`  
+**Status:** fixed  
+When a gang brawl (`civilWar`) gathered pets but then turned into a one-on-one `Duel` (the pets "understand their place" and stay out), it returned without reaching `resetBattleAll()`, so `pets_who_fight` kept those pets. The next battle anywhere added them to its war array, wherever they were: for example, a cat standing on the board at (10,4) fought a gnome in the forest at (13,14). This happened in 1,277 of 2,000 autoplay games. It is the dev notes' "battle pulling a player in from a different location" anomaly. Both list builders now start from empty lists. Autoplay checks that every fighter is on the battle square when `Battle()` starts (`fighter_not_at_battle`).
+
+### C18 — Snake and spider venom got in on a missed bite
+**File:** `Gangland.java` `Battle()` beast attacks  
+**Status:** fixed  
+A red snake's or spider's attack called `poison()` whether or not the bite did damage. About 40% of venomous bites miss (red snake 523 of 1,250, spider 7,676 of 19,810 in a swarm), and each miss could still poison the target. Venom now only gets in when the bite lands. The dev notes report this as "snake poisoning incorrectly". Only red snakes are venomous in the code (`Snake.java` overrides the species to "snake" for every color), so a plain snake can't poison anyone.
 ---
 
 ## Unreachable / Partially Implemented Features
@@ -108,10 +128,17 @@ Apple items decay and drop correctly in the game loop, but something about the "
 **Status:** open  
 `"Your spyglass is no good in the forest."` — planned to work but currently blocked. Noted as a todo at line 94.
 
-### U5 — Pets don't follow into the forest
-**File:** `Gangland.java` ~lines 3271-3272 (todo comments)  
-**Status:** open  
-Pets do not follow masters into the forest. Pets without a master don't exit either. Also noted in dev notes at line 65 and 115.
+### U5 — Pets and the forest
+**File:** `Gangland.java` pet movement loop in `main()` (~lines 3277–3460)  
+**Status:** fixed  
+The old note ("pets do not follow masters into the forest") was out of date: pets did follow, but the decision ignored loyalty in practice, a pet that missed the moment could never follow, and a pet that fell behind inside was sent straight back out. Now:
+- Entering is decided by loyalty alone (8+ always, 4–7 at loyalty×10%, 3 or less never). The old 4–7 roll was inverted (`d10 > loyalty`), and it rarely mattered because the general follow checks passed first: in 300 autoplay games on the previous commit every pet at the entrance followed, at every loyalty.
+- A pet can follow its master in on a later turn: it heads for the entrance and takes the same loyalty test each turn it's there.
+- Inside, a pet follows its master anywhere in the forest, aiming for the master's actual square (the turn's movement table only records board squares and pointed pets at (0,0)).
+- A pet in the forest whose master has left no longer tries to walk toward him: the "within 6 squares" check compared forest and board coordinates, and could walk the pet off the forest's edge. It's put back at the entrance instead.
+- The "stands back" message now shows for your own pet even when you aren't in a gang (`sameGang` is false for yourself with no gang), and only on the turn the master actually goes in.
+
+Measured over 300 autoplay games: follow rates at the entrance were 0% for loyalty 1–3, 42–69% for 4–7, 100% for 8–9, with about half of all entries being late follows. The bot never brings a pet of its own to the forest, so the "stands back" message is checked by reading the code only.
 
 ---
 
@@ -125,7 +152,7 @@ Brief battle text showed `"a snake"` for red snakes. Fixed display string. Also 
 ### S2 — `Wererat` had undefined fields in constructor
 **File:** `Wererat.java`  
 **Status:** fixed  
-`this.clown` and `this.number_of_pickles` were set but never declared. Removed. (Was causing Railway build failure.)
+`this.clown` and `this.number_of_pickles` were set but never declared. Removed. (Was causing Railway build failure.) The class itself was later archived (A2): nothing ever created a Wererat.
 
 ### S3 — Female-game "Ardina" pet-name check tested the wrong variable
 **File:** `Gangland.java` ~line 9889  
@@ -136,6 +163,18 @@ Brief battle text showed `"a snake"` for red snakes. Fixed display string. Also 
 **File:** `docs/GAME_BIBLE.md` §2  
 **Status:** fixed  
 Personality is now listed as 1–100 (rolled 1d100), and `friend[i]` documents the grudge values: 100 toward someone who attacks, deserts the gang or runs out on a duel, 200 toward battle runaways.
+
+---
+
+## Archived Features
+
+### A1 — Female version of the game
+**Status:** archived (October 2026)  
+The "Male or Female?" choice is gone; the game always plays the male version. Everything that made the female version work (women's names, Gregor→Ardina, the pronoun and word substitutions in `masterStringOut()`, the name checks) is preserved verbatim in `docs/archive/female-version.md`, and in git history.
+
+### A2 — Wererat
+**Status:** archived (October 2026)  
+`src/Wererat.java` was never used: nothing created one, and its attack methods used an interface the battle code no longer calls. It was an early copy of `Rat`. Kept verbatim in `docs/archive/wererat.md`. The live rat creatures are `Rat` (board) and `Rattishman` (forest).
 
 ---
 
@@ -163,14 +202,14 @@ These are lower priority items noted by the developer; not crashes, just missing
 
 ---
 
-## Known Behavior Anomalies (from dev notes, uninvestigated)
+## Known Behavior Anomalies (from dev notes)
 
-These were flagged in the dev notes at the top of `Gangland.java` but haven't been investigated:
+These were flagged in the dev notes at the top of `Gangland.java`. Each now has an autoplay check (rule names in parentheses), or was traced in the code:
 
-- Snake non-red variant incorrectly poisoning player (line 124 of dev notes)
-- "Another walking corpse joins" appearing during beast (snake) battles
-- Dog grief scene triggering when dog is not actually at that location
-- Too many "aiees" from the same NPC
-- Zombie/beast battle pulling player in from a different location
-- Getting stuck at specific turn counts (1189 noted)
-- High score tracking issue
+- ~~Snake non-red variant incorrectly poisoning player~~: venom got in on missed bites; see C18.
+- ~~"Another walking corpse joins" appearing during beast (snake) battles~~: these messages are now gated on `!they_fight_beasts`. The `corpse_join_in_beast_fight` check found none in 4,000 games.
+- ~~Dog grief scene triggering when dog is not actually at that location~~: the `pet_grief_not_there` check found none in 4,000 games. The C9/U5 forest fixes and the C10 mourning fix probably cured this.
+- ~~Too many "aiees" from the same NPC~~: the harness notes any name that cries "aiee" more than once in a game (`note: aiee`). None in 4,000 games.
+- ~~Zombie/beast battle pulling player in from a different location~~: a stale pet list; see C17.
+- ~~Getting stuck at specific turn counts (1189 noted)~~: 1189 is not a turn count. It is the debug print `*** Stuck at 1189` (`Gangland.java` ~line 1793). It sits in a loop that now gives up after 12 tries, and coverage shows the print never runs. Autoplay flags any of the game's own debug prints (`Wha? NNNN`, `Stuck at`) as `DEBUGMSG` problems. The first swarm with that check caught a different one, `*** Stuck at 1356`, in 39 of 2,000 games. The dragon chose its victim by rerolling over everyone on its square until it hit a living, non-zombie human, and it printed this line on every try past the 10th. That was harmless, since such a human always exists there, but the player could see it. It now makes one roll among the eligible humans.
+- ~~High score tracking issue~~ → found and fixed, see C16

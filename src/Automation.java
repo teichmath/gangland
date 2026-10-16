@@ -207,6 +207,52 @@ public class Automation {
 		}
 	}
 
+	// ------------------------------------------------- event checks (called from game code)
+
+	// At the start of every battle, each human or pet fighter should be on the battle's square.
+	// (Beasts are placed with setxy, which leaves them in transit, so they're skipped.)
+	static void checkBattleStart(Gangland g) {
+		try {
+			for(int row = 0; row < 2; row++) {
+				for(int col = 0; col < g.number_of_columns; col++) {
+					int f = g.war[row][col];
+					if(f < 0 || f >= g.armysize || g.out_of_the_fight[row][col]) continue;
+					Being b = g.army[f];
+					if(!b.ishere(g.battle_x, g.battle_y))
+						reportEvent("fighter_not_at_battle", "being=" + f + " name=" + b.getname() + (f == g.user ? " (you)" : "")
+							+ " at (" + b.getx() + "," + b.gety() + "), battle at (" + g.battle_x + "," + g.battle_y + ")"
+							+ (g.they_fight_beasts ? " vs " + g.beast_type : ""));
+				}
+			}
+		}
+		catch (Exception e) {
+			System.out.println("<<AUTOMATION_ERROR " + e + ">>");
+		}
+	}
+
+	// A scene the player watches (e.g. a pet grieving over its master) needs the pet, the player and the
+	// scene really on one valid square: not two beings that merely share the in-transit (0,0), and not a hidden pet.
+	static void checkWitnessed(Gangland g, String rule, int pet, int other) {
+		Being p = g.army[pet], u = g.army[g.user], o = g.army[other];
+		String w = where(g, p.getx(), p.gety());
+		boolean ok = p.ishere(u.getx(), u.gety()) && (w.equals("board") || w.equals("forest")) && !p.hidden();
+		if(!ok)
+			reportEvent(rule, "pet=" + pet + " " + p.getname() + " at (" + p.getx() + "," + p.gety() + ") " + w + (p.hidden() ? " hidden" : "")
+				+ ", you at (" + u.getx() + "," + u.gety() + "), #" + other + " " + o.getname() + " at (" + o.getx() + "," + o.gety() + ")");
+	}
+
+	// Messages that shouldn't appear in a given situation.
+	static void checkText(Gangland g, String text) {
+		if(text == null) return;
+		if(g.they_fight_beasts && (text.contains("walking corpse joins") || text.contains("walking corpses wander") || text.contains("corpses are swarming")))
+			reportEvent("corpse_join_in_beast_fight", "\"" + text.trim() + "\" during a fight with " + g.beast_type);
+	}
+
+	// Event reports aren't deduplicated: each one is a separate occurrence.
+	static void reportEvent(String rule, String detail) {
+		System.out.println("<<INVARIANT " + rule + " | " + detail + ">>");
+	}
+
 	static void report(String rule, int i, Being b, String detail) {
 		if(!reported.add(rule + "#" + i)) return;
 		System.out.println("<<INVARIANT " + rule + " being=" + i + " name=" + b.getname() + " | " + detail + ">>");

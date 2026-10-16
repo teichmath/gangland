@@ -369,7 +369,6 @@ public class Gangland {
 	String gregors_wall;
 	String weather;
 	String dir_to_travel;
-	boolean malegame;
 	boolean dragon_attacked;
 	boolean dragon_alive;
 	boolean play_on;
@@ -410,7 +409,7 @@ public class Gangland {
 
 			//fields:
 			
-			Gangland game = new Gangland(10, 51, 45, 16, true, main_high_scores, main_high_score_names_initials);
+			Gangland game = new Gangland(10, 51, 45, 16, main_high_scores, main_high_score_names_initials);
 			int[] player_number;
 			int boardside_answer = 10;
 			int humansize_answer = 51;
@@ -419,7 +418,6 @@ public class Gangland {
 			String player_name_answer = "";		
 			game.battle_movies = false;
 			game.just_a_movie = true;
-			game.malegame = true;
 			
 			//we instantiate the outer class as "game," and then all the instance fields become game.something.
 			//Any advantage to using static fields?
@@ -504,23 +502,9 @@ public class Gangland {
 				}
 			} while(!name_okay);
 	
-			game.malegame = true;
-			game.masterStringOut("* |                                                                | *");
-			game.masterStringOut("* |                                                                | *");
-			game.masterStringOut("* |     Male or Female?                                            | *");
-		
-			
-			String mf_choice = "";
-			do {
-				game.masterStringOut("\n[ M / F ]");
-				mf_choice = game.stringInput();
-			} while (mf_choice.compareToIgnoreCase("m") != 0 && mf_choice.compareToIgnoreCase("f") != 0 && mf_choice.compareToIgnoreCase("male") != 0 && mf_choice.compareToIgnoreCase("female") != 0);
-			if(mf_choice.compareToIgnoreCase("f") == 0 || mf_choice.compareToIgnoreCase("female") == 0) {
-				game.malegame = false;
-			}
 	
 			//instantiate game
-			game = new Gangland(boardside_answer, humansize_answer, extrazombiesize_answer, petsize_answer, game.malegame, main_high_scores, main_high_score_names_initials);
+			game = new Gangland(boardside_answer, humansize_answer, extrazombiesize_answer, petsize_answer, main_high_scores, main_high_score_names_initials);
 			
 			//fill the names array
 			game.fillNamesArray();
@@ -599,11 +583,7 @@ public class Gangland {
 						break;
 					}
 				}
-				if (player_name_answer.compareToIgnoreCase("gregor") == 0 && game.malegame) {
-					name_okay = false;
-					already_got_message = true;
-				}
-				if (player_name_answer.compareToIgnoreCase("ardina") == 0 && !game.malegame) {
+				if (player_name_answer.compareToIgnoreCase("gregor") == 0) {
 					name_okay = false;
 					already_got_message = true;
 				}
@@ -744,8 +724,7 @@ public class Gangland {
 				String write_this = "";
 				if(dir_one.length() > 1) write_this += "GO "+dir_one+" ";
 				if(dir_two.length() > 1) write_this += "GO "+dir_two+" ";
-				if(game.malegame) write_this += "   -- GREGOR";
-				else write_this += "  -- ARDINA";
+				write_this += "   -- GREGOR";
 				game.writeNewMessage(write_this, gmessage[0], gmessage[1]);
 			}		
 	
@@ -1999,19 +1978,15 @@ turnloop:	while (game.play_on) {
 											}
 										}
 										if(!game.dragon[0].asleep()) {
-											boolean foundfoe = false;
-											int foundfoecounter = 0;
-											do {
-												beastfoe = game.dice.throwdice(1, number_at_position) - 1;
-												//excluding pets.
-												if(player_number[beastfoe] >= 0 && player_number[beastfoe] <= game.user) {
-													if(game.army[player_number[beastfoe]].gethealth() > 0 && !game.army[player_number[beastfoe]].is_zombie()) {
-														foundfoe = true;
-													}
+											//one roll among the living, non-zombie humans here (excluding pets); any_humans_live says there is one.
+											//(this used to reroll over everyone here until it hit one, printing "*** Stuck at 1356" past 10 tries.)
+											List<Integer> dragon_foes = new ArrayList<Integer>();
+											for(int l = 0; l < number_at_position; l++) {
+												if(player_number[l] >= 0 && player_number[l] <= game.user) {
+													if(game.army[player_number[l]].gethealth() > 0 && !game.army[player_number[l]].is_zombie()) dragon_foes.add(l);
 												}
-												foundfoecounter++;
-												if(foundfoecounter > 10) game.masterStringOut("*** Stuck at 1356");
-											} while (!foundfoe);
+											}
+											beastfoe = dragon_foes.get(game.dice.throwdice(1, dragon_foes.size()) - 1);
 											// 				  User stays  			 /				User moves
 											//		Dragon attacks user/other			  Dragon attacks user /   other 
 											//		   A. 				  |						D.	                |
@@ -3272,8 +3247,8 @@ turnloop:	while (game.play_on) {
 		 			}//end gang movement.
 		 			
 		 			//now pets may move to follow someone they're loyal to, or do their own thing.
-					//todo: pets in the forest stick with masters.
-					//todo: pets in the forest without a master will exit.
+					//in the forest: a pet follows its master in if loyal enough (now or on a later turn, from the entrance), sticks with
+					//him inside, and is put back at the entrance once he's gone or it has no master. See the bible, section 7.
 					for(int j = game.humansize; j < game.armysize; j++) {
 		 				if(game.army[j].gethealth() > 0) {
 							//pets leave the forest by several routes that don't all clear the flag; a stale flag would send
@@ -3283,6 +3258,7 @@ turnloop:	while (game.play_on) {
 			 				int y_flip = 0;
 			 				boolean will_follow = false;
 	 						boolean master_attempts_forest_entry = false;
+	 						boolean master_steps_in_now = false;   //the master goes into the forest this very turn
 			 				int move_0 = 0;
 			 				int move_1 = 0;
 			 				int move_2 = 0;
@@ -3319,10 +3295,28 @@ turnloop:	while (game.play_on) {
 										}
 									}
 								}
+								master_steps_in_now = master_attempts_forest_entry;
+
+								//a master already in the forest went in through the entrance, so that's where the pet heads; once there,
+								//it decides whether to follow him in just as it would have if it had been there when he went in.
+								boolean pet_at_entrance = game.army[j].ishere(game.forest_entry_x, game.forest_entry_y);
+								if(game.inForestGrid(game.army[j].getmasters_number()) && !game.army[j].in_the_forest()) {
+									move_2 = game.forest_entry_x;
+									move_3 = game.forest_entry_y;
+									if(pet_at_entrance) master_attempts_forest_entry = true;
+								}
+								
+								//inside the forest, head for where the master really is (or is heading); the movement table only records board squares.
+								if(game.army[j].in_the_forest() && game.inForestGrid(game.army[j].getmasters_number())) {
+									int forest_master = game.army[j].getmasters_number();
+									boolean in_transit = game.army[forest_master].getx() == 0 && game.army[forest_master].gety() == 0;
+									move_2 = in_transit ? game.army[forest_master].getpotential_x() : game.army[forest_master].getx();
+									move_3 = in_transit ? game.army[forest_master].getpotential_y() : game.army[forest_master].gety();
+								}
 								
 								if(game.army[j].get_memory_causing_loyalty() > 0) will_follow = true;
 								
-								if(game.samePlace(j, game.army[j].getmasters_number()) || game.getDistance(game.army[j].getx(), game.army[j].gety(), game.army[game.army[j].getmasters_number()].getpotential_x(), game.army[game.army[j].getmasters_number()].getpotential_y()) <= 1) {
+								if(game.samePlace(j, game.army[j].getmasters_number()) || game.getDistance(game.army[j].getx(), game.army[j].gety(), game.army[game.army[j].getmasters_number()].getpotential_x(), game.army[game.army[j].getmasters_number()].getpotential_y()) <= 1 || (pet_at_entrance && master_attempts_forest_entry)) {
 									if(game.army[j].in_the_forest() && game.army[game.army[j].getmasters_number()].in_the_forest()) will_follow = true;
 									int follow_roll = game.dice.throwdice(1, 150);
 								//	System.out.println("**** 2927 rolled a "+follow_roll+",  "+game.army[j].getname()+"'s friendship with master is "+game.army[j].getfriend(game.army[j].getmasters_number())+", loyalty is "+game.army[j].getloyalty()+", that makes "+game.army[j].getfriend(game.army[j].getmasters_number())*(8 - game.army[j].getloyalty())/2);
@@ -3336,8 +3330,11 @@ turnloop:	while (game.play_on) {
 					 				if(game.army[j].getspecies().compareToIgnoreCase("cat") == 0 && game.army[j].getfriend(game.army[j].getmasters_number()) <= 5 ) will_follow = true;
 									if(game.army[j].in_the_forest()) will_follow = true;
 									if(game.army[j].ishere(game.forest_entry_x, game.forest_entry_y) && master_attempts_forest_entry) { 
+										//going into the forest is its own test, decided by loyalty alone (the rules above are for following on the board):
+										//8 and up always follows, 4 to 7 follows with a loyalty x 10% chance, 3 or less never does.
 										if(game.army[j].getloyalty() >= 8) will_follow = true;
-										else if(game.army[j].getloyalty() >= 4 && game.dice.throwdice(1, 10) > game.army[j].getloyalty()) will_follow = true; 
+										else if(game.army[j].getloyalty() >= 4) will_follow = game.dice.throwdice(1, 10) <= game.army[j].getloyalty();
+										else will_follow = false;
 									}
 								}
 								
@@ -3346,6 +3343,12 @@ turnloop:	while (game.play_on) {
 									if(game.army[j].ishere(game.forest_entry_x, game.forest_entry_y) && master_attempts_forest_entry){
 										if(return_roll > game.army[j].getloyalty()*10 && return_roll > game.army[j].get_memory_causing_loyalty()) will_follow = false;
 									}
+									//in the forest together, the pet keeps after its master however far apart they are; without this a pet
+									//that followed him in later, and so arrived where he no longer was, was sent straight back out.
+									else if(game.army[j].in_the_forest() && game.inForestGrid(game.army[j].getmasters_number())) will_follow = true;
+									//a pet in the forest whose master is out of it doesn't walk toward him (forest and board squares aren't
+									//comparable); it's put back at the entrance instead.
+									else if(game.army[j].in_the_forest()) will_follow = false;
 									else if(game.getDistance(game.army[j].getx(), game.army[j].gety(), move_2, move_3) <= 6) {
 									//System.out.println("**** 2940 return roll for "+game.army[j].getname()+" is "+return_roll+",  getreturn_to_master_adj is "+game.army[j].getreturn_to_master_adj());
 									//System.out.println("rounds away is "+game.army[j].getrounds_away_from_master()+", loyalty is "+game.army[j].getloyalty()+", and master calls is "+game.army[j].getnumber_of_master_calls());
@@ -3371,7 +3374,8 @@ turnloop:	while (game.play_on) {
 // 									}
 // 								}
 						
-								if((game.getDistance(game.army[j].getx(), game.army[j].gety(), move_2, move_3) <= 6) || (game.army[j].ishere(game.forest_entry_x, game.forest_entry_y) && master_attempts_forest_entry)) {
+								boolean both_in_forest = game.army[j].in_the_forest() && game.inForestGrid(game.army[j].getmasters_number());
+								if((game.getDistance(game.army[j].getx(), game.army[j].gety(), move_2, move_3) <= 6) || (game.army[j].ishere(game.forest_entry_x, game.forest_entry_y) && master_attempts_forest_entry) || both_in_forest) {
 									if(move_3 > game.army[j].gety()) y_flip = 1;
 									else if(move_3 < game.army[j].gety()) y_flip = -1;
 									else if(move_2 > game.army[j].getx()) x_flip = 1;
@@ -3394,8 +3398,9 @@ turnloop:	while (game.play_on) {
 			 				}
 			 				else {
 								if(!game.army[j].in_the_forest()) {
-									if(game.army[j].ishere(game.forest_entry_x, game.forest_entry_y) && master_attempts_forest_entry) {
-										if(game.army[j].getmasters_number() > -1 && game.sameGang(game.army[j].getmasters_number(), game.user)) {
+									if(game.army[j].ishere(game.forest_entry_x, game.forest_entry_y) && master_steps_in_now) {
+										//your own pet, or a gang-mate's (sameGang is false for you and yourself when you have no gang).
+										if(game.army[j].getmasters_number() > -1 && (game.army[j].getmasters_number() == game.user || game.sameGang(game.army[j].getmasters_number(), game.user))) {
 											String enterer = game.army[j].getmasters_name();
 											if(game.army[j].getmasters_number() == game.user) enterer = "you";
 											game.masterStringOut(game.army[j].getname()+" stands back, solemnly watching "+enterer+" enter the forest. The "+game.army[j].getspecies()+" will not follow.");
@@ -3982,7 +3987,7 @@ turnloop:	while (game.play_on) {
 //bookmark	
 		
 	//constructor	
-	public Gangland (int bsize, int hsize, int zsize, int psize, boolean mgame, int[] hs, String[][] hsni) {
+	public Gangland (int bsize, int hsize, int zsize, int psize, int[] hs, String[][] hsni) {
 		screen_width = 80;
 		petsize = psize;
 		extrazombiesize = zsize;
@@ -4008,7 +4013,6 @@ turnloop:	while (game.play_on) {
 		user_never_water_warped = true;
 		display_position = false;
 		ground_meat = -1;
-		malegame = mgame;
 		dice = new Dice();
 		army = new Being[allbeingsize];
 		dragon = new Dragon[1];
@@ -4276,218 +4280,108 @@ turnloop:	while (game.play_on) {
 	public void fillNamesArray() {
 		names = new String[100];
 		
-//		System.out.println("malegame = "+malegame);
-		
-		if(!malegame) setNamesFemale();
-		else {
-			names[0] = "Jack";
-			names[1] = "Bern";
-			names[2] = "Quince";
-			names[3] = "Macgreg";
-			names[4] = "Tom";
-			names[5] = "Robbin";
-			names[6] = "Graebel"; 
-			names[7] = "Knute"; 
-			names[8] = "Owen"; 
-			names[9] = "Henry"; 
-			names[10] = "Marco";
-			names[11] = "Erasus";
-			names[12] = "Liudprand";
-			names[13] = "Rosenfield";
-			names[14] = "Renald";
-			names[15] = "Klaus";
-			names[16] = "Wastere";
-			names[17] = "Eric";
-			names[18] = "Ash";
-			names[19] = "Eliot";
-			names[20] = "Helmut";
-			names[21] = "Ogden";
-			names[22] = "Ham";
-			names[23] = "Bendix";
-			names[24] = "Elias";
-			names[25] = "Red";
-			names[26] = "Oliver";
-			names[27] = "Ralph";
-			names[28] = "Homer";
-			names[29] = "Virgil";
-			names[30] = "Jakob";
-			names[31] = "Winston";
-			names[32] = "Barney";
-			names[33] = "Megunticook";
-			//names[34] = "Perry";
-			names[34] = "Candide";
-			names[35] = "Orson";
-			names[36] = "Nollan";
-			names[37] = "Tarran";
-			names[38] = "Maxwell";
-			names[39] = "Frederich";
-			names[40] = "Alex";
-			names[41] = "Colby";
-			names[42] = "Xavier";
-			names[43] = "Luke";
-			names[44] = "Ben";
-			names[45] = "Patronus";
-			names[46] = "Mailer";
-			names[47] = "Chuck";
-			names[48] = "Cutter";
-			names[49] = "Ignatious";
-			names[50] = "Rufstafarian";
-			names[51] = "Hulot";
-			names[52] = "Russokov";
-			names[53] = "Scruggs";
-			names[54] = "Davey";
-			names[55] = "Skippy";
-			names[56] = "Paul";
-			names[57] = "Samuel";
-			names[58] = "Graham";
-			names[59] = "Clank";
-			names[60] = "Houndbone";
-			names[61] = "Casper";
-			names[62] = "Chase";
-			names[63] = "Buddy";
-			names[64] = "Gavriel";
-			names[65] = "David";
-			names[66] = "Philip";
-			names[67] = "Hinman";
-			names[68] = "Edward";
-			names[69] = "Lawrence";
-			names[70] = "Riley";
-			names[71] = "Flynn";
-			names[72] = "Ryan";
-			names[73] = "Julian";
-			names[74] = "William";
-			names[75] = "Peter";
-			names[76] = "Lars";
-			names[77] = "Bruno";
-			names[78] = "Anders";
-			names[79] = "Schroder";
-			names[80] = "Gunther";
-			names[81] = "Eustis";
-			names[82] = "Geert";
-			names[83] = "Honza";
-			names[84] = "Vincent";
-			names[85] = "Happy";
-			names[86] = "Claxson";
-			names[87] = "George";
-			names[88] = "Harvey";
-			names[89] = "Disko";
-			names[90] = "Salters";
-			names[91] = "Pratt";
-			names[92] = "Jonah";
-			names[93] = "Buber";
-			names[94] = "Einhard";
-			names[95] = "Gogol";
-			names[96] = "Bousquet";
-			names[97] = "Morley";
-			names[98] = "Richard";
-			names[99] = "Rudin";
+		names[0] = "Jack";
+		names[1] = "Bern";
+		names[2] = "Quince";
+		names[3] = "Macgreg";
+		names[4] = "Tom";
+		names[5] = "Robbin";
+		names[6] = "Graebel"; 
+		names[7] = "Knute"; 
+		names[8] = "Owen"; 
+		names[9] = "Henry"; 
+		names[10] = "Marco";
+		names[11] = "Erasus";
+		names[12] = "Liudprand";
+		names[13] = "Rosenfield";
+		names[14] = "Renald";
+		names[15] = "Klaus";
+		names[16] = "Wastere";
+		names[17] = "Eric";
+		names[18] = "Ash";
+		names[19] = "Eliot";
+		names[20] = "Helmut";
+		names[21] = "Ogden";
+		names[22] = "Ham";
+		names[23] = "Bendix";
+		names[24] = "Elias";
+		names[25] = "Red";
+		names[26] = "Oliver";
+		names[27] = "Ralph";
+		names[28] = "Homer";
+		names[29] = "Virgil";
+		names[30] = "Jakob";
+		names[31] = "Winston";
+		names[32] = "Barney";
+		names[33] = "Megunticook";
+		//names[34] = "Perry";
+		names[34] = "Candide";
+		names[35] = "Orson";
+		names[36] = "Nollan";
+		names[37] = "Tarran";
+		names[38] = "Maxwell";
+		names[39] = "Frederich";
+		names[40] = "Alex";
+		names[41] = "Colby";
+		names[42] = "Xavier";
+		names[43] = "Luke";
+		names[44] = "Ben";
+		names[45] = "Patronus";
+		names[46] = "Mailer";
+		names[47] = "Chuck";
+		names[48] = "Cutter";
+		names[49] = "Ignatious";
+		names[50] = "Rufstafarian";
+		names[51] = "Hulot";
+		names[52] = "Russokov";
+		names[53] = "Scruggs";
+		names[54] = "Davey";
+		names[55] = "Skippy";
+		names[56] = "Paul";
+		names[57] = "Samuel";
+		names[58] = "Graham";
+		names[59] = "Clank";
+		names[60] = "Houndbone";
+		names[61] = "Casper";
+		names[62] = "Chase";
+		names[63] = "Buddy";
+		names[64] = "Gavriel";
+		names[65] = "David";
+		names[66] = "Philip";
+		names[67] = "Hinman";
+		names[68] = "Edward";
+		names[69] = "Lawrence";
+		names[70] = "Riley";
+		names[71] = "Flynn";
+		names[72] = "Ryan";
+		names[73] = "Julian";
+		names[74] = "William";
+		names[75] = "Peter";
+		names[76] = "Lars";
+		names[77] = "Bruno";
+		names[78] = "Anders";
+		names[79] = "Schroder";
+		names[80] = "Gunther";
+		names[81] = "Eustis";
+		names[82] = "Geert";
+		names[83] = "Honza";
+		names[84] = "Vincent";
+		names[85] = "Happy";
+		names[86] = "Claxson";
+		names[87] = "George";
+		names[88] = "Harvey";
+		names[89] = "Disko";
+		names[90] = "Salters";
+		names[91] = "Pratt";
+		names[92] = "Jonah";
+		names[93] = "Buber";
+		names[94] = "Einhard";
+		names[95] = "Gogol";
+		names[96] = "Bousquet";
+		names[97] = "Morley";
+		names[98] = "Richard";
+		names[99] = "Rudin";
 //		    names[100] = "Chatterji";
-		}
-	}
-	
-	public void setNamesFemale() {
-		names[0] = "Jackie";
-		names[1] = "Bernice";
-		names[2] = "Eloise";
-		names[3] = "Marge";
-		names[4] = "Vera";
-		names[5] = "Agnes";
-		names[6] = "Bess"; 
-		names[7] = "Chandra"; 
-		names[8] = "Eulalie"; 
-		names[9] = "Lucretia"; 
-		names[10] = "Maude";
-		names[11] = "Sigrid";
-		names[12] = "Tilda";
-		names[13] = "Rhona";
-		names[14] = "Lucy";
-		names[15] = "Kristanna";
-		names[16] = "Sarah";
-		names[17] = "Eliza";
-		names[18] = "Amy";
-		names[19] = "Diana";
-		names[20] = "Penelope";
-		names[21] = "Catherine";
-		names[22] = "Helen";
-		names[23] = "Laura";
-		names[24] = "Alice";
-		names[25] = "Maria";
-		names[26] = "Malin";
-		names[27] = "Agatha";
-		names[28] = "Nadine";
-		names[29] = "Lena";
-		names[30] = "Erika";
-		names[31] = "Wendy";
-		names[32] = "Lorelei";
-		names[33] = "Elrica";
-		names[34] = "Katrina";
-		names[34] = "Claudia";
-		names[35] = "Isold";
-		names[36] = "Odelia";
-		names[37] = "Marcie";
-		names[38] = "Winifred";
-		names[39] = "Carmen";
-		names[40] = "Sasha";
-		names[41] = "Simone";
-		names[42] = "Beatrix";
-		names[43] = "Rhonwen";
-		names[44] = "Ruby";
-		names[45] = "Araminta";
-		names[46] = "Jemima";
-		names[47] = "Hester";
-		names[48] = "Philomena";
-		names[49] = "Gertrude";
-			names[50] = "Rufstafaria";
-			names[51] = "Hulota";
-			names[52] = "Russokovia";
-			names[53] = "Scrugsella";
-			names[54] = "Daviena";
-			names[55] = "Skippy";
-			names[56] = "Paulina";
-			names[57] = "Samantha";
-			names[58] = "Grahamia";
-			names[59] = "Clankesse";
-			names[60] = "Houndbae";
-			names[61] = "Casperina";
-			names[62] = "Chasenia";
-			names[63] = "Buddia";
-			names[64] = "Gavriela";
-			names[65] = "Davida";
-			names[66] = "Philipina";
-			names[67] = "Hinmania";
-			names[68] = "Edwardina";
-			names[69] = "Laverne";
-			names[70] = "Ripley";
-			names[71] = "Flynthia";
-			names[72] = "Raina";
-			names[73] = "Juliette";
-			names[74] = "Willeini";
-			names[75] = "Petunia";
-			names[76] = "Larseene";
-			names[77] = "Brunette";
-			names[78] = "Andrea";
-			names[79] = "Schrodengia";
-			names[80] = "Gunthra";
-			names[81] = "Eustisia";
-			names[82] = "Geerta";
-			names[83] = "Honzaaa";
-			names[84] = "Vincenzia";
-			names[85] = "Happia";
-			names[86] = "Claxsonya";
-			names[87] = "Georgina";
-			names[88] = "Harrietta";
-			names[89] = "Diskodja";
-			names[90] = "Saltersina";
-			names[91] = "Prattha";
-			names[92] = "Jonie";
-			names[93] = "Buberella";
-			names[94] = "Einhardina";
-			names[95] = "Gogolla";
-			names[96] = "Bousquetina";
-			names[97] = "Morleyanna";
-			names[98] = "Richenna";
-			names[99] = "Rudincia";
-		
 	}
 	
 
@@ -7356,7 +7250,7 @@ turnloop:	while (game.play_on) {
 				if(greet_choice.compareToIgnoreCase("taunt") ==0) {
 					if(same_gang) input_valid = true;
 				}
-				if((greet_choice.compareToIgnoreCase("gregor") == 0 && malegame) || (greet_choice.compareToIgnoreCase("ardina") == 0 && !malegame)) {
+				if(greet_choice.compareToIgnoreCase("gregor") == 0) {
 					if(!rumorIsKnownBy("gregor", user)) {
 						masterStringOut("You remember something about a person named Gregor...");
 						masterStringOut("You ask "+army[accosted].getname()+"...");
@@ -8540,7 +8434,7 @@ turnloop:	while (game.play_on) {
 				if(en_code.endsWith("C"))masterStringOut("\n"+army[accosted].getname()+": \"YAAGRAAAR!\"");
 			}
 			
-			if((greet_choice.compareToIgnoreCase("gregor") == 0 && malegame) || (greet_choice.compareToIgnoreCase("ardina") == 0 && !malegame)) {
+			if(greet_choice.compareToIgnoreCase("gregor") == 0) {
 				rumorKnowsKnows("gregor", accosted, user);
 				if(en_code.endsWith("A")) {
 					if(army[hailer].gety() == markers[1][0] && army[hailer].getx() == markers[0][0]) {
@@ -9881,7 +9775,7 @@ turnloop:	while (game.play_on) {
 						name_okay = false;
 						already_got_message = true;
 					}
-					if ((pet_name_answer.compareToIgnoreCase("gregor") == 0 && malegame) || (pet_name_answer.compareToIgnoreCase("ardina") == 0 && !malegame)){
+					if (pet_name_answer.compareToIgnoreCase("gregor") == 0){
 						name_okay = false;
 						gregor_message = true;
 					}
@@ -12381,6 +12275,10 @@ shitloop:do {
 	
 	public void civilWar(int[][] nums) {
 		
+		//start the pet list fresh: a civil war that ends up a Duel never reaches resetBattleAll, and its pets would otherwise join the next fight
+		pets_who_fight.get(0).clear();
+		pets_who_fight.get(1).clear();
+
 //		masterStringOut("**** Starting civil war at "+army[numa].getx()+", "+army[numa].gety());
 		
 		int numa = nums[0][0];
@@ -12781,6 +12679,10 @@ shitloop:do {
 
 	//called by prepBattle:
 	public void countSidesForBattle(int numa, int numb) {	
+		//start fresh, in case a fight that became a Duel left pets or zombies listed
+		pets_who_fight.get(0).clear();
+		pets_who_fight.get(1).clear();
+		zombies_who_fight.clear();
 		int[] nums = new int[2];
 		nums[0] = numa;
 		nums[1] = numb;
@@ -13701,6 +13603,7 @@ bi_loop:	for(int bi = 0; bi < number_of_columns; bi++) {
 	// ********************       B A T T L E         *************************
 
 	public void Battle() {
+		if(automation) Automation.checkBattleStart(this);
 //bookmark
 //		masterStringOut("**** Battle is taking place at "+battle_x+", "+battle_y+";  you are at "+army[user].getx()+", "+army[user].gety());
 	
@@ -15250,8 +15153,9 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																if(realtargetnumber > -1) {
 																	if(z == 0) {
 																		att = army[war[m][q]].attack_one(army[realtargetnumber], war_names_for_dialogue[getWarRowFromArmyIndex(realtargetnumber)][getWarColFromArmyIndex(realtargetnumber)], battletext, dice, war_names_for_dialogue[m][q], target_available);
-																		if(army[war[m][q]].getspecies().compareToIgnoreCase("spider") == 0) poison(realtargetnumber, "spider");
-																		if(army[war[m][q]].getname().compareToIgnoreCase("red snake") == 0) {
+																		//venom only gets in if the bite lands (the "could be poisoned!" warning is shown only then, too)
+																		if(att.getDamage() > 0 && army[war[m][q]].getspecies().compareToIgnoreCase("spider") == 0) poison(realtargetnumber, "spider");
+																		if(att.getDamage() > 0 && army[war[m][q]].getname().compareToIgnoreCase("red snake") == 0) {
 																			poison(realtargetnumber, "snake");
 //																			if(realtargetnumber == user) System.out.println("**** 14577 red snake at war "+m+" "+q+", bit user which is realtargetnumber "+realtargetnumber);
 																		}
@@ -18129,6 +18033,7 @@ pb_loop:	for(int i = 0; i < humansize; i++) {
 					mourn += " in grief!";
 					if(army[pet].getspecies().compareToIgnoreCase("dog") == 0) mourn += "\n\"Rooowaoorroowoow....\"";
 					if(army[pet].getspecies().compareToIgnoreCase("cat") == 0) mourn += "\n\"Mowwwreeoowwwwwrrwr....\"";
+					if(automation) Automation.checkWitnessed(this, "pet_grief_not_there", pet, army[pet].getmasters_number());
 					masterStringOut(mourn);
 				
 				}
@@ -19295,7 +19200,7 @@ armyloop:		for(int j = 0; j < armysize; j++) {
 					house_choice = stringInput();
 					if(house_choice.compareToIgnoreCase("read") == 0) input_valid = true;
 					if(house_choice.compareToIgnoreCase("table") == 0) input_valid = true;
-					if((house_choice.compareToIgnoreCase("gregor") == 0 && malegame) || (house_choice.compareToIgnoreCase("ardina") == 0 && !malegame)) input_valid = true;
+					if(house_choice.compareToIgnoreCase("gregor") == 0) input_valid = true;
 					if(house_choice.compareToIgnoreCase("leave") == 0) input_valid = true;
 					if(house_choice.compareToIgnoreCase("fill bottle") == 0) {
 						if(drinkCount("empty bottles") > 0) input_valid = true;
@@ -19338,7 +19243,7 @@ armyloop:		for(int j = 0; j < armysize; j++) {
 						if(house_choice_chopped.length == 1) masterStringOut("Toast whom?");
 						else {
 							if(!input_valid) {
-								if(house_choice_chopped.length == 2 && ((house_choice_chopped[1].compareToIgnoreCase("gregor") == 0 && malegame) || (house_choice_chopped[1].compareToIgnoreCase("ardina") == 0 && !malegame))) {
+								if(house_choice_chopped.length == 2 && (house_choice_chopped[1].compareToIgnoreCase("gregor") == 0)) {
 									masterStringOut("Gregor only drinks at the table.");
 								}		
 								else masterStringOut("You don't know anyone by that name here!");
@@ -19454,7 +19359,7 @@ armyloop:		for(int j = 0; j < armysize; j++) {
 					masterStringOut("You fill up a bladder with Gregor's beer. One for the road!");
 				}
 								
-				if((house_choice.compareToIgnoreCase("gregor") == 0 && malegame) || (house_choice.compareToIgnoreCase("ardina") == 0 && !malegame)) {
+				if(house_choice.compareToIgnoreCase("gregor") == 0) {
 					masterStringOut("\nGREGOR:  \"Sorry, lad, but you can't stay long.\"");
 					String gregor_choice = "null";
 					String[] gregor_choice_chopped;
@@ -19615,7 +19520,7 @@ armyloop:		for(int j = 0; j < armysize; j++) {
 									masterStringOut(user_test_name);
 								}
 								if(!name_continue) {
-									if((gregor_choice_chopped[1].compareToIgnoreCase("gregor") == 0 && malegame) ||(gregor_choice_chopped[1].compareToIgnoreCase("ardina") == 0 && !malegame)) {
+									if(gregor_choice_chopped[1].compareToIgnoreCase("gregor") == 0) {
 										masterStringOut("GREGOR:  \"Look here, lad. How many fingers have I got up?\"");
 									}
 									else masterStringOut("GREGOR:  \"I haven't met im.\"");
@@ -19661,8 +19566,7 @@ armyloop:		for(int j = 0; j < armysize; j++) {
 											if(guestbook[slot_in_question]) {
 												if(army[slot_in_question].getx() == house_coord && army[slot_in_question].gety() == house_coord) {
 													if(army[user].getaffiliation() != 0 && army[user].getaffiliation() == army[slot_in_question].getaffiliation()) {
-														if(malegame) masterStringOut("Gregor scratches his bald pate and makes a face.");
-														else masterStringOut("Ardina crosses her arms, nonplussed...");
+														masterStringOut("Gregor scratches his bald pate and makes a face.");
 														masterStringOut("GREGOR:  \"He's right there. Aren't you two in the same gang?\"");
 													}
 													else {
@@ -21401,43 +21305,7 @@ j_loop:			for(int j = -1; j < j_limit; j++) {
 	
 	public void masterStringOut(String stringin, boolean format_string) {
 		
-		if(!malegame) {
-			stringin = stringin.replaceAll("\\bhe\\b", "she");
-			stringin = stringin.replaceAll("\\bHe\\b", "She");
-			
-			stringin = stringin.replaceAll("\\bhim\\b", "her");
-
-			stringin = stringin.replaceAll("\\b'im\\b", "'er");
-
-			stringin = stringin.replaceAll("\\bhis\\b", "her");
-			stringin = stringin.replaceAll("\\bHis\\b", "Her");
-			
-			stringin = stringin.replaceAll("\\bhis,\\b", "hers,");
-			stringin = stringin.replaceAll("\\bhis.\\b", "hers.");
-			
-			stringin = stringin.replaceAll("\\bhimself\\b", "herself");
-			stringin = stringin.replaceAll("\\bHIMSELF\\b", "HERSELF");
-
-			stringin = stringin.replaceAll("\\bman\\b", "woman");
-
-			stringin = stringin.replaceAll("\\bmen\\b", "women");
-			stringin = stringin.replaceAll("\\bMen\\b", "Women");
-
-			stringin = stringin.replaceAll("\\bfellow\\b", "chick");
-			stringin = stringin.replaceAll("\\bfellows\\b", "chicks");
-			stringin = stringin.replaceAll("\\bgangfellow\\b", "gangchick");
-			stringin = stringin.replaceAll("\\bgangfellows\\b", "gangchicks");
-			stringin = stringin.replaceAll("\\blad\\b", "chick");
-			stringin = stringin.replaceAll("\\blads\\b", "chicks");
-
-			stringin = stringin.replaceAll("\\bbrother\\b", "sister");
-			stringin = stringin.replaceAll("\\bbrothers\\b", "sisters");
-
-			stringin = stringin.replaceAll("\\bGregor\\b", "Ardina");
-			stringin = stringin.replaceAll("\\bGREGOR\\b", "ARDINA");
-				
-		}
-		
+		if(automation) Automation.checkText(this, stringin);
 		if(format_string) {
 			if(!stringin.startsWith("~~")) longStringOut(stringin);
 			else System.out.println(stringin.substring(2));
@@ -22573,6 +22441,17 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 		if(forest_direction.compareToIgnoreCase("west") == 0) return dx == -1 && dy == 0;
 		if(forest_direction.compareToIgnoreCase("east") == 0) return dx == 1 && dy == 0;
 		return false;
+	}
+
+	//whether a being is in the forest by where it actually is: on a forest square, or in transit to one. The in_the_forest
+	//flag lags behind this (it stays on after leaving until the exit message is shown).
+	public boolean inForestGrid(int b) {
+		int x = army[b].getx(), y = army[b].gety();
+		if(x == 0 && y == 0) {
+			x = army[b].getpotential_x();
+			y = army[b].getpotential_y();
+		}
+		return x >= boardside + 3 && x <= boardside + 8 && y >= boardside + 3 && y <= boardside + 8;
 	}
 
 	public void moveAlongForestCommuters() {
@@ -24271,15 +24150,16 @@ find_empty:		for(int atb = 0; atb < items[4].length; atb++) {
 			System.out.println("\nEnter your initials :");
 			String init_entry = "";
 			init_entry = stringInput();
-			init_entry = init_entry.substring(0, 3);
+			init_entry = init_entry.substring(0, Math.min(3, init_entry.length()));   //initials can be shorter than 3
 			init_entry = init_entry.toUpperCase();
 
 			if(high_scores[high_score_placement] > -1 && high_score_placement < 9) {
-				for(int sorter = high_score_placement; sorter < 9; sorter++) {
+				//move everyone from this place down one, starting at the bottom so no entry is copied over the next
+				//(top-down, the displaced score was copied into every slot below it). A full table drops its last entry.
+				for(int sorter = Math.min(last_place_occupied, 8); sorter >= high_score_placement; sorter--) {
 					high_scores[sorter + 1] = high_scores[sorter];
 					high_score_names_initials[0][sorter + 1] = high_score_names_initials[0][sorter];
 					high_score_names_initials[1][sorter + 1] = high_score_names_initials[1][sorter];
-					if(sorter == last_place_occupied + 1) break;
 				}
 			}
 

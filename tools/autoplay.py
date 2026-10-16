@@ -16,15 +16,20 @@ LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 # Lines the game prints for harnesses under GANGLAND_AUTOMATION=1 (not ASCII art like "<<--").
 MARKER      = re.compile(r"^<<[A-Z_]+[ >]")
+DEBUG_MSG   = re.compile(r"^\s*\**\s*(Wha\?|Stuck at)")
 
 STUCK_SECS  = 10.0  # no prompt for this long = the game is hung
-MAX_INPUTS  = 400
+MAX_INPUTS  = int(os.environ.get("GANGLAND_MAX_INPUTS", 400))   # roughly 2 inputs per game turn
 
 # Usage: autoplay.py [seed]   -- same seed + same choices replays the same game.
 SEED        = sys.argv[1] if len(sys.argv) > 1 else str(random.randrange(2**63))
 random.seed(SEED)           # makes the harness's own choices reproducible too
 
 log_path = str(LOG_DIR / f"autoplay_{datetime.now():%Y%m%d_%H%M%S}_seed{SEED}_{os.getpid()}.log")
+
+# GANGLAND_COVERAGE_DIR=<dir> runs the game under the JaCoCo agent, writing <dir>/seed<N>_<pid>.exec on exit.
+COVERAGE_DIR = os.environ.get("GANGLAND_COVERAGE_DIR")
+JACOCO_AGENT = ROOT_DIR / "tools" / "jacoco" / "lib" / "jacocoagent.jar"
 
 
 # ---------------------------------------------------------------------------
@@ -33,8 +38,13 @@ log_path = str(LOG_DIR / f"autoplay_{datetime.now():%Y%m%d_%H%M%S}_seed{SEED}_{o
 
 class Game:
     def __init__(self):
+        java = ["java", "-cp", CLASS_DIR, "Gangland"]
+        if COVERAGE_DIR:
+            Path(COVERAGE_DIR).mkdir(parents=True, exist_ok=True)
+            exec_file = Path(COVERAGE_DIR).resolve() / f"seed{SEED}_{os.getpid()}.exec"
+            java.insert(1, f"-javaagent:{JACOCO_AGENT}=destfile={exec_file}")
         self.proc = subprocess.Popen(
-            ["java", "-cp", CLASS_DIR, "Gangland"],
+            java,
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
             cwd=CLASS_DIR, text=True, bufsize=1,
             env=dict(os.environ, GANGLAND_SEED=SEED, GANGLAND_AUTOMATION="1"),
@@ -45,8 +55,12 @@ class Game:
         self._prompt = threading.Event()   # set when the game prints <<PROMPT>>
         self.state = None                  # latest <<STATE {json}>> from the game
         self.violations = []               # <<INVARIANT ...>> lines seen so far
+        self.quit_reached_game_over = False
+        self.best_scores = []              # each finished game's "BEST SCORE" (high scores last for the whole run)
+        self._table = None                 # high-score table rows while one is being printed
         self._log = open(log_path, "w", encoding="utf-8")
-        threading.Thread(target=self._reader, daemon=True).start()
+        self._reader_thread = threading.Thread(target=self._reader, daemon=True)
+        self._reader_thread.start()
 
     def _reader(self):
         try:
@@ -58,12 +72,18 @@ class Game:
                         self._prompt.set()
                     elif line.startswith("<<STATE "):
                         self.state = json.loads(line[len("<<STATE "):-3])
+                        KNOWN_NAMES.update(b["name"] for b in self.state["here"] if b["species"] == "human")
                     elif line.startswith(("<<INVARIANT", "<<AUTOMATION_ERROR")):
                         self.violations.append(line.strip())
                         sys.stdout.write(f"\033[31m{line}\033[0m")
                     continue
                 if "Exception in thread" in line:
                     self.violations.append("CRASH " + line.strip())
+                if DEBUG_MSG.match(line):
+                    # the game's own "this should never happen" prints (Wha? 1694, *** Stuck at 1189)
+                    self.violations.append("DEBUGMSG " + line.strip())
+                    self._log.write(f"DEBUGMSG {line.strip()}\n")
+                self._watch_high_scores(line)
                 with self._lock:
                     self._lines.append(line.rstrip("\n"))
                     if len(self._lines) > 200:
@@ -83,6 +103,25 @@ class Game:
         self._prompt.clear()
         self.proc.stdin.write(text + "\n")
         self.proc.stdin.flush()
+
+    def _watch_high_scores(self, line):
+        """Check each printed high-score table against the best scores of the games played so far."""
+        m = re.search(r"BEST SCORE\s*:\s*(-?\d+)", line)
+        if m:
+            self.best_scores.append(int(m.group(1)))
+        if "HIGH SCORES" in line:
+            self._table = []
+        elif self._table is not None:
+            row = re.match(r"\s*\d+\.\s+\S.*?\s(-?\d+)\s*$", line)
+            if row:
+                self._table.append(int(row.group(1)))
+            elif line.startswith("*******"):
+                expected = sorted((b for b in self.best_scores if b > -1), reverse=True)[:10]
+                if self._table != expected:
+                    problem = f"HIGHSCORE table {self._table} but games' best scores were {self.best_scores}"
+                    self.violations.append(problem)
+                    self._log.write(problem + "\n")
+                self._table = None
 
     def wait_prompt(self, timeout=STUCK_SECS):
         """Block until the game is waiting for input. False if it never asked."""
@@ -108,7 +147,14 @@ class Game:
             self._last_t = time.time()
 
     def close(self):
-        self.proc.kill()
+        # Closing stdin makes the game exit normally (<<EOF>> under automation), which lets the
+        # coverage agent write its data; a game that doesn't exit in time (e.g. hung) is killed.
+        try:
+            self.proc.stdin.close()
+            self.proc.wait(timeout=10)
+        except Exception:
+            self.proc.kill()
+        self._reader_thread.join(timeout=5)   # let the game's last output reach the log
         self._log.close()
 
 
@@ -173,8 +219,17 @@ def find_names(lines):
 # ---------------------------------------------------------------------------
 
 DIRS      = frozenset({"N", "S", "E", "W"})
-SKIP      = frozenset({"Quit", "Help"})   # Help has a number sub-menu we handle separately
+SKIP      = frozenset({"Quit", "Help"})   # chosen deliberately: Help now and then, Quit at the end (see main)
+HELP_CHANCE = 0.03          # how often to open Help from a menu that offers it
+CHALLENGE_CHANCE = 0.35     # how often to take "Challenge" when a greeting offers it (a way to become leader)
+QUIT_AT_END_CHANCE = 0.5    # how many games end by quitting, to reach game over and the high-score table
+INITIALS  = ["ABC", "AT", "Q", "", "ALEXANDER"]   # includes short and empty answers on purpose
+MORE_GAMES_CHANCE = 0.5     # after quitting, how often to begin again (tests restarting and the high-score table)
+NEXT_GAME_INPUTS = 120      # length of each extra game before quitting it too
 MORE_PICKS = frozenset({"Stats", "Who", "Remember"})
+
+# Exact names (with generation numbers) of people the player has been near, from <<STATE>> lines.
+KNOWN_NAMES = set()
 
 PET_NAMES = ["Buddy", "Rex", "Spot", "Lucky", "Max", "Mittens", "Whiskers", "Shadow"]
 
@@ -191,8 +246,13 @@ def choose_freetext(lines):
     tail   = "\n".join(lines[-5:])   # short window — only the current prompt
     joined = "\n".join(lines[-15:])  # longer window for context-heavy prompts
 
+    if "Who are you" in tail:          # a new game after "begin again"
+        return "Rufus"
     if "What will you name" in tail or "That name's taken" in tail:
         return random.choice(PET_NAMES)
+    # Help: read a few topics, then leave
+    if "Way of Gangs" in tail:         # the game's line wrapping can split "The Way of Gangs"
+        return random.choice(["1", "2", "3", "4", "Exit", "Exit"])
     if "enter a number" in tail.lower() or 'type "Exit"' in tail:
         return "Exit"
     # "Whom are you greeting/attacking?" — always "stranger"; names in the buffer
@@ -201,8 +261,9 @@ def choose_freetext(lines):
         return "stranger"
     if "Loot whom?" in tail or "Bury whom?" in tail:
         return "a"
+    # beast battles label opponents a, b, c...; a bare "a" only works against a single one
     if "(letter)" in tail and "want to" not in tail:
-        return "a"
+        return random.choice(["a a", "a b", "a c"])
     if "want to drink" in tail or "want to offer" in tail:
         return "a"
     if "Whom do you want to think about" in tail:
@@ -270,8 +331,17 @@ def choose(opts, lines):
     if more and roll < 0.80:
         return "More"
 
+    if "Help" in opts and random.random() < HELP_CHANCE:
+        return "Help"
+    if "Challenge" in rest and random.random() < CHALLENGE_CHANCE:
+        return "Challenge"
+
     if rest:
-        return random.choice(rest)
+        pick = random.choice(rest)
+        if "(name)" in pick:            # e.g. Gregor's "Where (name)": needs someone's exact name
+            names = sorted(KNOWN_NAMES) or find_names(lines)
+            pick = pick.replace("(name)", random.choice(names) if names else "stranger")
+        return pick
     if dirs:
         return random.choice(dirs)
     return ""
@@ -281,21 +351,37 @@ def choose(opts, lines):
 # Main
 # ---------------------------------------------------------------------------
 
+def choose_quitting(lines, menu):
+    """While ending the game on purpose: quit from a main menu, confirm, answer game over."""
+    tail = "\n".join(lines[-6:])
+    if "Enter your initials" in tail:
+        return random.choice(INITIALS)
+    if "Are you sure you want to quit" in tail:
+        return "Y"
+    if "Quit" in menu:
+        return "Quit"
+    return None
+
+
 def main():
     print(f"Logging to {log_path}  (seed {SEED})\n")
+    quit_at_end = random.random() < QUIT_AT_END_CHANCE
+    games_wanted = 1 + (random.random() < MORE_GAMES_CHANCE) * random.choice([1, 2]) if quit_at_end else 1
     game = Game()
 
     # ---- startup sequence -----------------------------------------------
     game.wait_for("Who are you")
     game.send("Rufus")
-    game.wait_for("Male or Female")
-    game.send("male")
     # Loading screens (hit Enter, Y/N questions) are just prompts; the main loop handles them.
 
     # ---- main loop ------------------------------------------------------
     inputs_sent = 0
+    quitting = False
+    games_over = 0
+    quit_from = MAX_INPUTS          # when to start quitting the current game
 
-    while inputs_sent < MAX_INPUTS:
+    while inputs_sent < MAX_INPUTS or (quit_at_end and inputs_sent < quit_from + 100):
+        quitting = quit_at_end and inputs_sent >= quit_from
         if not game.wait_prompt():
             # Every read goes through stringInput(), which prints <<PROMPT>>, so a live
             # game that hasn't asked for anything in STUCK_SECS is looping.
@@ -309,8 +395,20 @@ def main():
             break
 
         lines = game.recent()
+        if quitting and any("begin again" in l for l in lines[-4:]):
+            game.quit_reached_game_over = True
+            games_over += 1
+            if games_over >= games_wanted:
+                break
+            game.clear_buffer()
+            game.send("")                  # begin again: a new game in the same run
+            inputs_sent += 1
+            quit_from = inputs_sent + NEXT_GAME_INPUTS
+            continue
+        action = choose_quitting(lines, parse_menu(lines)) if quitting else None
         # Priority 1: free-text prompts (no bracket menu)
-        action = choose_freetext(lines)
+        if action is None:
+            action = choose_freetext(lines)
         # Priority 2: bracket menu detected; otherwise just hit Enter
         if action is None:
             menu = parse_menu(lines)
@@ -318,17 +416,26 @@ def main():
         game.send(action)
         inputs_sent += 1
 
+    game.close()
     print(f"\n--- done: {inputs_sent} inputs sent ---")
+    if quit_at_end:
+        print(f"Ended by quitting: reached game over {games_over} of {games_wanted} time(s)")
     if game.state:
         p = game.state["player"]
         print(f"Final: turn {game.state['turn']}, {p['where']} ({p['x']},{p['y']}), "
               f"health {p['health']}/{p['maxhealth']}, gang {p['gang']}, items {game.state['items']}")
+    # forest screams per NPC (dev notes: "too many aiees from the same person"), noted when a name repeats
+    with open(log_path, encoding="utf-8", errors="replace") as f:
+        screams = re.findall(r'^OUT (.+?) \(perhaps\) :  "AAaaaaieeeeee', f.read(), re.M)
+    with open(log_path, "a", encoding="utf-8") as f:
+        for name in sorted(set(screams)):
+            if screams.count(name) >= 2:
+                f.write(f"NOTE aiee {name} x{screams.count(name)}\n")
     print(f"Crashes and invariant violations: {len(game.violations)}")
     for v in game.violations:
         print(f"  {v}")
     print(f"Log: {log_path}")
     print(f"Replay: python3 tools/autoplay.py {SEED}")
-    game.close()
 
 
 if __name__ == "__main__":

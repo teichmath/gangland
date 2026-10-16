@@ -1,3 +1,10 @@
+# Archived: Wererat
+
+`src/Wererat.java` was removed in October 2026. Nothing in the game ever created a Wererat. It was an early copy of `Rat.java`, present since the initial commit, with the name "wererat" and otherwise the same stats and messages. Its attack methods used an older interface (`attack_one(Player victim, int textlevel, Dice bite, String rat_index)`) that the battle code no longer calls, so it couldn't have fought even if spawned, and it lacked the pet-specific death sounds `Rat` has. The live rat-like creatures are `Rat` (on the board) and `Rattishman` (in the forest).
+
+The file is kept verbatim below, and in git history (e.g. commit `626b02f`).
+
+```java
 
 public class Wererat extends Beast {
 
@@ -123,3 +130,4 @@ public class Wererat extends Beast {
 		return (new Attack(damage, dialogue));
 	}
 }
+```
