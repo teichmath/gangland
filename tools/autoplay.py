@@ -16,16 +16,28 @@ LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 # Lines the game prints for harnesses under GANGLAND_AUTOMATION=1 (not ASCII art like "<<--").
 MARKER      = re.compile(r"^<<[A-Z_]+[ >]")
-DEBUG_MSG   = re.compile(r"^\s*\**\s*(Wha\?|Stuck at)")
+DEBUG_MSG   = re.compile(r"^\s*\**\s*(Wha\?|Stuck at|The Undead .* is in the longhouse)")
 
 STUCK_SECS  = 10.0  # no prompt for this long = the game is hung
-MAX_INPUTS  = int(os.environ.get("GANGLAND_MAX_INPUTS", 400))   # roughly 2 inputs per game turn
 
 # Usage: autoplay.py [seed]   -- same seed + same choices replays the same game.
 SEED        = sys.argv[1] if len(sys.argv) > 1 else str(random.randrange(2**63))
 random.seed(SEED)           # makes the harness's own choices reproducible too
 
-log_path = str(LOG_DIR / f"autoplay_{datetime.now():%Y%m%d_%H%M%S}_seed{SEED}_{os.getpid()}.log")
+# Play style, picked per seed (from its own random stream, so a wanderer game replays exactly as before
+# styles existed) or forced with GANGLAND_STYLE:
+#   wanderer   roams and answers questions at random; deserts gangs about as often as it joins them
+#   loyal      joins gangs and stays: follows the leader, won't abandon it, greets gangmates, calls out deserters
+#   ambitious  like loyal, but wants to lead: challenges leaders, claims leadership, opposes newcomers, fights for it
+STYLES      = {"wanderer": 0.4, "loyal": 0.35, "ambitious": 0.25}
+STYLE       = os.environ.get("GANGLAND_STYLE") or random.Random(f"style{SEED}").choices(list(STYLES), list(STYLES.values()))[0]
+if STYLE not in STYLES:
+    sys.exit(f"GANGLAND_STYLE must be one of {', '.join(STYLES)}")
+GANG_MINDED = STYLE != "wanderer"
+# roughly 2 inputs per game turn; gang styles play longer, since gang politics take time to unfold
+MAX_INPUTS  = int(os.environ.get("GANGLAND_MAX_INPUTS", 700 if GANG_MINDED else 400))
+
+log_path = str(LOG_DIR / f"autoplay_{datetime.now():%Y%m%d_%H%M%S}_seed{SEED}_{STYLE}_{os.getpid()}.log")
 
 # GANGLAND_COVERAGE_DIR=<dir> runs the game under the JaCoCo agent, writing <dir>/seed<N>_<pid>.exec on exit.
 COVERAGE_DIR = os.environ.get("GANGLAND_COVERAGE_DIR")
@@ -276,8 +288,83 @@ def choose_freetext(lines):
         return "stranger"
     return None
 
-def choose(opts, lines):
+def choose_yn_gang(lines):
+    """A gang-minded style's answer to a Y/N question, or None to answer at random."""
+    q = "\n".join(lines[-4:])
+    amb = STYLE == "ambitious"
+    if "Let's team up" in q or "Do you follow?" in q or "Do you call for support?" in q \
+            or "Do you join the battle?" in q or "Do you take a side" in q or "teach me some fightin" in q:
+        return "Y"
+    if "want to abandon" in q:
+        return "N"
+    if "should be leader!" in q and "Do you agree" in q:     # someone else claims leadership
+        return "N" if amb else ("Y" if random.random() < 0.8 else "N")
+    if "Willing to fight for it?" in q or "Do you continue this challenge?" in q:
+        return "Y" if amb else None
+    if "Do you oppose" in q:                                 # a newcomer wants into the gang
+        return ("Y" if random.random() < 0.5 else "N") if amb else ("Y" if random.random() < 0.15 else "N")
+    return None
+
+def gangmates(state):
+    """Names of the player's gangmates on the player's square."""
+    if not state or state["player"]["gang"] <= 0:
+        return []
+    return sorted(b["name"] for b in state["here"]
+                  if b["species"] == "human" and b["gang"] == state["player"]["gang"] and not b["zombie"])
+
+def choose_gang(opts, lines, state):
+    """A gang-minded style's pick from a menu, or None to fall back to the wanderer's choice."""
+    in_gang = bool(state) and state["player"]["gang"] > 0
+    leader = bool(state) and state["player"]["leader"]
+    amb = STYLE == "ambitious"
+    tail = "\n".join(lines[-8:])
+    if "You" in opts and "Me" in opts and "Who should be leader" in tail:
+        return "Me" if amb else ("You" if random.random() < 0.7 else "Me")
+    if "Run" in opts and in_gang:
+        # running from a fight deserts the gang; only when badly hurt
+        p = state["player"]
+        if p["health"] * 4 >= p["maxhealth"]:
+            stay = sorted(opts - {"Run"} - SKIP - {o for o in opts if "hit enter" in o.lower()})
+            if stay:
+                return random.choice(stay)
+    if "Deserter!" in opts:                       # offered only against someone who abandoned the player's gang
+        return "Deserter!"
+    if "Challenge" in opts and random.random() < (0.7 if amb else 0.1):
+        return "Challenge"
+    if "Join" in opts and not in_gang and random.random() < 0.7:
+        return "Join"
+    if "N" not in opts:                           # not a main menu
+        return None
+    roll = random.random()
+    # someone here deserted the player's gang: greet them, which offers "Deserter!"
+    if state:
+        grudges = sorted(set(state["player"].get("grudges", [])) & {b["name"] for b in state["here"]})
+        if grudges and roll < 0.6:
+            return "Greet " + random.choice(grudges)
+    if in_gang and not leader:
+        # stay with the gang: wait for the leader to move, talk to gangmates, rarely wander off
+        mates = gangmates(state)
+        if mates and roll < 0.35:
+            return "Greet " + random.choice(mates)
+        if roll < 0.75:
+            return ""
+        if roll < 0.85:
+            return random.choice(sorted(opts & DIRS))
+        return None
+    if not in_gang and state and roll < 0.4:
+        # look for a gang: greet the people here
+        people = sorted(b["name"] for b in state["here"] if b["species"] == "human" and not b["zombie"])
+        if people:
+            return "Greet " + random.choice(people)
+    return None
+
+def choose(opts, lines, state=None):
     joined = "\n".join(lines)
+
+    if GANG_MINDED and not (opts <= {"Y", "N"}):
+        pick = choose_gang(opts, lines, state)
+        if pick is not None:
+            return pick
 
     # --- hit-Enter-only screens -----------------------------------------
     henter = {o for o in opts if "hit enter" in o.lower() or "hit Enter" in o}
@@ -286,6 +373,10 @@ def choose(opts, lines):
 
     # --- Y / N prompt ----------------------------------------------------
     if opts <= {"Y", "N"}:
+        if GANG_MINDED:
+            pick = choose_yn_gang(lines)
+            if pick is not None:
+                return pick
         return random.choice(["Y", "N"])
 
     # --- direction-only compass (spyglass) --------------------------------
@@ -364,7 +455,7 @@ def choose_quitting(lines, menu):
 
 
 def main():
-    print(f"Logging to {log_path}  (seed {SEED})\n")
+    print(f"Logging to {log_path}  (seed {SEED}, {STYLE})\n")
     quit_at_end = random.random() < QUIT_AT_END_CHANCE
     games_wanted = 1 + (random.random() < MORE_GAMES_CHANCE) * random.choice([1, 2]) if quit_at_end else 1
     game = Game()
@@ -412,7 +503,7 @@ def main():
         # Priority 2: bracket menu detected; otherwise just hit Enter
         if action is None:
             menu = parse_menu(lines)
-            action = choose(menu, lines) if menu else ""
+            action = choose(menu, lines, game.state) if menu else ""
         game.send(action)
         inputs_sent += 1
 
@@ -435,7 +526,9 @@ def main():
     for v in game.violations:
         print(f"  {v}")
     print(f"Log: {log_path}")
-    print(f"Replay: python3 tools/autoplay.py {SEED}")
+    print(f"Style: {STYLE}")
+    forced = f"GANGLAND_STYLE={STYLE} " if os.environ.get("GANGLAND_STYLE") else ""
+    print(f"Replay: {forced}python3 tools/autoplay.py {SEED}")
 
 
 if __name__ == "__main__":

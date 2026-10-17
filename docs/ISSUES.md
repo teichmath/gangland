@@ -106,6 +106,14 @@ When a gang brawl (`civilWar`) gathered pets but then turned into a one-on-one `
 A red snake's or spider's attack called `poison()` whether or not the bite did damage. About 40% of venomous bites miss (red snake 523 of 1,250, spider 7,676 of 19,810 in a swarm), and each miss could still poison the target. Venom now only gets in when the bite lands. The dev notes report this as "snake poisoning incorrectly". Only red snakes are venomous in the code (`Snake.java` overrides the species to "snake" for every color), so a plain snake can't poison anyone.
 ---
 
+### C19 — Leader challenge: a double death is silent, and two outcomes can't happen
+**File:** `Gangland.java` `leaderChallenge()` (~lines 10629–10730)  
+**Status:** open (needs a design call)  
+After each duel in a challenge, any challenger left at 5 health or less is declared the loser (`if(army[challenger].gethealth() <= 5) duel_winner = the_one_to_fight;`). Two consequences:
+- **"Too tired to continue" can't run.** In the challenger-wins branch the challenger always has more than 5 health, so "Wait- I'm exhausted! You win this time" never appears. An exhausted challenger who beat a defender is told the challenge "is put down" instead. The leader keeps the gang either way, so only the text differs.
+- **"The leader is stunned" can't run.** It was written for when the challenger and the defender kill each other. But a dead challenger is always counted as losing, and that branch ends the challenge (`break`) before the both-dead check. It prints its "done in" message only if the defender is alive, so when both die the player sees no message at all, then a funeral.
+Fix options: move the both-dead check ahead of the outcome branches; and either drop the override for the exhausted-winner case or delete the unreachable "too tired" block. Found by `tools/rarity.py`: neither scene ran in 3,000 games.
+
 ## Unreachable / Partially Implemented Features
 
 ### U1 — Cave of Lives

@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
 Run many seeded autoplay games in parallel and summarize what went wrong.
-Usage:  python3 tools/swarm.py [games] [first_seed] [workers] [--coverage]
+Usage:  python3 tools/swarm.py [games] [first_seed] [workers] [--coverage] [--rarity]
         python3 tools/swarm.py 200 1 8
 Each game is reproducible with:  python3 tools/autoplay.py <seed>
 Logs of games with a problem are kept in logs/swarm.noindex/ (the .noindex suffix keeps
 Spotlight from indexing them); logs of clean games are deleted.
 --coverage runs every game under JaCoCo (tools/jacoco/lib) and writes an HTML report of which
 lines of the game ran to logs/coverage.noindex/report/index.html.
+--rarity (implies --coverage) also counts how many games ran each line: logs/coverage.noindex/rarity.json.
 """
 
 import subprocess, sys, re, os, shutil
@@ -22,8 +23,9 @@ COV_DIR  = ROOT_DIR / "logs" / "coverage.noindex"
 CLASS_DIR = os.environ.get("GANGLAND_CLASS_DIR", str(ROOT_DIR / "out"))
 JACOCO_CLI = ROOT_DIR / "tools" / "jacoco" / "lib" / "jacococli.jar"
 
-coverage = "--coverage" in sys.argv
-args = [a for a in sys.argv[1:] if a != "--coverage"]
+rarity   = "--rarity" in sys.argv
+coverage = "--coverage" in sys.argv or rarity
+args = [a for a in sys.argv[1:] if not a.startswith("--")]
 games   = int(args[0]) if len(args) > 0 else 100
 first   = int(args[1]) if len(args) > 1 else 1
 workers = int(args[2]) if len(args) > 2 else (os.cpu_count() or 4)
@@ -95,6 +97,8 @@ if coverage:
                              "--sourcefiles", str(ROOT_DIR / "src"), "--html", str(COV_DIR / "report"),
                              "--xml", str(COV_DIR / "report.xml"), "--name", f"Gangland autoplay, {games} games"],
                    check=True, capture_output=True)
+    if rarity:
+        subprocess.run([sys.executable, str(ROOT_DIR / "tools" / "rarity.py")], check=True)
     shutil.rmtree(COV_DIR / "exec")
 
     def counter(el, kind):

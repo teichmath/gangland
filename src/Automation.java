@@ -52,6 +52,16 @@ public class Automation {
 		sb.append(",\"symbol\":").append(u.has_symbol());
 		sb.append(",\"cursed\":").append(u.is_cursed());
 		sb.append(",\"blessed\":").append(u.is_blessed());
+		// living people the player holds a grudge against (opinion 100+: deserted the player's gang, or worse)
+		sb.append(",\"grudges\":[");
+		boolean firstGrudge = true;
+		for(int i = 0; i < g.humansize; i++) {
+			if(i == g.user || g.army[i] == null || g.army[i].gethealth() <= 0 || u.getfriend(i) < 100) continue;
+			if(!firstGrudge) sb.append(",");
+			sb.append(str(g.army[i].getname()));
+			firstGrudge = false;
+		}
+		sb.append("]");
 		sb.append("}");
 
 		// Items the player carries, as name -> count.
@@ -73,16 +83,18 @@ public class Automation {
 		}
 		sb.append("}");
 
-		// Everyone else alive at the player's location (including hidden ones, flagged).
+		// Everyone else alive at the player's location (including hidden ones, flagged). Off-board spots such as the
+		// in-transit (0,0) are shared with unused beast slots, so nobody is "here" while the player is off the map.
 		sb.append(",\"here\":[");
 		first = true;
+		boolean placed = !where(g, u.getx(), u.gety()).equals("offboard");
 		int alive = 0, dead = 0;
 		for(int i = 0; i < g.army.length; i++) {
 			Being b = g.army[i];
 			if(b == null) continue;
 			if(b.gethealth() > 0) alive++; else dead++;
 			if(i == g.user || b.gethealth() <= 0) continue;
-			if(b.getx() != u.getx() || b.gety() != u.gety()) continue;
+			if(!placed || b.getx() != u.getx() || b.gety() != u.gety()) continue;
 			if(!first) sb.append(",");
 			sb.append("{\"id\":").append(i);
 			sb.append(",\"name\":").append(str(b.getname()));
@@ -101,6 +113,12 @@ public class Automation {
 		sb.append(",\"gangs\":").append(g.highestgang);
 		sb.append(",\"graves\":").append(g.next_grave);
 		sb.append(",\"dragon_alive\":").append(g.dragon_alive);
+		// active undead, as Gangland.countUndead("active") counts them (that method can print, so it isn't called here)
+		int undead = 0;
+		for(int i = 0; i < g.armysize; i++) {
+			if(g.army[i] != null && g.army[i].is_zombie() && g.army[i].how_buried() > 0) undead++;
+		}
+		sb.append(",\"undead\":").append(undead);
 		sb.append("}}");
 		return sb.toString();
 	}

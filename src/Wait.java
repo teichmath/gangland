@@ -1,6 +1,8 @@
 public class Wait {
-  // Dramatic pauses are skipped under GANGLAND_AUTOMATION=1 so harnesses run at full speed.
-  static final boolean skip = "1".equals(System.getenv("GANGLAND_AUTOMATION"));
+  // Dramatic pauses are skipped under GANGLAND_AUTOMATION=1 so harnesses run at full speed,
+  // unless GANGLAND_KEEP_PAUSES=1 (a person playing through tools/play.py).
+  static final boolean skip = "1".equals(System.getenv("GANGLAND_AUTOMATION"))
+                              && !"1".equals(System.getenv("GANGLAND_KEEP_PAUSES"));
 
   public static void Blip() {
   	if (skip) return;
