@@ -116,25 +116,7 @@ Fix options: move the both-dead check ahead of the outcome branches; and either 
 
 ## Unreachable / Partially Implemented Features
 
-### U1 — Cave of Lives
-**File:** `Gangland.java` ~line 5511; method at ~line 20047  
-**Status:** unreachable  
-The cave entrance now seals before the player can decide. The `caveOfLives()` method itself has substantial implementation (past-lives doors, darkness, laughter), but the cave battle loop ("battle against all previous rufuses, final battle against boss") is not implemented. Left unreachable until complete.
-
-### U2 — `delmeDrinkText()` dead method
-**File:** `Gangland.java` ~line 23490  
-**Status:** open  
-Method body is entirely commented out; method is never called. Either restore drinking mechanics or delete the method.
-
-### U3 — Broken apples (TODO in code)
-**File:** `Gangland.java` ~line 5124: `//todo: restore broken apples.`  
-**Status:** open  
-Apple items decay and drop correctly in the game loop, but something about the "broken" apple state is unfinished. Exact nature of the break unknown without deeper investigation.
-
-### U4 — Spyglass inside the forest
-**File:** `Gangland.java` line ~6005: spyglass explicitly disabled in forest  
-**Status:** open  
-`"Your spyglass is no good in the forest."` — planned to work but currently blocked. Noted as a todo at line 94.
+Unfinished features that were listed here (U1 Cave of Lives, U2 `delmeDrinkText()`, U3 broken apples, U4 spyglass in the forest) are now tracked in `IDEAS.md`.
 
 ### U5 — Pets and the forest
 **File:** `Gangland.java` pet movement loop in `main()` (~lines 3277–3460)  
@@ -172,6 +154,31 @@ Brief battle text showed `"a snake"` for red snakes. Fixed display string. Also 
 **Status:** fixed  
 Personality is now listed as 1–100 (rolled 1d100), and `friend[i]` documents the grudge values: 100 toward someone who attacks, deserts the gang or runs out on a duel, 200 toward battle runaways.
 
+### S5 — A pet that jumped into a fight from hiding left an invisible body
+**File:** `Gangland.java`, pets jumping into a battle (`jump_in_message`)  
+**Status:** fixed  
+A pet hiding nearby ("who has been hiding nearby, jumps into the fight!") stayed flagged as hidden, so after it died its body was skipped by the scene and by `who`. Found in play (Grapey). Pets now come out of hiding when they join a fight.
+
+### S6 — Messages with line breaks were wrapped as one long line
+**File:** `Gangland.java` `longStringOut()`  
+**Status:** fixed  
+A message over 80 characters was word-wrapped as a whole, embedded `\n`s included, so menus like Help broke mid-line ("4  The" / "Way of Gangs"). Each line is now wrapped on its own.
+
+### S7 — One skeleton carved "a symbol" on several dead
+**File:** `Skeleton.java`, `Beast.java`  
+**Status:** fixed  
+With one skeleton and several dead it now says "The skeleton carves symbols in the flesh of the dead, then silently marches away." (Alex's wording).
+
+### S8 — The player's choice in the brain face-off is ignored
+**File:** `Gangland.java` zombie brain competition (`[ Eat     Shove     Kick     Punch ]`)  
+**Status:** open (needs a design call; see IDEAS.md)  
+The game asks the player to choose Eat, Shove, Kick or Punch, then overwrites the choice with a random roll (`eat_punch_kick_shove = dice.throwdice(1,8)`), and a corpse already holding brains eats whatever was chosen.
+
+### S9 — "All is quiet on the battlefield" when an undead player was laid to rest
+**File:** `Gangland.java` end of `aftermathBattleCommonPartTwo()` (`stillAlive(0) == 0 && stillAlive(1) == 0`)  
+**Status:** open (needs a design call; see IDEAS.md)  
+A zombie who eats and rests gets health 0 (`end_zombie()`), so it counts as dead and the "none have survived this wretched day" line appears although nobody was slain.
+
 ---
 
 ## Archived Features
@@ -195,18 +202,9 @@ Removed from player-accessible input: `rumor report`, `report`, `zombie report`,
 
 ---
 
-## Developer Notes / Future Work (from in-code TODOs)
+## Developer Notes / Future Work
 
-These are lower priority items noted by the developer; not crashes, just missing polish:
-
-- **Dialogue rewrite / new jokes** (line 93)
-- **Rumors about who exits the forest** (line 96)
-- **Purpose conversations between NPCs** (line 97)
-- **NPC gangs less likely to enter forest** (line 95)
-- **Rumor of a cur should be cleared before and after main action loop** (line 16710)
-- **Forgiven NPCs should like you more** (line 23290)
-- **Cave battle content** — battle all previous Rufuses, final boss (line 66)
-- **Stack-trace line numbers are 16 ahead of the editor** — the title-art line near the top of `main()` uses bare `\r` line breaks, which `javac` counts as lines. Converting that line to normal line breaks would make traces match.
+Moved to `IDEAS.md`. One item was resolved instead: **stack-trace line numbers no longer run 16 ahead of the editor.** IntelliJ turned the bare `\r` breaks on main()'s title-art line into normal line breaks (October 2026). Line numbers in older entries and logs from before that change are 16 low past that line; `tools/rarity.py` handles either form.
 
 ---
 

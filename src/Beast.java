@@ -12,6 +12,7 @@ public class Beast extends Being {
 	String[] kill_sounds_for_cats;
 	String singular_victory_message;
 	String plural_victory_message;
+	String singular_many_dead_victory_message;
 	int run_chance; 
 	
 	//getters
@@ -64,6 +65,12 @@ public class Beast extends Being {
 	public String getvictory_message(int agreement) {
 		if(agreement == 1) return this.singular_victory_message;
 		else return this.plural_victory_message;
+	}
+
+	//a lone beast that has killed several (only skeletons word it differently)
+	public String getvictory_message(int agreement, int dead) {
+		if(agreement == 1 && dead > 1 && this.singular_many_dead_victory_message != null) return this.singular_many_dead_victory_message;
+		return getvictory_message(agreement);
 	}
 	
 	public int getnumber_of_attacks() {

@@ -1133,6 +1133,10 @@ public class Being {
 	public String getvictory_message(int agreement) {
 		return "";
 	}
+
+	public String getvictory_message(int agreement, int dead) {
+		return "";
+	}
 	
 	public int getskill_bonus_from_hit() {
 		return 0;

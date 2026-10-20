@@ -21,6 +21,7 @@ public class Skeleton extends Beast {
 		this.kill_sounds_for_cats[1] = " * CRUNCH * ";
 		this.kill_sounds_for_cats[2] = "\"meww...  meep... glrrg..\"";
 		this.singular_victory_message = "The skeleton carves a symbol in the flesh of the dead, then silently marches away.";
+		this.singular_many_dead_victory_message = "The skeleton carves symbols in the flesh of the dead, then silently marches away.";
 		this.plural_victory_message = "The skeletons carve symbols in the flesh of the dead, then silently march away."; 
 		this.type_for_battle = "beast";
 		this.att_speed = new int[5];

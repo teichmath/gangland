@@ -441,12 +441,12 @@ Spawn on movement across the main board:
 - `ground_meat` global tracks whether a meal is currently on the board
 - Eating increments `brains_hunger` toward zero
 
-### Recovering Humanity by Eating
-A zombie can **fully recover** their humanity by eating enough brains (~lines 9589–9612, 23206–23218):
+### Laid to Rest by Eating
+A zombie whose hunger for brains is satisfied is laid to rest: it dies for good, and does not become human again.
 - Each meal raises `brains_hunger`; when it reaches ≥0 the zombie is satisfied
-- `zombieRests()` is called, which immediately calls `army[zombie].end_zombie()`
-- The character is no longer `is_zombie()`, no longer needs brains, and the text reads: "At last, your hunger for brains is satisfied. Your soul can rest."
-- This is the **primary in-game escape from zombie status** — far more reliable than waiting for bog sinking, which only happens accidentally
+- `zombieRests()` is called, which calls `army[zombie].end_zombie()`. That clears the zombie flags and sets health to 0.
+- For the player, the text reads: "At last, your hunger for brains is satisfied. Your soul can rest." The player then lies dead and is reborn as the next generation, as after any death. Bystanders see "The walking corpse exhales loudly and collapses to the ground. He is motionless."
+- This is the **primary in-game way out of zombie status**. Bog sinking is the alternative, and it only happens by accident.
 
 ### Brain Squabble Rules
 When multiple zombies compete for the same meal (`zombieBrainShare()`, ~lines 9305–9443):
@@ -468,10 +468,10 @@ When multiple zombies compete for the same meal (`zombieBrainShare()`, ~lines 93
 
 ### Escaping Zombie Status
 Two paths exist:
-1. **Eat enough brains** (primary path — see "Recovering Humanity" above): `brains_hunger` reaches ≥0 → `end_zombie()` is called → character is human again. The `has_symbol()` carving remains, so if they die again with a shallow burial they can rise as a zombie once more, but at least the current zombie run ends.
+1. **Eat enough brains** (primary path; see "Laid to Rest by Eating" above): `brains_hunger` reaches ≥0 → `end_zombie()` is called → the zombie dies and rests; a player is then reborn. `end_zombie()` also clears the `has_symbol()` carving (`zombie_potential`), and a reborn character always starts uncarved.
 2. **Bog sinking** (accidental, permanent): if a zombie is buried to depth ≥50 in the bog, they disappear entirely and do not return. The chain ends for that character.
 
-There is no ritual, item, or NPC interaction that removes the `has_symbol()` carving itself — that is permanent until death and deep burial.
+There is no ritual, item, or NPC interaction that removes the `has_symbol()` carving from a living character. It lasts for the rest of that life: a carved character who dies and is buried shallowly rises as a zombie. A deep burial prevents that, resting after eating clears the carving, and the next life starts without one.
 
 ---
 
@@ -602,6 +602,8 @@ Beast encounters fire on each move (see §6 forest table). No NPC encounters occ
 - Blocks leader challenge (cannot be challenged while armed)
 
 **Apple Bomb**
+- A gnomish weapon: an apple with a fuse in it, made by the gnomes ("must be one of those crazy gnomish weapons")
+- Where they turn up: each turn there's a 1-in-4 chance one appears on a random square of the forest (the forest is 6×6), and a 1-in-6 chance one appears at the forest entrance (`dropNewApple()`). At most 20 of the 30 apple-bomb slots are ever used, and no one has a carrying limit beyond that.
 - Requires stained fingers (red dust from marker 2) to light fuse
 - Thrown at target; fuse burns before detonating
 - `status: partial` — "broken apples" TODO at ~line 5124
@@ -678,7 +680,7 @@ None of these are connected to any other mechanic. The black box in particular h
 The fissure and the ant trail are both here, not at the bog (~lines 5456–5495):
 
 **Ant trail discovery:**
-- Requires: player is at marker 8 AND ≥2 pieces of meat are on the ground at that location
+- Requires: player is at marker 8 AND meat the player dropped there has lain for ≥2 turns (`ground_meat` counts turns since the drop, not pieces; one piece is enough). The meat is wiped, and the ants and fissure forgotten, as soon as the player arrives anywhere, so the player must stay put while waiting
 - Examining the meat reveals: "The meat on the ground is covered with ants" → `you_see_ants = true`
 - From there, the player can follow the ants and discover the fissure → `you_see_fissure = true`
 
@@ -717,15 +719,27 @@ The fissure and the ant trail are both here, not at the bog (~lines 5456–5495)
 - Clearing of all undead (Blessing) also clears the weather flag (~line 23152)
 
 ### Time Events
-| Turnclock | Event |
-|-----------|-------|
-| 20 | First round of rumors starts |
-| 40 | Second rumor wave |
-| 50 | Third rumor wave |
-| 75 | Fourth rumor wave |
+
+**At a fixed turn of the game** (`turnclock`):
+
+| Turn | Event |
+|------|-------|
+| 0 | The Gregor, house and pig-bladder rumors exist from the start (Gregor knows them) |
+| 40 | The one-time "For the first time, you enter a duel... you have almost no idea of your own abilities, or your opponent's..." message is cancelled if the player hasn't fought a duel yet |
+| 50 | The forest rumor starts |
+| 75 | The cave rumor starts (Gregor is the only one who knows it at first) |
 | 90 | Skeleton spawning begins (`skeletons_continue`); weather → "gloom" |
-| 80–120 | Apples begin to rot |
-| 60+ | Bladders burst if carrying liquid |
+
+**After a certain age** (turns since the thing came into being):
+
+| Age | Event |
+|-----|-------|
+| 30+ | An apple bomb lying on the ground, owned by nobody, rots |
+| 80+ | An apple bomb carried by an NPC rots |
+| 120+ | An apple bomb carried by the player rots ("An apple in your pocket has turned to rotten mush.") |
+| 60+ | A bladder bursts if it has anything in it |
+
+An apple bomb's age counts from when it turns up in the world (`dropNewApple()`), not from when it's picked up. A bladder's counts from when it was obtained.
 
 ---
 
@@ -753,93 +767,7 @@ The fissure and the ant trail are both here, not at the bog (~lines 5456–5495)
 
 ## 14. Incomplete and Planned Systems
 
-### Cave of Lives (`status: partial`)
-- Entrance at marker 8 (fissure in rocks; discovered via ant trail at bog)
-- Current behavior: "the rock grinds shut before you can decide what to do" (deliberately sealed)
-- `caveOfLives()` method exists (~line 20047) with substantial implementation:
-  - Past-lives doors, darkness, laughter effects
-- **Planned but not implemented:** battle against all previous Rufuses, final battle against a boss (~line 66)
-- This is the most likely intended win condition for the game
-
-### Broken Apples (`status: partial`)
-- Apple items decay and drop correctly
-- TODO at ~line 5124: `// todo: restore broken apples.`
-- The "broken" apple state transition is unfinished
-
-### Spyglass in Forest (`status: planned`)
-- Currently disabled with message: "Your spyglass is no good in the forest."
-- ~Line 94 notes this as a planned feature
-
-### Pets in Forest (`status: implemented`)
-- See §7, Pets and the Forest.
-
-### Tall Grass Cover (`status: stub`)
-- Display text exists but no mechanical cover effect is implemented
-- Expected behavior: grass should reduce visibility or attack accuracy
-
-### Forgiven-NPC Friendship Boost (`status: planned`)
-- The current forgiveness mechanic (see §4) normalizes a deserter's friendship by reducing it 50 points from an inflated value
-- TODO at ~line 23290: a separate system where the player proactively forgives a hostile NPC and gains a friendship reward — not yet implemented
-
-### `delmeDrinkText()` (`status: stub`)
-- Method body entirely commented out; never called (~line 23490)
-- Either restore drinking-related narration or delete the method
-
-### Lars Account System (`status: stub`)
-- Referenced in TODO: "if you have an account with lars then all the cave doors are locked"
-- No `lars` NPC or account mechanic currently exists
-
-### Basement of the Longhouse (`status: stub`)
-- Referenced in TODO: "basement of the house!"
-- No implementation
-
-### Visitor from Pond (`status: stub`)
-- Referenced in TODO list
-- No implementation
-
-### Curse System (`status: partial`)
-- `is_cursed()` flag exists and is checked
-- Exact curse effects and acquisition not fully wired
-- TODO notes: "organize curse"
-
-### Zombie Cure for `has_symbol()` (`status: planned`)
-- A zombie run can be ended by eating enough brains (humanity restored) or by bog sinking (see §8)
-- However, `has_symbol()` — the forehead carving — **cannot be removed**; the character is at risk of rising again as a zombie on their next death with a shallow burial
-- A ritual or mechanic to permanently remove the carving should be designed and implemented
-
-### Purpose Conversations (`status: planned`)
-- TODO at ~line 97: NPC-to-NPC conversations about purpose / motivation
-- Currently NPCs only exchange rumors and greetings with each other
-
-### Rumors About Forest Exits (`status: planned`)
-- TODO at ~line 96: spread rumors about who successfully exited the forest
-- No rumor type for forest exit currently exists
-
-### Rumor of a Cur (`status: partial`)
-- TODO at ~line 16710: "rumor of a cur should be cleared before and after main action loop"
-- Stale cur-rumor state can persist incorrectly
-
-### Deserter / NPC Gang Exit (`status: partial`)
-- Dev notes flag "deserter problems"
-- NPCs leaving gangs may leave incorrect relationship state
-
-### High Score Calculation (`status: partial`)
-- Dev notes flag a high score tracking anomaly
-- Exact issue uninvestigated
-
----
-
-## Known Behavior Anomalies (Uninvestigated)
-
-From dev notes at the top of Gangland.java — these have been observed but not yet traced:
-
-- Snake (non-red variant) incorrectly poisoning player
-- "Another walking corpse joins" appearing during beast (snake) battles
-- Dog grief scene triggering when dog is not at that location
-- Too many "aiees" from the same NPC in a single encounter
-- Zombie/beast battle pulling player in from a different location
-- Getting stuck at specific turn counts (1189 noted)
-- High score tracking issue (see §14)
+Unfinished systems, planned features and design ideas are tracked in `IDEAS.md`. The old dev-note anomalies were all traced and resolved; see "Known Behavior Anomalies" in `ISSUES.md`.
 
 ---
 

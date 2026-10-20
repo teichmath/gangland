@@ -57,7 +57,6 @@ System.out.println("**** 8681 victim is "+victim+"... ");
 
 > TO-DO LIST <
 >forest movement- slipping into spaces
->if you have an account with lars then all the cave doors are locked.
 >basement of the house!
 >gregor responds differently to "join" suggestion...
 >visitor from the pond...
@@ -65,7 +64,6 @@ System.out.println("**** 8681 victim is "+victim+"... ");
 > still, pet's don't follow properly into the woods; still, pet's don't follow you once they do enter the woods.
 > todo: cave: battle against all previous rufuses, final battle against boss 
 
-> mourning pets!!!
 
 > #pets with multiple attacks doing multiple blocks.
 > #message when you run into the woods.
@@ -139,15 +137,40 @@ specified where gregor lives, and the second time he just said "somewhere around
 > # pets presence not being announced.
 > # rumors about great fighters
 
-STORY
+
+* **********
+* STORY
 Gangland is a prison for petty criminals and enemies of Lars, who keeps them there and toys with them. Gregor is actually a fugitive. He is hiding out in gangland, 
 biding his time. Lars knows he is there, of course. Lars could crush him (probably)- but Gregor keeps him at bay with flattery (wouldn't you like to save me for a while- 
 kill me when it's a bit more of a challenge?) Gregor is actually hiding from a being even greater than Lars- but Lars won't turn him in because Lars is in very low favor 
 with that same greater being.   
-
-The game is... TOO FUCKING HARD. It's just too hard. You can spend hours building up a character with a speed of 7, skill over 200 and 70 max health- but a damn mob of skeletons can show up and smash your 
-ass flat. You have to have a gang at some point. That's to say nothing of what will happen to you if you actually go into the forest. The reward for ending the evil- the blessing- should be a serious power-up. 
-Also, the pet loyalties need to work better. And there need to be more ways to heal faster. ARRG!
+*
+* some of the things that help tell the story for the player:
+*  information given in the help menu
+*     The Gangland is a kind of prison. None of its citizens are sure how they got there. Some wonder if it's a collective dream; others roam the
+*      wastes asking no questions. Everyone, however, is at least vaguely aware that they are being reborn, again and again.
+*       Each time you die, you come back- and it's still you, but in a new person.");
+				masterStringOut("\nThe people here call themselves the same name through all of their lives, but they add a number: when John dies and
+				comes back, his name will be John 2, then John 3 the next time around, and so on. The \"originals\" of Gangland are those who carry no number.\n");
+			}
+*
+*  rumors
+*   There's a cave in this land. A dangerous place, but if the rumors are true, there's a passage in there that'll take you out of this place. I might try some day. They also say that meat helps you find it.
+*
+*  pond visions
+*
+* 	1. A street scene... perhaps in a town, far away from here... it's you, isn't it, running from... isn't that called a \"car\"?
+*       \nYou've been found, caught, beaten. Your captors bellow speeches at you in strange languages. Then you are alone.");
+*   2. A looming mouth, painted a bright magenta, surrounded by blackness. Food of some kind is raised to the mouth. The mouth
+*      eats grotesquely, pausing between each bite to bare its teeth tightly in laughter.");
+*	3. A house is on fire... a family escapes, from a window... they gather, covered in soot, to count each other, and then flee across an empty field,
+*	   looking up at the sky in terror.");
+*	4. A huge man is locked in a desperate fight- but with what? He could be shadow-boxing... but why, then, does he seem to be losing?
+*	*  \nWait, he seems to have scored a hit- a cry of pain, not from the man, and the scene pulses with a magenta light... but the fight is still hopeless.");
+*		You recognize the man- it's Gregor.");
+*
+*
+*
 
 poison death, item pickup, etc: need to go in playerscreen. When these things happen after travelling, but before travelling is actually announced (in playerscreen), it doesn't make sense.
 zombie stick from gregor- why didn't I get it when I was a leader?
@@ -455,7 +478,23 @@ public class Gangland {
 	
 			
 
-   			game.masterStringOut("                                   |        ___");   			game.masterStringOut("                                   \\   | __/  ’’’’");   			game.masterStringOut("                                    \\  <<--,_____");   			game.masterStringOut("       ,   ,              \\           U          ____---");   			game.masterStringOut("        v                  \\          U      |~~<____   ");   			game.masterStringOut("        `  ‘ `   ’      `---\\         U      /        /");   			game.masterStringOut("         \\|   \\ |            ````~     U    //    /‘’’’’’’’^");   			game.masterStringOut("          \\    \\                   \\ \\ |U| //    / , ");   			game.masterStringOut("           \\\\  \\\\...````           |  V  / ‘’’’ ‘’               G       N D");   			game.masterStringOut("            \\  / |``               /   /                    A   N       A");   			game.masterStringOut("     ~_  ,   |   /                /`  /                    G          L");   			game.masterStringOut("       `-` `- \\ |                 |  /                                  ");   			game.masterStringOut("             \\  |                |  |");   			game.masterStringOut("              }  \\               /  |              ..       .. ..       . .   .");   			game.masterStringOut("      ~``__   |   \\-/           |   |  .. ...      ....    .   .. . ...  . .   ");   			game.masterStringOut(" *#----*--**__|    |*****^**---|     ]__--_*_.... _  __   . . ..... . . .. . . .");			game.masterStringOut("* |                                                      ");
+   			game.masterStringOut("                                   |        ___");
+   			game.masterStringOut("                                   \\   | __/  ’’’’");
+   			game.masterStringOut("                                    \\  <<--,_____");
+   			game.masterStringOut("       ,   ,              \\           U          ____---");
+   			game.masterStringOut("        v                  \\          U      |~~<____   ");
+   			game.masterStringOut("        `  ‘ `   ’      `---\\         U      /        /");
+   			game.masterStringOut("         \\|   \\ |            ````~     U    //    /‘’’’’’’’^");
+   			game.masterStringOut("          \\    \\                   \\ \\ |U| //    / , ");
+   			game.masterStringOut("           \\\\  \\\\...````           |  V  / ‘’’’ ‘’               G       N D");
+   			game.masterStringOut("            \\  / |``               /   /                    A   N       A");
+   			game.masterStringOut("     ~_  ,   |   /                /`  /                    G          L");
+   			game.masterStringOut("       `-` `- \\ |                 |  /                                  ");
+   			game.masterStringOut("             \\  |                |  |");
+   			game.masterStringOut("              }  \\               /  |              ..       .. ..       . .   .");
+   			game.masterStringOut("      ~``__   |   \\-/           |   |  .. ...      ....    .   .. . ...  . .   ");
+   			game.masterStringOut(" *#----*--**__|    |*****^**---|     ]__--_*_.... _  __   . . ..... . . .. . . .");
+			game.masterStringOut("* |                                                      ");
 			game.masterStringOut("*                                                        ");
 			game.masterStringOut("* |                                                      ");
 			game.masterStringOut("*       Who are you ?                                    ");
@@ -12926,6 +12965,8 @@ shitloop:do {
 										masterStringOut(jump_in_message);
 										Wait.longBlip(4);
 									}
+									//a pet hiding nearby is out in the open once it joins the fight (otherwise its body stays hidden after it falls)
+									army[war[q][i]].come_out_from_hiding();
 									if(army[war[q][i]].getmasters_number() == user && !army[army[war[q][i]].getmasters_number()].does_player_perceive_this_pet(war[q][i])) {
 										String returnmessage = army[user].getname()+": \"Hooray! You've come back to me";
 										if(army[war[q][i]].has_name()) returnmessage += ", "+army[war[q][i]].getname()+"!\"";
@@ -16898,7 +16939,7 @@ winloop:	for(int i = 0; i < side_count[winner]; i++) {
 				if(battletext > 0) {
 		vm_loop:	for(int vm = 0; vm < number_of_columns; vm++) {
 						if(war[beast_fight][vm] > -1) {
-							if(how_many_live_beasts == 1) masterStringOut(army[war[beast_fight][0]].getvictory_message(1));
+							if(how_many_live_beasts == 1) masterStringOut(army[war[beast_fight][0]].getvictory_message(1, party_dead));
 							if(how_many_live_beasts > 1) masterStringOut(army[war[beast_fight][0]].getvictory_message(2));
 							Wait.manySec(2);
 							break vm_loop;
@@ -21262,6 +21303,12 @@ j_loop:			for(int j = -1; j < j_limit; j++) {
 	public void longStringOut(String longstring) {
 	
 		int screen_width = 80;
+		
+		//a message with line breaks in it is wrapped one line at a time
+		if(longstring.contains("\n")) {
+			for(String one_line : longstring.split("\n", -1)) longStringOut(one_line);
+			return;
+		}
 		
 		if(longstring.length() < screen_width) System.out.println(longstring);
 		
