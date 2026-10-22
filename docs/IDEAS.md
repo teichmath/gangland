@@ -44,7 +44,7 @@ Status: `idea` (raised, not designed) · `decide` (needs a call before work) · 
   - A system of general remarks among gangfellows and NPCs: what's going on, what they're all doing here, what this place is. This absorbs the older "purpose conversations between NPCs" note.
   - The story told now in the Help menu's "Rebirth" page could come out this way instead, and that page could then go.
 - **Jokes** — `idea`. When you suggest "joke" and don't know any, the other person is asked whether they know one and may tell it, or says "No, me neither." Someone who'd have turned you down anyway ("to the ash-heap…", "not in the mood") still just does that. The old notes also call for new jokes and a dialogue rewrite.
-- **New gang-greeting exchange** — `ready` (Alex's wording). It replaces "We shall grow strong…" / "And fresh meat…" with:
+- **New gang-greeting exchange** — `done` (Alex's wording). It replaces "We shall grow strong…" / "And fresh meat…" with:
   "We shall grow strong in the fight together, <name>!" / "We shall be feared high and low, wide and side, <name>!"
 - **The "here's to us" toast** — `idea`. The current toast is borrowed; Alex will write an original.
 - **Visitor from the pond** — `idea`. Named in the old notes only.
@@ -78,7 +78,7 @@ Status: `idea` (raised, not designed) · `decide` (needs a call before work) · 
 - **A stash of apple bombs in the forest** — `idea`. Apple bombs are made by the gnomes. A stash of them somewhere in the forest can be discovered somehow, with a limit on how many each character can carry. Today single apple bombs turn up loose on random forest squares and at the forest entrance, and there's no carrying limit beyond the 20 in play.
 - **The spyglass in the forest** — `idea`. It's switched off there today ("Your spyglass is no good in the forest.").
 - **The longhouse basement** — `idea`. Named in the old notes only.
-- **Writing in the bog** — `ready` (Alex's wording). It shouldn't work: "You start writing in the oozing mud, but it quickly globs back together, leaving no trace."
+- **Writing in the bog** — `done` (Alex's wording; the attempt uses a turn, and Gregor's opening directions are never written in the bog). It doesn't work: "You start writing in the oozing mud, but it quickly globs back together, leaving no trace."
 - **Remembering named pets after rebirth** — `idea`. On first seeing a dog or cat named in a past life: e.g. "A dog named Flappy is here- somehow you remember Flappy."
 - **Broken apples** — `partial`. Apples decay and drop, but the "broken apple" state is unfinished (`//todo: restore broken apples.`).
 - **The curse** — `partial`. The cursed flag exists and is checked, but what a curse does and how you get one aren't fully wired (old note: "organize curse").
@@ -98,7 +98,9 @@ Status: `idea` (raised, not designed) · `decide` (needs a call before work) · 
 
 ## Commands and the interface
 
-- **Ambiguous targets** — `idea`. With two strangers here, "attack" lists them, as stranger (a) and stranger (b). The player can then answer `a`, `b`, `attack a` or `a a`. Today "Whom are you attacking?" takes only a name, so answering "attack stranger" fails.
+- **Ambiguous targets** — `done` (defaults chosen by Claude; any can be changed). A bare "attack" or "greet" with more than one here, or "attack stranger" (or dog, cat, undead) when that fits more than one, shows a lettered list, like the Bury list. The answer can be `b`, `attack b`, `a b`, or the name of someone you know; Enter cancels. The attack list leaves out gang allies and your own pets (unless they're all that's here); they can still be attacked by name. If only one choice is left, it's taken without asking. `chooseWhoHere()` in `Gangland.java`.
+- **"a b" at the main menu** — `decide`. A shortcut for "attack b" without going through the list. Not added.
+- **Lists with no way out** — `done`. Enter now backs out of the Bury/Eat/Loot list (back to the menu, no turn used) and the "Which dog do you want to ask … about?" list (the person you're talking to answers "I'm not sure what you're talking about.").
 - **Battle input hint** — `idea`. Instead of "2 are still fighting…", give a hint like "type attack a, attack b, a a, or a b".
 
 ## Code cleanup

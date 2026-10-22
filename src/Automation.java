@@ -253,7 +253,8 @@ public class Automation {
 	static void checkWitnessed(Gangland g, String rule, int pet, int other) {
 		Being p = g.army[pet], u = g.army[g.user], o = g.army[other];
 		String w = where(g, p.getx(), p.gety());
-		boolean ok = p.ishere(u.getx(), u.gety()) && (w.equals("board") || w.equals("forest")) && !p.hidden();
+		//a hiding pet may come out to grieve (petMourns() brings it out of hiding), so hidden is allowed there
+		boolean ok = p.ishere(u.getx(), u.gety()) && (w.equals("board") || w.equals("forest")) && (!p.hidden() || rule.equals("pet_grief_not_there"));
 		if(!ok)
 			reportEvent(rule, "pet=" + pet + " " + p.getname() + " at (" + p.getx() + "," + p.gety() + ") " + w + (p.hidden() ? " hidden" : "")
 				+ ", you at (" + u.getx() + "," + u.gety() + "), #" + other + " " + o.getname() + " at (" + o.getx() + "," + o.gety() + ")");

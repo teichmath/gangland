@@ -746,7 +746,9 @@ public class Gangland {
 				if(gmessage[gm] > game.boardside) gmessage[gm] = game.boardside;
 				if(gmessage[gm] < 1) gmessage[gm] = 1;
 			}
-			if(gmessage[0] != game.markers[0][0] || gmessage[1] != game.markers[1][0]) {
+			//no message if it would land in the bog: nothing can be written in the mud
+			boolean gmessage_in_bog = (gmessage[0] == game.markers[0][5] && gmessage[1] == game.markers[1][5]);
+			if((gmessage[0] != game.markers[0][0] || gmessage[1] != game.markers[1][0]) && !gmessage_in_bog) {
 				String dir_one = "";
 				String dir_two = "";
 				String dir_holder = "";
@@ -3969,7 +3971,7 @@ turnloop:	while (game.play_on) {
 							if(game.items[p][q].getx() == game.markers[0][5] && game.items[p][q].gety() == game.markers[1][5]) {
 								if(game.items[p][q].getowner() == -1) {
 									game.items[p][q].gets_lost();
-									if(game.army[game.user].ishere(game.markers[0][5], game.markers[0][5])) game.masterStringOut("Something just sank into the mud... you couldn't really see what it was...");
+									if(game.army[game.user].ishere(game.markers[0][5], game.markers[1][5])) game.masterStringOut("Something just sank into the mud... you couldn't really see what it was...");
 								}
 							}
 						}
@@ -4195,8 +4197,8 @@ turnloop:	while (game.play_on) {
 		greetings[1][0] = "Wassail, ";
 		greetings[0][1] = "At your service, ";
 		greetings[1][1] = "And my family at yours, ";
-		greetings[0][2] = "We shall grow strong from the hunt today, ";
-		greetings[1][2] = "And fresh meat into the bargain, ";
+		greetings[0][2] = "We shall grow strong in the fight together, ";
+		greetings[1][2] = "We shall be feared high and low, wide and side, ";
 		incantations[0] = "JIEMSO";
 		incantations[1] = "MEEDLY";
 		incantations[2] = "GRAQUINE";
@@ -5228,6 +5230,7 @@ turnloop:	while (game.play_on) {
 					masterStringOut("\n\n\n");
 					String bury_eat_loot_choice = null;
 					boolean got_one_to_bury_eat_loot = false;
+					boolean bury_eat_loot_cancelled = false;
 					do {
 						if(bury_one_eat_two_loot_three == 1) masterStringOut("Bury whom?");
 						if(bury_one_eat_two_loot_three == 2) masterStringOut("Eat whom?");
@@ -5235,6 +5238,11 @@ turnloop:	while (game.play_on) {
 						if(bury_one_eat_two_loot_three == 0) masterStringOut("Wha?  1900");
 						masterStringOut("(letter)");
 						bury_eat_loot_choice = stringInput();
+						//a blank answer backs out to the menu
+						if(bury_eat_loot_choice.trim().length() == 0) {
+							bury_eat_loot_cancelled = true;
+							break;
+						}
 						for(int y = 0; y < number_of_bodies_marked; y++) {
 							if(nameMatchup(5113, bury_eat_loot_choice, army[all_dead_marker[y]].getname()) || bury_eat_loot_choice.compareToIgnoreCase(getAlphabet(y)) == 0) {
 								the_one_to_encounter = all_dead_marker[y];
@@ -5244,6 +5252,8 @@ turnloop:	while (game.play_on) {
 							}
 						}
 					} while(!got_one_to_bury_eat_loot);
+					//cancelled: clear the mode so none of the follow-up messages below run (e.g. the zombie's "ineffective" remark)
+					if(bury_eat_loot_cancelled) bury_one_eat_two_loot_three = 0;
 				}
 				if(number_present_dead == 1) {
 					for(int l = 0; l < armysize; l++) {
@@ -5872,18 +5882,27 @@ turnloop:	while (game.play_on) {
 			}
 
 			//writings only exist on the board (see the reading check in playerScreen); off it, e.g. in the forest, the array has no room.
-			if(your_choice.compareToIgnoreCase("write") == 0 && !(army[user].getx() > 0 && army[user].getx() < boardside + 1 && army[user].gety() > 0 && army[user].gety() < boardside + 1)) {
-				masterStringOut("There's no bare ground here to write on.");
-				input_continues_loop = true;
-			}
-			else if(your_choice.compareToIgnoreCase("write") == 0) {
-				masterStringOut("What do you want to write?");
-				String new_writing = stringInput();
-				writeNewMessage(new_writing, army[user].getx(), army[user].gety());
-				army[user].changeround_clock(1);
-				masterStringOut("You scrawl your message in the dirt.");				
-				input_continues_loop = true;
-			}
+			if(your_choice.compareToIgnoreCase("write") == 0) {
+                if(!(army[user].getx() > 0 && army[user].getx() < boardside + 1 && army[user].gety() > 0 && army[user].gety() < boardside + 1)) {
+    				masterStringOut("There's no bare ground here to write on.");
+	    			input_continues_loop = true;
+			    }
+                else if(army[user].ishere(markers[0][5], markers[1][5])) {
+                    masterStringOut("What do you want to write?");
+                    String new_writing = stringInput();
+                    army[user].changeround_clock(1);
+                    masterStringOut("You start writing in the oozing mud, but it quickly globs back together, leaving no trace.");
+                    input_continues_loop = true;
+                }
+                else {
+                    masterStringOut("What do you want to write?");
+                    String new_writing = stringInput();
+                    writeNewMessage(new_writing, army[user].getx(), army[user].gety());
+                    army[user].changeround_clock(1);
+                    masterStringOut("You scrawl your message in the dirt.");
+                    input_continues_loop = true;
+                }
+            }
 			
 			if(your_choice.compareToIgnoreCase("erase") == 0) {
 				if(army[user].how_many_read() > 0) {
@@ -6186,8 +6205,16 @@ turnloop:	while (game.play_on) {
 								}
 							}
 							else {
-								masterStringOut(capitalFirst("Whom are you "+your_choice_chopped[0])+"ing?");
-								greet_att_choice = stringInput();
+								//more than one here: list them by letter and let the player choose
+								boolean attacking = your_choice_chopped[0].compareToIgnoreCase("attack") == 0;
+								List<Integer> whom_candidates = whoHereToChoose(attacking, "anyone");
+								//if everyone here is an ally (or your own pet), list them all rather than no one
+								if(whom_candidates.size() == 0) whom_candidates = whoHereToChoose(false, "anyone");
+								int whom = chooseWhoHere(your_choice_chopped[0], whom_candidates);
+								if(whom != -2) {
+									the_one_to_encounter = whom;
+									input_valid = true;
+								}
 							}
 						}
 						else {
@@ -6213,8 +6240,12 @@ turnloop:	while (game.play_on) {
 							}
 							if(greet_att_choice.compareToIgnoreCase("stranger")==0) {
 								if(number_of_strangers > 0) {
-									the_one_to_encounter = first_stranger;
-									input_valid = true;
+									int whom = chooseWhoHere(your_choice_chopped[0], whoHereToChoose(false, "stranger"));
+									if(whom != -2) {
+										the_one_to_encounter = whom;
+										input_valid = true;
+									}
+									else name_message = false;
 								}							
 								else if(number_of_johndoes > 0) {
 									masterStringOut("The only stranger here is a dead stranger.");
@@ -6228,8 +6259,12 @@ turnloop:	while (game.play_on) {
 							if(greet_att_choice.compareToIgnoreCase("dog")==0) {
 							//	masterStringOut("**** 3882 number of strange dogs: "+number_of_strange_dogs);
 								if(number_of_strange_dogs > 0) {
-									the_one_to_encounter = first_strange_dog;
-									input_valid = true;
+									int whom = chooseWhoHere(your_choice_chopped[0], whoHereToChoose(false, "dog"));
+									if(whom != -2) {
+										the_one_to_encounter = whom;
+										input_valid = true;
+									}
+									else name_message = false;
 								}							
 								else if(number_of_johndoe_dogs > 0) {
 									masterStringOut("The dog's dead.");
@@ -6243,8 +6278,12 @@ turnloop:	while (game.play_on) {
 							}
 							if(greet_att_choice.compareToIgnoreCase("cat")==0) {
 								if(number_of_strange_cats > 0) {
-									the_one_to_encounter = first_strange_cat;
-									input_valid = true;
+									int whom = chooseWhoHere(your_choice_chopped[0], whoHereToChoose(false, "cat"));
+									if(whom != -2) {
+										the_one_to_encounter = whom;
+										input_valid = true;
+									}
+									else name_message = false;
 								}							
 								else if(number_of_johndoe_cats > 0) {
 									masterStringOut("The cat's dead.");
@@ -6258,8 +6297,19 @@ turnloop:	while (game.play_on) {
 							}
 							if(greet_att_choice.compareToIgnoreCase("undead")==0 || greet_att_choice.compareToIgnoreCase("corpse")==0) {
 								if(countUndead("here "+army[user].getname()) > 0) {
-									the_one_to_encounter = first_zombie;
-									input_valid = true;
+									List<Integer> undead_here = whoHereToChoose(false, "undead");
+									if(undead_here.size() > 0) {
+										int whom = chooseWhoHere(your_choice_chopped[0], undead_here);
+										if(whom != -2) {
+											the_one_to_encounter = whom;
+											input_valid = true;
+										}
+										else name_message = false;
+									}
+									else {
+										the_one_to_encounter = first_zombie;
+										input_valid = true;
+									}
 								}							
 								else {
 									masterStringOut("No undead here!");
@@ -8595,6 +8645,8 @@ turnloop:	while (game.play_on) {
 								masterStringOut("Which "+greet_choice+" do you want to ask "+army[accosted].getname()+" about?");
 								masterStringOut("(letter)");
 								pet_id_choice = stringInput();
+								//a blank answer backs out: no pet is asked about
+								if(pet_id_choice.trim().length() == 0) break;
 			y_loop:				for(int y = 0; y < number_of_pets_marked; y++) {
 									if(nameMatchup(8191, pet_id_choice, army[pets_marked[y]].getname()) || pet_id_choice.compareToIgnoreCase(getAlphabet(y)) == 0) {
 										pet_of_query = pets_marked[y];
@@ -20437,6 +20489,90 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 		return gravesite;
 	}
 	
+	//who here can be chosen for a greeting or an attack. kind is "anyone", "stranger", "dog", "cat" or "undead".
+	//when attacking anyone, gang allies and your own pets are left out (attacking them must be commanded by name).
+	//-1 in the list stands for the dragon.
+	public List<Integer> whoHereToChoose(boolean attacking, String kind) {
+		List<Integer> candidates = new ArrayList<Integer>();
+		for(int l = 0; l < armysize; l++) {
+			if(l == user || army[l].hidden() || army[l].gethealth() <= 0) continue;
+			if(army[l].getx() != army[user].getx() || army[l].gety() != army[user].gety()) continue;
+			if(kind.equals("stranger") && !(l < humansize && army[user].getfriend(l) == -1)) continue;
+			if((kind.equals("dog") || kind.equals("cat")) && !(l >= humansize && !army[l].has_name() && army[l].getspecies().compareTo(kind) == 0)) continue;
+			if(kind.equals("undead") && !army[user].knows_a_zombie(l)) continue;
+			if(kind.equals("anyone") && attacking) {
+				if(sameGang(user, l)) continue;
+				if(l >= humansize && army[l].getmasters_number() == user) continue;
+			}
+			candidates.add(l);
+		}
+		if(kind.equals("anyone") && dragon[0].getx() == army[user].getx() && dragon[0].gety() == army[user].gety()) candidates.add(-1);
+		return candidates;
+	}
+
+	//how someone here appears in a list, as in "who": the name if you know it, otherwise stranger / dog / cat / UNDEAD.
+	public String whoHereLabel(int l) {
+		if(l == -1) return "Dragon";
+		String label;
+		if(army[user].getfriend(l) > -1) {
+			label = army[l].getname();
+			if(army[user].knows_a_zombie(l)) label += " (UNDEAD)";
+		}
+		else if(army[user].knows_a_zombie(l)) label = "UNDEAD";
+		else if(army[l].getspecies().compareTo("human") == 0) label = "stranger";
+		else label = army[l].getspecies();
+		return label;
+	}
+
+	//lists the candidates as (a.) (b.) ..., four to a row, and reads the player's choice:
+	//a letter ("a"), the verb or its first letter and a letter ("attack a", "a a"), or the name of someone you know.
+	//returns the chosen army index, -1 for the dragon, or -2 if nothing was chosen (a blank answer cancels).
+	//with only one candidate, that one is chosen without asking.
+	public int chooseWhoHere(String verb, List<Integer> candidates) {
+		if(candidates.size() == 0) return -2;
+		if(candidates.size() == 1) return candidates.get(0);
+		String names_row = "";
+		String letters_row = "";
+		for(int c = 0; c < candidates.size(); c++) {
+			String label = whoHereLabel(candidates.get(c));
+			String letter = "(" + getAlphabet(c) + ".)";
+			int extra_spaces = label.length() + 6 - letter.length();
+			for(int z = 0; z < extra_spaces; z++) letter += " ";
+			names_row += label + "      ";
+			letters_row += letter;
+			if((c + 1) % 4 == 0 || c == candidates.size() - 1) {
+				masterStringOut(names_row);
+				masterStringOut(letters_row);
+				names_row = "";
+				letters_row = "";
+			}
+		}
+		masterStringOut(capitalFirst("Whom are you "+verb.toLowerCase())+"ing?");
+		masterStringOut("(letter)");
+		String answer = stringInput().trim();
+		String[] answer_chopped = answer.split("\\s+");
+		if(answer_chopped.length > 1 && (answer_chopped[0].equalsIgnoreCase(verb) || answer_chopped[0].equalsIgnoreCase(verb.substring(0, 1)))) {
+			answer = answer.substring(answer_chopped[0].length()).trim();
+		}
+		if(answer.length() == 0) return -2;
+		if(answer.length() == 1) {
+			for(int c = 0; c < candidates.size(); c++) {
+				if(answer.equalsIgnoreCase(getAlphabet(c))) return candidates.get(c);
+			}
+		}
+		else {
+			for(int c = 0; c < candidates.size(); c++) {
+				int who = candidates.get(c);
+				if(who == -1) {
+					if(answer.equalsIgnoreCase("dragon")) return -1;
+				}
+				else if(army[user].getfriend(who) > -1 && nameMatchup(20460, answer, army[who].getname())) return who;
+			}
+		}
+		masterStringOut("There's no one here by that name.");
+		return -2;
+	}
+
 	public String getAlphabet(int alpha_index) {
 		String alpha_out = "";
 		if(alpha_index < 26) alpha_out = alphabet[alpha_index];

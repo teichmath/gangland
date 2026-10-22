@@ -179,6 +179,11 @@ The game asks the player to choose Eat, Shove, Kick or Punch, then overwrites th
 **Status:** open (needs a design call; see IDEAS.md)  
 A zombie who eats and rests gets health 0 (`end_zombie()`), so it counts as dead and the "none have survived this wretched day" line appears although nobody was slain.
 
+### S10 — "Something just sank into the mud" checked the bog's x coordinate twice
+**File:** `Gangland.java`, items sinking in the bog  
+**Status:** fixed  
+`ishere(markers[0][5], markers[0][5])` should have been `ishere(markers[0][5], markers[1][5])`, so the message almost never showed for a player standing in the bog. Fixed by Alex.
+
 ---
 
 ## Archived Features

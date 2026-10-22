@@ -270,9 +270,19 @@ def choose_freetext(lines):
     # "Whom are you greeting/attacking?" — always "stranger"; names in the buffer
     # often belong to absent NPCs mentioned in passing, causing "What?".
     if "Whom are you" in tail:
+        # a lettered list of who's here: answer in each of the accepted forms, and sometimes cancel
+        letters = re.findall(r"\((\w)\.\)", "\n".join(lines[-12:]))
+        if "(letter)" in tail and letters:
+            verb = re.search(r"Whom are you (\w+?)ing", tail)
+            verb = verb.group(1) if verb else "attack"
+            pick = random.choice(letters)
+            return random.choice([pick, f"{verb} {pick}", f"{verb[0]} {pick}", pick, ""])
         return "stranger"
-    if "Loot whom?" in tail or "Bury whom?" in tail:
-        return "a"
+    if "Loot whom?" in tail or "Bury whom?" in tail or "Eat whom?" in tail:
+        return random.choice(["a", "a", "a", ""])      # Enter backs out
+    # "Which dog do you want to ask X about?" lists the pets here by letter, and only a letter or name gets out
+    if "do you want to ask" in tail and "(letter)" in tail:
+        return random.choice(["a", "a", "a", ""])      # Enter backs out
     # beast battles label opponents a, b, c...; a bare "a" only works against a single one
     if "(letter)" in tail and "want to" not in tail:
         return random.choice(["a a", "a b", "a c"])
