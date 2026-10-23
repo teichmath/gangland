@@ -379,7 +379,12 @@ public class Gangland {
 	int screen_width;
 	int next_grave;
 	int number_of_zombie_meetings;
-	int ground_meat;
+	//meat lying on the ground, one entry per piece: {x, y, turns since it was dropped}. see dropGroundMeat()
+	List<int[]> ground_meat;
+	//the NPC meat experiment (see meatExperiments()): the turn each NPC dropped meat to see what happens, or -1; where; and each NPC's square last turn
+	int[] meat_experiment_turn;
+	int[][] meat_experiment_square;
+	int[][] last_square;
 	ArrayList<Integer> forest_exit_gangs_celebrating;
 	ArrayList<Integer> chanting_gangs;
 	ArrayList<Integer> chanting_members;
@@ -2699,6 +2704,9 @@ turnloop:	while (game.play_on) {
 								
 								//if the player is in the forest, then the player is trying to get out of the forest.
 								if(game.army[j].in_the_forest()) move_now = true;
+
+								//waiting to see what comes of the meat he dropped
+								if(game.meatExperimentUnderway(j)) move_now = false;
 							}
 													
 							if(move_now) {
@@ -2915,7 +2923,8 @@ turnloop:	while (game.play_on) {
 							//gang is in the forest, or if the leader has a special reason.
 							if(move_choice == 5) stay_put = true;
 							if(our_leader != -1) {
-								if(game.chantIsOn(game.army[our_leader].getaffiliation())) stay_put = false;
+								if(game.meatExperimentUnderway(our_leader)) stay_put = true;
+								else if(game.chantIsOn(game.army[our_leader].getaffiliation())) stay_put = false;
 								else if(game.army[our_leader].will_stay_put()) stay_put = true;
 							}
 							if(in_forest) stay_put = false;		
@@ -3987,7 +3996,8 @@ turnloop:	while (game.play_on) {
 					}
 				}
 				
-				if(game.ground_meat > -1) game.ground_meat++;
+				game.ageGroundMeat();
+				game.meatExperiments();
 						
 				for(int j = 0; j < game.armysize; j++) {
 					if(game.army[j].gethealth() > 0) {
@@ -4053,7 +4063,11 @@ turnloop:	while (game.play_on) {
 		you_see_fissure = false;
 		user_never_water_warped = true;
 		display_position = false;
-		ground_meat = -1;
+		ground_meat = new ArrayList<int[]>();
+		meat_experiment_turn = new int[humansize];
+		Arrays.fill(meat_experiment_turn, -1);
+		meat_experiment_square = new int[2][humansize];
+		last_square = new int[2][humansize];
 		dice = new Dice();
 		army = new Being[allbeingsize];
 		dragon = new Dragon[1];
@@ -4451,8 +4465,7 @@ turnloop:	while (game.play_on) {
 			masterStringOut("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 			travelReport();
 			
-			//ground meat disappeared
-			ground_meat = -1;
+			//what you noticed on the last square doesn't carry over
 			you_see_ants = false;
 			you_see_fissure = false;
 			
@@ -4597,7 +4610,7 @@ turnloop:	while (game.play_on) {
 			}
 		}
 		//any ground meat?
-		if(ground_meat > -1) masterStringOut("\nThere is some meat on the ground here.");
+		if(groundMeatHere(army[user].getx(), army[user].gety()) > -1) masterStringOut("\nThere is some meat on the ground here.");
 		
 		
 		//tell the user who's here.
@@ -5056,7 +5069,7 @@ turnloop:	while (game.play_on) {
 				}
 				if(you_see_ants) ants_menu = true;
 				if(you_see_fissure) fissure_menu = true;
-				if(ground_meat > -1) meat_menu = true;
+				if(groundMeatHere(army[user].getx(), army[user].gety()) > -1) meat_menu = true;
 				if(items[1][0].getowner() == user || (items[1][0].is_stake_planted() && items[1][0].is_visible() && items[1][0].is_here(army[user].getx(), army[user].gety()))) stake_menu = true;
 				if(number_present_dead > 0) {
 					bury_menu = true;
@@ -5411,8 +5424,9 @@ turnloop:	while (game.play_on) {
 			}
 			
 			if(your_choice.compareToIgnoreCase("meat") == 0) {
-				if(ground_meat > -1) {
-					if(!army[user].ishere(markers[0][8], markers[1][8]) || ground_meat < 2) masterStringOut("Yup, there's some meat on the ground. It's just sitting there. Looks kind of dirty.");
+				int meat_age = groundMeatHere(army[user].getx(), army[user].gety());
+				if(meat_age > -1) {
+					if(!army[user].ishere(markers[0][8], markers[1][8]) || meat_age < 2) masterStringOut("Yup, there's some meat on the ground. It's just sitting there. Looks kind of dirty.");
 					else {
 						masterStringOut("The meat on the ground is covered with ants.");
 						you_see_ants = true;
@@ -5435,6 +5449,7 @@ turnloop:	while (game.play_on) {
 
 			if(your_choice.compareToIgnoreCase("fissure") == 0 || your_choice.compareToIgnoreCase("cave") == 0) {
 				if(army[user].ishere(markers[0][8], markers[1][8])) {
+					boolean fissure_already_known = you_see_fissure;
 					if(!you_see_fissure) {
 						masterStringOut("Ah, so you know something about a cave around here? Well it would be really nice if there were something marking the fissure that allows you to open it up. Unfortunately, there's nothing.");
 						Wait.manySec(1);
@@ -5452,6 +5467,8 @@ turnloop:	while (game.play_on) {
 						else masterStringOut("...you find nothing.");
 					}
 					if(you_see_fissure) {
+						//opening a fissure the ants showed you takes an action (a search by hand has already used two)
+						if(fissure_already_known) army[user].changeround_clock(1);
 						masterStringOut("You look into the fissure and hook your fingers into it at various places.");
 						masterStringOut("Then you push on one side of it, slightly... and the rock face pivots into itself...");
 						Wait.manySec(2);
@@ -5592,7 +5609,7 @@ turnloop:	while (game.play_on) {
 					}
 					else {
 						army[user].lose_meat();
-						ground_meat = 0;
+						dropGroundMeat(army[user].getx(), army[user].gety());
 					}
 				}
 				input_continues_loop = true;
@@ -7307,13 +7324,16 @@ turnloop:	while (game.play_on) {
 			if(army[hailer].getfriend(accosted) >= 100 && army[hailer].getdevil_target() != accosted) hail_menu_three = hail_menu_three + "Deserter!  ]";
 			else hail_menu_three = hail_menu_three + "           ]";
 			boolean show_bluebird = bird_witnessed.contains(accosted) && army[accosted].getbird_report().length() > 0;
+			boolean show_meat = meatExperimentUnderway(accosted);
 			masterStringOut("\n\n\n\n");
 			masterStringOut(hail_menu);
 			masterStringOut(hail_menu_two);
 			if(hail_menu_three.contains("Cat") || hail_menu_three.contains("Dog") || hail_menu_three.contains("Stake") || hail_menu_three.contains("Forest") || hail_menu_three.contains("Deserter")) {
 				masterStringOut(hail_menu_three);
 			}
-			if(show_bluebird) masterStringOut("[ Bluebird ]");
+			if(show_bluebird && show_meat) masterStringOut("[ Bluebird     Meat ]");
+			else if(show_bluebird) masterStringOut("[ Bluebird ]");
+			else if(show_meat) masterStringOut("[ Meat ]");
 			
 			//Fully Loaded Menu:
 			//     [ Join         Teach         Fight               Leave   ]
@@ -7359,6 +7379,7 @@ turnloop:	while (game.play_on) {
 				if(greet_choice.compareToIgnoreCase("cat") == 0) input_valid = true;
 				if(greet_choice.compareToIgnoreCase("dog") == 0) input_valid = true;
 				if(greet_choice.compareToIgnoreCase("bluebird") == 0 && show_bluebird) input_valid = true;
+				if(greet_choice.compareToIgnoreCase("meat") == 0 && show_meat) input_valid = true;
 				if(!input_valid) masterStringOut("What?");
 			} while (!input_valid);
 		}
@@ -7735,7 +7756,20 @@ turnloop:	while (game.play_on) {
 							}
 						}
 
-						if(gang_leader == hailer || gang_leader == accosted) {
+						//a leader waiting to see what comes of his meat won't hear of the forest
+						if(gang_leader > -1 && meatExperimentUnderway(gang_leader)) {
+							if(samePlace(gang_leader, user)) {
+                                masterStringOutWithNameIfKnown(gang_leader, "Pipe down, we're not going to the forest!");
+                                if(army[user].getfriend(gang_leader) < 0) {
+                                    masterStringOut("The stranger who yelled goes back to staring at a lump of meat on the ground, while his companions grumble.");
+                                }
+                                else {
+                                    masterStringOut(army[gang_leader].getname()+" signals for silence, and goes back to staring at the meat on the ground.");
+                                }
+                            }
+							chantFail(gang_num);
+						}
+						else if(gang_leader == hailer || gang_leader == accosted) {
 							// leader is an initial chanter: chant ON immediately
 							chanting_gangs.add(gang_num);
 							if(samePlace(hailer, user)) {
@@ -7871,6 +7905,18 @@ turnloop:	while (game.play_on) {
 					if(en_code.endsWith("C")) masterStringOut("\n"+army[accosted].getname()+": \"GRAAARG!\"");
 					if(!chantIsOn(army[accosted].getaffiliation())) chantFail(army[hailer].getaffiliation());
 				}
+			}
+			if(greet_choice.compareToIgnoreCase("meat")==0) {
+				masterStringOut("You ask "+army[accosted].getname()+" why he seems so interested in the meat that he just tossed on the ground.");
+				Wait.manySec(1);
+				//the answer depends on how he feels about you
+				if(en_code.endsWith("A")) {
+					masterStringOutWithNameIfKnown(accosted, "\"I suppose I look like an imbecile, but I've got a good reason to stare at this meat. You might have heard the rumor- there's a way out of this here place. And somehow, meat helps you find the way out. So I'm giving it a chance. And we'll all just wait here a spell and, uh... we'll just bide the outcome. Don't look at me like that, you never know.\"");
+					//a friendly answer tells you the rumor behind it
+					rumorIsHeardBy("cave", user, 7903);
+				}
+				else if(en_code.endsWith("B")) masterStringOutWithNameIfKnown(accosted, "\"Never mind- it's just a little experiment I'm trying. So- well, never mind!\"");
+				else masterStringOutWithNameIfKnown(accosted, "\"Mind yer own business! I'll stare at this here meat on the ground if I dern well please!\"");
 			}
 			if(greet_choice.compareToIgnoreCase("bluebird")==0) {
 				masterStringOut(army[user].getname()+": \"What did that bird tell you?\"");
@@ -13933,9 +13979,8 @@ k_loop:							for(int k = 0; k < side_count[k_loop_row]; k++) {
 							}
 							else if(stillFighting(yourrow) == 1 && menuMatchup(battle_choice_chopped[0], "shield")) usertarget.add(yourcolumn);
 							else {
-								if(menuMatchup(battle_choice_chopped[0], "attack")) masterStringOut("Attack whom?");
-								if(menuMatchup(battle_choice_chopped[0], "shield")) masterStringOut("Shield whom?");
-								masterStringOut(stillFighting(yourrow*-1 + 1)+" are still fighting in the opponent row");
+								if(menuMatchup(battle_choice_chopped[0], "attack")) masterStringOut("Attack whom? (Type attack and a letter or name, e.g. attack a, or a a.)");
+								if(menuMatchup(battle_choice_chopped[0], "shield")) masterStringOut("Shield whom? (Type shield and a letter or name, e.g. shield a, or s a.)");
 							}
 						}
 						//user is indicating a target...
@@ -20573,6 +20618,180 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 		return -2;
 	}
 
+	// ********************  T H E   M E A T   E X P E R I M E N T  *************************
+	//An NPC who has heard the cave rumor and carries meat, and who is unaffiliated or a gang leader, may try it out: on arriving on a new
+	//square of the board there's a 1 in 20 chance he drops a piece of meat there (turn x) and waits, with his gang. If the square is the
+	//steep rocks, the ants come on turn x+2 and the experiment works; otherwise he gives up on turn x+3 and moves on, leaving the meat.
+	//Anyone who sees it work starts a rumor ("crack"). Runs once a turn, after the meat on the ground has aged.
+
+	public void meatExperiments() {
+		for(int j = 0; j < user; j++) {
+			boolean arrived = army[j].getx() != last_square[0][j] || army[j].gety() != last_square[1][j];
+			last_square[0][j] = army[j].getx();
+			last_square[1][j] = army[j].gety();
+			if(meat_experiment_turn[j] > -1) continueMeatExperiment(j);
+			else if(arrived && canTryMeatExperiment(j) && dice.throwdice(1, 20) == 1) startMeatExperiment(j);
+		}
+	}
+
+	public boolean meatExperimentUnderway(int subject) {
+		return subject > -1 && subject < humansize && meat_experiment_turn[subject] > -1;
+	}
+
+	public boolean canTryMeatExperiment(int j) {
+		if(army[j].gethealth() <= 0 || army[j].is_zombie() || army[j].in_the_forest()) return false;
+		if(army[j].getaffiliation() != 0 && !army[j].is_he_leader()) return false;
+		if(army[j].getx() < 1 || army[j].getx() > boardside || army[j].gety() < 1 || army[j].gety() > boardside) return false;
+		//someone who has seen (or heard of) the crack in the steep rocks knows the trick, and that the cave won't open for now
+		return army[j].getamount_of_meat() > 0 && rumorIsKnownBy("cave", j) && !rumorIsKnownBy("crack", j);
+	}
+
+	public void startMeatExperiment(int j) {
+		army[j].lose_meat();
+		dropGroundMeat(army[j].getx(), army[j].gety());
+		meat_experiment_turn[j] = turnclock;
+		meat_experiment_square[0][j] = army[j].getx();
+		meat_experiment_square[1][j] = army[j].gety();
+		boolean user_sees = userSeesMeatExperiment(j);
+		if(user_sees) {
+			if(rumorIsKnownBy("cave", user)) {
+                if (army[user].getfriend(j) > -1) {
+                    masterStringOut(army[j].getname() + " takes out a hunk of meat. He reasons a bit, then drops the meat on the ground and stares at it thoughtfully. He seems like he expects something to happen at this point. You've heard rumors about this. Who knows, maybe there's something to it.");
+                } else {
+                    masterStringOut("Nearby, a stranger takes out a hunk of meat. He reasons a bit, then drops the meat on the ground and stares at it thoughtfully. He seems like he expects something to happen at this point. You've heard rumors about this. Who knows, maybe there's something to it.");
+                }
+            }
+			else {
+                if(army[user].getfriend(j) > -1) {
+                    masterStringOut(army[j].getname()+" takes out a hunk of meat, wanders around a bit with it, as though looking for something, and then drops it on the ground. The lump is just in front of his toes. He is staring at it, deep in thought.");
+                }
+                else {
+                    masterStringOut("Nearby, a stranger takes out a hunk of meat, wanders around a bit with it, as though looking for something, and then drops it on the ground. The lump is just in front of his toes. He is staring at it, deep in thought.");
+                }
+            }
+		}
+		//a gang chanting for the forest is shouted down: the leader wants to see what happens
+		int gang = army[j].getaffiliation();
+		if(gang != 0 && chanting_gangs.contains(new Integer(gang))) {
+			if(user_sees) masterStringOutWithNameIfKnown(j, "\"Hold, hold, hold... we'll not go to the forest just yet. I have something here I need to do.\"");
+			chanting_gangs.remove(new Integer(gang));
+			chanting_members.removeIf(i -> army[i].getaffiliation() == gang);
+		}
+	}
+
+	public void continueMeatExperiment(int j) {
+		//he died, rose, ran off, or joined someone else's gang: the experiment is forgotten
+		if(army[j].gethealth() <= 0 || army[j].is_zombie() || (army[j].getaffiliation() != 0 && !army[j].is_he_leader())
+				|| army[j].getx() != meat_experiment_square[0][j] || army[j].gety() != meat_experiment_square[1][j]) {
+			meat_experiment_turn[j] = -1;
+			return;
+		}
+		int waited = turnclock - meat_experiment_turn[j];
+		boolean user_sees = userSeesMeatExperiment(j);
+		if(waited == 2 && army[j].ishere(markers[0][8], markers[1][8]) && groundMeatHere(army[j].getx(), army[j].gety()) >= 2) {
+			//the ants come, he follows them to the fissure, and the rock almost opens
+			if(user_sees) {
+                if(army[user].getfriend(j) > -1){
+                    masterStringOut(army[j].getname()+" is now on to something else- keeping his head down in concentration, he's walking slowly, tracing a path over to the face of the rocks with growing fascination.");
+                }
+				else {
+                    masterStringOut("The stranger here who was staring at the meat is now on to something else- keeping his head down in concentration, he's walking slowly, tracing a path over to the face of the rocks with growing fascination.");
+                }
+                Wait.manySec(1);
+                masterStringOutWithNameIfKnown(j, "\"Ha HAAAA! Look at this!\"");
+                String this_subject_1 = "The stranger";
+                String this_subject_2 = "the stranger";
+                if(army[user].getfriend(j)>-1){
+                    this_subject_1=army[j].getname();
+                    this_subject_2=army[j].getname();
+                }
+                masterStringOut(this_subject_1+" is walking his hands over different parts of the rock...");
+                Wait.manySec(2);
+                masterStringOut("...then he pushes hard, and the rock face pivots into itself...");
+                Wait.manySec(1);
+                masterStringOut("...an opening is revealed!");
+                masterStringOut("The crack isn't big enough to walk into, but "+this_subject_2+" can certainly see in...");
+                Wait.manySec(1);
+                masterStringOut("...but soon, the rock grinds shut again in his face.");
+                masterStringOutWithNameIfKnown(j, "\"GRAARG! Hmmph. Well, maybe later.\"");
+				you_see_ants = true;
+				you_see_fissure = true;
+			}
+			witnessRumor("crack", j);
+			meat_experiment_turn[j] = -1;
+		}
+		else if(waited >= 3) {
+			if(user_sees) masterStringOutWithNameIfKnown(j, "\"Ah, never mind. The meat's not doing anything.\"");
+			meat_experiment_turn[j] = -1;
+		}
+	}
+
+	public boolean userSeesMeatExperiment(int j) {
+		return army[user].gethealth() > 0 && samePlace(j, user);
+	}
+
+	//everyone alive on j's square (j included, and the player) hears of what just happened there.
+	public void witnessRumor(String tag, int j) {
+		int slot = -1;
+		for(int i = 0; i < 100; i++) {
+			if(rumors[i].gettag().compareToIgnoreCase(tag) == 0) {
+				slot = i;
+				break;
+			}
+			if(rumors[i].gettag().compareToIgnoreCase("blank") == 0) {
+				rumors[i] = new Rumor(humansize, user, tag, false);
+				slot = i;
+				break;
+			}
+		}
+		if(slot == -1) return;
+		List<Integer> witnesses = new ArrayList<Integer>();
+		for(int h = 0; h < humansize; h++) {
+			if(army[h].gethealth() > 0 && !army[h].is_zombie() && samePlace(h, j)) {
+				rumors[slot].hears_rumor(h);
+				witnesses.add(h);
+			}
+		}
+		//they saw it together, so each knows the others know: none will tell another
+		for(int a : witnesses) {
+			for(int b : witnesses) {
+				if(a != b) rumors[slot].now_knows_knows(a, b);
+			}
+		}
+	}
+
+	public int getLeaderOfGang(int gang_number) {
+		if(gang_number == 0) return -1;
+		for(int i = 0; i < humansize; i++) {
+			if(army[i].getaffiliation() == gang_number && army[i].is_he_leader() && army[i].gethealth() > 0) return i;
+		}
+		return -1;
+	}
+
+	//a piece of meat is dropped on the ground at x, y.
+	public void dropGroundMeat(int x, int y) {
+		ground_meat.add(new int[] {x, y, 0});
+	}
+
+	//once a turn: dropped meat ages, and after 10 turns it's gone -- but never while the player is on its square.
+	//(it waits for the player to leave, so no one sees it vanish.)
+	public void ageGroundMeat() {
+		for(int i = ground_meat.size() - 1; i >= 0; i--) {
+			int[] piece = ground_meat.get(i);
+			piece[2]++;
+			if(piece[2] >= 10 && !(army[user].getx() == piece[0] && army[user].gety() == piece[1])) ground_meat.remove(i);
+		}
+	}
+
+	//how many turns the oldest piece of meat at x, y has lain there, or -1 if there's none.
+	public int groundMeatHere(int x, int y) {
+		int oldest = -1;
+		for(int[] piece : ground_meat) {
+			if(piece[0] == x && piece[1] == y && piece[2] > oldest) oldest = piece[2];
+		}
+		return oldest;
+	}
+
 	public String getAlphabet(int alpha_index) {
 		String alpha_out = "";
 		if(alpha_index < 26) alpha_out = alphabet[alpha_index];
@@ -21933,6 +22152,7 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 		//If that too is sufficient, we turn the chant ON, and then and 
 		//only then will we return TRUE.
 		boolean it_is_on = false;
+		if(getLeaderOfGang(gang_number) > -1 && meatExperimentUnderway(getLeaderOfGang(gang_number))) return false;
 		int party_evaluation = 0;
 		int count_for_morale_average = 0;
 		int total_for_morale_average = 0;
@@ -22713,9 +22933,11 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 	public boolean playerReportsRumor(int hailer, int accosted, int encountertext) {
 		boolean told = false;
 ri_loop:for(int ri = 99; ri >= 0; ri--) {
-			if((rumors[ri].has_heard(hailer) && !rumors[ri].knows_knows(hailer, accosted)) || (rumors[ri].has_heard(accosted) && !rumors[ri].knows_knows(accosted, hailer))) {
-				int tells = (rumors[ri].has_heard(hailer)) ? hailer : accosted;
-				int listens = (rumors[ri].has_heard(hailer)) ? accosted : hailer;
+			boolean hailer_tells = rumors[ri].has_heard(hailer) && !rumors[ri].knows_knows(hailer, accosted) && !rumorSupersededFor(ri, hailer);
+			boolean accosted_tells = rumors[ri].has_heard(accosted) && !rumors[ri].knows_knows(accosted, hailer) && !rumorSupersededFor(ri, accosted);
+			if(hailer_tells || accosted_tells) {
+				int tells = hailer_tells ? hailer : accosted;
+				int listens = hailer_tells ? accosted : hailer;
 				if(!(listens == user && rumors[ri].user_heard_enough())) {
 					if(encountertext > 1) {
 						if(tells != user && listens != user) {
@@ -22741,6 +22963,12 @@ ri_loop:for(int ri = 99; ri >= 0; ri--) {
 		return told;
 	}
 	
+	//a rumor someone has stopped passing on, because he knows better now:
+	//once you know of the crack in the steep rocks, "meat helps you find the cave" is old news (the crack rumor tells it better).
+	public boolean rumorSupersededFor(int rumor, int teller) {
+		return rumors[rumor].gettag().compareToIgnoreCase("cave") == 0 && rumorIsKnownBy("crack", teller);
+	}
+
 	public boolean rumorIsKnownBy(String tag, int subject) {
 		boolean isknown = false;
 		for(int i = 0; i < 100; i++) {
@@ -22840,6 +23068,11 @@ ri_loop:for(int ri = 99; ri >= 0; ri--) {
 			}
 		}
 
+		if(tag.compareToIgnoreCase("crack")==0) {
+			if(sp == user) masterStringOut("You chat with "+listener+", and you end up telling him what you know of the crack in the steep rocks, which you assume is the long rumored cave entrance.");
+			if(lis == user) masterStringOut(speaker+":  \""+getNupDialogue(tag, 0)+"\"");
+		}
+
 		if(tag.compareToIgnoreCase("cave")==0) {
 			if(sp == user) masterStringOut("You chat with "+listener+", and you end up relating what you know about the mysterious cave.");
 			if(lis == user) {
@@ -22908,6 +23141,7 @@ ri_loop:for(int ri = 99; ri >= 0; ri--) {
 		if(tag.compareToIgnoreCase("gregor")==0) nup_out = "Have you heard of Gregor? I've heard that he lives somewhere around here.";
 		if(tag.compareToIgnoreCase("pig")==0) nup_out = "Did you ever use a pig's bladder before? Works kind of like a bottle. They don't last, though.";
 		if(tag.compareToIgnoreCase("forest")==0) nup_out = "That death trap of a forest- it's a cursed place, but I heard it's haunted by good spirits, too.";
+		if(tag.compareToIgnoreCase("crack")==0) nup_out = "You've probably heard about that cave, the one that could lead us out one day? Well someone found it, near the steep rocks- but the door's too heavy to open. Anyway, if you want to find the door, you just drop meat near it and wait.";
 		if(tag.compareToIgnoreCase("cave")==0) nup_out = "I heard there's a cave hidden around here. The cave has a way out of here. Although I don't really know what IS out of here... Also, meat is supposed to help you find it somehow. Yeah, meat. That's what I heard.";
 		if(tag.contains("kills")) {
 			if(index == 0) nup_out = "I heard there's a fellow named ";

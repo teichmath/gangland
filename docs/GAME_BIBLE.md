@@ -111,7 +111,8 @@ These are not accessible to the player but are used internally:
 
 ### Food / Healing
 - `amount_of_meat` — carried food; eating restores health
-- Sources: longhouse kitchen (cut from Gregor's cooking meat), ground meat found on the board. Killing beasts does **not** drop meat.
+- Sources: longhouse kitchen (cut from Gregor's cooking meat). Killing beasts does **not** drop meat.
+- Dropped meat (`ground_meat`, a list of pieces, each with its square and age) stays on its square for 10 turns, then disappears, but never while the player is on that square: it waits for the player to leave. It can't be picked back up. Only the player drops meat so far.
 
 ---
 
@@ -438,7 +439,6 @@ Spawn on movement across the main board:
 
 ### Zombie Behavior
 - Must find and EAT dead bodies (brains)
-- `ground_meat` global tracks whether a meal is currently on the board
 - Eating increments `brains_hunger` toward zero
 
 ### Laid to Rest by Eating
@@ -680,7 +680,7 @@ None of these are connected to any other mechanic. The black box in particular h
 The fissure and the ant trail are both here, not at the bog (~lines 5456–5495):
 
 **Ant trail discovery:**
-- Requires: player is at marker 8 AND meat the player dropped there has lain for ≥2 turns (`ground_meat` counts turns since the drop, not pieces; one piece is enough). The meat is wiped, and the ants and fissure forgotten, as soon as the player arrives anywhere, so the player must stay put while waiting
+- Requires: player is at marker 8 AND meat the player dropped there has lain for ≥2 turns (one piece is enough). The player can leave and come back while waiting, but the meat disappears after 10 turns unless the player is there. Arriving anywhere does make the player forget the ants and the fissure, so they have to be found again
 - Examining the meat reveals: "The meat on the ground is covered with ants" → `you_see_ants = true`
 - From there, the player can follow the ants and discover the fissure → `you_see_fissure = true`
 

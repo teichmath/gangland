@@ -119,6 +119,11 @@ public class Automation {
 			if(g.army[i] != null && g.army[i].is_zombie() && g.army[i].how_buried() > 0) undead++;
 		}
 		sb.append(",\"undead\":").append(undead);
+		// NPCs waiting on a meat experiment, and pieces of meat on the ground
+		int experimenting = 0;
+		if(g.meat_experiment_turn != null) for(int t : g.meat_experiment_turn) if(t > -1) experimenting++;
+		sb.append(",\"meat_experiments\":").append(experimenting);
+		sb.append(",\"ground_meat\":").append(g.ground_meat == null ? 0 : g.ground_meat.size());
 		sb.append("}}");
 		return sb.toString();
 	}

@@ -22,11 +22,17 @@ Status: `idea` (raised, not designed) · `decide` (needs a call before work) · 
 
 ## The cave, the meat and winning
 
-- **NPCs try the meat experiment** — `idea`.
-  - An NPC who has heard the cave rumor and carries meat sometimes drops it naively wherever they are, then waits around to see what happens. They have no idea where to try it.
-  - If the spot happens to be the steep rocks, the ants can appear and the experiment can work: fissure found, rock opened.
-  - If the player is present, there's a description and maybe dialogue from the NPC. *(Details not decided yet.)*
-  - Groundwork: ground meat is one global counter, wiped whenever the player arrives anywhere. It needs to belong to a square, so meat stays put whether or not the player is there.
+- **NPCs try the meat experiment** — `partial`: the mechanics are built; Alex's text goes into the `[TEXT NEEDED: …]` placeholders (search `Gangland.java` for `TEXT NEEDED`).
+  - **Who:** an NPC who has heard the cave rumor and carries meat, and who is either unaffiliated or a gang leader.
+  - **When:** each time such an NPC arrives on a new square of the main 10×10 board, there's a 1-in-20 chance they drop a piece of meat there (turn x). No limit on tries, and no memory of where they've tried.
+  - **Waiting:** they wait on the square, and a leader's whole gang waits too. A battle doesn't interrupt; running away ends the experiment (they forget it). A forest chant is shouted down by the leader, and NPCs don't start one while their leader waits.
+  - **Success:** if the square is the steep rocks, the ants come on turn x+2. They follow them to the fissure, and the rock opens a tantalizing crack, no more. A player who sees it learns the ants and the fissure. Otherwise, on turn x+3 they give up and move on, leaving the meat to its usual 10 turns.
+  - **Rumors:** everyone present at a success hears the "crack" rumor. Witnesses all know that the others know, so they don't tell each other. Otherwise it spreads like other rumors. (A separate rumor about the drop itself was tried and cut.)
+  - **After the crack:** anyone who knows the crack rumor stops trying the experiment. They know the trick, and that the cave won't open for now. They also stop passing on "meat helps you find the cave". The crack rumor says the cave is at the steep rocks but can't be got into, and that dropping meat near the rocks finds the fissure. This applies to people who heard it second-hand too, not just witnesses.
+  - **The player:** sees the drop (worded differently depending on whether they know the cave rumor), the success and the failure, and can choose **Meat** after greeting a waiting NPC. The answer depends on how the NPC feels about them (friendly, lukewarm or hostile).
+  - A friendly answer about the meat also teaches the player the cave rumor (Alex, 2026-10-22).
+  - **Still to decide:** the cave-entry system, once the cave exists.
+  - Groundwork — `done`. Dropped meat now belongs to its square and lasts 10 turns, waiting while the player is there so no one sees it vanish (Alex's rule). `dropGroundMeat()` is ready for NPCs to use.
 - **What an NPC's win looks like** — `decide` (later).
 - **The Cave of Lives** — `partial`.
   - Today the fissure can be found and opened, but the rock always grinds shut.
@@ -101,7 +107,7 @@ Status: `idea` (raised, not designed) · `decide` (needs a call before work) · 
 - **Ambiguous targets** — `done` (defaults chosen by Claude; any can be changed). A bare "attack" or "greet" with more than one here, or "attack stranger" (or dog, cat, undead) when that fits more than one, shows a lettered list, like the Bury list. The answer can be `b`, `attack b`, `a b`, or the name of someone you know; Enter cancels. The attack list leaves out gang allies and your own pets (unless they're all that's here); they can still be attacked by name. If only one choice is left, it's taken without asking. `chooseWhoHere()` in `Gangland.java`.
 - **"a b" at the main menu** — `decide`. A shortcut for "attack b" without going through the list. Not added.
 - **Lists with no way out** — `done`. Enter now backs out of the Bury/Eat/Loot list (back to the menu, no turn used) and the "Which dog do you want to ask … about?" list (the person you're talking to answers "I'm not sure what you're talking about.").
-- **Battle input hint** — `idea`. Instead of "2 are still fighting…", give a hint like "type attack a, attack b, a a, or a b".
+- **Battle input hint** — `done` (Alex's wording). A bare "attack" or "shield" with several possible targets now says "Attack whom? (Type attack and a letter or name, e.g. attack a, or a a.)" (or the shield version), replacing "N are still fighting in the opponent row", which also gave the opponents' count after "shield".
 
 ## Code cleanup
 
