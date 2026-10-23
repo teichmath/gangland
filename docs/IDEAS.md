@@ -42,11 +42,26 @@ Status: `idea` (raised, not designed) · `decide` (needs a call before work) · 
 
 ## Rumors, talk and the story
 
-- **Rumors born from what people witness** — `idea`.
-  - When the player or an NPC sees something unusual, it becomes a rumor that spreads, e.g. someone back from death by a deal with Lars attacking a former gangfellow, or someone slaying the dragon.
-  - Includes the older planned "who made it out of the forest" rumor.
-  - Today rumors come only from fixed starting points: Gregor, the house, the pig bladder, the forest and the cave, plus great fighters' kill counts.
-- **Gangfellows speculate out loud** — `idea`.
+- **Rumors born from what people witness** — `partial` (built 2026-10-23; text in `src/RumorKind.java`, one entry per kind).
+  - Everyone present hears of it, and witnesses know that each other knows. A rumor about someone needs a witness besides him, and people who were in it together with him don't count. No one is told about his own deed.
+  - Built:
+    - the crack;
+    - the dragon slain;
+    - someone back from Lars attacking the gangfellow he deserted;
+    - the first undead seen (told before any other rumor);
+    - the Blessing;
+    - one against five or more;
+    - the forest: only the first person seen coming out, and after that, someone who went in alone, or who came out the last of his gang. Every witnessed exit was tried first and was far too common: the forest edge is a busy square.
+  - In 60 bot games, rumor slots used peaked at 13 of 100.
+  - **Still to come:** someone seen carrying Gregor's sword. Today only the player can get the sword: Gregor's dragon-teeth job and its payment are player-only (`Gangland.java` ~19545–19590), so this needs NPCs able to take the job, pull the teeth and be paid first.
+- **NPCs bury the undead** — `decide` (2026-10-23).
+  - NPCs who fight the undead without the player present never bury them. Only the player and their gangmates bury, so the Blessing can only ever go to the player (the game's own comment, `zombieImprovementHandler()`).
+  - **The idea:** "burying the undead is the answer" becomes its own rumor, separate from the undead-are-walking rumor. An NPC who learns it starts burying undead bodies when he can. It's risky: digging alone with low health, with more undead about, can get you killed. Whoever buries the last of the undead could then receive the Blessing. `Blessing(subject)` already has text for a stranger, an acquaintance and a gangmate being blessed, but it's only ever called for the player.
+  - **Where the knowledge comes from:** not decided. Gregor already knows it ("Get those bastards in the ground", and, giving the stake, "as long as there's even one of 'em, the problem just keeps spreading"). Possible sources:
+    - Gregor;
+    - seeing a burial of the undead;
+    - seeing an undead rise from a shallow grave.
+- **Gangfellows speculate out loud** — `idea` (near term, 2026-10-22: "would add a lot of color").
   - A system of general remarks among gangfellows and NPCs: what's going on, what they're all doing here, what this place is. This absorbs the older "purpose conversations between NPCs" note.
   - The story told now in the Help menu's "Rebirth" page could come out this way instead, and that page could then go.
 - **Jokes** — `idea`. When you suggest "joke" and don't know any, the other person is asked whether they know one and may tell it, or says "No, me neither." Someone who'd have turned you down anyway ("to the ash-heap…", "not in the mood") still just does that. The old notes also call for new jokes and a dialogue rewrite.
@@ -63,7 +78,7 @@ Status: `idea` (raised, not designed) · `decide` (needs a call before work) · 
   - A zombie player who stays put smells burning after a couple of beats, then sees their feet have burned off unfelt, topples into the mud, and is reborn.
   - Prompted by getting stuck as a zombie in a world with 82 undead. Related: a zombie buried deep in the bog already sinks for good, but only by accident. Note: today the stained fingers and knowing about sparks (`knows_sparks`) reset with each new life, so "even from a past life" means carrying that knowledge over.
 - **A way to remove the carved symbol** — `idea`. Once carved, a living character keeps the symbol for the rest of that life, so dying with a shallow burial means rising as a zombie. A ritual or other mechanic could remove it while they're alive. (Resting after eating clears it, and each new life starts uncarved.)
-- **The living band together as the undead multiply** — `idea`. Past some number of undead, the living are less likely to fight, taunt and challenge each other (still possible, just rarer). Conversation doesn't get any friendlier.
+- **The living band together as the undead multiply** — `idea` (raised in play, 2026-10-17; restated 2026-10-22). With the undead about, the living are much more willing to join up even with people they dislike, and much less likely to fight each other (taunts and challenges too, though all still possible). Conversation stays as unfriendly as ever: they grudgingly join, and friendships can then grow the usual ways within the gang.
 - **A specific response when a zombie player attacks a cat** — `idea`. Today it's the generic "same awful state of hunger and decomposition" line.
 - **The brain face-off** — `decide`. The player's Eat/Shove/Kick/Punch pick is currently ignored and replaced by a random roll (ISSUES S8). Fixing it needs a decision on what each choice does, e.g. whether "Eat" while someone else holds the brains means trying to snatch them.
 - **"All is quiet on the battlefield"** — `decide`. It shows when an undead player eats and is laid to rest, although nobody died in the battle (ISSUES S9). Suppress it in that case? Replace it with something?

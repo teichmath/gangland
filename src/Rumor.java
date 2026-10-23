@@ -6,6 +6,9 @@ public class Rumor {
 	int player_subject;
 	int generation_of_player_subject;
 	int best_kills_of_player_subject;
+	//for a rumor about something witnessed: the names involved, as they were at the time ("<name>" and "<target>" in its text)
+	String subject_name = "";
+	String second_name = "";
 	int user;
 	int user_heard;
 	String tag;
@@ -82,6 +85,14 @@ public class Rumor {
 		return this.best_kills_of_player_subject;
 	}
 
+	public String getsubject_name() {
+		return this.subject_name;
+	}
+
+	public String getsecond_name() {
+		return this.second_name;
+	}
+
 	//setters
 
 	public void hears_rumor(int hearer) {
@@ -124,6 +135,11 @@ public class Rumor {
 
 	public void setplayer_subject(int ps) {
 		this.player_subject = ps;
+	}
+
+	public void setnames(String subject, String second) {
+		this.subject_name = subject;
+		this.second_name = second;
 	}
 
 	public void setbest_kills_of_player_subject(int bk) {

@@ -385,6 +385,10 @@ public class Gangland {
 	int[] meat_experiment_turn;
 	int[][] meat_experiment_square;
 	int[][] last_square;
+	//witnessed events: who was in the forest last turn (to notice someone coming out)
+	boolean[] was_in_forest;
+	//who went into the forest together with each person (his gangmates going in on the same turn)
+	List<List<Integer>> went_in_with;
 	ArrayList<Integer> forest_exit_gangs_celebrating;
 	ArrayList<Integer> chanting_gangs;
 	ArrayList<Integer> chanting_members;
@@ -3998,6 +4002,7 @@ turnloop:	while (game.play_on) {
 				
 				game.ageGroundMeat();
 				game.meatExperiments();
+				game.noticeWitnessedEvents();
 						
 				for(int j = 0; j < game.armysize; j++) {
 					if(game.army[j].gethealth() > 0) {
@@ -4068,6 +4073,9 @@ turnloop:	while (game.play_on) {
 		Arrays.fill(meat_experiment_turn, -1);
 		meat_experiment_square = new int[2][humansize];
 		last_square = new int[2][humansize];
+		was_in_forest = new boolean[humansize];
+		went_in_with = new ArrayList<List<Integer>>();
+		for(int i = 0; i < humansize; i++) went_in_with.add(new ArrayList<Integer>());
 		dice = new Dice();
 		army = new Being[allbeingsize];
 		dragon = new Dragon[1];
@@ -7759,7 +7767,7 @@ turnloop:	while (game.play_on) {
 						//a leader waiting to see what comes of his meat won't hear of the forest
 						if(gang_leader > -1 && meatExperimentUnderway(gang_leader)) {
 							if(samePlace(gang_leader, user)) {
-                                masterStringOutWithNameIfKnown(gang_leader, "Pipe down, we're not going to the forest!");
+                                masterStringOutWithNameIfKnown(gang_leader, "\"Pipe down, we're not going to the forest!\"");
                                 if(army[user].getfriend(gang_leader) < 0) {
                                     masterStringOut("The stranger who yelled goes back to staring at a lump of meat on the ground, while his companions grumble.");
                                 }
@@ -16022,6 +16030,8 @@ record_write_loop:	for(int line_no = next_line_out; line_no < next_line_out + ac
 		} while (stillFighting(0) > 0 && stillFighting(1) > 0);
 		
 		if(battletext == 1) battleTextOneDisplay("", true);
+
+		noticeOneAgainstMany();
 		
 		//announces that the battle is over, applies battlescars, end high battle
 		aftermathBattleCommonPartOne();
@@ -17600,6 +17610,7 @@ reps_loop:	for(int reps = 0; reps < number_of_columns; reps++) {
 			dragon_attacked = true;
 			if(army[war[beast_fight][0]].gethealth() <= 0) {
 				dragon_alive = false;
+				witnessRumorAt(RumorKind.DRAGON_SLAIN.tag, battle_x, battle_y, getNumberFromName(army[war[beast_fight][0]].getslayer()), -1);
 				if(army[user].gethealth() > 0 && army[user].has_job() && army[user].getx() == dragon[0].getx() && army[user].gety() == dragon[0].gety()) {
 					masterStringOut("\n");
 					if(watch_stars) masterStringOut("*** 10782");
@@ -18921,6 +18932,8 @@ armyloop:		for(int j = 0; j < armysize; j++) {
 		
 		boolean devils_errand = false;
 		if(army[attacker].getdevil_target() == deserter) devils_errand = true;
+		//someone back from death by a deal with Lars, come for a former gangfellow: everyone here will talk about it
+		if(devils_errand) witnessRumorAt(RumorKind.LARS_RETURN.tagFor(attacker, army[attacker].getgeneration()), army[deserter].getx(), army[deserter].gety(), attacker, deserter);
 		
 		//text level
 		int desertext = 0;
@@ -20622,7 +20635,7 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 	//An NPC who has heard the cave rumor and carries meat, and who is unaffiliated or a gang leader, may try it out: on arriving on a new
 	//square of the board there's a 1 in 20 chance he drops a piece of meat there (turn x) and waits, with his gang. If the square is the
 	//steep rocks, the ants come on turn x+2 and the experiment works; otherwise he gives up on turn x+3 and moves on, leaving the meat.
-	//Anyone who sees it work starts a rumor ("crack"). Runs once a turn, after the meat on the ground has aged.
+	//Anyone who sees it work starts a rumor (RumorKind.CRACK). Runs once a turn, after the meat on the ground has aged.
 
 	public void meatExperiments() {
 		for(int j = 0; j < user; j++) {
@@ -20643,7 +20656,7 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 		if(army[j].getaffiliation() != 0 && !army[j].is_he_leader()) return false;
 		if(army[j].getx() < 1 || army[j].getx() > boardside || army[j].gety() < 1 || army[j].gety() > boardside) return false;
 		//someone who has seen (or heard of) the crack in the steep rocks knows the trick, and that the cave won't open for now
-		return army[j].getamount_of_meat() > 0 && rumorIsKnownBy("cave", j) && !rumorIsKnownBy("crack", j);
+		return army[j].getamount_of_meat() > 0 && rumorIsKnownBy("cave", j) && !rumorIsKnownBy(RumorKind.CRACK.tag, j);
 	}
 
 	public void startMeatExperiment(int j) {
@@ -20717,7 +20730,7 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 				you_see_ants = true;
 				you_see_fissure = true;
 			}
-			witnessRumor("crack", j);
+			witnessRumor(RumorKind.CRACK.tag, j);
 			meat_experiment_turn[j] = -1;
 		}
 		else if(waited >= 3) {
@@ -20732,6 +20745,33 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 
 	//everyone alive on j's square (j included, and the player) hears of what just happened there.
 	public void witnessRumor(String tag, int j) {
+		witnessRumorAt(tag, army[j].getx(), army[j].gety(), -1, -1);
+	}
+
+	//everyone alive (and not undead) at x, y hears of what just happened there: a rumor about subject (and second), by name, or -1.
+	//nothing starts if no one saw it, or if every rumor slot is taken.
+	public void witnessRumorAt(String tag, int x, int y, int subject, int second) {
+		witnessRumorAt(tag, x, y, subject, second, new ArrayList<Integer>(), new ArrayList<Integer>());
+	}
+
+	public void witnessRumorAt(String tag, int x, int y, int subject, int second, List<Integer> also_saw) {
+		witnessRumorAt(tag, x, y, subject, second, also_saw, new ArrayList<Integer>());
+	}
+
+	//a rumor about someone (RumorKind.about_someone) starts only if someone else saw it: no one spreads the tale of his own deed unseen.
+	//shared_it: people who hear of it but were in it together with the subject, so they don't count as the witness it needs
+	public void witnessRumorAt(String tag, int x, int y, int subject, int second, List<Integer> also_saw, List<Integer> shared_it) {
+		List<Integer> witnesses = new ArrayList<Integer>();
+		for(int h = 0; h < humansize; h++) {
+			if(army[h].gethealth() > 0 && !army[h].is_zombie() && (army[h].ishere(x, y) || also_saw.contains(h))) witnesses.add(h);
+		}
+		if(witnesses.size() == 0) return;
+		RumorKind kind = RumorKind.of(tag);
+		if(kind != null && kind.about_someone) {
+			boolean seen = false;
+			for(int w : witnesses) if(w != subject && !shared_it.contains(w)) seen = true;
+			if(!seen) return;
+		}
 		int slot = -1;
 		for(int i = 0; i < 100; i++) {
 			if(rumors[i].gettag().compareToIgnoreCase(tag) == 0) {
@@ -20739,25 +20779,93 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 				break;
 			}
 			if(rumors[i].gettag().compareToIgnoreCase("blank") == 0) {
-				rumors[i] = new Rumor(humansize, user, tag, false);
+				if(subject > -1) rumors[i] = new Rumor(humansize, user, tag, false, subject, army[subject].getgeneration());
+				else rumors[i] = new Rumor(humansize, user, tag, false);
+				rumors[i].setnames(subject > -1 ? army[subject].getname() : "someone", second > -1 ? army[second].getname() : "someone");
 				slot = i;
 				break;
 			}
 		}
 		if(slot == -1) return;
-		List<Integer> witnesses = new ArrayList<Integer>();
-		for(int h = 0; h < humansize; h++) {
-			if(army[h].gethealth() > 0 && !army[h].is_zombie() && samePlace(h, j)) {
-				rumors[slot].hears_rumor(h);
-				witnesses.add(h);
-			}
-		}
+		for(int h : witnesses) rumors[slot].hears_rumor(h);
 		//they saw it together, so each knows the others know: none will tell another
 		for(int a : witnesses) {
 			for(int b : witnesses) {
 				if(a != b) rumors[slot].now_knows_knows(a, b);
 			}
 		}
+	}
+
+	// ********************  W I T N E S S E D   E V E N T S  *************************
+	//Rumors born from what people see. Some are started where they happen (the dragon slain in aftermathBattleBeastPartTwo, a deserter
+	//hunted by someone back from Lars in Deserter, the Blessing in Blessing). Two are noticed here, once a turn:
+	//someone back on the board who was in the forest last turn, and the first time anyone living shares a square with the undead.
+
+	public void noticeWitnessedEvents() {
+		List<Integer> came_out = new ArrayList<Integer>();
+		List<Integer> went_in = new ArrayList<Integer>();
+		for(int j = 0; j < user + 1; j++) {
+			boolean in_forest_now = army[j].getx() >= boardside + 3 && army[j].getx() <= boardside + 8 && army[j].gety() >= boardside + 3 && army[j].gety() <= boardside + 8;
+			boolean on_board_now = army[j].getx() >= 1 && army[j].getx() <= boardside && army[j].gety() >= 1 && army[j].gety() <= boardside;
+			if(was_in_forest[j] && on_board_now && army[j].gethealth() > 0 && !army[j].is_zombie()) came_out.add(j);
+			if(!was_in_forest[j] && in_forest_now) went_in.add(j);
+			was_in_forest[j] = in_forest_now;
+		}
+		//who went in with whom: gangmates going in on the same turn
+		for(int j : went_in) {
+			went_in_with.get(j).clear();
+			for(int k : went_in) {
+				if(k != j && army[j].getaffiliation() != 0 && army[j].getaffiliation() == army[k].getaffiliation()) went_in_with.get(j).add(k);
+			}
+		}
+		//coming out: the first one seen is news; after that, only going in alone, or coming out the last of one's gang.
+		//those who came out together don't count as witnesses of each other: it takes someone already at the forest's edge.
+		for(int j : came_out) {
+			int x = army[j].getx(), y = army[j].gety();
+			if(!rumorIsStarted(RumorKind.FOREST_EXIT.tag)) {
+				witnessRumorAt(RumorKind.FOREST_EXIT.tag, x, y, j, -1, new ArrayList<Integer>(), came_out);
+				continue;
+			}
+			List<Integer> companions = went_in_with.get(j);
+			boolean none_left = companions.size() > 0;
+			for(int k : companions) if(army[k].gethealth() > 0 && !army[k].is_zombie()) none_left = false;
+			if(companions.size() == 0) witnessRumorAt(RumorKind.FOREST_ALONE.tagFor(j, army[j].getgeneration()), x, y, j, -1, new ArrayList<Integer>(), came_out);
+			else if(none_left) witnessRumorAt(RumorKind.FOREST_LAST.tagFor(j, army[j].getgeneration()), x, y, j, -1, new ArrayList<Integer>(), came_out);
+		}
+		if(!rumorIsStarted(RumorKind.UNDEAD.tag)) {
+			for(int z = 0; z < humansize; z++) {
+				if(army[z].is_zombie() && army[z].gethealth() > 0 && army[z].getx() >= 1 && army[z].getx() <= boardside + 8) {
+					witnessRumorAt(RumorKind.UNDEAD.tag, army[z].getx(), army[z].gety(), -1, -1);
+					if(rumorIsStarted(RumorKind.UNDEAD.tag)) break;
+				}
+			}
+		}
+	}
+
+	//one fighter against five or more, and he's left standing with the other side beaten: everyone who saw it talks about it,
+	//those who fled included.
+	public void noticeOneAgainstMany() {
+		for(int lone_row = 0; lone_row < 2; lone_row++) {
+			int other_row = lone_row*-1 + 1;
+			if(sideCount(lone_row) != 1 || sideCount(other_row) < 5) continue;
+			int hero = -1;
+			for(int c = 0; c < number_of_columns; c++) if(war[lone_row][c] > -1) hero = war[lone_row][c];
+			if(hero < 0 || hero >= humansize || army[hero].gethealth() <= 0 || army[hero].is_zombie()) continue;
+			if(out_of_the_fight[lone_row][getWarColFromArmyIndex(hero)] || stillFighting(other_row) > 0) continue;
+			List<Integer> fled = new ArrayList<Integer>();
+			for(int c = 0; c < number_of_columns; c++) {
+				int foe = war[other_row][c];
+				if(foe > -1 && foe < humansize && army[foe].gethealth() > 0) fled.add(foe);
+			}
+			witnessRumorAt(RumorKind.BIG_FIGHT.tagFor(hero, army[hero].getgeneration()), battle_x, battle_y, hero, -1, fled);
+		}
+	}
+
+	public boolean rumorIsStarted(String tag) {
+		for(int i = 0; i < 100; i++) {
+			if(rumors[i].gettag().compareToIgnoreCase(tag) == 0) return true;
+		}
+		return false;
 	}
 
 	public int getLeaderOfGang(int gang_number) {
@@ -22900,7 +23008,7 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 	// Rumor Tools
 	
 	public void startRumor(String tag) {
-		int nextslot = 0;
+		int nextslot = -1;
 		boolean already_started = false;
 		for(int i = 0; i < 100; i++) {
 			if(rumors[i].gettag().compareToIgnoreCase(tag)==0) {
@@ -22913,7 +23021,7 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 			}
 		}
 		
-		if(!already_started) {
+		if(!already_started && nextslot > -1) {
 			if(tag.contains("kills")) {
 				int subject = getNumberFromName(tag.substring(0, tag.length() - 6));
 				if(subject >= 0) {
@@ -22932,9 +23040,16 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 	
 	public boolean playerReportsRumor(int hailer, int accosted, int encountertext) {
 		boolean told = false;
-ri_loop:for(int ri = 99; ri >= 0; ri--) {
-			boolean hailer_tells = rumors[ri].has_heard(hailer) && !rumors[ri].knows_knows(hailer, accosted) && !rumorSupersededFor(ri, hailer);
-			boolean accosted_tells = rumors[ri].has_heard(accosted) && !rumors[ri].knows_knows(accosted, hailer) && !rumorSupersededFor(ri, accosted);
+		//newest rumors first -- except a kind that spreads first (news of the undead) comes before anything else
+		List<Integer> rumor_order = new ArrayList<Integer>();
+		for(int ri = 99; ri >= 0; ri--) {
+			RumorKind kind = RumorKind.of(rumors[ri].gettag());
+			if(kind != null && kind.spreads_first) rumor_order.add(0, ri);
+			else rumor_order.add(ri);
+		}
+ri_loop:for(int ri : rumor_order) {
+			boolean hailer_tells = rumors[ri].has_heard(hailer) && !rumors[ri].knows_knows(hailer, accosted) && !rumorSupersededFor(ri, hailer) && !aboutTheListener(ri, accosted);
+			boolean accosted_tells = rumors[ri].has_heard(accosted) && !rumors[ri].knows_knows(accosted, hailer) && !rumorSupersededFor(ri, accosted) && !aboutTheListener(ri, hailer);
 			if(hailer_tells || accosted_tells) {
 				int tells = hailer_tells ? hailer : accosted;
 				int listens = hailer_tells ? accosted : hailer;
@@ -22963,10 +23078,23 @@ ri_loop:for(int ri = 99; ri >= 0; ri--) {
 		return told;
 	}
 	
-	//a rumor someone has stopped passing on, because he knows better now:
-	//once you know of the crack in the steep rocks, "meat helps you find the cave" is old news (the crack rumor tells it better).
+	//no one is told about his own deed (a rumor whose subject he is)
+	public boolean aboutTheListener(int rumor, int listener) {
+		RumorKind kind = RumorKind.of(rumors[rumor].gettag());
+		return kind != null && kind.about_someone && rumors[rumor].getplayer_subject() == listener;
+	}
+
+	public boolean isWitnessedRumor(String tag) {
+		return RumorKind.of(tag) != null;
+	}
+
+	//a rumor someone has stopped passing on, because he knows better now (e.g. once you know of the crack in the steep rocks,
+	//"meat helps you find the cave" is old news): a RumorKind he knows replaces it.
 	public boolean rumorSupersededFor(int rumor, int teller) {
-		return rumors[rumor].gettag().compareToIgnoreCase("cave") == 0 && rumorIsKnownBy("crack", teller);
+		for(RumorKind k : RumorKind.values()) {
+			if(k.replaces != null && rumors[rumor].gettag().compareToIgnoreCase(k.replaces) == 0 && rumorIsKnownBy(k.tag, teller)) return true;
+		}
+		return false;
 	}
 
 	public boolean rumorIsKnownBy(String tag, int subject) {
@@ -23068,9 +23196,16 @@ ri_loop:for(int ri = 99; ri >= 0; ri--) {
 			}
 		}
 
-		if(tag.compareToIgnoreCase("crack")==0) {
-			if(sp == user) masterStringOut("You chat with "+listener+", and you end up telling him what you know of the crack in the steep rocks, which you assume is the long rumored cave entrance.");
-			if(lis == user) masterStringOut(speaker+":  \""+getNupDialogue(tag, 0)+"\"");
+		//the kinds of rumor born from something witnessed (see RumorKind)
+		RumorKind kind = RumorKind.of(tag);
+		if(kind != null) {
+			String who = rumors[rumor].getsubject_name();
+			String whom = rumors[rumor].getsecond_name();
+			if(sp == user) masterStringOut(RumorKind.fill(kind.you_tell, who, whom, listener));
+			if(lis == user) {
+				String version = (sp == -1 && kind.gregor_tells != null) ? kind.gregor_tells : kind.told;
+				masterStringOut(speaker+":  \""+RumorKind.fill(version, who, whom, listener)+"\"");
+			}
 		}
 
 		if(tag.compareToIgnoreCase("cave")==0) {
@@ -23117,7 +23252,8 @@ ri_loop:for(int ri = 99; ri >= 0; ri--) {
 			} 
 		}
 
-		if(rumors[rumor].knows_is_false(lis)) {
+		//(Gregor, as listener, is -1: he has no record of believing a rumor false)
+		if(lis > -1 && rumors[rumor].knows_is_false(lis)) {
 			if(rumors[rumor].getplayer_subject() == -1) {
 				masterStringOut(listener+": \"Nah... I believe that's a false rumor.\"");
 				masterStringOut(speaker+": \"Huh...\"");
@@ -23133,6 +23269,7 @@ ri_loop:for(int ri = 99; ri >= 0; ri--) {
 	}
 	
 	public String getNupDialogue(String tag, int index) {
+		if(RumorKind.of(tag) != null) return RumorKind.of(tag).told;
 		String nup_out = "";
 		if(tag.compareToIgnoreCase("house")==0) {
 			if(index == 0) nup_out = "I suppose you've heard of Gregor... you should pay him a visit some time. He lives ";
@@ -23141,7 +23278,6 @@ ri_loop:for(int ri = 99; ri >= 0; ri--) {
 		if(tag.compareToIgnoreCase("gregor")==0) nup_out = "Have you heard of Gregor? I've heard that he lives somewhere around here.";
 		if(tag.compareToIgnoreCase("pig")==0) nup_out = "Did you ever use a pig's bladder before? Works kind of like a bottle. They don't last, though.";
 		if(tag.compareToIgnoreCase("forest")==0) nup_out = "That death trap of a forest- it's a cursed place, but I heard it's haunted by good spirits, too.";
-		if(tag.compareToIgnoreCase("crack")==0) nup_out = "You've probably heard about that cave, the one that could lead us out one day? Well someone found it, near the steep rocks- but the door's too heavy to open. Anyway, if you want to find the door, you just drop meat near it and wait.";
 		if(tag.compareToIgnoreCase("cave")==0) nup_out = "I heard there's a cave hidden around here. The cave has a way out of here. Although I don't really know what IS out of here... Also, meat is supposed to help you find it somehow. Yeah, meat. That's what I heard.";
 		if(tag.contains("kills")) {
 			if(index == 0) nup_out = "I heard there's a fellow named ";
@@ -23166,6 +23302,7 @@ ri_loop:for(int ri = 99; ri >= 0; ri--) {
 		String[] words_in = getNupDialogue(tag, 0).split(" ");
 		int word_choice_index = dice.throwdice(1, words_in.length) - 1;
 		word_out = words_in[word_choice_index];
+		if(word_out.startsWith("<") || word_out.startsWith("[<")) word_out = "brrm";
 		return word_out;
 	}
 	
@@ -23715,6 +23852,7 @@ find_empty:		for(int atb = 0; atb < items[4].length; atb++) {
 	}
 
 	public void Blessing(int subject) {
+		witnessRumorAt(RumorKind.BLESSING.tag, army[subject].getx(), army[subject].gety(), subject, -1);
 	
 		int blessingtext = 0;
 		if(samePlace(user, subject)) blessingtext = 1;

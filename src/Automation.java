@@ -124,6 +124,17 @@ public class Automation {
 		if(g.meat_experiment_turn != null) for(int t : g.meat_experiment_turn) if(t > -1) experimenting++;
 		sb.append(",\"meat_experiments\":").append(experimenting);
 		sb.append(",\"ground_meat\":").append(g.ground_meat == null ? 0 : g.ground_meat.size());
+		// rumor slots in use (out of 100), and the witnessed-event rumors among them
+		int rumors_used = 0, witnessed = 0;
+		if(g.rumors != null) for(Rumor r : g.rumors) if(r != null && !r.gettag().equals("blank")) { rumors_used++; if(g.isWitnessedRumor(r.gettag())) witnessed++; }
+		sb.append(",\"rumors\":").append(rumors_used).append(",\"witnessed_rumors\":").append(witnessed);
+		// witnessed rumors by kind, e.g. "forestexit":3
+		Map<String, Integer> kinds = new TreeMap<String, Integer>();
+		if(g.rumors != null) for(Rumor r : g.rumors) if(r != null && g.isWitnessedRumor(r.gettag())) kinds.merge(r.gettag().split(" ")[0], 1, Integer::sum);
+		sb.append(",\"witnessed_kinds\":{");
+		boolean first_kind = true;
+		for(Map.Entry<String, Integer> e : kinds.entrySet()) { sb.append(first_kind ? "" : ",").append("\"").append(e.getKey()).append("\":").append(e.getValue()); first_kind = false; }
+		sb.append("}");
 		sb.append("}}");
 		return sb.toString();
 	}
