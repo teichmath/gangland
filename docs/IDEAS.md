@@ -54,13 +54,13 @@ Status: `idea` (raised, not designed) · `decide` (needs a call before work) · 
     - the forest: only the first person seen coming out, and after that, someone who went in alone, or who came out the last of his gang. Every witnessed exit was tried first and was far too common: the forest edge is a busy square.
   - In 60 bot games, rumor slots used peaked at 13 of 100.
   - **Still to come:** someone seen carrying Gregor's sword. Today only the player can get the sword: Gregor's dragon-teeth job and its payment are player-only (`Gangland.java` ~19545–19590), so this needs NPCs able to take the job, pull the teeth and be paid first.
-- **NPCs bury the undead** — `decide` (2026-10-23).
-  - NPCs who fight the undead without the player present never bury them. Only the player and their gangmates bury, so the Blessing can only ever go to the player (the game's own comment, `zombieImprovementHandler()`).
-  - **The idea:** "burying the undead is the answer" becomes its own rumor, separate from the undead-are-walking rumor. An NPC who learns it starts burying undead bodies when he can. It's risky: digging alone with low health, with more undead about, can get you killed. Whoever buries the last of the undead could then receive the Blessing. `Blessing(subject)` already has text for a stranger, an acquaintance and a gangmate being blessed, but it's only ever called for the player.
-  - **Where the knowledge comes from:** not decided. Gregor already knows it ("Get those bastards in the ground", and, giving the stake, "as long as there's even one of 'em, the problem just keeps spreading"). Possible sources:
-    - Gregor;
-    - seeing a burial of the undead;
-    - seeing an undead rise from a shallow grave.
+- **NPCs bury the undead** — `partial` (built 2026-10-23; text placeholders in `Gangland.java` and `RumorKind.java`).
+  - **The bury rumor** (RumorKind.BURY) starts with Gregor once the undead have been seen. Anyone who sees an undead's grave finished learns it too.
+  - **When an NPC who knows will bury:** an undead body lies on his square, none of the undead are up and about there, and he's above half health. Alone, he digs only half the time. His gangmates and their dogs dig with him (cats don't dig), and they stay put until the graves there are done.
+  - **The Blessing** goes to whoever finishes burying the last undead, plus everyone on that square who has helped finish an undead's burial in their current life, dogs included. A cat there whose master is blessed is blessed too. It no longer blesses the finisher's whole gang. If a dog makes the last dig, the Blessing centers on its master.
+  - **Fixed:** burying the last undead *alone* (no gang) never triggered the Blessing.
+  - **Measured:** in 60 bot games, NPCs dug in 22, finishing up to 14 graves in a game. But the undead keep multiplying (peaks of 50–77), so the undead seldom get cleared by NPCs. Whether to tune that is open.
+
 - **Gangfellows speculate out loud** — `idea` (near term, 2026-10-22: "would add a lot of color").
   - A system of general remarks among gangfellows and NPCs: what's going on, what they're all doing here, what this place is. This absorbs the older "purpose conversations between NPCs" note.
   - The story told now in the Help menu's "Rebirth" page could come out this way instead, and that page could then go.

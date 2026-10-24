@@ -124,6 +124,7 @@ public class Automation {
 		if(g.meat_experiment_turn != null) for(int t : g.meat_experiment_turn) if(t > -1) experimenting++;
 		sb.append(",\"meat_experiments\":").append(experimenting);
 		sb.append(",\"ground_meat\":").append(g.ground_meat == null ? 0 : g.ground_meat.size());
+		sb.append(",\"npc_digs\":").append(g.npc_digs).append(",\"npc_graves\":").append(g.npc_graves_finished);
 		// rumor slots in use (out of 100), and the witnessed-event rumors among them
 		int rumors_used = 0, witnessed = 0;
 		if(g.rumors != null) for(Rumor r : g.rumors) if(r != null && !r.gettag().equals("blank")) { rumors_used++; if(g.isWitnessedRumor(r.gettag())) witnessed++; }

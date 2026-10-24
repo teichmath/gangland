@@ -389,6 +389,14 @@ public class Gangland {
 	boolean[] was_in_forest;
 	//who went into the forest together with each person (his gangmates going in on the same turn)
 	List<List<Integer>> went_in_with;
+	//burying the undead: who has dug at each body's grave (and who dug last), who has helped finish an undead's burial
+	//(the life he did it in, or -1), and which NPCs are staying put this turn to finish a grave
+	List<Set<Integer>> grave_diggers;
+	int[] last_grave_digger;
+	int[] buried_an_undead_in_life;
+	boolean[] burying_now;
+	//for testing: undead graves NPCs have dug at, and finished
+	int npc_digs = 0, npc_graves_finished = 0;
 	ArrayList<Integer> forest_exit_gangs_celebrating;
 	ArrayList<Integer> chanting_gangs;
 	ArrayList<Integer> chanting_members;
@@ -2711,6 +2719,9 @@ turnloop:	while (game.play_on) {
 
 								//waiting to see what comes of the meat he dropped
 								if(game.meatExperimentUnderway(j)) move_now = false;
+
+								//finishing a grave for one of the undead
+								if(game.burying_now[j]) move_now = false;
 							}
 													
 							if(move_now) {
@@ -2928,6 +2939,7 @@ turnloop:	while (game.play_on) {
 							if(move_choice == 5) stay_put = true;
 							if(our_leader != -1) {
 								if(game.meatExperimentUnderway(our_leader)) stay_put = true;
+								else if(game.gangIsBurying(game.army[our_leader].getaffiliation())) stay_put = true;
 								else if(game.chantIsOn(game.army[our_leader].getaffiliation())) stay_put = false;
 								else if(game.army[our_leader].will_stay_put()) stay_put = true;
 							}
@@ -3751,7 +3763,8 @@ turnloop:	while (game.play_on) {
 							game.masterStringOut(accidental_burials.get(ab));
 						}
 					}
-					if(go_to_zombie_improvement) game.zombieImprovementHandler();
+					//(the bog has no gravedigger: the Blessing, if this was the last, goes to the player, as it always has)
+					if(go_to_zombie_improvement) game.zombieImprovementHandler(game.user);
 					
 					//zombies return based on clocks alone. All others return when 10 or more of them are down, unless the clock has run out.
 					for(int j = 0; j < game.armysize; j++) {
@@ -4003,6 +4016,7 @@ turnloop:	while (game.play_on) {
 				game.ageGroundMeat();
 				game.meatExperiments();
 				game.noticeWitnessedEvents();
+				game.npcBurials();
 						
 				for(int j = 0; j < game.armysize; j++) {
 					if(game.army[j].gethealth() > 0) {
@@ -4076,6 +4090,12 @@ turnloop:	while (game.play_on) {
 		was_in_forest = new boolean[humansize];
 		went_in_with = new ArrayList<List<Integer>>();
 		for(int i = 0; i < humansize; i++) went_in_with.add(new ArrayList<Integer>());
+		grave_diggers = new ArrayList<Set<Integer>>();
+		for(int i = 0; i < armysize; i++) grave_diggers.add(new HashSet<Integer>());
+		last_grave_digger = new int[armysize];
+		buried_an_undead_in_life = new int[armysize];
+		Arrays.fill(buried_an_undead_in_life, -1);
+		burying_now = new boolean[humansize];
 		dice = new Dice();
 		army = new Being[allbeingsize];
 		dragon = new Dragon[1];
@@ -6573,6 +6593,7 @@ turnloop:	while (game.play_on) {
 			boolean move_to_the_next_body = false;
 			if(army[the_one_to_encounter].gethealth() > 0) masterStringOut("Wha?  2167");
 			army[the_one_to_encounter].get_buried((int)(army[user].getstrength()/3 + army[user].getspeed()));
+			recordGraveDigger(user, the_one_to_encounter);
 			masterStringOut("Digging this grave is hard work...");
 			Wait.manySec(1);
 			army[user].changeround_clock(3);
@@ -6593,6 +6614,7 @@ turnloop:	while (game.play_on) {
 						if(help_bury) {
 							//if the target is still unburied...
 							if(army[the_one_to_encounter].how_buried() > 0) {
+								recordGraveDigger(i, the_one_to_encounter);
 								if(army[i].getspecies().compareToIgnoreCase("human") == 0) {
 									army[the_one_to_encounter].get_buried((int)(army[i].getstrength()/3 + army[i].getspeed() + army[i].getweaponskill()/25));
 									if(army[the_one_to_encounter].getspecies().compareTo("human")!=0) army[the_one_to_encounter].get_buried(5);
@@ -6664,7 +6686,7 @@ turnloop:	while (game.play_on) {
 					}
 				}
 			}
-			if(any_zombies_buried && skeletons_continue) zombieImprovementHandler();
+			finishGraves(army[user].getx(), army[user].gety());
 			//if(countUndead("active") == 0 && skeletons_continue && any_zombies_left_preburial) Blessing(user);
 		
 			if(army[the_one_to_encounter].how_buried() <= 10 && army[the_one_to_encounter].how_buried() > 0) {
@@ -20832,6 +20854,8 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 			if(companions.size() == 0) witnessRumorAt(RumorKind.FOREST_ALONE.tagFor(j, army[j].getgeneration()), x, y, j, -1, new ArrayList<Integer>(), came_out);
 			else if(none_left) witnessRumorAt(RumorKind.FOREST_LAST.tagFor(j, army[j].getgeneration()), x, y, j, -1, new ArrayList<Integer>(), came_out);
 		}
+		//once the undead have been seen, Gregor knows what has to be done
+		if(rumorIsStarted(RumorKind.UNDEAD.tag) && !rumorIsStarted(RumorKind.BURY.tag)) startRumor(RumorKind.BURY.tag);
 		if(!rumorIsStarted(RumorKind.UNDEAD.tag)) {
 			for(int z = 0; z < humansize; z++) {
 				if(army[z].is_zombie() && army[z].gethealth() > 0 && army[z].getx() >= 1 && army[z].getx() <= boardside + 8) {
@@ -20865,6 +20889,120 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 		for(int i = 0; i < 100; i++) {
 			if(rumors[i].gettag().compareToIgnoreCase(tag) == 0) return true;
 		}
+		return false;
+	}
+
+	// ********************  B U R Y I N G   T H E   U N D E A D  *************************
+	//Every grave records who dug at it. When an undead's grave is finished, all who dug at it are credited (for this life), anyone
+	//who sees it learns that burying is the answer (RumorKind.BURY), and zombieImprovementHandler counts down to the Blessing.
+	//An NPC who knows to bury them does, when he can: see npcBurials().
+
+	public void recordGraveDigger(int digger, int body) {
+		grave_diggers.get(body).add(digger);
+		last_grave_digger[body] = digger;
+	}
+
+	//every grave at x, y that has just been finished
+	public void finishGraves(int x, int y) {
+		for(int b = 0; b < armysize; b++) {
+			if(grave_diggers.get(b).size() > 0 && army[b].how_buried() <= 0 && army[b].ishere(x, y)) {
+				boolean was_undead = army[b].is_zombie();
+				if(was_undead) {
+					for(int d : grave_diggers.get(b)) buried_an_undead_in_life[d] = army[d].getgeneration();
+					witnessRumorAt(RumorKind.BURY.tag, x, y, -1, -1);
+				}
+				int finisher = last_grave_digger[b];
+				grave_diggers.get(b).clear();
+				if(was_undead && skeletons_continue) zombieImprovementHandler(finisher);
+			}
+		}
+	}
+
+	//an undead body here that still needs burying, or -1
+	public int undeadBodyAt(int x, int y) {
+		for(int b = 0; b < armysize; b++) {
+			if(army[b].gethealth() <= 0 && army[b].is_zombie() && army[b].how_buried() > 0 && army[b].ishere(x, y)) return b;
+		}
+		return -1;
+	}
+
+	public boolean activeUndeadAt(int x, int y) {
+		for(int z = 0; z < armysize; z++) {
+			if(army[z].gethealth() > 0 && army[z].is_zombie() && army[z].ishere(x, y)) return true;
+		}
+		return false;
+	}
+
+	//once a turn: an NPC who knows to bury the undead digs at an undead's grave on his square, with his gangmates and their dogs,
+	//if none of the undead are up and about here and he's in fair health. Alone, he's less sure (half the time).
+	//He stays put until it's done (burying_now).
+	public void npcBurials() {
+		Arrays.fill(burying_now, false);
+		boolean[] dug_this_turn = new boolean[armysize];
+		for(int j = 0; j < user; j++) {
+			if(dug_this_turn[j] || army[j].gethealth() <= army[j].getmaxhealth() / 2 || army[j].is_zombie() || army[j].in_the_forest()) continue;
+			int x = army[j].getx(), y = army[j].gety();
+			if(x < 1 || x > boardside || y < 1 || y > boardside) continue;
+			if(!rumorIsKnownBy(RumorKind.BURY.tag, j) || activeUndeadAt(x, y)) continue;
+			int body = undeadBodyAt(x, y);
+			if(body == -1) continue;
+			//who digs: he, his gangmates here, and their dogs
+			List<Integer> diggers = new ArrayList<Integer>();
+			diggers.add(j);
+			for(int h = 0; h < user; h++) {
+				if(h != j && army[j].getaffiliation() != 0 && sameGang(h, j) && samePlace(h, j) && army[h].gethealth() > 0 && !army[h].is_zombie()) diggers.add(h);
+			}
+			if(diggers.size() == 1 && dice.throwdice(1, 2) == 1) continue;
+			for(int pet = humansize; pet < armysize; pet++) {
+				int master = army[pet].getmasters_number();
+				if(master > -1 && diggers.contains(master) && samePlace(pet, j) && army[pet].gethealth() > 0 && !army[pet].hidden()
+						&& army[pet].getspecies().compareToIgnoreCase("dog") == 0) diggers.add(pet);
+			}
+			boolean user_sees = army[user].gethealth() > 0 && samePlace(j, user);
+			if(user_sees) {
+				String who = army[user].getfriend(j) > -1 ? army[j].getname() : "A stranger";
+				int people = 0;
+				for(int d : diggers) if(d < humansize) people++;
+				masterStringOut(who+(people > 1 ? " and his gang" : "")+(diggers.size() > people ? " (with a dog helping)" : "")+(people > 1 ? " dig" : " digs")+" a grave for one of the walking corpses.");
+			}
+			for(int d : diggers) {
+				dug_this_turn[d] = true;
+				int target = undeadBodyAt(x, y);
+				if(target == -1) break;
+				int amount;
+				if(d >= humansize) amount = (int)(2*army[d].getstrength()/3 + 2*army[d].getspeed() + dice.throwdice(1,10));
+				else amount = (int)(army[d].getstrength()/3 + army[d].getspeed() + army[d].getweaponskill()/25);
+				army[target].get_buried(amount);
+				recordGraveDigger(d, target);
+				if(d >= humansize) army[d].make_memory("dig");
+			}
+			boolean finished = undeadBodyAt(x, y) != body || army[body].how_buried() <= 0;
+			npc_digs++;
+			if(finished) npc_graves_finished++;
+			//the grave is finished: the one who led the digging has a word for the dead, depending on how he knew him in life
+			//(an opinion of 20 or less is liking him, over 40 is disliking him, in between is no strong feeling either way)
+			if(user_sees && finished) {
+				int opinion = army[j].getfriend(body);
+				if(opinion == -1) {
+                    int pick = dice.throwdice(1, 3);
+                    if(pick == 1) masterStringOutWithNameIfKnown(j, "\"Phew- that's it for you, stranger- rest in pieces.\"");
+                    else if(pick == 2) masterStringOutWithNameIfKnown(j, "\"Phew- and it's smellin' better already.\"");
+                    else masterStringOutWithNameIfKnown(j, "\"Phew- another one down. Happy rotting, you.\"");
+                }
+				else if(opinion > 40) masterStringOutWithNameIfKnown(j, "\"Nice to bury you, "+army[body].getname()+". Hope you're a better fellow in the next life!\"");
+				else if(opinion > 20) masterStringOutWithNameIfKnown(j, "\"Rest easy, "+army[body].getname()+".\"");
+				else masterStringOutWithNameIfKnown(j, "\"Sorry about this, "+army[body].getname()+", my friend. Better you rest under the dirt than shamble about.\"");
+			}
+			finishGraves(x, y);
+			//still more to bury here: they stay to finish
+			if(undeadBodyAt(x, y) > -1) for(int d : diggers) if(d < humansize) burying_now[d] = true;
+		}
+	}
+
+	//a gang stays put while any of its members is burying the undead
+	public boolean gangIsBurying(int gang_number) {
+		if(gang_number == 0) return false;
+		for(int i = 0; i < user; i++) if(burying_now[i] && army[i].getaffiliation() == gang_number) return true;
 		return false;
 	}
 
@@ -23835,9 +23973,8 @@ find_empty:		for(int atb = 0; atb < items[4].length; atb++) {
 		writings[w_x][w_y][writing_spot] = new_message;					
 	}
 
-	public void zombieImprovementHandler () {
-		//Right now, this only applies to the user. Blessings can't happen unless the user is present, because only the user and his associates can bury things;
-		//and, the only other thing this method does is dialogue.
+	//after an undead's burial is finished by finisher (the player or an NPC): milestones, and when the last is buried, the Blessing
+	public void zombieImprovementHandler(int finisher) {
 		if(countUndead("active") == 30) {
 			masterStringOut("The evil has abated, but only slightly... the danger is still grave...");
 			hitEnter(22952);
@@ -23847,18 +23984,40 @@ find_empty:		for(int atb = 0; atb < items[4].length; atb++) {
 			hitEnter(22952);
 		}
 		if(countUndead("active") == 0) {
-			Blessing(user);
+			//the one who finished it, and everyone there who has helped finish an undead's burial in this life (dogs too)
+			List<Integer> blessed = new ArrayList<Integer>();
+			blessed.add(finisher);
+			for(int i = 0; i < armysize; i++) {
+				if(i != finisher && army[i].gethealth() > 0 && !army[i].is_zombie() && samePlace(i, finisher) && buried_an_undead_in_life[i] == army[i].getgeneration()) blessed.add(i);
+			}
+			//and a cat there whose master is blessed
+			for(int c = humansize; c < armysize; c++) {
+				if(!blessed.contains(c) && army[c].getspecies().compareToIgnoreCase("cat") == 0 && army[c].gethealth() > 0 && samePlace(c, finisher)
+						&& army[c].getmasters_number() > -1 && blessed.contains(army[c].getmasters_number())) blessed.add(c);
+			}
+			//if a dog or cat dug the last of it, the Blessing centers on its master (or another person who dug); the pet is blessed all the same
+			int subject = finisher;
+			if(finisher >= humansize) {
+				subject = -1;
+				int master = army[finisher].getmasters_number();
+				if(master > -1 && blessed.contains(master)) subject = master;
+				else for(int b : blessed) if(b < humansize && subject == -1) subject = b;
+				if(subject == -1) subject = user;
+			}
+			Blessing(subject, blessed);
 		}
 	}
 
-	public void Blessing(int subject) {
+	//subject finished burying the last of the undead; blessed are he and his fellow gravediggers who were there (see zombieImprovementHandler)
+	public void Blessing(int subject, List<Integer> blessed) {
 		witnessRumorAt(RumorKind.BLESSING.tag, army[subject].getx(), army[subject].gety(), subject, -1);
 	
+		//3: you finished it; 2: someone you know did, here; 1: a stranger did, here; 0: you're elsewhere
 		int blessingtext = 0;
 		if(samePlace(user, subject)) blessingtext = 1;
-		if(army[user].getfriend(subject) > -1) blessingtext = 2;
-		if(sameGang(user, subject)) blessingtext = 3;
+		if(blessingtext == 1 && army[user].getfriend(subject) > -1) blessingtext = 2;
 		if(user == subject) blessingtext = 3;
+		boolean user_blessed_too = user != subject && blessed.contains(user);
 	
 		if(blessingtext == 3) Wait.manySec(2);
 		else Wait.manySec(1);
@@ -23873,21 +24032,46 @@ find_empty:		for(int atb = 0; atb < items[4].length; atb++) {
 		if(blessingtext == 2) masterStringOut("You notice that "+army[subject].getname()+" is looking at his hands... his skin glows with a soft light... "+army[subject].getname()+" gasps softly, his eyes wide.\n"+army[subject].getname()+" \"My word... it's a blessing!\"");
 		if(blessingtext == 1) masterStringOut("You notice a stranger looking at his hands... his skin glows with a soft light... he gasps softly, his eyes wide.\n\"My word... it's a blessing!\"");
 		army[subject].zombie_slayer_power_up();
-		if(army[subject].getaffiliation() != 0) {
-			if(blessingtext == 3) {
-				if(numberInGang(user) > 2) masterStringOut("The same thing is happening to your friends...");
-				else masterStringOut("The same thing is happening to your companion...");				
-				Wait.manySec(3);
+		if(user_blessed_too) masterStringOut("\nYou look at your hands... your skin glows with a soft light, a sign of someone's (or something's) approval.");
+		//the others: people (the same thing happens to them), dogs that dug, and blessed masters' cats.
+		//the people are told of by who they are to you: your gangmates, his gangmates (if he isn't you), and anyone else who dug.
+		int yours = 0, his = 0, others = 0;
+		for(int z : blessed) {
+			if(z == subject || z == user || z >= humansize) continue;
+			if(sameGang(z, user)) yours++;
+			else if(subject != user && sameGang(z, subject)) his++;
+			else others++;
+		}
+		if(blessingtext > 0) {
+			if(yours > 1) masterStringOut("The same thing is happening to your friends...");
+			else if(yours == 1) masterStringOut("The same thing is happening to your companion...");
+			if(his > 1) masterStringOut("The same thing is happening to his friends...");
+			else if(his == 1) masterStringOut("The same thing is happening to his companion...");
+			if(others > 1) masterStringOut("And it's happening to others, nearby...");
+			else if(others == 1) masterStringOut("And it's happening to others, nearby...");
+			if(yours + his + others > 0) {
+				if(blessingtext == 3) Wait.manySec(3);
+				else Wait.manySec(1);
 			}
-			if(blessingtext == 2 || blessingtext == 1) {
-				if(numberInGang(subject) > 2) masterStringOut("The same thing is happening to his friends...");
-				else masterStringOut("The same thing is happening to his companion...");
-				Wait.manySec(1);
+		}
+		for(int z : blessed) {
+			if(z == subject) continue;
+			army[z].zombie_slayer_power_up();
+			if(z >= humansize) {
+				if(blessingtext > 0 && samePlace(z, user)) {
+					String petname = army[z].has_name() ? army[z].getname() : "the "+army[z].getspecies();
+					if(army[z].getspecies().compareToIgnoreCase("cat") == 0) {
+                        masterStringOut(capitalFirst(petname)+", whose master was just blessed, glows with the blessing too!");
+                        masterStringOutWithNameIfKnown(z, "\"Meeeeee-yow-ee-wow!\"");
+                    }
+					else {
+                        masterStringOut(capitalFirst(petname)+", who helped dig, glows with the blessing too!");
+                        masterStringOutWithNameIfKnown(z, "\"Rrrowf! Row-ree!\"");
+                    }
+				}
+				continue;
 			}
-			if(blessingtext > 0) {
-				for(int z = 0; z < user; z++) {
-					if(army[z].getaffiliation() == army[subject].getaffiliation() && army[z].gethealth() > 0) {
-						army[z].zombie_slayer_power_up();
+			if(blessingtext > 0 && z != user) {
 						String wowmessage = "";
 						if(army[user].getfriend(z) > -1) wowmessage += army[z].getname()+":  ";
 						int wowroll = dice.throwdice(1, 8);
@@ -23899,11 +24083,9 @@ find_empty:		for(int atb = 0; atb < items[4].length; atb++) {
 						if(wowroll == 8) wowmessage += "\"My word!\"";
 						masterStringOut(wowmessage);
 						Wait.manySec(1);
-					}
-				}
 			}
-			army[getLeader(subject)].free_to_move_again();
 		}
+		if(army[subject].getaffiliation() != 0 && getLeader(subject) > -1) army[getLeader(subject)].free_to_move_again();
 		if(blessingtext == 3) Wait.manySec(2);
 		skeletons_continue = false;
 

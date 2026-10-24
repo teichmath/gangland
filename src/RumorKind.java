@@ -34,13 +34,13 @@ public enum RumorKind {
 		null),
 
 	FOREST_ALONE("forestalone", true, true, false, null,
-		"[TEXT NEEDED: you tell <listener> that <name> went into the forest alone and came out alive]",
-		"[TEXT NEEDED: the rumor that <name> went into the forest alone and came out alive]",
+			"You chat with <listener>, and you end up telling him that <name> was seen going alone into the forest, and amazingly, coming out alone.",
+			"Did you hear- that <name> went all by himself into the deadly forest- and was then seen to come back out alive! He must have fought those haunted trees, the rattish men- who knows what else!",
 		null),
 
 	FOREST_LAST("forestlast", true, true, false, null,
-		"[TEXT NEEDED: you tell <listener> that <name>'s gang went into the forest and only he came out]",
-		"[TEXT NEEDED: the rumor that <name>'s gang went into the forest and only he came out]",
+			"You chat with <listener>, and you end up telling him that <name>'s gang went into the forest - but that only <name> was seen to come out.",
+			"Did you hear- that <name> and his gang went into the deadly forest- and later, <name> was seen to come wearily out of the forest, all alone. I can't help imagining the various horrible fates of his comrades.",
 		null),
 
 	BLESSING("blessing", true, false, false, null,
@@ -54,10 +54,17 @@ public enum RumorKind {
 		"Oh it's terrible- the dead are walking among us! Mind you don't become one o them yourself! Oh, how can we make it through this?",
 		null),
 
+	//burying the undead is the answer: Gregor knows it once the undead appear, and anyone who sees one buried learns it.
+	//An NPC who knows it buries undead bodies when he can.
+	BURY("bury", false, false, false, null,
+		"You tell <listener>, urgently, that the walking corpses must be buried.",
+		"Did you hear- we've all got to bury these walking corpses. Otherwise we'll never get out of this. If we can just get 'em all...",
+			"End the curse! Get the dead walkers in the ground, every last one!"),
+
 	//one fighter beat five or more, single-handed
 	BIG_FIGHT("bigfight", true, true, false, null,
-		"[TEXT NEEDED: you tell <listener> how <name> beat five or more single-handed]",
-		"[TEXT NEEDED: the rumor that <name> beat five or more single-handed]",
+		"You chat with <listener>, and you end up telling him how <name> beat five (or more?) opponents single-handed.",
+		"Did you hear about that <name>- he beat five others, single-handed! Or was it 10 others? Or 15?",
 		null);
 
 	final String tag;

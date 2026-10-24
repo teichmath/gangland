@@ -184,6 +184,11 @@ A zombie who eats and rests gets health 0 (`end_zombie()`), so it counts as dead
 **Status:** fixed  
 `ishere(markers[0][5], markers[0][5])` should have been `ishere(markers[0][5], markers[1][5])`, so the message almost never showed for a player standing in the bog. Fixed by Alex.
 
+### S11 — Multi-dice rolls lose a point off the top
+**File:** `Dice.java` `throwdice()`  
+**Status:** wontfix (Alex, 2026-10-24: leave the game's numbers as they are)  
+The guard meant to keep each single roll within the die's faces (`if(result > faces) result--`) is applied to the running total. With more than one die, the total loses 1 each time it passes the number of faces as the dice are added up: `throwdice(2, 4)` gives 2–7 instead of 2–8. Single-die rolls are unaffected. Fixing it would subtly change every multi-dice roll in the game (character stats at birth among them).
+
 ---
 
 ## Archived Features
