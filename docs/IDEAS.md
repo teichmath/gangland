@@ -61,7 +61,11 @@ Status: `idea` (raised, not designed) · `decide` (needs a call before work) · 
   - **Fixed:** burying the last undead *alone* (no gang) never triggered the Blessing.
   - **Measured:** in 60 bot games, NPCs dug in 22, finishing up to 14 graves in a game. But the undead keep multiplying (peaks of 50–77), so the undead seldom get cleared by NPCs. Whether to tune that is open.
 
-- **Gangfellows speculate out loud** — `idea` (near term, 2026-10-22: "would add a lot of color").
+- **Gangfellows speculate out loud** — `partial` (built 2026-10-24; the lines go in `src/Musings.java`). While a gang waits around together, gangfellows think out loud: how they got here, what it all means. It's not reactive, at least to begin with.
+  - Each musing has a reply of its own, or one drawn from a shared pool. None is heard again until all have been.
+  - It's about 1 in 10 of gangmates' friendly exchanges (`Gangland.muse()`), and only on the open board, never in the forest.
+  - When a gangmate muses to the player, the player answers automatically, as with the chitchat.
+  - Still to consider: the Help menu's Rebirth page could be absorbed into these.
   - A system of general remarks among gangfellows and NPCs: what's going on, what they're all doing here, what this place is. This absorbs the older "purpose conversations between NPCs" note.
   - The story told now in the Help menu's "Rebirth" page could come out this way instead, and that page could then go.
 - **Jokes** — `idea`. When you suggest "joke" and don't know any, the other person is asked whether they know one and may tell it, or says "No, me neither." Someone who'd have turned you down anyway ("to the ash-heap…", "not in the mood") still just does that. The old notes also call for new jokes and a dialogue rewrite.

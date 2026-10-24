@@ -397,6 +397,8 @@ public class Gangland {
 	boolean[] burying_now;
 	//for testing: undead graves NPCs have dug at, and finished
 	int npc_digs = 0, npc_graves_finished = 0;
+	//which musings (Musings.java) the player has heard; none is heard again until all have been
+	boolean[] musing_heard;
 	ArrayList<Integer> forest_exit_gangs_celebrating;
 	ArrayList<Integer> chanting_gangs;
 	ArrayList<Integer> chanting_members;
@@ -4096,6 +4098,7 @@ turnloop:	while (game.play_on) {
 		buried_an_undead_in_life = new int[armysize];
 		Arrays.fill(buried_an_undead_in_life, -1);
 		burying_now = new boolean[humansize];
+		musing_heard = new boolean[Musings.MUSINGS.length];
 		dice = new Dice();
 		army = new Being[allbeingsize];
 		dragon = new Dragon[1];
@@ -7566,6 +7569,8 @@ turnloop:	while (game.play_on) {
 											army[hailer].changemorale(2);
 											army[accosted].changemorale(2);
 										}
+										//waiting around together, they think out loud
+										if(friendly_exchange >= 13 && friendly_exchange <= 15 && !army[hailer].in_the_forest() && !army[accosted].in_the_forest()) muse(hailer, accosted, encountertext);
 										if(friendly_exchange > 6 && friendly_exchange < 13) {
 											if(encountertext > 1){
 												int chitchat_to_make = dice.throwdice(1, 8) - 1;
@@ -21038,6 +21043,26 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 		return oldest;
 	}
 
+	//a gangfellow thinks out loud, and another answers (see Musings.java). Only if the player is close enough to hear;
+	//no musing is heard twice until all of them have been.
+	public void muse(int speaker, int listener, int encountertext) {
+		if(encountertext <= 1 || Musings.MUSINGS.length == 0) return;
+		List<Integer> unheard = new ArrayList<Integer>();
+		for(int m = 0; m < Musings.MUSINGS.length; m++) if(!musing_heard[m]) unheard.add(m);
+		if(unheard.size() == 0) {
+			Arrays.fill(musing_heard, false);
+			for(int m = 0; m < Musings.MUSINGS.length; m++) unheard.add(m);
+		}
+		int m = unheard.get(dice.throwdice(1, unheard.size()) - 1);
+		musing_heard[m] = true;
+		masterStringOutWithNameIfKnown(speaker, Musings.MUSINGS[m][0]);
+		Wait.manySec(2);
+		String reply = Musings.MUSINGS[m][1];
+		if(reply == null) reply = Musings.REPLIES[dice.throwdice(1, Musings.REPLIES.length) - 1];
+		masterStringOutWithNameIfKnown(listener, reply);
+		Wait.manySec(1);
+	}
+
 	public String getAlphabet(int alpha_index) {
 		String alpha_out = "";
 		if(alpha_index < 26) alpha_out = alphabet[alpha_index];
@@ -24714,7 +24739,6 @@ find_empty:		for(int atb = 0; atb < items[4].length; atb++) {
 
 			if(help_choice.compareToIgnoreCase("3") == 0) {
 				masterStringOut("\n\n~ Rebirth ~");		
-				masterStringOut("\nThe Gangland is a kind of prison. None of its citizens are sure how they got there. Some wonder if it's a collective dream; others roam the wastes asking no questions. Everyone, however, is at least vaguely aware that they are being reborn, again and again. Each time you die, you come back- and it's still you, but in a new person.");
 				masterStringOut("\nThe people here call themselves the same name through all of their lives, but they add a number: when John dies and comes back, his name will be John 2, then John 3 the next time around, and so on. The \"originals\" of Gangland are those who carry no number.\n");
 			}
 			
