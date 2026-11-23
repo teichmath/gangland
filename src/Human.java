@@ -227,7 +227,8 @@ public class Human extends Player {
 	
 	public int getnumber_of_attacks() {
 		int noa = (int)Math.floor(this.weaponskill/100) + 1;
-		return noa;
+		//no more than 4 attacks a round, however high the skill (skill rises with every hit, so without a cap it can run away)
+		return Math.min(noa, 4);
 	}	
 	
 	public int getincantation(int word) {

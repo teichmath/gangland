@@ -82,7 +82,7 @@ Status: `idea` (raised, not designed) · `decide` (needs a call before work) · 
   - A zombie player who stays put smells burning after a couple of beats, then sees their feet have burned off unfelt, topples into the mud, and is reborn.
   - Prompted by getting stuck as a zombie in a world with 82 undead. Related: a zombie buried deep in the bog already sinks for good, but only by accident. Note: today the stained fingers and knowing about sparks (`knows_sparks`) reset with each new life, so "even from a past life" means carrying that knowledge over.
 - **A way to remove the carved symbol** — `idea`. Once carved, a living character keeps the symbol for the rest of that life, so dying with a shallow burial means rising as a zombie. A ritual or other mechanic could remove it while they're alive. (Resting after eating clears it, and each new life starts uncarved.)
-- **The living band together as the undead multiply** — `idea` (raised in play, 2026-10-17; restated 2026-10-22). With the undead about, the living are much more willing to join up even with people they dislike, and much less likely to fight each other (taunts and challenges too, though all still possible). Conversation stays as unfriendly as ever: they grudgingly join, and friendships can then grow the usual ways within the gang.
+- **The living band together as the undead multiply** — `partial` (raised in play, 2026-10-17; restated 2026-10-22). With the undead about, the living are much more willing to join up even with people they dislike, and much less likely to fight each other (taunts and challenges too, though all still possible). Conversation stays as unfriendly as ever: they grudgingly join, and friendships can then grow the usual ways within the gang.
 - **A specific response when a zombie player attacks a cat** — `idea`. Today it's the generic "same awful state of hunger and decomposition" line.
 - **The brain face-off** — `decide`. The player's Eat/Shove/Kick/Punch pick is currently ignored and replaced by a random roll (ISSUES S8). Fixing it needs a decision on what each choice does, e.g. whether "Eat" while someone else holds the brains means trying to snatch them.
 - **"All is quiet on the battlefield"** — `decide`. It shows when an undead player eats and is laid to rest, although nobody died in the battle (ISSUES S9). Suppress it in that case? Replace it with something?
@@ -96,6 +96,10 @@ Status: `idea` (raised, not designed) · `decide` (needs a call before work) · 
 - **Forgiven NPCs like you more** — `idea`. A way for the player to forgive a hostile NPC and gain friendship for it. (Today's forgiveness only takes a deserter's grudge back down.)
 - **NPC gangs less likely to enter the forest** — `idea`. From the old notes.
 - **Deserter state** — check. The old notes flag "deserter problems" when NPCs leave gangs. The bots now reach the deserter scenes often and haven't turned anything up, but nobody has looked closely.
+
+## Fighting
+
+- **Skill rises only when the fight is a challenge** — `idea` (2026-10-24). Today every hit adds weapon skill, however easy the fight. A fighter should only improve when actually challenged, so you can't keep climbing by doing something that's obviously easy for you. Found in long test games: a stranger kept hitting an undead player who couldn't die, and his skill ran away until he had thousands of attacks a round. For now, attacks per round are capped at 4 (`Human.getnumber_of_attacks`).
 
 ## The world
 

@@ -399,6 +399,24 @@ public class Gangland {
 	int npc_digs = 0, npc_graves_finished = 0;
 	//which musings (Musings.java) the player has heard; none is heard again until all have been
 	boolean[] musing_heard;
+	//room for the lines of one battle's action (a battle with most of the board undead can run past 200)
+	static final int ACTION_LINES = 2000;
+	boolean[] extra_laid_to_rest;
+	//who struck which undead, and when: target -> (striker -> turn of his latest blow). For the bog: a blow that put an undead down in the mud counts like helping bury it.
+	List<Map<Integer, Integer>> blows_on;
+	int striking_now = -1;
+	//the NPC stake plan: only one stake, so only one gang at a time. Phases: 0 holding it (plants when ready), 1 stepping aside, 2 waiting, 3 going back for it, 4 moving on
+	int stake_gang = 0, stake_phase = 0, stake_phase_turn = 0, stake_x = -1, stake_y = -1, stake_away_moves = 0;
+	static final int STAKE_WAIT_TURNS = 12;
+	static final int STAKE_SURVIVORS = 20;
+	int undead_graves = 0; //every undead's grave finished, by anyone
+	boolean undead_have_walked = false;
+	//the stake's pull on an undead player
+	boolean stake_close_told = false, stake_arrived_told = false;
+	int stake_told_x = -1, stake_told_y = -1, user_stake_step_turn = -1;
+	int stake_gifts = 0, stake_plants = 0, stake_pulls = 0, blessings = 0, bog_credits = 0;
+	boolean grudging_teamup = false;
+	int fights_called_off = 0, challenges_held_off = 0, grudging_teamups = 0, encounter_fights = 0, civil_wars = 0, leader_challenges = 0;
 	ArrayList<Integer> forest_exit_gangs_celebrating;
 	ArrayList<Integer> chanting_gangs;
 	ArrayList<Integer> chanting_members;
@@ -830,7 +848,7 @@ turnloop:	while (game.play_on) {
 
 				if(game.skeletons_continue) {
 					//bring in another zombie from the locker.
-					if(game.dice.throwdice(1,8) == 1) {
+					if(game.dice.throwdice(1,12) == 1) {
 		zom_loop:		for(int zom = game.user + 1; zom < game.humansize; zom++) {
 							if(game.army[zom].getx() == -10) {
 								game.army[zom].zero_health();
@@ -2730,6 +2748,7 @@ turnloop:	while (game.play_on) {
 								boolean brave_enough_for_forest = false;
 								int x_flip = 0;
 								int y_flip = 0;
+								boolean started_in_forest = game.checkAndCorrectInTheForest(j);
 								if(!game.army[j].in_the_forest()) {
 	 								//will the player go to the longhouse?
 									if(game.turnclock - game.army[j].getlast_longhouse_visit() >= 40 && game.rumorIsKnownBy("house", j) && !game.army[j].is_zombie()) {
@@ -2813,10 +2832,12 @@ turnloop:	while (game.play_on) {
 									
 									if(game.watch_movement) game.masterStringOut(game.army[j].getname()+" moves ("+movement[0][j]+", "+movement[1][j]+") to ("+movement[2][j]+", "+movement[3][j]+")");
 								}//end not in the forest
-								if(game.checkAndCorrectInTheForest(j)) {
-	 								int[] random_dir = game.forestNonuserMakesForTheExit(j);
+								if(started_in_forest && game.checkAndCorrectInTheForest(j)) {
+	 								int[] random_dir = game.army[j].is_zombie() && game.items[1][0].is_stake_planted() ? game.forestStepTowardExit(j) : game.forestNonuserMakesForTheExit(j);
 									x_flip = random_dir[0];
 									y_flip = random_dir[1];
+									//(this step used to be worked out and then dropped, so a loner in the forest never moved)
+									if(x_flip != 0 || y_flip != 0) game.army[j].changexy(x_flip, y_flip);
 								}
 							}
 							else if(game.watch_movement) game.masterStringOut(game.army[j].getname()+" stays at ("+movement[0][j]+", "+movement[1][j]+")");	
@@ -2945,6 +2966,10 @@ turnloop:	while (game.play_on) {
 								else if(game.chantIsOn(game.army[our_leader].getaffiliation())) stay_put = false;
 								else if(game.army[our_leader].will_stay_put()) stay_put = true;
 							}
+							//the gang with the stake: stepping aside, waiting, going back for it, moving on
+							int[] stake_step = null;
+							if(our_leader != -1 && !in_forest && !game.meatExperimentUnderway(our_leader) && !game.gangIsBurying(j)) stake_step = game.stakePlanStep(j, our_leader);
+							if(stake_step != null) stay_put = (stake_step[0] == 0 && stake_step[1] == 0);
 							if(in_forest) stay_put = false;		
 							
 							//now we handle special cases of moving.
@@ -2971,7 +2996,12 @@ turnloop:	while (game.play_on) {
 									}
 									else already_out = true;
 								}
-								if(our_leader != -1) {
+								if(stake_step != null && !stay_put) {
+									x_flip = stake_step[0];
+									y_flip = stake_step[1];
+									special_move = true;
+								}
+								if(!special_move && our_leader != -1) {
 									if(!in_forest) {
 										//moving to the house...
 										if(game.turnclock - game.army[our_leader].getlast_longhouse_visit() >= 40 && game.rumorIsKnownBy("house", our_leader) && !game.chantIsOn(game.army[our_leader].getaffiliation())) {
@@ -3722,6 +3752,7 @@ turnloop:	while (game.play_on) {
 					ArrayList<String> accidental_burials = new ArrayList<String>();
 					boolean have_a_no_name_accidental_burial = false;
 					boolean go_to_zombie_improvement = false;
+					int bog_finisher = -1;
 					for(int j = 0; j < game.armysize; j++) {
 						if(game.army[j].gethealth() <= 0) {
 							game.army[j].changeresurrection_clock(-1);
@@ -3748,7 +3779,12 @@ turnloop:	while (game.play_on) {
 									else accidental_burials.add("Your disgusting remains are slurped down into the greedy mud. An accidental burial!");
 									game.army[game.user].setxyquick(game.limbo_coord, game.limbo_coord);
 								}
-								if(game.army[j].is_zombie() && game.skeletons_continue) go_to_zombie_improvement = true;
+								if(game.army[j].is_zombie() && game.skeletons_continue) {
+									go_to_zombie_improvement = true;
+									//whoever put this undead down in the mud (a blow this turn or last) counts as having helped bury it
+									int striker = game.creditBogStrikers(j);
+									if(striker > -1) bog_finisher = striker;
+								}
 							}
 						}
 					}
@@ -3765,11 +3801,13 @@ turnloop:	while (game.play_on) {
 							game.masterStringOut(accidental_burials.get(ab));
 						}
 					}
-					//(the bog has no gravedigger: the Blessing, if this was the last, goes to the player, as it always has)
-					if(go_to_zombie_improvement) game.zombieImprovementHandler(game.user);
+					//the bog has no gravedigger: if this was the last, the Blessing centers on one who struck it down, if he's there to see it
+					if(go_to_zombie_improvement) game.zombieImprovementHandler(bog_finisher);
 					
 					//zombies return based on clocks alone. All others return when 10 or more of them are down, unless the clock has run out.
 					for(int j = 0; j < game.armysize; j++) {
+						//an extra zombie, once buried, is laid to rest for good: it goes in the graveyard once, not again every turn
+						if(j > game.user && j < game.humansize && game.extra_laid_to_rest[j]) continue;
 						if(game.army[j].gethealth() <= 0) {
 							if((game.army[j].resurrection_clock() <= 0) || (!game.army[j].is_zombie() && number_dead >= 10)) {							
 								//to be reborn, you must be either buried, or neither claimed nor carved.
@@ -3808,8 +3846,7 @@ turnloop:	while (game.play_on) {
 											game.army[j].lose_all_meat();
 																				
 											//throw 'em in.
-											game.graveyard[game.next_grave] = game.army[j];
-											game.next_grave++;
+											game.addToGraveyard(game.army[j]);
 											
 											//the next generation arrives.
 											int generation = game.army[j].getgeneration() + 1;
@@ -3847,6 +3884,7 @@ turnloop:	while (game.play_on) {
 											else if(game.army[j].getspecies().compareToIgnoreCase("dog") == 0) game.army[j] = new Dog(game.dice, generation, game.armysize, game.humansize, game.boardside, j);
 											else if(game.army[j].getspecies().compareToIgnoreCase("cat") == 0) game.army[j] = new Cat(game.dice, generation, game.armysize, game.humansize, game.boardside, j);
 											else if(j < game.humansize) {
+												game.extra_laid_to_rest[j] = true;
 												if(game.army[j].how_buried() < 0) game.army[j].setxyquick(-11, -11);
 											}
 											//else game.masterStringOut("*** Huh? 2486 we have a dead body, army position "+j+", not a dog or a cat (species is "+game.army[j].getspecies()+").");
@@ -4019,6 +4057,9 @@ turnloop:	while (game.play_on) {
 				game.meatExperiments();
 				game.noticeWitnessedEvents();
 				game.npcBurials();
+				game.npcStakePlans();
+				game.checkPlagueOver();
+				game.stakePullsUndeadPlayer();
 						
 				for(int j = 0; j < game.armysize; j++) {
 					if(game.army[j].gethealth() > 0) {
@@ -4103,6 +4144,9 @@ turnloop:	while (game.play_on) {
 		army = new Being[allbeingsize];
 		dragon = new Dragon[1];
 		graveyard = new Being[user*1000];
+		extra_laid_to_rest = new boolean[humansize];
+		blows_on = new ArrayList<Map<Integer, Integer>>();
+		for(int i = 0; i < allbeingsize; i++) blows_on.add(new HashMap<Integer, Integer>());
 		statKnowledge = new String[humansize][7];
 		statUncertainty = new int[humansize][7];
 		side_count = new int[2];
@@ -4193,11 +4237,11 @@ turnloop:	while (game.play_on) {
 		incantations = new String[20];
 		jokes = new String[4][number_of_jokes];
 		rumors = new Rumor[100];
-		action_strings = new String[200];
-		action_suspenders = new boolean[200];
-		action_hits = new int[200][2];
-		action_kills = new int[200][2];
-		action_lowhealth = new int[200][2];
+		action_strings = new String[ACTION_LINES];
+		action_suspenders = new boolean[ACTION_LINES];
+		action_hits = new int[ACTION_LINES][2];
+		action_kills = new int[ACTION_LINES][2];
+		action_lowhealth = new int[ACTION_LINES][2];
 		action_runs = new int[allbeingsize];
 		extra_kills = new boolean[100][2][20];
 		extra_lowhealths = new boolean[100][2][20];
@@ -5699,18 +5743,21 @@ turnloop:	while (game.play_on) {
 						masterStringOut("[  Sense      Remove                         Exit        ]");
 						stake_choice = stringInput();
 					}while (stake_choice.compareToIgnoreCase("sense") != 0 && stake_choice.compareToIgnoreCase("remove") != 0 &&stake_choice.compareToIgnoreCase("exit") != 0);
-					if(stake_choice.compareToIgnoreCase("remove") == 0) {
+					//one of the undead can neither pull it up nor sense with it
+					if(army[user].is_zombie() && stake_choice.compareToIgnoreCase("remove") == 0) masterStringOut("\nYou can't grasp the stake at all- it's well protected against you, and almost seems to push your hand away.");
+					else if(army[user].is_zombie() && stake_choice.compareToIgnoreCase("sense") == 0) masterStringOut("\nYou try to gain sensory information from this piece of wood. Nothing.");
+					else if(stake_choice.compareToIgnoreCase("remove") == 0) {
 						if(army[user].getaffiliation() != 0 && !army[user].is_he_leader() && army[getLeader(user)].will_stay_put()) {
 							masterStringOut(army[getLeader(user)].getname()+": \"Hey, don't touch that!\"");
 						}
 						else {
 							masterStringOut("\nScritch!");
 							Wait.manySec(1);
-							masterStringOut("You pull up the stake and brush it off.");
+							masterStringOut("\nYou pull up the stake and brush it off.");
 							items[1][0].pull_stake(user);
 						}
 					}
-					if(stake_choice.compareToIgnoreCase("sense") == 0) {
+					else if(stake_choice.compareToIgnoreCase("sense") == 0) {
 						//concern:  this condition may need to be changed later.
 						if(!army[user].is_blessed()) {
 							System.out.println();
@@ -6429,11 +6476,28 @@ turnloop:	while (game.play_on) {
 			if (army[user].getx() == forest_entry_x && army[user].gety() == forest_entry_y && dir_to_travel.compareToIgnoreCase(forest_direction) == 0) enter_forest = true;
 			if (test_player_x - boardside - 3 == army[user].getforest_exit_perceived_x() && test_player_y - boardside - 3 == army[user].getforest_exit_perceived_y() && army[user].in_the_forest()) exit_forest = true;
 
+			//one of the undead, with the stake planted: he can only go the way it pulls him
+			boolean pulled_back = false;
+			if(stakePullsUser()) {
+				if(stakePullAllows(test_player_x - army[user].getx(), test_player_y - army[user].gety())) user_stake_step_turn = turnclock;
+				else {
+					pulled_back = true;
+					moves_successfully = false;
+				}
+			}
+
 			if (!army[user].in_the_forest() && (test_player_x < 1 || test_player_x > boardside || test_player_y < 1 || test_player_y > boardside) && !enter_forest) moves_successfully = false;
 			
 			if(army[user].in_the_forest() && !army[user].getforest_perceived(test_player_x - boardside - 3, test_player_y - boardside - 3)) moves_successfully = false;
 			
-			if (!moves_successfully) {
+			if (pulled_back) {
+				int[] pulled_dir = stakePullStep(user);
+                masterStringOut("\n***");
+				masterStringOut("You start moving in the "+dir_to_travel+" direction, but a weakness starts crumpling you- the only way to straighten out is to turn to the "+getDirection(0, 0, pulled_dir[0], pulled_dir[1])+".");
+				dir_to_travel = "";
+				army[user].changeround_clock(1);
+			}
+			else if (!moves_successfully) {
 				masterStringOut("\n");
 				if(watch_stars) masterStringOut("*** 3998");
 				else masterStringOut("***");
@@ -7426,7 +7490,10 @@ turnloop:	while (game.play_on) {
 				if(army[accosted].getchallenges_left_from_player(hailer) > 0) {
 					encounter_continues = false;
 					if(sameGang(hailer, accosted) && !army[hailer].is_zombie() && army[hailer].gethealth() > 0 && !army[accosted].is_zombie() && army[accosted].gethealth() > 0) {
-						if(items[2][0].getowner() != accosted) leaderChallenge(accosted, hailer);
+						if(items[2][0].getowner() != accosted) {
+							if(hailer != user && undeadThreat(hailer) > 0 && dice.throwdice(1,100) <= undeadThreat(hailer)*3) holdOffChallenge(accosted, hailer, encountertext);
+							else leaderChallenge(accosted, hailer);
+						}
 						else if(accosted == user) masterStringOut(army[hailer].getname()+" looks at you with simmering envy. You imagine that, if not for the deadly sword you carry, he would surely challenge your leadership of the gang.");
 					}
 				}
@@ -7620,8 +7687,13 @@ turnloop:	while (game.play_on) {
 						
 				}//end AA
 				
-				//friction if: B* or C*		
-				if (en_code.startsWith("B") || en_code.startsWith("C")) greet_choice = "friction";
+				//with the undead about, two who don't get along may grudgingly team up instead.
+				if(!same_gang && !en_code.contains("AA") && !army[accosted].in_the_forest() && threatenedOpinion(hailer, accosted) <= 20 && grudginglyWilling(accosted, hailer)) {
+					greet_choice = "join";
+					grudging_teamup = true;
+				}
+				//friction if: B* or C*
+				else if (en_code.startsWith("B") || en_code.startsWith("C")) greet_choice = "friction";
 
 			}//end hailer is the user (and "step 2")	
 
@@ -7633,9 +7705,16 @@ turnloop:	while (game.play_on) {
 				//if unaffiliated...
 				if(!same_gang) {
 					//if AAA, they form a new gang.
-					if(en_code.compareToIgnoreCase("AAA") == 0 || user == accosted) teamUp(hailer, accosted, old_mate, encountertext);
+					if(en_code.compareToIgnoreCase("AAA") == 0 || user == accosted || grudging_teamup) teamUp(hailer, accosted, old_mate, encountertext);
 					
-					if(hailer == user) {
+					//with the undead about, someone who doesn't care for you may grudgingly say yes.
+					if(hailer == user && army[accosted].getfriend(hailer) > 20 && grudginglyWilling(accosted, hailer)) {
+						masterStringOut("\n"+army[accosted].getname()+": \"Grr! Well I suppose we got no choice in it, not with these corpses shambling about! We'll team up, but we ain't comrades, see?\"");
+						Wait.manySec(1);
+						grudging_teamup = true;
+						teamUp(hailer, accosted, old_mate, encountertext);
+					}
+					else if(hailer == user) {
 						//if AA, a polite refusal.
 						if(en_code.compareToIgnoreCase("AA") == 0) {
 							masterStringOut("\n"+army[accosted].getname()+": \"Nah! Maybe some other time.\"");
@@ -7676,6 +7755,7 @@ turnloop:	while (game.play_on) {
 						hitEnter(5488);
 					}
 				}//end same gang
+			grudging_teamup = false;
 			}//end join follow through
 
 			if(greet_choice.compareToIgnoreCase("teach")==0) {
@@ -8243,7 +8323,7 @@ turnloop:	while (game.play_on) {
 			 						}																	
 								}
 								aggressor = hailer;
-								go_fight = true;
+								if(!fightCalledOff(hailer, accosted, encountertext)) go_fight = true;
 							}
 							//diff gangs, user involved, starts with C, roll doesn't pass...
 							else {
@@ -8288,7 +8368,7 @@ turnloop:	while (game.play_on) {
 									if(encountertext == 2) masterStringOut("They draw lines in the sand!");
 									if(encountertext == 1) masterStringOut("A fight is brewing!");
 									if(encountertext == 1) Wait.manySec(1);
-									go_fight = true;
+									if(!fightCalledOff(hailer, accosted, encountertext)) go_fight = true;
 								}
 							}
 						}
@@ -8341,7 +8421,7 @@ turnloop:	while (game.play_on) {
 							if(encountertext > 1) {
 								Wait.manySec(1);
 							}
-							go_fight = true;
+							if(!fightCalledOff(hailer, accosted, encountertext)) go_fight = true;
 						}
 					}
 					//roll doesn't pass (harmony)...
@@ -8377,7 +8457,7 @@ turnloop:	while (game.play_on) {
 								fightchance = dice.throwdice(1,100);
 								if (fightchance <= (army[hailer].getfriend(accosted) - army[hailer].getmorale() - army[accosted].getmorale() + 40)) {
 									masterStringOut("\"No ya don't, pal! I've had enough of you, and we're settling this right now!\"");
-									go_fight = true;
+									if(!fightCalledOff(hailer, accosted, encountertext)) go_fight = true;
 								}
 								else {
 									masterStringOut("\"Watch your step, louse!\"");
@@ -8469,6 +8549,7 @@ turnloop:	while (game.play_on) {
 			}
 
 			if(go_fight) {
+				encounter_fights++;
 				if(!same_gang) {
 					if(army[hailer].getaffiliation() == 0 && army[accosted].getaffiliation() == 0) {
 						if(encountertext == 3) hitEnter(6868);
@@ -8580,7 +8661,7 @@ turnloop:	while (game.play_on) {
 		 					else {
 								masterStringOut(army[accosted].getname()+": \"You speak the truth. The time has come to right this evil.\"");
 								hitEnter(5579);
-								masterStringOut("You plant the stake firmly in the ground... \"");
+								masterStringOut("You plant the stake firmly in the ground... ");
 								masterStringOut("\nCRUNCH!");
 								Wait.manySec(1);
 								masterStringOut("You feel a tremor underfoot.");
@@ -8902,7 +8983,8 @@ turnloop:	while (game.play_on) {
 		String yn_choice = "";
 		
 		if(user == accosted && (army[hailer].getaffiliation() == 0 || army[accosted].getaffiliation() == 0)) {
-			if(!old_mate) masterStringOut("\n"+army[hailer].getname()+": \"Let's team up, eh?\"");
+			if(grudging_teamup) masterStringOut("\n"+army[hailer].getname()+": \"Grr- listen, you- we ain't friends or nothin', but let's cast lots together, just to survive, mind. You in or not?\"");
+			else if(!old_mate) masterStringOut("\n"+army[hailer].getname()+": \"Let's team up, eh?\"");
 			else masterStringOut("\n"+army[hailer].getname()+": \"Well, shall we carry on as before, as gangfellows?\"");
 			masterStringOut("\n\n\n");
 			bio_tome[hailer][army[hailer].getgeneration()].join_proposal(hailer, army[hailer].getaffiliation(), army[accosted].getaffiliation());
@@ -8916,11 +8998,13 @@ turnloop:	while (game.play_on) {
 		}
 
 		if(continue_join) {
+			if(grudging_teamup) grudging_teamups++;
 			if(army[hailer].getaffiliation() == 0 && army[accosted].getaffiliation() == 0) {
 
 				//announcement...
 				if(encountertext == 3) {
-					if(!old_mate) {
+					if(grudging_teamup) masterStringOut("\n"+army[accosted].getname()+": \"Hrgmmph, it's come to this... Holdin' my nose, for the time bein'...\"");
+					else if(!old_mate) {
 						masterStringOut("\n"+army[accosted].getname()+": \"We will hence fight as one, and be merry companions!\"");
 						masterStringOut(army[hailer].getname()+": \"Hey, we formed a new gang!\"");
 					}
@@ -8928,7 +9012,13 @@ turnloop:	while (game.play_on) {
 					hitEnter(4809);
 				}
 
-				if(encountertext == 1 || encountertext == 2) {
+				if(grudging_teamup && (encountertext == 1 || encountertext == 2)) {
+					String one = (army[user].getfriend(hailer) > -1) ? army[hailer].getname() : "a stranger";
+					String other = (army[user].getfriend(accosted) > -1) ? army[accosted].getname() : "a stranger";
+					masterStringOut(capitalFirst(one)+" and "+other+" are grudgingly teaming up, even though they don't care much for each other. Must be the desperation of the hour.");
+					Wait.manySec(2);
+				}
+				else if(encountertext == 1 || encountertext == 2) {
 					if(army[user].getfriend(hailer) > -1 && army[user].getfriend(accosted) > -1) masterStringOut(army[hailer].getname()+" and "+army[accosted].getname()+" are getting along... they seem to have teamed up!");
 					if(army[user].getfriend(hailer) > -1 && army[user].getfriend(accosted) == -1) masterStringOut(army[hailer].getname()+" and the stranger are getting along... they seem to have teamed up!");
 					if(army[user].getfriend(hailer) == -1 && army[user].getfriend(accosted) > -1) masterStringOut("The stranger and "+army[accosted].getname()+" are getting along... they seem to have teamed up!");
@@ -9112,7 +9202,7 @@ turnloop:	while (game.play_on) {
 					gangavg2 = gangtotal2/gangnumb2;
 					double persdiff3 = Math.abs(gangavg1-gangavg2);
 					//if it's close, the gangs merge:
-					if (persdiff3 <= 10) {
+					if (persdiff3 <= 10 + Math.min(undeadThreat(hailer), undeadThreat(accosted))/2) {
 						if(encountertext > 0) masterStringOut("Yes! The gangs decide to merge. Handshaking and backslapping all around.");
 						if(encountertext < 3 && encountertext > 0) {
 							Wait.manySec(2);
@@ -10412,7 +10502,7 @@ turnloop:	while (game.play_on) {
 				if (army[i].getfriend(hopeful) >= 40) {
 					int rejectchance = dice.throwdice(1,100);
 					//if the roll passes, there is a rejection...
-					if (rejectchance <= army[i].getfriend(hopeful)) {
+					if (rejectchance <= threatenedOpinion(i, hopeful)) {
 						if(textlevel == 2) masterStringOut(army[i].getname()+": \"I oppose!\" ");
 						if(textlevel == 1) masterStringOut("A rejection... ");
 						if(textlevel > 0) {
@@ -10609,6 +10699,7 @@ turnloop:	while (game.play_on) {
 	// ********************   L E A D E R C H A L L E N G E    *************************
 	
 	public void leaderChallenge(int leader, int challenger) {
+		leader_challenges++;
 		
 		int challengetext = 0;
 		if (army[leader].getx() == army[user].getx()  &&  army[leader].gety() == army[user].gety()) challengetext++;
@@ -12200,7 +12291,7 @@ shitloop:do {
 			pers_avg_diff = Math.abs(team_a_pers_avg - team_b_pers_avg);
 			
 			taunt_chance = dice.throwdice(1,100);		
-			int taunt_number_to_beat = 50 + pers_avg_diff - morale_average + 10*(team_a_number - team_b_number);
+			int taunt_number_to_beat = 50 + pers_avg_diff - morale_average + 10*(team_a_number - team_b_number) - (numa != user ? undeadThreat(numa) : 0);
 			
 			if (taunt_chance < taunt_number_to_beat) {
 				taunting_level_a++;
@@ -12212,7 +12303,7 @@ shitloop:do {
 			}
 	
 			taunt_chance = dice.throwdice(1,100);
-			taunt_number_to_beat = 50 + pers_avg_diff - morale_average + 10*(team_b_number - team_a_number);
+			taunt_number_to_beat = 50 + pers_avg_diff - morale_average + 10*(team_b_number - team_a_number) - (numb != user ? undeadThreat(numb) : 0);
 			
 			if (taunt_chance < taunt_number_to_beat) {
 				taunting_level_b++;
@@ -12446,6 +12537,7 @@ shitloop:do {
 	}
 	
 	public void civilWar(int[][] nums) {
+		civil_wars++;
 		
 		//start the pet list fresh: a civil war that ends up a Duel never reaches resetBattleAll, and its pets would otherwise join the next fight
 		pets_who_fight.get(0).clear();
@@ -14651,6 +14743,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 							
 											//if q is fighting:
 											if(!will_run[m][q] && !out_of_the_fight[m][q] && !leader_called_it[m] && war[m][q] > -1) {
+												striking_now = war[m][q];
 												if(number_active_at_once > 1 && battletext > 1 && stillFighting(0)>0 && stillFighting(1)>0) {
 													if(yourrow > -1 && yourcolumn > -1) {
 														if(!out_of_the_fight[yourrow][yourcolumn]) actionStringSaver(j+"  "+"Simultaneously...    ", false, -1, -1, false, 7, 12541);
@@ -14942,7 +15035,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																			if(my_shield[targetrow][targetcolumn] == war[targetrow][targetcolumn]) {
 																				int saving_multiplier = (dice.throwdice(1,3) - 1)/10;
 																				damage = (int)(damage*saving_multiplier);
-																				army[war[targetrow][targetcolumn]].freshwound(damage);
+																				army[war[targetrow][targetcolumn]].freshwound(damage); recordBlow(war[targetrow][targetcolumn], damage);
 																				total_damage[targetrow] += damage;
 																				army[war[targetrow][targetcolumn]].setlast_foe(army[war[m][q]].getname());
 																				if(damage == 0) {
@@ -14967,7 +15060,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																			}
 																			//not a self shield:
 																			else {
-																				army[my_shield[targetrow][targetcolumn]].freshwound(damage);
+																				army[my_shield[targetrow][targetcolumn]].freshwound(damage); recordBlow(my_shield[targetrow][targetcolumn], damage);
 																				total_damage[targetrow] += damage;
 																				army[my_shield[targetrow][targetcolumn]].setlast_foe(army[war[m][q]].getname());
 																				army[war[targetrow][targetcolumn]].changefriend(my_shield[targetrow][targetcolumn], -1*(int)(damage/2));
@@ -15006,7 +15099,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																		//normal attack, no shielding: 
 																		else {	 
 																			if(army[war[targetrow][targetcolumn]].ishere(battle_x, battle_y)) {
-																				army[war[targetrow][targetcolumn]].freshwound(damage);
+																				army[war[targetrow][targetcolumn]].freshwound(damage); recordBlow(war[targetrow][targetcolumn], damage);
 																				total_damage[targetrow] += damage;
 																				army[war[targetrow][targetcolumn]].setlast_foe(army[war[m][q]].getname());
 																				if(damage == 0) {
@@ -15102,7 +15195,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																	for(int w = 0; w < number_of_columns; w++) {
 																		if(war[targetrow][w] > -1) {
 																			if(army[war[targetrow][w]].gethealth() > 0 && !out_of_the_fight[targetrow][w]) {
-																				army[war[targetrow][w]].freshwound(damage);
+																				army[war[targetrow][w]].freshwound(damage); recordBlow(war[targetrow][w], damage);
 																				total_damage[targetrow] += damage;
 																				army[war[targetrow][w]].setlast_foe(army[war[m][q]].getname());
 																				if(battletext == 3) actionStringSaver(j+"  "+"Lightning hits "+war_names_for_dialogue[targetrow][w]+" for "+damage+" points!", true, targetrow, w, false, army[war[targetrow][w]].gethealth() - damage, 12864);
@@ -15218,11 +15311,11 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																	for(int k = 0; k < number_to_toast; k++) {
 																		if(toast.all_damage(k) > 0 && !out_of_the_fight[m*-1+1][keep_track_of_toast_numbers[k]] && war[m*-1+1][keep_track_of_toast_numbers[k]]>-1) {
 																			if(my_shield[m*-1+1][keep_track_of_toast_numbers[k]] == -1) {
-																				army[war[m*-1+1][keep_track_of_toast_numbers[k]]].freshwound(toast.all_damage(k));
+																				army[war[m*-1+1][keep_track_of_toast_numbers[k]]].freshwound(toast.all_damage(k)); recordBlow(war[m*-1+1][keep_track_of_toast_numbers[k]], toast.all_damage(k));
 																				total_damage[m*-1+1] += toast.all_damage(k);
 																			}
 																			else {
-																				army[my_shield[m*-1+1][keep_track_of_toast_numbers[k]]].freshwound(toast.all_damage(k));
+																				army[my_shield[m*-1+1][keep_track_of_toast_numbers[k]]].freshwound(toast.all_damage(k)); recordBlow(my_shield[m*-1+1][keep_track_of_toast_numbers[k]], toast.all_damage(k));
 																				total_damage[m*-1+1] += toast.all_damage(k);
 																				army[war[m*-1+1][keep_track_of_toast_numbers[k]]].changefriend(my_shield[m*-1+1][keep_track_of_toast_numbers[k]], -1*(int)(toast.all_damage(k)/2));
 																			}
@@ -15259,7 +15352,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																		if(z == 1) {
 																			Attack att2 = army[war[m][q]].attack_two(army[realtargetnumber], war_names_for_dialogue[getWarRowFromArmyIndex(realtargetnumber)][getWarColFromArmyIndex(realtargetnumber)], battletext, dice, war_names_for_dialogue[m][q], target_available);
 																			if(att2.getDamage() != 0) {
-																				army[realtargetnumber].freshwound(att2.getDamage());
+																				army[realtargetnumber].freshwound(att2.getDamage()); recordBlow(realtargetnumber, att2.getDamage());
 																				total_damage[m*-1+1] += att2.getDamage();
 																				army[realtargetnumber].changemorale(-40);
 																				if(my_shield[m*-1+1][targetcolumn] > -1) army[war[m*-1+1][targetcolumn]].changefriend(my_shield[m*-1+1][targetcolumn], -1*(int)(att2.getDamage()/2));
@@ -15272,7 +15365,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																		if(z == 2) {
 																			Attack att3 = army[war[m][q]].attack_three(army[realtargetnumber], war_names_for_dialogue[getWarRowFromArmyIndex(realtargetnumber)][getWarColFromArmyIndex(realtargetnumber)], battletext, dice, war_names_for_dialogue[m][q], target_available);
 																			if(att3.getDamage() != 0) {
-																				army[realtargetnumber].freshwound(att3.getDamage());
+																				army[realtargetnumber].freshwound(att3.getDamage()); recordBlow(realtargetnumber, att3.getDamage());
 																				total_damage[m*-1+1] += att3.getDamage();
 																				if(my_shield[m*-1+1][targetcolumn] > -1) army[war[m*-1+1][targetcolumn]].changefriend(my_shield[m*-1+1][targetcolumn], -1*(int)(att3.getDamage()/2));
 																			}
@@ -15284,7 +15377,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																		if(z == 3) {
 																			Attack att4 = army[war[m][q]].attack_four(army[realtargetnumber], war_names_for_dialogue[getWarRowFromArmyIndex(realtargetnumber)][getWarColFromArmyIndex(realtargetnumber)], battletext, dice, war_names_for_dialogue[m][q], target_available);
 																			if(att4.getDamage() != 0) {
-																				army[realtargetnumber].freshwound(att4.getDamage());
+																				army[realtargetnumber].freshwound(att4.getDamage()); recordBlow(realtargetnumber, att4.getDamage());
 																				total_damage[m*-1+1] += att4.getDamage(); 
 																				if(my_shield[m*-1+1][targetcolumn] > -1) army[war[m*-1+1][targetcolumn]].changefriend(my_shield[m*-1+1][targetcolumn], -1*(int)(att4.getDamage()/2));
 																			}
@@ -15296,7 +15389,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																		if(z == 4) {
 																			Attack att5 = army[war[m][q]].attack_five(army[realtargetnumber], war_names_for_dialogue[getWarRowFromArmyIndex(realtargetnumber)][getWarColFromArmyIndex(realtargetnumber)], battletext, dice, war_names_for_dialogue[m][q], target_available);
 																			if(att5.getDamage() != 0) {
-																				army[realtargetnumber].freshwound(att5.getDamage());
+																				army[realtargetnumber].freshwound(att5.getDamage()); recordBlow(realtargetnumber, att5.getDamage());
 																				total_damage[m*-1+1] += att5.getDamage();
 																				if(my_shield[m*-1+1][targetcolumn] > -1) army[war[m*-1+1][targetcolumn]].changefriend(my_shield[m*-1+1][targetcolumn], -1*(int)(att5.getDamage()/2));
 																			}
@@ -15368,7 +15461,7 @@ main_j_loop:for(int j = 25; j > 0; j--){
 																	if(z == 4) {
 																		att = army[war[m][q]].attack_five(army[realtargetnumber], war_names_for_dialogue[getWarRowFromArmyIndex(realtargetnumber)][getWarColFromArmyIndex(realtargetnumber)], battletext, dice, war_names_for_dialogue[m][q], target_available);
 																	}
-																	if(!all_party_hit) army[realtargetnumber].freshwound(att.getDamage());
+																	if(!all_party_hit) { army[realtargetnumber].freshwound(att.getDamage()); recordBlow(realtargetnumber, att.getDamage()); }
 																	else if(att.getDamage() > 0) multipleWounded(-1*m + 1, att.getDamage(), war[m][q]);
 															
 																	if(battletext > 0) {
@@ -16328,22 +16421,23 @@ i_loop:	for(int i = 0; i < 2; i++) {
 		
 	public int findNextActionStringLine() {
 		int nextup = -1;
-		for(int i = 0; i < 200; i++) {
+		for(int i = 0; i < ACTION_LINES; i++) {
 			if(action_hits[i][0] == -2) {
 				nextup = i;
 				break;
 			}
-			if(i == 199) masterStringOut("****  Ran out of space in the action records. (>200 iterations.)");
+			if(i == ACTION_LINES - 1) masterStringOut("****  Ran out of space in the action records. (>"+ACTION_LINES+" iterations.)");
 		}
 		return nextup;
 	}
 
 	public void multipleWounded(int row_wounded, int damage_for_all, int attacker) {
+		striking_now = attacker;
 		double s_n_f_w_p_dub = Math.floor(findNextActionStringLine()/action_string_limit);
 		int screen_no_for_whole_party = (int)s_n_f_w_p_dub;
 		for(int p = 0; p < number_of_columns; p++) {
 			if(war[row_wounded][p] > -1) {
-				army[war[row_wounded][p]].freshwound(damage_for_all);
+				army[war[row_wounded][p]].freshwound(damage_for_all); recordBlow(war[row_wounded][p], damage_for_all);
 				//record who did it, as single-target hits do; kill credit (pig debts, rumors) reads last_foe.
 				army[war[row_wounded][p]].setlast_foe(army[attacker].getname());
 				total_damage[row_wounded] += damage_for_all;
@@ -16407,6 +16501,7 @@ i_loop:	for(int i = 0; i < 2; i++) {
 //		if(victim_health <=0) masterStringOut("***aSS: should be getting action_kills set to "+row+", "+column); 
 		
 		int i = findNextActionStringLine();
+		if(i == -1) return;
 
 		if(action_hits[i][0] == -2) {
 			action_hits[i][0] = -1;
@@ -16434,7 +16529,7 @@ i_loop:	for(int i = 0; i < 2; i++) {
 	}
 	
 	public void actionRunSaver(int runner) {
-		for(int i = 0; i < 200; i++) {
+		for(int i = 0; i < ACTION_LINES; i++) {
 			if(action_hits[i][0] == -2) {
 				if (i != 0) action_runs[runner] = (i - 1);
 				else action_runs[runner] = 0;
@@ -16509,7 +16604,7 @@ i_loop:	for(int i = 0; i < 2; i++) {
 		Arrays.fill(action_runs, -1);
 		Arrays.fill(action_strings, "blank");
 		Arrays.fill(action_suspenders, false);
-		for(int i = 0; i < 200; i++) {
+		for(int i = 0; i < ACTION_LINES; i++) {
 			for(int j = 0; j < 2; j++) {
 				action_hits[i][j] = -2;
 				action_kills[i][j] = -2;
@@ -19916,7 +20011,7 @@ armyloop:		for(int j = 0; j < armysize; j++) {
 								masterStringOut("GREGOR:  \"Something's got to be done about them. But I'd only talk to your leader about that.\"");
 							}
 							else {
-								if(items[1][0].getx() == -1 && items[1][0].getowner() == -1) {
+								if(stakeFromGregor()) {
 									masterStringOut("\nGREGOR:  \"You're quite right. Time to stamp them out, for good. I may be able to help.\"");
 									System.out.println();
 									masterStringOut("He digs around and finds a wooden stake, which he presents to you. It is dark red polished wood, about two feet long.");
@@ -19960,6 +20055,9 @@ armyloop:		for(int j = 0; j < armysize; j++) {
 				}			
 			}//end player business
 	 	
+			//a band of survivors' leader may come away with the stake
+			npcAsksGregorForStake(housefolk, nextslot, housetext);
+
 			//everyone in the house gets health back, and loses a tick on the house clock..
 			if(housetext == 1) {
 				army[user].houserecover();
@@ -20480,8 +20578,7 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 								} 
 							}	
 							army[user].lose_all_meat();
-							graveyard[next_grave] = army[user];
-							next_grave++;
+							addToGraveyard(army[user]);
 							
 							// resurrect and return for encore
 							army[user] = graveyard[life_to_try];
@@ -20869,6 +20966,15 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 				}
 			}
 		}
+		//after that, anyone who sees one of the walking undead for himself knows about them
+		if(rumorIsStarted(RumorKind.UNDEAD.tag)) {
+			for(int z = 0; z < armysize; z++) {
+				if(!army[z].is_zombie() || army[z].how_buried() <= 0 || army[z].getx() < 1 || army[z].getx() > boardside + 8) continue;
+				for(int h = 0; h < humansize_e; h++) {
+					if(!army[h].is_zombie() && army[h].gethealth() > 0 && samePlace(h, z) && !rumorIsKnownBy(RumorKind.UNDEAD.tag, h)) rumorIsHeardBy(RumorKind.UNDEAD.tag, h, 0);
+				}
+			}
+		}
 	}
 
 	//one fighter against five or more, and he's left standing with the other side beaten: everyone who saw it talks about it,
@@ -20913,6 +21019,7 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 			if(grave_diggers.get(b).size() > 0 && army[b].how_buried() <= 0 && army[b].ishere(x, y)) {
 				boolean was_undead = army[b].is_zombie();
 				if(was_undead) {
+					undead_graves++;
 					for(int d : grave_diggers.get(b)) buried_an_undead_in_life[d] = army[d].getgeneration();
 					witnessRumorAt(RumorKind.BURY.tag, x, y, -1, -1);
 				}
@@ -20948,7 +21055,9 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 			if(dug_this_turn[j] || army[j].gethealth() <= army[j].getmaxhealth() / 2 || army[j].is_zombie() || army[j].in_the_forest()) continue;
 			int x = army[j].getx(), y = army[j].gety();
 			if(x < 1 || x > boardside || y < 1 || y > boardside) continue;
-			if(!rumorIsKnownBy(RumorKind.BURY.tag, j) || activeUndeadAt(x, y)) continue;
+			if(!rumorIsKnownBy(RumorKind.BURY.tag, j)) continue;
+			//with walking undead right here, it's even odds whether he risks digging anyway
+			if(activeUndeadAt(x, y) && dice.throwdice(1, 2) == 1) continue;
 			int body = undeadBodyAt(x, y);
 			if(body == -1) continue;
 			//who digs: he, his gangmates here, and their dogs
@@ -20970,6 +21079,10 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 				for(int d : diggers) if(d < humansize) people++;
 				masterStringOut(who+(people > 1 ? " and his gang" : "")+(diggers.size() > people ? " (with a dog helping)" : "")+(people > 1 ? " dig" : " digs")+" a grave for one of the walking corpses.");
 			}
+			//digging together goes faster than alone: each person past the first adds a quarter to everyone's share, up to double
+			int people_digging = 0;
+			for(int d : diggers) if(d < humansize) people_digging++;
+			double teamwork = Math.min(2.0, 1 + 0.25*(people_digging - 1));
 			for(int d : diggers) {
 				dug_this_turn[d] = true;
 				int target = undeadBodyAt(x, y);
@@ -20977,7 +21090,7 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 				int amount;
 				if(d >= humansize) amount = (int)(2*army[d].getstrength()/3 + 2*army[d].getspeed() + dice.throwdice(1,10));
 				else amount = (int)(army[d].getstrength()/3 + army[d].getspeed() + army[d].getweaponskill()/25);
-				army[target].get_buried(amount);
+				army[target].get_buried((int)(amount*teamwork));
 				recordGraveDigger(d, target);
 				if(d >= humansize) army[d].make_memory("dig");
 			}
@@ -21045,6 +21158,382 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 
 	//a gangfellow thinks out loud, and another answers (see Musings.java). Only if the player is close enough to hear;
 	//no musing is heard twice until all of them have been.
+	//with the undead about, the living put up with each other: this much comes off an opinion when deciding whether to join up or fight.
+	//only the living who know of the undead feel it.
+	public int undeadThreat(int i) {
+		if(i < 0 || i >= humansize || army[i].is_zombie() || army[i].gethealth() <= 0) return 0;
+		if(!rumorIsKnownBy(RumorKind.UNDEAD.tag, i)) return 0;
+		if(System.getenv("GANGLAND_NO_BANDING") != null) return 0; //MEASURE-ONLY
+		return Math.min(30, countUndead("active"));
+	}
+
+	//i's opinion of j, softened by the undead threat (for joining and fighting only- what they say still comes from the real opinion). Grudges aren't softened.
+	public int threatenedOpinion(int i, int j) {
+		int f = army[i].getfriend(j);
+		if(f < 0 || f >= 100) return f;
+		return Math.max(0, f - undeadThreat(i));
+	}
+
+	//would i team up with j, given the undead about? (the same roll two who get along make)
+	public boolean grudginglyWilling(int i, int j) {
+		int f = threatenedOpinion(i, j);
+		return f <= 20 && dice.throwdice(1,100) <= 95 - f*4;
+	}
+
+	//a fight between a and b is about to start, and the undead are about: it may be called off. A bystander who knows of the undead steps in
+	//if there is one (the player only when nobody else is there); either way, the one of the two who hates the other less backs down.
+	//Only a non-player backs down, and a grudge never does. Returns true if the fight is off.
+	public boolean fightCalledOff(int a, int b, int encountertext) {
+		int backer;
+		if(a == user) backer = b;
+		else if(b == user) backer = a;
+		else backer = (army[a].getfriend(b) <= army[b].getfriend(a)) ? a : b;
+		int other = (backer == a) ? b : a;
+		if(army[backer].getfriend(other) >= 100) return false;
+		int bystander = -1;
+		for(int i = 0; i < humansize_e; i++) {
+			if(i == a || i == b || i == user || army[i].is_zombie() || army[i].gethealth() <= 0 || !samePlace(i, a) || !rumorIsKnownBy(RumorKind.UNDEAD.tag, i)) continue;
+			if(bystander == -1 || sameGang(i, a) || sameGang(i, b)) bystander = i;
+			if(sameGang(i, a) || sameGang(i, b)) break;
+		}
+		if(bystander == -1 && user != a && user != b && !army[user].is_zombie() && army[user].gethealth() > 0 && samePlace(user, a) && rumorIsKnownBy(RumorKind.UNDEAD.tag, user)) bystander = user;
+		int threat = Math.max(undeadThreat(backer), bystander > -1 ? undeadThreat(bystander) : 0);
+		if(threat == 0 || dice.throwdice(1,100) > threat*3) return false;
+		if(encountertext >= 2) {
+			if(bystander == user) masterStringOut("You step into the fight and holler it down! There's no call for in-fighting now, with what you're all up against.");
+            else if(bystander > -1) masterStringOutWithNameIfKnown(bystander, "\"Cool your nonsense! We need everyone for the real task- these corpses, remember?!\"");
+			Wait.manySec(1);
+			masterStringOutWithNameIfKnown(backer, "\"If it weren't for the dead walkers I'd fix you, mate!\"");
+			Wait.manySec(1);
+		}
+		else if(encountertext == 1) {
+			masterStringOut("A fight nearby is called off by gangfellows- they want to keep peace, for the sake of fighting the corpses.");
+			Wait.manySec(1);
+		}
+		fights_called_off++;
+		return true;
+	}
+
+	//the undead are about, so a would-be challenger puts off challenging his leader.
+	public void holdOffChallenge(int leader, int challenger, int encountertext) {
+		if(leader == user) masterStringOut(army[challenger].getname()+": \"Hmmm... I'd challenge for leadership, but... I can bide my time, yes...\"");
+		else if(encountertext >= 2) masterStringOutWithNameIfKnown(challenger, "\"I'd make a better leader... should I challenge? No, not with these corpses... but some day...\"");
+		if(leader == user || encountertext >= 2) Wait.manySec(1);
+		challenges_held_off++;
+	}
+
+	//every life that ends goes here; the graveyard grows as needed (a long game can run to tens of thousands of deaths)
+	public void addToGraveyard(Being b) {
+		if(next_grave >= graveyard.length) graveyard = Arrays.copyOf(graveyard, graveyard.length*2);
+		graveyard[next_grave] = b;
+		next_grave++;
+	}
+
+	//a blow that lands on one of the undead is remembered (see blows_on)
+	public void recordBlow(int target, int damage) {
+		if(target < 0 || damage <= 0 || striking_now < 0 || striking_now == target || !army[target].is_zombie()) return;
+		blows_on.get(target).put(striking_now, turnclock);
+	}
+
+	//an undead sinks in the bog: everyone living who struck it down (this turn or last) counts as having helped bury an undead in this life
+	//(people and dogs, as with digging). Returns the one with the latest blow who is there at the bog, or -1.
+	public int creditBogStrikers(int undead) {
+		int finisher = -1, latest = -1;
+		for(Map.Entry<Integer, Integer> e : blows_on.get(undead).entrySet()) {
+			int striker = e.getKey(), when = e.getValue();
+			if(when < turnclock - 1 || army[striker].gethealth() <= 0 || army[striker].is_zombie()) continue;
+			if(striker >= humansize && army[striker].getspecies().compareToIgnoreCase("dog") != 0) continue;
+			buried_an_undead_in_life[striker] = army[striker].getgeneration();
+			bog_credits++;
+			if(samePlace(striker, undead) && when > latest) {
+				latest = when;
+				finisher = striker;
+			}
+		}
+		blows_on.get(undead).clear();
+		return finisher;
+	}
+
+	//Gregor has a stake to give when none is in play: never handed out yet, or lost in the bog
+	public boolean stakeFromGregor() {
+		Tool stake = items[1][0];
+		return stake.getowner() == -1 && !stake.is_stake_planted() && (stake.getx() == -1 || !stake.is_visible());
+	}
+
+	public int countLivingHumans() {
+		int living = 0;
+		for(int i = 0; i < humansize_e; i++) if(army[i].gethealth() > 0 && !army[i].is_zombie()) living++;
+		return living;
+	}
+
+	//once the living are down to a band of survivors, a gang leader who knows about burying the undead, visiting Gregor, comes away with the stake
+	public void npcAsksGregorForStake(int[] housefolk, int nextslot, int housetext) {
+		if(!stakeFromGregor() || countUndead("active") < 20 || countLivingHumans() > STAKE_SURVIVORS) return;
+		for(int h = 0; h < nextslot && h < housefolk.length; h++) {
+			int i = housefolk[h];
+			if(i < 0 || i == user || i >= humansize_e || army[i].gethealth() <= 0 || army[i].is_zombie()) continue;
+			if(army[i].getaffiliation() == 0 || !army[i].is_he_leader() || numberInGang(i) < 2 || !rumorIsKnownBy(RumorKind.BURY.tag, i)) continue;
+			items[1][0].gets_picked_up(i);
+			items[1][0].reveal();
+			stake_gang = army[i].getaffiliation();
+			stake_phase = 0;
+			stake_gifts++;
+			if(housetext == 1) {
+				masterStringOut("GREGOR:  \"This is how you can finally get 'em all, "+army[i].getname()+"...\"");
+                masterStringOut("Gregor gives a sharpened wooden stake to the leader of a band of survivors, and tells him in hushed tones how to use it.\"");
+				hitEnter(20001);
+			}
+			return;
+		}
+	}
+
+	//a square where the stake can go in: on the board, not the bog
+	public boolean stakeSquareOk(int x, int y) {
+		return x >= 1 && x <= boardside && y >= 1 && y <= boardside && !(x == markers[0][5] && y == markers[1][5]);
+	}
+
+	public double gangHealthFraction(int gang) {
+		double health = 0, max = 0;
+		for(int i = 0; i < humansize_e; i++) {
+			if(army[i].getaffiliation() == gang && army[i].gethealth() > 0) {
+				health += army[i].gethealth();
+				max += army[i].getmaxhealth();
+			}
+		}
+		return max > 0 ? health/max : 0;
+	}
+
+	//The NPC stake plan, run each turn. A gang (led by an NPC) that holds the stake plants it once it's strong enough, steps aside to a
+	//neighboring square and waits there, burying what it can as the undead pass through on their way to the stake; then it goes back for
+	//the stake, pulls it, moves on, and tries again somewhere else. It doesn't know the bog trick, and it leaves the stake square the
+	//usual way, at the end of the turn, crowd or no crowd.
+	public void npcStakePlans() {
+		Tool stake = items[1][0];
+		int holder = stake.getowner();
+		if(holder > -1) {
+			int gang = (holder < humansize_e) ? army[holder].getaffiliation() : 0;
+			int leader = getLeaderOfGang(gang);
+			if(holder == user || gang == 0 || leader == -1 || leader == user || army[user].getaffiliation() == gang && army[user].is_he_leader()) {
+				stake_gang = 0;
+				return;
+			}
+			if(stake_gang != gang) {
+				stake_gang = gang;
+				stake_phase = 0;
+			}
+			if(stake_phase != 0) return;
+			int x = army[holder].getx(), y = army[holder].gety();
+			if(!stakeSquareOk(x, y) || army[holder].in_the_forest() || !samePlace(holder, leader) || gangHealthFraction(gang) < .7) return;
+			stake.plant_stake(x, y);
+			stake_x = x;
+			stake_y = y;
+			stake_phase = 1;
+			stake_plants++;
+			if(army[user].gethealth() > 0 && samePlace(user, holder)) {
+				String who = army[user].getfriend(holder) > -1 ? army[holder].getname() : "A stranger";
+				masterStringOut("CRUNCH!");
+                masterStringOut(who+" plants a wooden stake in the ground.");
+				Wait.manySec(1);
+			}
+			return;
+		}
+		if(stake_gang == 0 || !stake.is_stake_planted()) return;
+		int leader = getLeaderOfGang(stake_gang);
+		if(leader == -1 || leader == user) {
+			stake_gang = 0;
+			return;
+		}
+		if(stake_phase != 3) return;
+		//back at the stake: pull it (the leader if he's here, otherwise any of them)
+		int puller = -1;
+		for(int i = 0; i < humansize_e; i++) {
+			if(i != user && army[i].getaffiliation() == stake_gang && army[i].gethealth() > 0 && !army[i].is_zombie() && army[i].ishere(stake.getx(), stake.gety())) {
+				if(puller == -1 || i == leader) puller = i;
+			}
+		}
+		if(puller == -1) return;
+		stake.pull_stake(puller);
+		stake_phase = 4;
+		stake_away_moves = 0;
+		stake_pulls++;
+		if(army[user].gethealth() > 0 && samePlace(user, puller)) {
+			String who = army[user].getfriend(puller) > -1 ? army[puller].getname() : "A stranger";
+			masterStringOut("Scritch!");
+            masterStringOut(who+" pulls a wooden stake out of the ground.");
+			Wait.manySec(1);
+		}
+	}
+
+	//where the gang with the stake moves this turn: null to move as usual, {0,0} to stay put, or a direction
+	public int[] stakePlanStep(int gang, int leader) {
+		if(gang != stake_gang || stake_gang == 0) return null;
+		Tool stake = items[1][0];
+		int x = army[leader].getx(), y = army[leader].gety();
+		int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
+		if(stake_phase == 1) {
+			//step aside to a neighboring square
+			List<int[]> ok = new ArrayList<int[]>();
+			for(int[] d : dirs) if(stakeSquareOk(x + d[0], y + d[1]) && checkIfMoveIsValid(leader, d[0], d[1])) ok.add(d);
+			stake_phase = 2;
+			stake_phase_turn = turnclock;
+			if(ok.size() == 0) return new int[] {0, 0};
+			return ok.get(diceSafe(ok.size()) - 1);
+		}
+		if(stake_phase == 2) {
+			if(turnclock - stake_phase_turn < STAKE_WAIT_TURNS) return new int[] {0, 0};
+			stake_phase = 3;
+		}
+		if(stake_phase == 3) {
+			if(!stake.is_stake_planted()) return null;
+			int sx = stake.getx(), sy = stake.gety();
+			if(x == sx && y == sy) return new int[] {0, 0};
+			if(sy > y) return new int[] {0, 1};
+			if(sy < y) return new int[] {0, -1};
+			return new int[] {sx > x ? 1 : -1, 0};
+		}
+		if(stake_phase == 4) {
+			//moving on, the usual way: any direction but into the bog
+			List<int[]> ok = new ArrayList<int[]>();
+			for(int[] d : dirs) if(stakeSquareOk(x + d[0], y + d[1]) && checkIfMoveIsValid(leader, d[0], d[1])) ok.add(d);
+			stake_away_moves++;
+			if(stake_away_moves >= 2) stake_phase = 0;
+			if(ok.size() == 0) return null;
+			return ok.get(diceSafe(ok.size()) - 1);
+		}
+		return null;
+	}
+
+	private int diceSafe(int n) {
+		return n <= 1 ? 1 : dice.throwdice(1, n);
+	}
+
+	//one of the undead in the forest, drawn by the planted stake: a step along the way out, following the open paths he knows (the
+	//shortest route to the exit he perceives, worked out over the forest's 6x6 squares). With no route he knows, the old wandering.
+	public int[] forestStepTowardExit(int j) {
+		int ex = army[j].getforest_exit_perceived_x(), ey = army[j].getforest_exit_perceived_y();
+		int sx = army[j].getx() - boardside - 3, sy = army[j].gety() - boardside - 3;
+		int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
+		if(ex < 0 || ex > 5 || ey < 0 || ey > 5 || sx < 0 || sx > 5 || sy < 0 || sy > 5) return forestNonuserMakesForTheExit(j);
+		//distances from the exit, through open squares
+		int[][] dist = new int[6][6];
+		for(int[] row : dist) Arrays.fill(row, -1);
+		ArrayDeque<int[]> queue = new ArrayDeque<int[]>();
+		dist[ex][ey] = 0;
+		queue.add(new int[] {ex, ey});
+		while(!queue.isEmpty()) {
+			int[] c = queue.poll();
+			for(int[] d : dirs) {
+				int nx = c[0] + d[0], ny = c[1] + d[1];
+				if(nx < 0 || nx > 5 || ny < 0 || ny > 5 || dist[nx][ny] != -1) continue;
+				if(!army[j].getforest_perceived(nx, ny)) continue;
+				dist[nx][ny] = dist[c[0]][c[1]] + 1;
+				queue.add(new int[] {nx, ny});
+			}
+		}
+		int best = -1, best_distance = Integer.MAX_VALUE;
+		for(int d = 0; d < 4; d++) {
+			int nx = sx + dirs[d][0], ny = sy + dirs[d][1];
+			if(nx < 0 || nx > 5 || ny < 0 || ny > 5 || dist[nx][ny] == -1) continue;
+			if(dist[nx][ny] < best_distance) {
+				best_distance = dist[nx][ny];
+				best = d;
+			}
+		}
+		if(best == -1) return forestNonuserMakesForTheExit(j);
+		return new int[] {dirs[best][0], dirs[best][1]};
+	}
+
+	//is the player one of the walking undead, with the stake planted? Then he's pulled toward it, like the rest of them.
+	public boolean stakePullsUser() {
+		return army[user].is_zombie() && army[user].gethealth() > 0 && items[1][0].is_stake_planted() && army[user].getx() > 0 && army[user].getx() != house_coord;
+	}
+
+	//the step the stake's pull takes this one: along the way out of the forest, or on the board toward the stake ({0,0} once there)
+	public int[] stakePullStep(int b) {
+		if(army[b].in_the_forest()) return forestStepTowardExit(b);
+		int sx = items[1][0].getx(), sy = items[1][0].gety(), x = army[b].getx(), y = army[b].gety();
+		if(sy > y) return new int[] {0, 1};
+		if(sy < y) return new int[] {0, -1};
+		if(sx > x) return new int[] {1, 0};
+		if(sx < x) return new int[] {-1, 0};
+		return new int[] {0, 0};
+	}
+
+	//may the pulled player take this step himself? On the board, any step that brings him nearer the stake; in the forest, the step along the way out.
+	public boolean stakePullAllows(int dx, int dy) {
+		if(army[user].in_the_forest()) {
+			int[] step = stakePullStep(user);
+			return step[0] == dx && step[1] == dy;
+		}
+		int sx = items[1][0].getx(), sy = items[1][0].gety(), x = army[user].getx(), y = army[user].gety();
+		return Math.abs(x + dx - sx) + Math.abs(y + dy - sy) < Math.abs(x - sx) + Math.abs(y - sy);
+	}
+
+	//End of the turn: an undead player who hasn't stepped toward the stake himself is dragged a step; and he senses when he's near, and when he's there.
+	public void stakePullsUndeadPlayer() {
+		if(!stakePullsUser()) {
+			stake_close_told = false;
+			stake_arrived_told = false;
+			return;
+		}
+		Tool stake = items[1][0];
+		if(stake.getx() != stake_told_x || stake.gety() != stake_told_y) {
+			stake_close_told = false;
+			stake_arrived_told = false;
+			stake_told_x = stake.getx();
+			stake_told_y = stake.gety();
+		}
+		if(user_stake_step_turn != turnclock) {
+			int[] step = stakePullStep(user);
+			if(step[0] != 0 || step[1] != 0) {
+				String dir = step[1] == -1 ? "North" : step[1] == 1 ? "South" : step[0] == 1 ? "East" : "West";
+				masterStringOut("Like it or not, you're being pulled "+dir+"...");
+				Wait.manySec(1);
+				int nx = army[user].getx() + step[0], ny = army[user].gety() + step[1];
+				if(army[user].in_the_forest() && nx - boardside - 3 == army[user].getforest_exit_perceived_x() && ny - boardside - 3 == army[user].getforest_exit_perceived_y()) {
+					forest_aiees.clear();
+					moveAlongFCLastBit(user);
+				}
+				else army[user].setxyquick(nx, ny);
+			}
+		}
+		if(army[user].in_the_forest()) return;
+		int distance = Math.abs(army[user].getx() - stake.getx()) + Math.abs(army[user].gety() - stake.gety());
+		if(distance == 0 && !stake_arrived_told) {
+			masterStringOut("The sensation of being pulled has stopped- you must have arrived at the place you were meant to go.");
+			stake_arrived_told = true;
+			stake_close_told = true;
+			hitEnter(20004);
+		}
+		else if(distance > 0 && distance <= 2 && !stake_close_told) {
+			masterStringOut("Whatever's pulling you, you think you must be getting close to it...");
+			stake_close_told = true;
+			Wait.manySec(1);
+		}
+	}
+
+	//The plague ends once the undead in play are all buried, whether or not anyone is blessed for it (see zombieImprovementHandler).
+	//Checked every turn, since the last of them can go other ways too (laid to rest after eating, say).
+	public void checkPlagueOver() {
+		if(!skeletons_continue) return;
+		if(countUndead("active") > 0) {
+			undead_have_walked = true;
+			return;
+		}
+		if(undead_have_walked) plagueEndsUnblessed();
+	}
+
+	//the plague is over and nobody was there to be blessed for it: everyone feels it all the same, the player included, wherever he is
+	public void plagueEndsUnblessed() {
+		skeletons_continue = false;
+		masterStringOut("\n");
+		if(watch_stars) masterStringOut("*** plague over");
+		else masterStringOut("***");
+		if(army[user].gethealth() > 0 && !army[user].is_zombie()) masterStringOut("A strange current of dread in the air, so recently having troubled your mind, has evaporated; an evil curse has lifted. What a relief. This land is still heinous anyway, but you'll take the improvement.");
+		else masterStringOut("Your spirit senses a lifting of an evil curse, and a faint whisper of hope...");
+		hitEnter(20003);
+	}
+
 	public void muse(int speaker, int listener, int encountertext) {
 		if(encountertext <= 1 || Musings.MUSINGS.length == 0) return;
 		List<Integer> unheard = new ArrayList<Integer>();
@@ -21103,7 +21592,7 @@ k_loop:	for(int k = 0; k < humansize; k++) {
 	}
 	
 	public double getDistance(int player_one, int player_two) {
-		if(player_one < armysize && player_two < armysize) return getDistance(army[player_one].getx(), army[player_two].gety(), army[player_one].getx(), army[player_two].gety());
+		if(player_one < armysize && player_two < armysize) return getDistance(army[player_one].getx(), army[player_one].gety(), army[player_two].getx(), army[player_two].gety());
 		else return 0;
 	}
 
@@ -22523,19 +23012,19 @@ chant_loop:	for(int i = 0; i < humansize; i++) {
 		int y_flip = 0;
 		
 		//if the player is next to the forest exit, the player will exit- otherwise, the player will randomly try a direction that is possible.
-		if(army[j].getx() == army[j].getforest_exit_perceived_x() + boardside + 3 && army[user].gety() + 1 == army[user].getforest_exit_perceived_y() + boardside + 3) {
+		if(army[j].getx() == army[j].getforest_exit_perceived_x() + boardside + 3 && army[j].gety() + 1 == army[j].getforest_exit_perceived_y() + boardside + 3) {
 			x_flip = 0;
 			y_flip = 1;
 		}
-		else if(army[j].getx() == army[j].getforest_exit_perceived_x() + boardside + 3 && army[user].gety() - 1 == army[user].getforest_exit_perceived_y() + boardside + 3) {
+		else if(army[j].getx() == army[j].getforest_exit_perceived_x() + boardside + 3 && army[j].gety() - 1 == army[j].getforest_exit_perceived_y() + boardside + 3) {
 			x_flip = 0;
 			y_flip = -1;
 		}
-		else if(army[j].getx() + 1 == army[j].getforest_exit_perceived_x() + boardside + 3 && army[user].gety() == army[user].getforest_exit_perceived_y() + boardside + 3) {
+		else if(army[j].getx() + 1 == army[j].getforest_exit_perceived_x() + boardside + 3 && army[j].gety() == army[j].getforest_exit_perceived_y() + boardside + 3) {
 			x_flip = 1;
 			y_flip = 0;
 		}
-		else if(army[j].getx() - 1 == army[j].getforest_exit_perceived_x() + boardside + 3 && army[user].gety() == army[user].getforest_exit_perceived_y() + boardside + 3) {
+		else if(army[j].getx() - 1 == army[j].getforest_exit_perceived_x() + boardside + 3 && army[j].gety() == army[j].getforest_exit_perceived_y() + boardside + 3) {
 			x_flip = -1;
 			y_flip = 0;
 		}
@@ -24010,8 +24499,13 @@ find_empty:		for(int atb = 0; atb < items[4].length; atb++) {
 		}
 		if(countUndead("active") == 0) {
 			//the one who finished it, and everyone there who has helped finish an undead's burial in this life (dogs too)
+			//nobody who's dead is blessed; if nobody living qualifies, there's no Blessing, but the plague is over all the same
+			if(finisher < 0) {
+				plagueEndsUnblessed();
+				return;
+			}
 			List<Integer> blessed = new ArrayList<Integer>();
-			blessed.add(finisher);
+			if(army[finisher].gethealth() > 0 && !army[finisher].is_zombie()) blessed.add(finisher);
 			for(int i = 0; i < armysize; i++) {
 				if(i != finisher && army[i].gethealth() > 0 && !army[i].is_zombie() && samePlace(i, finisher) && buried_an_undead_in_life[i] == army[i].getgeneration()) blessed.add(i);
 			}
@@ -24021,14 +24515,26 @@ find_empty:		for(int atb = 0; atb < items[4].length; atb++) {
 						&& army[c].getmasters_number() > -1 && blessed.contains(army[c].getmasters_number())) blessed.add(c);
 			}
 			//if a dog or cat dug the last of it, the Blessing centers on its master (or another person who dug); the pet is blessed all the same
-			int subject = finisher;
-			if(finisher >= humansize) {
+			int subject = blessed.contains(finisher) ? finisher : -1;
+			if(subject == -1) for(int b : blessed) if(b < humansize && subject == -1) subject = b;
+			if(subject == -1 && blessed.size() > 0) subject = blessed.get(0);
+			if(subject == -1) {
+				plagueEndsUnblessed();
+				return;
+			}
+			if(subject >= humansize) {
 				subject = -1;
-				int master = army[finisher].getmasters_number();
+				int pet = subject;
+				subject = -1;
+				int master = army[pet].getmasters_number();
 				if(master > -1 && blessed.contains(master)) subject = master;
 				else for(int b : blessed) if(b < humansize && subject == -1) subject = b;
-				if(subject == -1) subject = user;
+				if(subject == -1) {
+					plagueEndsUnblessed();
+					return;
+				}
 			}
+			blessings++;
 			Blessing(subject, blessed);
 		}
 	}
@@ -24049,7 +24555,8 @@ find_empty:		for(int atb = 0; atb < items[4].length; atb++) {
 		masterStringOut("\n");
 		if(watch_stars) masterStringOut("*** 4176");
 		else masterStringOut("***");
-		masterStringOut("Clouds lift in the sky and the sun warms you. The ill has been set right, somehow. You feel it everywhere."); 
+		if(army[user].gethealth() > 0 && !army[user].is_zombie()) masterStringOut("Clouds lift in the sky and the sun warms you. The ill has been set right, somehow. You feel it everywhere."); 
+		else masterStringOut("Your spirit senses a lifting of an evil curse... there are shouts of excitement, carried on the wind...");
 		if(blessingtext == 3) Wait.manySec(3);
 		else if(blessingtext == 0) Wait.manySec(1);
 		else Wait.manySec(2);

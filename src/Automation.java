@@ -119,12 +119,20 @@ public class Automation {
 			if(g.army[i] != null && g.army[i].is_zombie() && g.army[i].how_buried() > 0) undead++;
 		}
 		sb.append(",\"undead\":").append(undead);
+		if(undead <= 3) { sb.append(",\"undead_where\":\""); for(int i = 0; i < g.armysize; i++) if(g.army[i] != null && g.army[i].is_zombie() && g.army[i].how_buried() > 0) sb.append(i+"@"+g.army[i].getx()+","+g.army[i].gety()+"h"+g.army[i].gethealth()+" "); sb.append("\""); } //MEASURE-ONLY
 		// NPCs waiting on a meat experiment, and pieces of meat on the ground
 		int experimenting = 0;
 		if(g.meat_experiment_turn != null) for(int t : g.meat_experiment_turn) if(t > -1) experimenting++;
 		sb.append(",\"meat_experiments\":").append(experimenting);
 		sb.append(",\"ground_meat\":").append(g.ground_meat == null ? 0 : g.ground_meat.size());
 		sb.append(",\"npc_digs\":").append(g.npc_digs).append(",\"npc_graves\":").append(g.npc_graves_finished);
+		// the NPC stake plan and the Blessing
+		sb.append(",\"stake_gifts\":").append(g.stake_gifts).append(",\"stake_plants\":").append(g.stake_plants).append(",\"stake_pulls\":").append(g.stake_pulls).append(",\"blessings\":").append(g.blessings).append(",\"bog_credits\":").append(g.bog_credits).append(",\"undead_graves\":").append(g.undead_graves).append(",\"plague_over\":").append(g.undead_have_walked && !g.skeletons_continue);
+		// banding against the undead
+		int knowu = 0, livingh = 0; for(int i = 0; i < g.humansize_e; i++) if(g.army[i] != null && g.army[i].gethealth() > 0 && !g.army[i].is_zombie()) { livingh++; if(g.rumorIsKnownBy(RumorKind.UNDEAD.tag, i)) knowu++; }
+		sb.append(",\"know_undead\":").append(knowu).append(",\"living_humans\":").append(livingh); //MEASURE-ONLY
+		sb.append(",\"encounter_fights\":").append(g.encounter_fights).append(",\"civil_wars\":").append(g.civil_wars).append(",\"leader_challenges\":").append(g.leader_challenges);
+		sb.append(",\"fights_called_off\":").append(g.fights_called_off).append(",\"challenges_held_off\":").append(g.challenges_held_off).append(",\"grudging_teamups\":").append(g.grudging_teamups);
 		// rumor slots in use (out of 100), and the witnessed-event rumors among them
 		int rumors_used = 0, witnessed = 0;
 		if(g.rumors != null) for(Rumor r : g.rumors) if(r != null && !r.gettag().equals("blank")) { rumors_used++; if(g.isWitnessedRumor(r.gettag())) witnessed++; }
